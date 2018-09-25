@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>PHP</ID>
+  <OriginalElement>/Users/andreypuhovsky/Workspace/Payever/plugins/api/lib</OriginalElement>
+  <nodes>
+    <node x="1016.5" y="1145.0">\Payever\ExternalIntegration\Core\Base\IMessageEntity</node>
+    <node x="511.5" y="2985.0">\Countable</node>
+    <node x="1400.5" y="2825.0">\Iterator</node>
+    <node x="1010.0" y="1265.0">\Payever\ExternalIntegration\Payments\Http\MessageEntity\ChannelSetEntity</node>
+    <node x="978.0" y="2585.0">\AssertionError</node>
+    <node x="2149.5" y="1985.0">\Payever\ExternalIntegration\Payments\Http\RequestEntity\RefundPaymentRequest</node>
+    <node x="2298.5" y="25.0">\Payever\ExternalIntegration\Payments\Http\MessageEntity\GetTransactionResultEntity</node>
+    <node x="2179.0" y="2385.0">\Payever\ExternalIntegration\Payments\Http\MessageEntity\CartItemEntity</node>
+    <node x="2802.5" y="2585.0">\Payever\ExternalIntegration\Core\Base\IToken</node>
+    <node x="-9.5" y="2705.0">\ParseError</node>
+    <node x="2152.5" y="2105.0">\Payever\ExternalIntegration\Payments\Http\RequestEntity\AuthenticationRequest</node>
+    <node x="573.0" y="2145.0">\Payever\ExternalIntegration\Payments\Http\MessageEntity\PaymentOptionOptionsEntity</node>
+    <node x="66.5" y="1345.0">\Payever\ExternalIntegration\Payments\Http\ResponseEntity\CreatePaymentResponse</node>
+    <node x="2682.0" y="2705.0">\Payever\ExternalIntegration\Payments\Engine</node>
+    <node x="63.5" y="1225.0">\Payever\ExternalIntegration\Payments\Http\ResponseEntity\ListChannelSetsResponse</node>
+    <node x="167.0" y="385.0">\Payever\ExternalIntegration\Payments\Http\ResponseEntity\DynamicResponse</node>
+    <node x="777.0" y="2785.0">\ErrorException</node>
+    <node x="2682.0" y="2585.0">\Payever\ExternalIntegration\Core\Engine</node>
+    <node x="1901.5" y="2305.0">\Payever\ExternalIntegration\Payments\Http\RequestEntity\AuthorizePaymentRequest</node>
+    <node x="1387.5" y="2705.0">\Traversable</node>
+    <node x="2113.0" y="2705.0">\Payever\ExternalIntegration\Core\Authorization\TokenList</node>
+    <node x="112.0" y="745.0">\Payever\ExternalIntegration\Payments\Http\ResponseEntity\ListPaymentsResponse</node>
+    <node x="110.0" y="505.0">\Payever\ExternalIntegration\Payments\Http\ResponseEntity\LatePaymentsResponse</node>
+    <node x="109.0" y="985.0">\Payever\ExternalIntegration\Payments\Http\ResponseEntity\GetCurrenciesResponse</node>
+    <node x="51.0" y="1465.0">\Payever\ExternalIntegration\Payments\Http\ResponseEntity\ListPaymentOptionsResponse</node>
+    <node x="-1.0" y="1825.0">\Payever\ExternalIntegration\Payments\Http\ResponseEntity\ShippingGoodsPaymentResponse</node>
+    <node x="1917.0" y="1745.0">\Payever\ExternalIntegration\Payments\Http\RequestEntity\ListPaymentsRequest</node>
+    <node x="192.5" y="2785.0">\TypeError</node>
+    <node x="2191.5" y="2225.0">\Payever\ExternalIntegration\Payments\Http\RequestEntity\CreatePaymentRequest</node>
+    <node x="64.5" y="1945.0">\Payever\ExternalIntegration\Payments\Http\ResponseEntity\RefundPaymentResponse</node>
+    <node x="2278.0" y="2705.0">\Payever\ExternalIntegration\Core\Http\Request</node>
+    <node x="563.0" y="2385.0">\Payever\ExternalIntegration\Payments\Http\MessageEntity\PaymentOptionTranslationEntity</node>
+    <node x="1568.0" y="1465.0">\Payever\ExternalIntegration\Payments\Http\MessageEntity\DynamicCallEntity</node>
+    <node x="576.0" y="2785.0">\ArithmeticError</node>
+    <node x="307.5" y="185.0">\Payever\ExternalIntegration\Payments\Http\ResponseEntity\RetrieveApiCallResponse</node>
+    <node x="1347.5" y="1785.0">\Payever\ExternalIntegration\Payments\Http\MessageEntity\CreatePaymentCallEntity</node>
+    <node x="1700.5" y="2705.0">\Payever\ExternalIntegration\Payments\Configuration</node>
+    <node x="2573.0" y="2705.0">\Payever\ExternalIntegration\Payments\Api</node>
+    <node x="2124.0" y="1865.0">\Payever\ExternalIntegration\Payments\Http\RequestEntity\ShippingGoodsPaymentRequest</node>
+    <node x="991.0" y="2905.0">\Throwable</node>
+    <node x="1699.0" y="2585.0">\Payever\ExternalIntegration\Payments\Base\IConfiguration</node>
+    <node x="2431.5" y="2585.0">\Payever\ExternalIntegration\Core\Base\IResponse</node>
+    <node x="1913.0" y="2705.0">\Payever\ExternalIntegration\Core\Http\CurlClient</node>
+    <node x="2576.5" y="105.0">\Payever\ExternalIntegration\Payments\Http\MessageEntity\ListChannelSetsResultEntity</node>
+    <node x="1102.0" y="25.0">\Payever\ExternalIntegration\Payments\Http\MessageEntity\GetCurrenciesResultEntity</node>
+    <node x="838.0" y="2505.0">\Payever\ExternalIntegration\Payments\Http\MessageEntity\PaymentDetailsEntity</node>
+    <node x="1368.5" y="2585.0">\IteratorAggregate</node>
+    <node x="62.0" y="1585.0">\Payever\ExternalIntegration\Payments\Http\ResponseEntity\RetrievePaymentResponse</node>
+    <node x="2110.5" y="2585.0">\Payever\ExternalIntegration\Core\Base\NamedList</node>
+    <node x="1394.0" y="1465.0">\Payever\ExternalIntegration\Payments\Http\MessageEntity\CallEntity</node>
+    <node x="62.0" y="1705.0">\Payever\ExternalIntegration\Payments\Http\ResponseEntity\CollectPaymentsResponse</node>
+    <node x="2276.5" y="2585.0">\Payever\ExternalIntegration\Core\Base\IRequest</node>
+    <node x="669.0" y="2985.0">\Serializable</node>
+    <node x="-23.5" y="2985.0">\Payever\ExternalIntegration\Core\Http\RequestBuilder</node>
+    <node x="188.0" y="2985.0">\Payever\ExternalIntegration\Core\ChannelSet</node>
+    <node x="361.0" y="2785.0">\DivisionByZeroError</node>
+    <node x="64.0" y="1105.0">\Payever\ExternalIntegration\Payments\Http\ResponseEntity\RemindPaymentResponse</node>
+    <node x="1072.5" y="1385.0">\Payever\ExternalIntegration\Payments\Http\MessageEntity\CreditCalculationEntity</node>
+    <node x="659.5" y="2265.0">\Payever\ExternalIntegration\Payments\Http\MessageEntity\AddressEntity</node>
+    <node x="1612.0" y="1705.0">\Payever\ExternalIntegration\Payments\Http\MessageEntity\ListPaymentOptionsCallEntity</node>
+    <node x="1353.0" y="1345.0">\Payever\ExternalIntegration\Payments\Http\MessageEntity\ListPaymentsCallEntity</node>
+    <node x="1560.5" y="2705.0">\iterable</node>
+    <node x="1672.0" y="25.0">\Payever\ExternalIntegration\Payments\Http\MessageEntity\ShippingGoodsPaymentResultEntity</node>
+    <node x="866.0" y="105.0">\Payever\ExternalIntegration\Payments\Http\MessageEntity\ResultEntity</node>
+    <node x="1379.0" y="25.0">\Payever\ExternalIntegration\Payments\Http\MessageEntity\CancelPaymentResultEntity</node>
+    <node x="344.5" y="2985.0">\Payever\ExternalIntegration\Core\Helper\StringHelper</node>
+    <node x="2433.0" y="2705.0">\Payever\ExternalIntegration\Core\Http\Response</node>
+    <node x="1024.5" y="1025.0">\ArrayAccess</node>
+    <node x="1899.0" y="2585.0">\Payever\ExternalIntegration\Core\Base\AbstractClient</node>
+    <node x="2571.5" y="2585.0">\Payever\ExternalIntegration\Payments\Base\IApi</node>
+    <node x="27.5" y="265.0">\Payever\ExternalIntegration\Payments\Http\ResponseEntity\AuthenticationResponse</node>
+    <node x="836.5" y="2985.0">\stdClass</node>
+    <node x="106.0" y="865.0">\Payever\ExternalIntegration\Payments\Http\ResponseEntity\CancelPaymentResponse</node>
+    <node x="1123.0" y="2985.0">\Payever\ExternalIntegration\Payments\Status</node>
+    <node x="2004.0" y="25.0">\Payever\ExternalIntegration\Payments\Http\MessageEntity\ListPaymentOptionsResultEntity</node>
+    <node x="105.5" y="625.0">\Payever\ExternalIntegration\Payments\Http\ResponseEntity\GetTransactionResponse</node>
+    <node x="858.0" y="2385.0">\Payever\ExternalIntegration\Core\Base\MessageEntity</node>
+    <node x="825.0" y="-15.0">\Payever\ExternalIntegration\Payments\Http\MessageEntity\ListPaymentsResultEntity</node>
+    <node x="1940.0" y="1865.0">\Payever\ExternalIntegration\Core\Http\RequestEntity</node>
+    <node x="1567.5" y="1585.0">\Payever\ExternalIntegration\Payments\Http\MessageEntity\PaymentCallEntity</node>
+    <node x="2804.0" y="2705.0">\Payever\ExternalIntegration\Core\Authorization\Token</node>
+    <node x="296.5" y="2065.0">\Payever\ExternalIntegration\Payments\Http\ResponseEntity\AuthorizePaymentResponse</node>
+    <node x="709.5" y="2025.0">\Payever\ExternalIntegration\Payments\Http\MessageEntity\ErrorEntity</node>
+    <node x="1007.5" y="2705.0">\Error</node>
+    <node x="999.5" y="2985.0">\Closure</node>
+    <node x="792.5" y="2905.0">\Exception</node>
+    <node x="335.0" y="1945.0">\Payever\ExternalIntegration\Core\Http\ResponseEntity</node>
+    <node x="1158.0" y="2705.0">\ArgumentCountError</node>
+    <node x="15.0" y="105.0">\Payever\ExternalIntegration\Payments\Http\MessageEntity\RetrievePaymentResultEntity</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\RequestEntity\RefundPaymentRequest" target="\Payever\ExternalIntegration\Core\Http\RequestEntity">
+      <point x="-90.5" y="0.0" />
+      <point x="2040.0" y="2000.0" />
+      <point x="40.0" y="15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\ResponseEntity\ShippingGoodsPaymentResponse" target="\Payever\ExternalIntegration\Core\Http\ResponseEntity">
+      <point x="121.0" y="0.0" />
+      <point x="360.0" y="1840.0" />
+      <point x="-40.0" y="-15.0" />
+    </edge>
+    <edge source="\DivisionByZeroError" target="\Error">
+      <point x="0.0" y="-15.0" />
+      <point x="440.0" y="2725.714285714286" />
+      <point x="-32.5" y="5.714285714285722" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\ResponseEntity\CollectPaymentsResponse" target="\Payever\ExternalIntegration\Core\Http\ResponseEntity">
+      <point x="98.0" y="0.0" />
+      <point x="362.85714285714283" y="1720.0" />
+      <point x="-37.14285714285717" y="-15.0" />
+    </edge>
+    <edge source="\AssertionError" target="\Error">
+      <point x="0.0" y="15.0" />
+      <point x="0.0" y="-15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\MessageEntity\ListChannelSetsResultEntity" target="\Payever\ExternalIntegration\Payments\Http\MessageEntity\ResultEntity">
+      <point x="-103.5" y="0.0" />
+      <point x="54.0" y="0.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\MessageEntity\GetCurrenciesResultEntity" target="\Payever\ExternalIntegration\Payments\Http\MessageEntity\ResultEntity">
+      <point x="0.0" y="15.0" />
+      <point x="1200.0" y="110.0" />
+      <point x="54.0" y="-10.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\ResponseEntity\GetCurrenciesResponse" target="\Payever\ExternalIntegration\Core\Http\ResponseEntity">
+      <point x="91.0" y="0.0" />
+      <point x="380.0" y="1000.0" />
+      <point x="-20.0" y="-15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\RequestEntity\AuthorizePaymentRequest" target="\Payever\ExternalIntegration\Core\Http\RequestEntity">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\MessageEntity\ListPaymentsCallEntity" target="\Payever\ExternalIntegration\Payments\Http\MessageEntity\CallEntity">
+      <point x="0.0" y="15.0" />
+      <point x="0.0" y="-15.0" />
+    </edge>
+    <edge source="\ArithmeticError" target="\Error">
+      <point x="0.0" y="-15.0" />
+      <point x="640.0" y="2728.5714285714284" />
+      <point x="-32.5" y="8.571428571428584" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\MessageEntity\PaymentOptionTranslationEntity" target="\Payever\ExternalIntegration\Core\Base\MessageEntity">
+      <point x="117.0" y="0.0" />
+      <point x="-62.0" y="0.0" />
+    </edge>
+    <edge source="\Iterator" target="\Traversable">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\MessageEntity\ListPaymentOptionsResultEntity" target="\Payever\ExternalIntegration\Payments\Http\MessageEntity\ResultEntity">
+      <point x="0.0" y="15.0" />
+      <point x="2120.0" y="116.0" />
+      <point x="54.0" y="-4.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\MessageEntity\PaymentDetailsEntity" target="\Payever\ExternalIntegration\Core\Base\MessageEntity">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\MessageEntity\ResultEntity" target="\Payever\ExternalIntegration\Core\Base\MessageEntity">
+      <point x="0.0" y="15.0" />
+      <point x="0.0" y="-15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\ResponseEntity\RetrievePaymentResponse" target="\Payever\ExternalIntegration\Core\Http\ResponseEntity">
+      <point x="98.0" y="0.0" />
+      <point x="365.7142857142857" y="1600.0" />
+      <point x="-34.28571428571428" y="-15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\ResponseEntity\RemindPaymentResponse" target="\Payever\ExternalIntegration\Core\Http\ResponseEntity">
+      <point x="96.0" y="0.0" />
+      <point x="377.14285714285717" y="1120.0" />
+      <point x="-22.857142857142833" y="-15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\MessageEntity\ListPaymentsResultEntity" target="\Payever\ExternalIntegration\Payments\Http\MessageEntity\ResultEntity">
+      <point x="0.0" y="15.0" />
+      <point x="0.0" y="-15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\ResponseEntity\RetrieveApiCallResponse" target="\Payever\ExternalIntegration\Core\Http\ResponseEntity">
+      <point x="0.0" y="15.0" />
+      <point x="0.0" y="-15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\MessageEntity\ChannelSetEntity" target="\Payever\ExternalIntegration\Core\Base\MessageEntity">
+      <point x="-70.0" y="0.0" />
+      <point x="940.0" y="1280.0" />
+      <point x="20.0" y="-15.0" />
+    </edge>
+    <edge source="\ArgumentCountError" target="\Error">
+      <point x="-82.0" y="0.0" />
+      <point x="32.5" y="0.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\MessageEntity\CancelPaymentResultEntity" target="\Payever\ExternalIntegration\Payments\Http\MessageEntity\ResultEntity">
+      <point x="0.0" y="15.0" />
+      <point x="1480.0" y="112.0" />
+      <point x="54.0" y="-8.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\ResponseEntity\LatePaymentsResponse" target="\Payever\ExternalIntegration\Core\Http\ResponseEntity">
+      <point x="90.0" y="0.0" />
+      <point x="391.42857142857144" y="520.0" />
+      <point x="-8.571428571428555" y="-15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\MessageEntity\GetTransactionResultEntity" target="\Payever\ExternalIntegration\Payments\Http\MessageEntity\ResultEntity">
+      <point x="0.0" y="15.0" />
+      <point x="2400.0" y="118.0" />
+      <point x="54.0" y="-2.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Core\Http\ResponseEntity" target="\Payever\ExternalIntegration\Core\Base\MessageEntity">
+      <point x="65.0" y="0.0" />
+      <point x="910.0" y="1960.0" />
+      <point x="-10.0" y="-15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\ResponseEntity\CancelPaymentResponse" target="\Payever\ExternalIntegration\Core\Http\ResponseEntity">
+      <point x="94.0" y="0.0" />
+      <point x="382.85714285714283" y="880.0" />
+      <point x="-17.142857142857167" y="-15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\ResponseEntity\AuthorizePaymentResponse" target="\Payever\ExternalIntegration\Core\Http\ResponseEntity">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\ResponseEntity\ListChannelSetsResponse" target="\Payever\ExternalIntegration\Core\Http\ResponseEntity">
+      <point x="96.5" y="0.0" />
+      <point x="374.2857142857143" y="1240.0" />
+      <point x="-25.714285714285722" y="-15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\MessageEntity\CallEntity" target="\Payever\ExternalIntegration\Core\Base\MessageEntity">
+      <point x="-46.0" y="0.0" />
+      <point x="953.3333333333334" y="1480.0" />
+      <point x="33.33333333333337" y="-15.0" />
+    </edge>
+    <edge source="\ErrorException" target="\Exception">
+      <point x="0.0" y="15.0" />
+      <point x="0.0" y="-15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\ResponseEntity\CreatePaymentResponse" target="\Payever\ExternalIntegration\Core\Http\ResponseEntity">
+      <point x="93.5" y="0.0" />
+      <point x="371.42857142857144" y="1360.0" />
+      <point x="-28.571428571428555" y="-15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\MessageEntity\DynamicCallEntity" target="\Payever\ExternalIntegration\Payments\Http\MessageEntity\CallEntity">
+      <point x="-72.0" y="0.0" />
+      <point x="46.0" y="0.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\RequestEntity\CreatePaymentRequest" target="\Payever\ExternalIntegration\Core\Http\RequestEntity">
+      <point x="-88.5" y="0.0" />
+      <point x="2013.3333333333335" y="2240.0" />
+      <point x="13.333333333333485" y="15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Core\Http\CurlClient" target="\Payever\ExternalIntegration\Core\Base\AbstractClient">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="\ParseError" target="\Error">
+      <point x="49.5" y="0.0" />
+      <point x="-32.5" y="0.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Core\Authorization\TokenList" target="\Payever\ExternalIntegration\Core\Base\NamedList">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Core\Base\MessageEntity" target="\ArrayAccess">
+      <point x="6.666666666666629" y="-15.0" />
+      <point x="926.6666666666666" y="1040.0" />
+      <point x="-55.5" y="0.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Configuration" target="\Payever\ExternalIntegration\Payments\Base\IConfiguration">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\ResponseEntity\ListPaymentsResponse" target="\Payever\ExternalIntegration\Core\Http\ResponseEntity">
+      <point x="88.0" y="0.0" />
+      <point x="385.7142857142857" y="760.0" />
+      <point x="-14.285714285714278" y="-15.0" />
+    </edge>
+    <edge source="\Error" target="\Throwable">
+      <point x="0.0" y="15.0" />
+      <point x="0.0" y="-15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\ResponseEntity\ListPaymentOptionsResponse" target="\Payever\ExternalIntegration\Core\Http\ResponseEntity">
+      <point x="109.0" y="0.0" />
+      <point x="368.57142857142856" y="1480.0" />
+      <point x="-31.428571428571445" y="-15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Engine" target="\Payever\ExternalIntegration\Core\Engine">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\MessageEntity\PaymentCallEntity" target="\Payever\ExternalIntegration\Payments\Http\MessageEntity\CallEntity">
+      <point x="-72.5" y="0.0" />
+      <point x="1480.0" y="1600.0" />
+      <point x="40.0" y="15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\MessageEntity\RetrievePaymentResultEntity" target="\Payever\ExternalIntegration\Payments\Http\MessageEntity\ResultEntity">
+      <point x="105.0" y="0.0" />
+      <point x="-54.0" y="0.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\ResponseEntity\DynamicResponse" target="\Payever\ExternalIntegration\Core\Http\ResponseEntity">
+      <point x="73.0" y="0.0" />
+      <point x="394.2857142857143" y="400.0" />
+      <point x="-5.714285714285722" y="-15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\MessageEntity\ErrorEntity" target="\Payever\ExternalIntegration\Core\Base\MessageEntity">
+      <point x="50.5" y="0.0" />
+      <point x="900.0" y="2040.0" />
+      <point x="-20.0" y="-15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\ResponseEntity\RefundPaymentResponse" target="\Payever\ExternalIntegration\Core\Http\ResponseEntity">
+      <point x="95.5" y="0.0" />
+      <point x="-65.0" y="0.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Core\Authorization\Token" target="\Payever\ExternalIntegration\Core\Base\IToken">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\MessageEntity\ShippingGoodsPaymentResultEntity" target="\Payever\ExternalIntegration\Payments\Http\MessageEntity\ResultEntity">
+      <point x="0.0" y="15.0" />
+      <point x="1800.0" y="114.0" />
+      <point x="54.0" y="-6.0" />
+    </edge>
+    <edge source="\IteratorAggregate" target="\Traversable">
+      <point x="0.0" y="15.0" />
+      <point x="0.0" y="-15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\MessageEntity\PaymentOptionOptionsEntity" target="\Payever\ExternalIntegration\Core\Base\MessageEntity">
+      <point x="107.0" y="0.0" />
+      <point x="890.0" y="2160.0" />
+      <point x="-30.0" y="-15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\MessageEntity\CartItemEntity" target="\Payever\ExternalIntegration\Core\Base\MessageEntity">
+      <point x="-61.0" y="0.0" />
+      <point x="62.0" y="0.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Core\Http\RequestEntity" target="\Payever\ExternalIntegration\Core\Base\MessageEntity">
+      <point x="-60.0" y="0.0" />
+      <point x="960.0" y="1880.0" />
+      <point x="40.0" y="-15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\RequestEntity\AuthenticationRequest" target="\Payever\ExternalIntegration\Core\Http\RequestEntity">
+      <point x="-87.5" y="0.0" />
+      <point x="2026.6666666666665" y="2120.0" />
+      <point x="26.666666666666515" y="15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\MessageEntity\CreditCalculationEntity" target="\Payever\ExternalIntegration\Core\Base\MessageEntity">
+      <point x="-87.5" y="0.0" />
+      <point x="946.6666666666666" y="1400.0" />
+      <point x="26.66666666666663" y="-15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Api" target="\Payever\ExternalIntegration\Payments\Base\IApi">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Core\Http\Response" target="\Payever\ExternalIntegration\Core\Base\IResponse">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Core\Http\Request" target="\Payever\ExternalIntegration\Core\Base\IRequest">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\ResponseEntity\GetTransactionResponse" target="\Payever\ExternalIntegration\Core\Http\ResponseEntity">
+      <point x="94.5" y="0.0" />
+      <point x="388.57142857142856" y="640.0" />
+      <point x="-11.428571428571445" y="-15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\MessageEntity\CreatePaymentCallEntity" target="\Payever\ExternalIntegration\Payments\Http\MessageEntity\CallEntity">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="\TypeError" target="\Error">
+      <point x="0.0" y="-15.0" />
+      <point x="240.0" y="2722.8571428571427" />
+      <point x="-32.5" y="2.857142857142861" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Core\Base\MessageEntity" target="\Payever\ExternalIntegration\Core\Base\IMessageEntity">
+      <point x="13.333333333333371" y="-15.0" />
+      <point x="933.3333333333334" y="1160.0" />
+      <point x="-63.5" y="0.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\RequestEntity\ListPaymentsRequest" target="\Payever\ExternalIntegration\Core\Http\RequestEntity">
+      <point x="0.0" y="15.0" />
+      <point x="0.0" y="-15.0" />
+    </edge>
+    <edge source="\Traversable" target="\iterable">
+      <point x="52.5" y="0.0" />
+      <point x="-39.5" y="0.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\ResponseEntity\AuthenticationResponse" target="\Payever\ExternalIntegration\Core\Http\ResponseEntity">
+      <point x="92.5" y="0.0" />
+      <point x="397.14285714285717" y="280.0" />
+      <point x="-2.857142857142833" y="-15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\RequestEntity\ShippingGoodsPaymentRequest" target="\Payever\ExternalIntegration\Core\Http\RequestEntity">
+      <point x="-116.0" y="0.0" />
+      <point x="60.0" y="0.0" />
+    </edge>
+    <edge source="\Exception" target="\Throwable">
+      <point x="47.5" y="0.0" />
+      <point x="-49.0" y="0.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\MessageEntity\AddressEntity" target="\Payever\ExternalIntegration\Core\Base\MessageEntity">
+      <point x="60.5" y="0.0" />
+      <point x="880.0" y="2280.0" />
+      <point x="-40.0" y="-15.0" />
+    </edge>
+    <edge source="\Payever\ExternalIntegration\Payments\Http\MessageEntity\ListPaymentOptionsCallEntity" target="\Payever\ExternalIntegration\Payments\Http\MessageEntity\CallEntity">
+      <point x="-108.0" y="0.0" />
+      <point x="1460.0" y="1720.0" />
+      <point x="20.0" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.1656605039373789" x="2316.5874980748554" y="1258.102998613896" />
+  <SelectedNodes />
+  <Categories />
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
