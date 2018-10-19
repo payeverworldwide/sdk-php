@@ -38,7 +38,7 @@ abstract class Token implements IToken
     /**
      * How long refresh_token should be considered valid (in seconds)
      */
-    const REFRESH_TOKEN_LIFETIME = 1209000;
+    const REFRESH_TOKEN_LIFETIME = 864000;
 
     /**
      * How long access_token should be considered valid (in seconds)

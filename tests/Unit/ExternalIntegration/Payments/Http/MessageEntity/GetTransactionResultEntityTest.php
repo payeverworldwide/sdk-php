@@ -50,6 +50,7 @@ class GetTransactionResultEntityTest extends AbstractMessageEntityTest
         'down_payment' => 0,
         'payment_fee_accepted_by_merchant' => true,
         'prefilled' => false,
+        'actions' => array(),
     );
 
     public static function getScheme()

@@ -61,6 +61,7 @@ namespace Payever\ExternalIntegration\Payments\Http\MessageEntity;
  * @method float         getDownPayment()
  * @method bool          getPaymentFeeAcceptedByMerchant()
  * @method bool          getPrefilled()
+ * @method array         getActions()
  * @method self          setMerchantReference()
  * @method self          setId()
  * @method self          setStatu()
@@ -90,6 +91,7 @@ namespace Payever\ExternalIntegration\Payments\Http\MessageEntity;
  * @method self          setDeliveryFee()
  * @method self          setPaymentFee()
  * @method self          setDownPayment()
+ * @method self          setActions()
  */
 class GetTransactionResultEntity extends ResultEntity
 {
@@ -197,6 +199,9 @@ class GetTransactionResultEntity extends ResultEntity
 
     /** @var bool $prefilled */
     protected $prefilled;
+
+    /** @var array $actions */
+    protected $actions;
 
     /**
      * Sets Created At

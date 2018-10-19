@@ -34,6 +34,7 @@ Uncompress the zip file you download, and include the autoloader in your project
 
 ```php
 require_once '/path/to/sdk-php/lib/Payever/ExternalIntegration/Core/Engine.php';
+\Payever\ExternalIntegration\Core\Engine::getLoader();
 ```
 
 ## License
