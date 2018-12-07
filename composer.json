@@ -1,6 +1,6 @@
 {
   "name":"payever/sdk-php",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "type": "library",
   "description": "PHP SDK for payever Payments",
   "keywords": ["payments","payever","pay"],
