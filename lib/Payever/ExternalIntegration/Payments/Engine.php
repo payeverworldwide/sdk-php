@@ -14,10 +14,10 @@
 
 namespace Payever\ExternalIntegration\Payments;
 
-define('PEI_PAPI_VERSION', '1.3.2');
+define('PEI_PAPI_VERSION', '1.3.3');
 define('PEI_PAPI_MAJOR_VERSION', 1);
-define('PEI_PAPI_MINOR_VERSION', 2);
-define('PEI_PAPI_RELEASE_VERSION', 0);
+define('PEI_PAPI_MINOR_VERSION', 3);
+define('PEI_PAPI_RELEASE_VERSION', 3);
 
 use Payever\ExternalIntegration\Core\Engine as CoreEngine;
 

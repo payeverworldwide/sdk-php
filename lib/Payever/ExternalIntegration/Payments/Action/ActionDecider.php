@@ -59,7 +59,7 @@ class ActionDecider implements ActionDeciderInterface
     public function isActionAllowed($paymentId, $transactionAction, $throwException = true)
     {
         if (empty($transactionAction) || empty($paymentId)) {
-            throw new \Exception('Wrong parameters.');
+            throw new \Exception('Wrong arguments.');
         }
 
         /** @var IResponse $getTransactionResponse */
@@ -73,8 +73,10 @@ class ActionDecider implements ActionDeciderInterface
 
         $actions = $getTransactionResult->getActions();
 
-        if (isset($actions->{$transactionAction}->enabled) && (bool) $actions->{$transactionAction}->enabled) {
-            return true;
+        foreach ($actions as $action) {
+            if (is_object($action) && isset($action->enabled) && (bool) $action->enabled) {
+                return true;
+            }
         }
 
         if ($throwException) {
