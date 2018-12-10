@@ -74,7 +74,12 @@ class ActionDecider implements ActionDeciderInterface
         $actions = $getTransactionResult->getActions();
 
         foreach ($actions as $action) {
-            if (is_object($action) && isset($action->enabled) && (bool) $action->enabled) {
+            if (is_object($action)
+                && isset($action->action)
+                && $action->action === $transactionAction
+                && isset($action->enabled)
+                && (bool) $action->enabled
+            ) {
                 return true;
             }
         }
