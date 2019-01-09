@@ -41,6 +41,7 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\CartItemEntity;
  * @method string           getFirstName()
  * @method string           getLastName()
  * @method string           getStreet()
+ * @method string           getStreetNumber()
  * @method string           getZip()
  * @method string           getCity()
  * @method string           getCountry()
@@ -65,6 +66,7 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\CartItemEntity;
  * @method self             setFirstName(string $name)
  * @method self             setLastName(string $name)
  * @method self             setStreet(string $street)
+ * @method self             setStreetNumber(string $streetNumber)
  * @method self             setZip(string $zip)
  * @method self             setCity(string $city)
  * @method self             setCountry(string $country)
@@ -116,6 +118,9 @@ class CreatePaymentRequest extends RequestEntity
 
     /** @var string $street */
     protected $street;
+
+    /** @var string $streetNumber */
+    protected $streetNumber;
 
     /** @var string $zip */
     protected $zip;

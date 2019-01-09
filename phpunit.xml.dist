@@ -6,10 +6,20 @@
          processUncoveredFilesFromWhitelist="true"
          verbose="true">
     <testsuites>
+        <testsuite name="Integration">
+            <directory phpVersion="5.4.0">tests/Integration/Payever</directory>
+        </testsuite>
         <testsuite name="Unit">
             <directory phpVersion="5.4.0">tests/Unit</directory>
         </testsuite>
     </testsuites>
+    <php>
+        <const name="STUB_SERVER_HOST" value="127.0.0.1" />
+        <const name="STUB_SERVER_PORT" value="9095" />
+    </php>
+    <listeners>
+        <listener class="Payever\Tests\Bootstrap\StubServerListener" />
+    </listeners>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">lib</directory>

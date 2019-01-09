@@ -18,7 +18,7 @@ namespace Payever\ExternalIntegration\Core;
 define('PEI_CORE_VERSION', '1.3.4');
 define('PEI_CORE_MAJOR_VERSION', 1);
 define('PEI_CORE_MINOR_VERSION', 3);
-define('PEI_CORE_RELEASE_VERSION', 3);
+define('PEI_CORE_RELEASE_VERSION', 4);
 
 define('PEI_NAMESPACE', 'Payever\ExternalIntegration');
 // @codeCoverageIgnoreEnd

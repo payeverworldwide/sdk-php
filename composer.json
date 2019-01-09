@@ -4,21 +4,25 @@
   "type": "library",
   "description": "PHP SDK for payever Payments",
   "keywords": ["payments","payever","pay"],
-  "homepage": "https://getpayever.com",
+  "homepage": "https://github.com/payever/sdk-php",
   "license": "MIT",
+  "minimum-stability": "stable",
   "authors": [
     {
-      "name": "payever GmbH",
-      "email": "service@payever.de",
-      "homepage": "https://getpayever.com/"
+      "name": "Andrey Puhovsky",
+      "email": "a.puhovsky@gmail.com",
+      "homepage": "https://getpayever.com/",
+      "role": "Plugins Developer"
     }
   ],
   "require":{
     "php":">=5.4.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "^6"
-  },
+    "phpunit/phpunit": "^6",
+    "behat/behat": "^3.4",
+    "beberlei/assert": "^3.0"
+  }},
   "autoload":{
     "classmap":[
       "lib"
@@ -28,6 +32,10 @@
     "classmap":[
       "lib",
       "tests"
-    ]
+    ],
+    "psr-4": {
+      "Payever\\Tests\\": "tests/"
+    }
   }
-}
+  
+}}

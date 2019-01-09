@@ -29,6 +29,7 @@ class CreatePaymentRequestTest extends AbstractRequestEntityTest
         'first_name' => 'stub_name',
         'last_name' => 'stub_lastname',
         'street' => 'stub_street',
+        'street_number' => '123',
         'zip' => '10111',
         'city' => 'Berlin',
         'country' => 'DE',
