@@ -58,6 +58,9 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method \DateTime               getPersonalDateOfBirth()
  * @method bool                    getPrevAddress()
  * @method bool                    getPrevEmploymentDetails()
+ * @method string                  getUniqueId()
+ * @method string                  getUsageText()
+ * @method string                  getBirthday()
  * @method self                    setId()
  * @method self                    setDeliveryFee()
  * @method self                    setPaymentFee()
@@ -86,6 +89,8 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method self                    setInitialPayment()
  * @method self                    setPrevAddress()
  * @method self                    setPrevEmploymentDetails()
+ * @method self                    setUniqueId()
+ * @method self                    setUsageText()
  */
 class PaymentDetailsEntity extends MessageEntity
 {
@@ -179,6 +184,15 @@ class PaymentDetailsEntity extends MessageEntity
     /** @var bool $prevEmploymentDetails */
     protected $prevEmploymentDetails;
 
+    /** @var string */
+    protected $uniqueId;
+
+    /** @var string */
+    protected $usageText;
+
+    /** @var string */
+    protected $birthday;
+
     /**
      * Sets Credit Calculation
      *
@@ -197,5 +211,15 @@ class PaymentDetailsEntity extends MessageEntity
     public function setPersonalDateOfBirth($personalDateOfBirth)
     {
         $this->personalDateOfBirth = date_create($personalDateOfBirth);
+    }
+
+    /**
+     * Sets Birthday
+     *
+     * @param string $birthday
+     */
+    public function setBirthday($birthday)
+    {
+        $this->birthday = date_create($birthday);
     }
 }

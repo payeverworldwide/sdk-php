@@ -1,43 +1,43 @@
 {
-   "require-dev" : {
-      "behat/behat" : "^3.4",
-      "phpunit/phpunit" : "^6",
-      "beberlei/assert" : "^3.0"
+   "autoload" : {
+      "classmap" : [
+         "lib"
+      ]
+   },
+   "type" : "library",
+   "require" : {
+      "php" : ">=5.4.0"
    },
    "description" : "PHP SDK for payever Payments",
+   "minimum-stability" : "stable",
+   "authors" : [
+      {
+         "role" : "Plugins Developer",
+         "email" : "a.puhovsky@gmail.com",
+         "name" : "Andrey Puhovsky",
+         "homepage" : "https://getpayever.com/"
+      }
+   ],
+   "homepage" : "https://github.com/payever/sdk-php",
+   "name" : "payever/sdk-php",
+   "autoload-dev" : {
+      "classmap" : [
+         "lib",
+         "tests"
+      ],
+      "psr-4" : {
+         "Payever\\Tests\\" : "tests/"
+      }
+   },
+   "license" : "MIT",
    "keywords" : [
       "payments",
       "payever",
       "pay"
    ],
-   "name" : "payever/sdk-php",
-   "require" : {
-      "php" : ">=5.4.0"
-   },
-   "license" : "MIT",
-   "authors" : [
-      {
-         "role" : "Plugins Developer",
-         "homepage" : "https://getpayever.com/",
-         "name" : "Andrey Puhovsky",
-         "email" : "a.puhovsky@gmail.com"
-      }
-   ],
-   "minimum-stability" : "stable",
-   "autoload-dev" : {
-      "psr-4" : {
-         "Payever\\Tests\\" : "tests/"
-      },
-      "classmap" : [
-         "lib",
-         "tests"
-      ]
-   },
-   "type" : "library",
-   "homepage" : "https://github.com/payever/sdk-php",
-   "autoload" : {
-      "classmap" : [
-         "lib"
-      ]
+   "require-dev" : {
+      "beberlei/assert" : "^3.0",
+      "behat/behat" : "^3.4",
+      "phpunit/phpunit" : "^6"
    }
 }
