@@ -4,12 +4,12 @@ namespace Payever\Tests\Unit\ExternalIntegration\Payments\Http\ResponseEntity;
 
 use Payever\ExternalIntegration\Payments\Http\ResponseEntity\RetrieveApiCallResponse;
 use Payever\Tests\Unit\ExternalIntegration\Core\Http\AbstractResponseEntityTest;
-use Payever\Tests\Unit\ExternalIntegration\Payments\Http\MessageEntity\DynamicEntityTest;
+use Payever\Tests\Unit\ExternalIntegration\Core\Http\MessageEntity\DynamicEntityTest;
 
 /**
  * Class RetrieveApiCallResponseTest
  *
- * @covers \Payever\ExternalIntegration\Payments\Http\ResponseEntity\RetrieveApiCallResponse
+ * @see \Payever\ExternalIntegration\Payments\Http\ResponseEntity\RetrieveApiCallResponse
  *
  * @package Payever\Tests\Unit\ExternalIntegration\Payments\Http\ResponseEntity
  */

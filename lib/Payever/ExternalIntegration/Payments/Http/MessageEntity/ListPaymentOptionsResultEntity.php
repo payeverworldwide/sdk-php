@@ -14,6 +14,8 @@
 
 namespace Payever\ExternalIntegration\Payments\Http\MessageEntity;
 
+use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
+
 /**
  * This class represents List Payment Options Result Entity
  *

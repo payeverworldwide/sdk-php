@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Class NamedListTest
  *
- * @covers \Payever\ExternalIntegration\Core\Base\NamedList
+ * @see \Payever\ExternalIntegration\Core\Base\NamedList
  *
  * @package Payever\ExternalIntegration\Core\Base
  */
@@ -44,7 +44,7 @@ class NamedListTest extends TestCase
     }
 
     /**
-     * @covers \Payever\ExternalIntegration\Core\Base\NamedList::add()
+     * @see \Payever\ExternalIntegration\Core\Base\NamedList::add()
      */
     public function testAdd()
     {
@@ -63,7 +63,7 @@ class NamedListTest extends TestCase
      *
      * @dataProvider generalDataProvider
      *
-     * @covers \Payever\ExternalIntegration\Core\Base\NamedList::addAll()
+     * @see \Payever\ExternalIntegration\Core\Base\NamedList::addAll()
      */
     public function testAddAll($data)
     {
@@ -73,7 +73,7 @@ class NamedListTest extends TestCase
     }
 
     /**
-     * @covers \Payever\ExternalIntegration\Core\Base\NamedList::count()
+     * @see \Payever\ExternalIntegration\Core\Base\NamedList::count()
      */
     public function testCount()
     {
@@ -91,7 +91,7 @@ class NamedListTest extends TestCase
      *
      * @dataProvider generalDataProvider
      *
-     * @covers \Payever\ExternalIntegration\Core\Base\NamedList::contains()
+     * @see \Payever\ExternalIntegration\Core\Base\NamedList::contains()
      */
     public function testContains($data)
     {
@@ -108,7 +108,7 @@ class NamedListTest extends TestCase
      *
      * @dataProvider generalDataProvider
      *
-     * @covers \Payever\ExternalIntegration\Core\Base\NamedList::clear()
+     * @see \Payever\ExternalIntegration\Core\Base\NamedList::clear()
      */
     public function testClear($data)
     {
@@ -124,7 +124,7 @@ class NamedListTest extends TestCase
      *
      * @dataProvider generalDataProvider
      *
-     * @covers \Payever\ExternalIntegration\Core\Base\NamedList::remove()
+     * @see \Payever\ExternalIntegration\Core\Base\NamedList::remove()
      */
     public function testRemove($data)
     {

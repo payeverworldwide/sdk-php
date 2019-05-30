@@ -1,6 +1,6 @@
 <?php
 /**
- * This class represents Get Transaction Response Entity
+ * This class represents Get Transaction ResponseInterface Entity
  *
  * PHP version 5.4
  *
@@ -18,7 +18,7 @@ use Payever\ExternalIntegration\Core\Http\ResponseEntity;
 use Payever\ExternalIntegration\Payments\Http\MessageEntity\GetTransactionResultEntity;
 
 /**
- * This class represents Get Transaction Response Entity
+ * This class represents Get Transaction ResponseInterface Entity
  *
  * PHP version 5.4
  *

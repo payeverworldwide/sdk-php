@@ -47,6 +47,6 @@ class TestCase extends \PHPUnit\Framework\TestCase
     {
         $reflection = new \ReflectionClass($className);
 
-        return array_values($reflection->getConstants());
+        return $reflection->getConstants();
     }
 }

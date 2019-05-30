@@ -15,7 +15,7 @@
 namespace Payever\ExternalIntegration\Payments\Http\ResponseEntity;
 
 use Payever\ExternalIntegration\Core\Http\ResponseEntity;
-use Payever\ExternalIntegration\Payments\Http\MessageEntity\DynamicEntity;
+use Payever\ExternalIntegration\Core\Http\MessageEntity\DynamicEntity;
 
 /**
  * This class represents Retrieve Api Call Entity

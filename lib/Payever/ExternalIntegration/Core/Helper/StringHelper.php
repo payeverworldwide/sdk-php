@@ -62,10 +62,10 @@ class StringHelper
     /**
      * Returns decoded JSON
      *
-     * @param string $object
+     * @param array|\stdClass|string $object
      *
      * @return bool|mixed
-     * @throws \Exception
+     * @throws \UnexpectedValueException
      */
     public static function jsonDecode($object)
     {
@@ -76,7 +76,10 @@ class StringHelper
         $result = json_decode($object);
         if (function_exists('json_last_error')) {
             if (json_last_error() != JSON_ERROR_NONE) {
-                throw new \Exception('JSON Decode Error: ' . json_last_error(), json_last_error());
+                throw new \UnexpectedValueException(
+                    'JSON Decode Error: ' . json_last_error(),
+                    json_last_error()
+                );
             }
         }
 

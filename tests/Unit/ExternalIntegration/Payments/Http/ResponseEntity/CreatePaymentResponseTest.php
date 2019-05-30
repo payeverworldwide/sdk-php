@@ -9,7 +9,7 @@ use Payever\Tests\Unit\ExternalIntegration\Payments\Http\MessageEntity\CreatePay
 /**
  * Class CreatePaymentResponseTest
  *
- * @covers \Payever\ExternalIntegration\Payments\Http\ResponseEntity\CreatePaymentResponse
+ * @see \Payever\ExternalIntegration\Payments\Http\ResponseEntity\CreatePaymentResponse
  *
  * @package Payever\Tests\Unit\ExternalIntegration\Payments\Http\ResponseEntity
  */

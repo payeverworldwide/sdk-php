@@ -9,7 +9,7 @@ use Payever\Tests\Unit\ExternalIntegration\Payments\Http\MessageEntity\GetTransa
 /**
  * Class GetTransactionResponseTest
  *
- * @covers \Payever\ExternalIntegration\Payments\Http\ResponseEntity\GetTransactionResponse
+ * @see \Payever\ExternalIntegration\Payments\Http\ResponseEntity\GetTransactionResponse
  *
  * @package Payever\Tests\Unit\ExternalIntegration\Payments\Http\ResponseEntity
  */

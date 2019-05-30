@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Class StringHelperTest
  *
- * @covers \Payever\ExternalIntegration\Core\Helper\StringHelper
+ * @see \Payever\ExternalIntegration\Core\Helper\StringHelper
  *
  * @package Payever\ExternalIntegration\Core\Helper
  */
@@ -20,7 +20,7 @@ class StringHelperTest extends TestCase
      *
      * @dataProvider underscoreCasesDataProvider
      *
-     * @covers \Payever\ExternalIntegration\Core\Helper\StringHelper::underscore()
+     * @see \Payever\ExternalIntegration\Core\Helper\StringHelper::underscore()
      */
     public function testUnderscore($in, $out)
     {
@@ -51,7 +51,7 @@ class StringHelperTest extends TestCase
      *
      * @dataProvider camelizeCasesDataProvider
      *
-     * @covers \Payever\ExternalIntegration\Core\Helper\StringHelper::camelize()
+     * @see \Payever\ExternalIntegration\Core\Helper\StringHelper::camelize()
      */
     public function testCamelize($in, $out, $ucFirst = false)
     {
@@ -87,7 +87,7 @@ class StringHelperTest extends TestCase
      *
      * @dataProvider jsonDecodeDataProvider
      *
-     * @covers \Payever\ExternalIntegration\Core\Helper\StringHelper::jsonDecode()
+     * @see \Payever\ExternalIntegration\Core\Helper\StringHelper::jsonDecode()
      */
     public function testJsonDecode($in, $out, $exception = false)
     {

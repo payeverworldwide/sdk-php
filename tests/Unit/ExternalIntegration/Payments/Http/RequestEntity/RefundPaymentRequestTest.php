@@ -8,7 +8,7 @@ use Payever\Tests\Unit\ExternalIntegration\Core\Http\AbstractRequestEntityTest;
 /**
  * Class RefundPaymentRequestTest
  *
- * @covers \Payever\ExternalIntegration\Payments\Http\RequestEntity\RefundPaymentRequest
+ * @see \Payever\ExternalIntegration\Payments\Http\RequestEntity\RefundPaymentRequest
  *
  * @package Payever\Tests\Unit\ExternalIntegration\Payments\Http\RequestEntity
  */

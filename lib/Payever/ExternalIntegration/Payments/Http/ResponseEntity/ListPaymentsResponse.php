@@ -1,6 +1,6 @@
 <?php
 /**
- * This class represents List Payments Response Entity
+ * This class represents List Payments ResponseInterface Entity
  *
  * PHP version 5.4
  *
@@ -19,7 +19,7 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\ListPaymentsCallEnti
 use Payever\ExternalIntegration\Payments\Http\MessageEntity\ListPaymentsResultEntity;
 
 /**
- * This class represents List Payments Response Entity
+ * This class represents List Payments ResponseInterface Entity
  *
  * PHP version 5.4
  *

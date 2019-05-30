@@ -1,6 +1,6 @@
 <?php
 /**
- * This class represents Create Payment Request Entity
+ * This class represents Create Payment RequestInterface Entity
  *
  * PHP version 5.4
  *
@@ -14,12 +14,11 @@
 
 namespace Payever\ExternalIntegration\Payments\Http\RequestEntity;
 
-use Payever\ExternalIntegration\Core\ChannelSet;
 use Payever\ExternalIntegration\Core\Http\RequestEntity;
 use Payever\ExternalIntegration\Payments\Http\MessageEntity\CartItemEntity;
 
 /**
- * This class represents Create Payment Request Entity
+ * This class represents Create Payment RequestInterface Entity
  *
  * PHP version 5.4
  *
@@ -84,7 +83,7 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\CartItemEntity;
 class CreatePaymentRequest extends RequestEntity
 {
     /** @var string $channel */
-    protected $channel = ChannelSet::CHANNEL_OTHER_SHOPSYSTEM;
+    protected $channel;
 
     /** @var integer $channelSetId */
     protected $channelSetId;
@@ -184,9 +183,11 @@ class CreatePaymentRequest extends RequestEntity
      */
     public function isValid()
     {
-        foreach ($this->cart as $item) {
-            if (!$item instanceof CartItemEntity || !$item->isValid()) {
-                return false;
+        if (is_array($this->cart)) {
+            foreach ($this->cart as $item) {
+                if (!$item instanceof CartItemEntity || !$item->isValid()) {
+                    return false;
+                }
             }
         }
 

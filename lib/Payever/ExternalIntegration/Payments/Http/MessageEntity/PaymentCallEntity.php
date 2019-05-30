@@ -14,6 +14,8 @@
 
 namespace Payever\ExternalIntegration\Payments\Http\MessageEntity;
 
+use Payever\ExternalIntegration\Core\Http\MessageEntity\CallEntity;
+
 /**
  * This class represents Payment Call Entity
  *

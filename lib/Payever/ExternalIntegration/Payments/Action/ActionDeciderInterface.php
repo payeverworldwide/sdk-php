@@ -4,7 +4,6 @@
  *
  * PHP version 5.4
  *
- * @category  Payments
  * @package   Payever\Payments
  * @author    payever GmbH <service@payever.de>
  * @copyright 2017-2018 payever GmbH
@@ -19,7 +18,6 @@ namespace Payever\ExternalIntegration\Payments\Action;
  *
  * PHP version 5.4
  *
- * @category  Payments
  * @package   Payever\Payments
  * @author    payever GmbH <service@payever.de>
  * @copyright 2017-2018 payever GmbH

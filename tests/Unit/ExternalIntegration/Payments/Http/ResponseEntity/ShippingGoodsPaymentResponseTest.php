@@ -10,7 +10,7 @@ use Payever\Tests\Unit\ExternalIntegration\Payments\Http\MessageEntity\ShippingG
 /**
  * Class ShippingGoodsPaymentResponseTest
  *
- * @covers \Payever\ExternalIntegration\Payments\Http\ResponseEntity\ShippingGoodsPaymentResponse
+ * @see \Payever\ExternalIntegration\Payments\Http\ResponseEntity\ShippingGoodsPaymentResponse
  *
  * @package Payever\Tests\Unit\ExternalIntegration\Payments\Http\ResponseEntity
  */

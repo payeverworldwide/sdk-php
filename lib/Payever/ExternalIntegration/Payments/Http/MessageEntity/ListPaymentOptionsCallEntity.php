@@ -14,6 +14,9 @@
 
 namespace Payever\ExternalIntegration\Payments\Http\MessageEntity;
 
+use Payever\ExternalIntegration\Core\Http\MessageEntity\CallEntity;
+use Payever\ExternalIntegration\Core\Http\MessageEntity\ChannelSetEntity;
+
 /**
  * This class represents List Payment Options Call Entity
  *

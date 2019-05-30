@@ -1,6 +1,19 @@
 # PHP SDK for payever Payments
+[![coverage report](http://gitlab.devpayever.com/backend/sdk.plugins/badges/master/coverage.svg)](http://gitlab.devpayever.com/backend/sdk.plugins/commits/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/payeverworldwide/sdk-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/gendosua/sdk-php/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/payeverworldwide/sdk-php/badges/build.png?b=master)](https://scrutinizer-ci.com/g/payeverworldwide/sdk-php/build-status/master)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/payeverworldwide/sdk-php/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
+[![Latest Stable Version](https://poser.pugx.org/payever/sdk-php/v/stable)](https://packagist.org/packages/payever/sdk-php)
+[![Total Downloads](https://poser.pugx.org/payever/sdk-php/downloads)](https://packagist.org/packages/payever/sdk-php)
+[![License](https://poser.pugx.org/payever/sdk-php/license)](https://packagist.org/packages/payever/sdk-php)
 
 This repository contains the open source PHP SDK that allows you to access payever from your PHP app.
+
+This library follows semantic versioning. Read more on [semver.org][1].
+
+## Troubleshooting 
+
+Feel free to open an (issue)[issues] if you found a bug.
 
 ## Requirements
 
@@ -28,15 +41,78 @@ composer require payever/sdk-php
 
 ### Manual Installation
 
-Alternatively you can download the package in its entirety. The [Releases](../../releases) page lists all stable versions.
+Alternatively you can download the package entirety. The [Releases](../../releases) page lists all stable versions.
 
-Uncompress the zip file you download, and include the autoloader in your project:
+Uncompress the zip file you download, and invoke the autoloader in your project:
 
 ```php
 require_once '/path/to/sdk-php/lib/Payever/ExternalIntegration/Core/Engine.php';
-\Payever\ExternalIntegration\Core\Engine::getLoader();
+
+\Payever\ExternalIntegration\Core\Engine::registerAutoloader();
+```
+
+## Examples
+
+#### Create payment and obtain redirect url
+
+```php
+
+use Payever\ExternalIntegration\Core\ChannelSet;
+use Payever\ExternalIntegration\Core\ClientConfiguration;
+use Payever\ExternalIntegration\Payments\Enum\PaymentMethod;
+use Payever\ExternalIntegration\Payments\PaymentsApiClient;
+use Payever\ExternalIntegration\Payments\Http\RequestEntity\CreatePaymentRequest;
+
+$clientId = 'your-oauth2-client-id';
+$clientSecret = 'your-oauth2-client-secret';
+
+$clientConfiguration = new ClientConfiguration();
+
+$clientConfiguration
+    ->setChannelSet(ChannelSet::CHANNEL_MAGENTO)
+    ->setApiMode(ClientConfiguration::API_MODE_LIVE)
+    ->setClientId($clientId)
+    ->setClientSecret($clientSecret)
+    ->setBusinessUuid('88888888-4444-4444-4444-121212121212')
+;
+
+$paymentsApiClient = new PaymentsApiClient($clientConfiguration);
+
+$createPaymentEntity = new CreatePaymentRequest();
+
+$createPaymentEntity
+    ->setOrderId('1001')
+    ->setAmount(100.5)
+    ->setFee(10)
+    ->setCurrency('EUR')
+    ->setPaymentMethod(PaymentMethod::METHOD_SANTANDER_DE_INSTALLMENT)
+    ->setSalutation('mr')
+    ->setFirstName('John')
+    ->setLastName('Doe')
+    ->setCity('Hamburg')
+    ->setCountry('DE')
+    ->setZip('10111')
+    ->setStreet('Awesome street, 10')
+    ->setEmail('john.doe@example.com')
+    ->setPhone('+450001122')
+    ->setSuccessUrl('https://your.domain/success?paymentId=--PAYMENT-ID--')
+    ->setCancelUrl('https://your.domain/checkout?reason=cancel')
+    ->setFailureUrl('https://your.domain/checkout?reason=failure')
+    ->setNoticeUrl('https://your.domain/async-payment-callback?paymentId=--PAYMENT-ID--')
+;
+
+try {
+    $response = $paymentsApiClient->createPaymentRequest($createPaymentEntity);
+    $responseEntity = $response->getResponseEntity();
+    
+    header(sprintf('Location: %s', $responseEntity->getRedirectUrl()), true);
+    exit;
+} catch (\Exception $exception) {
+    echo $exception->getMessage();
+}
+
 ```
 
 ## License
 
-Please see the [license file](LICENSE) for more information.
+Please see the [license file](LICENSE.md) for more information.

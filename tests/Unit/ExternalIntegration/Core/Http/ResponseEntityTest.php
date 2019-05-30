@@ -8,17 +8,17 @@ use PHPUnit\Framework\TestCase;
 /**
  * Class ResponseEntityTest
  *
- * @covers \Payever\ExternalIntegration\Core\Http\ResponseEntity
+ * @see \Payever\ExternalIntegration\Core\Http\ResponseEntity
  *
  * @package Payever\ExternalIntegration\Core\Http
  */
 class ResponseEntityTest extends TestCase
 {
     /**
-     * @covers \Payever\ExternalIntegration\Core\Http\ResponseEntity::setCall()
-     * @covers \Payever\ExternalIntegration\Core\Http\ResponseEntity::setResult()
-     * @covers \Payever\ExternalIntegration\Core\Http\ResponseEntity::isValid()
-     * @covers \Payever\ExternalIntegration\Core\Http\ResponseEntity::isSuccessful()
+     * @see \Payever\ExternalIntegration\Core\Http\ResponseEntity::setCall()
+     * @see \Payever\ExternalIntegration\Core\Http\ResponseEntity::setResult()
+     * @see \Payever\ExternalIntegration\Core\Http\ResponseEntity::isValid()
+     * @see \Payever\ExternalIntegration\Core\Http\ResponseEntity::isSuccessful()
      *
      * @throws \Exception
      */
@@ -36,17 +36,17 @@ class ResponseEntityTest extends TestCase
         $responseEntity->setCall($call);
         $responseEntity->setResult($result);
 
-        $this->assertInstanceOf('Payever\ExternalIntegration\Payments\Http\MessageEntity\CallEntity', $responseEntity->getCall());
-        $this->assertInstanceOf('Payever\ExternalIntegration\Payments\Http\MessageEntity\ResultEntity', $responseEntity->getResult());
+        $this->assertInstanceOf('Payever\ExternalIntegration\Core\Http\MessageEntity\CallEntity', $responseEntity->getCall());
+        $this->assertInstanceOf('Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity', $responseEntity->getResult());
         $this->assertTrue($responseEntity->isSuccessful());
         $this->assertFalse($responseEntity->isFailed());
         $this->assertTrue($responseEntity->isValid());
     }
 
     /**
-     * @covers \Payever\ExternalIntegration\Core\Http\ResponseEntity::setError()
-     * @covers \Payever\ExternalIntegration\Core\Http\ResponseEntity::setErrorDescription()
-     * @covers \Payever\ExternalIntegration\Core\Http\ResponseEntity::isFailed()
+     * @see \Payever\ExternalIntegration\Core\Http\ResponseEntity::setError()
+     * @see \Payever\ExternalIntegration\Core\Http\ResponseEntity::setErrorDescription()
+     * @see \Payever\ExternalIntegration\Core\Http\ResponseEntity::isFailed()
      */
     public function testError()
     {

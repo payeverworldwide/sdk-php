@@ -8,7 +8,7 @@ use Payever\Tests\Unit\ExternalIntegration\Core\Http\AbstractRequestEntityTest;
 /**
  * Class AuthorizePaymentRequestTest
  *
- * @covers \Payever\ExternalIntegration\Payments\Http\RequestEntity\AuthorizePaymentRequest
+ * @see \Payever\ExternalIntegration\Payments\Http\RequestEntity\AuthorizePaymentRequest
  *
  * @package Payever\Tests\Unit\ExternalIntegration\Payments\Http\RequestEntity
  */

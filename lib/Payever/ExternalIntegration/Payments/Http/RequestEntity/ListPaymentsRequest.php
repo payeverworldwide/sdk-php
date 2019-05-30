@@ -1,6 +1,6 @@
 <?php
 /**
- * This class represents List Payments Request Entity
+ * This class represents List Payments RequestInterface Entity
  *
  * PHP version 5.4
  *
@@ -15,10 +15,10 @@
 namespace Payever\ExternalIntegration\Payments\Http\RequestEntity;
 
 use Payever\ExternalIntegration\Core\Http\RequestEntity;
-use Payever\ExternalIntegration\Payments\Status;
+use Payever\ExternalIntegration\Payments\Enum\Status;
 
 /**
- * This class represents List Payments Request Entity
+ * This class represents List Payments RequestInterface Entity
  *
  * PHP version 5.4
  *
@@ -64,21 +64,11 @@ class ListPaymentsRequest extends RequestEntity
     /**
      * {@inheritdoc}
      */
-    public function getRequired()
-    {
-        return array(
-            'access_token',
-        );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function isValid()
     {
         return parent::isValid() &&
             (!$this->date || $this->date instanceof \DateTime) &&
-            (!$this->state || in_array($this->state, Status::getList())) &&
+            (!$this->state || in_array($this->state, Status::enum())) &&
             (!$this->limit || is_integer($this->limit))
         ;
     }

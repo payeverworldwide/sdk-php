@@ -2,7 +2,7 @@
 
 namespace Payever\Tests\Unit\ExternalIntegration\Core\Http;
 
-use Payever\ExternalIntegration\Core\Http\CurlClient;
+use Payever\ExternalIntegration\Core\Http\Client\CurlClient;
 use PHPUnit\Framework\TestCase;
 
 class CurlClientTest extends TestCase
@@ -15,7 +15,7 @@ class CurlClientTest extends TestCase
     protected static function getMethod($name)
     {
         try {
-            $class = new \ReflectionClass('Payever\ExternalIntegration\Core\Http\CurlClient');
+            $class = new \ReflectionClass('Payever\ExternalIntegration\Core\Http\Client\CurlClient');
 
             $method = $class->getMethod($name);
             $method->setAccessible(true);

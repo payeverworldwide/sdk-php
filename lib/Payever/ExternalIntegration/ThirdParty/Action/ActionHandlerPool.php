@@ -1,0 +1,67 @@
+<?php
+/**
+ * PHP version 5.4 and 7
+ *
+ * @package   Payever\ThirdParty
+ * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
+ * @copyright 2017-2019 payever GmbH
+ * @license   MIT <https://opensource.org/licenses/MIT>
+ */
+
+namespace Payever\ExternalIntegration\ThirdParty\Action;
+
+/**
+ * PHP version 5.4 and 7
+ *
+ * @package   Payever\ThirdParty
+ * @author    payever GmbH <service@payever.de>
+ * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
+ * @copyright 2017-2019 payever GmbH
+ * @license   MIT <https://opensource.org/licenses/MIT>
+ */
+class ActionHandlerPool
+{
+    /** @var ActionHandlerInterface[] */
+    protected $handlers;
+
+    /**
+     * ActionHandlerPool constructor.
+     * @param ActionHandlerInterface[] $handlers
+     */
+    public function __construct(array $handlers = array())
+    {
+        $this->handlers = array();
+
+        foreach ($handlers as $handler) {
+            $this->registerActionHandler($handler);
+        }
+    }
+
+    /**
+     * @param ActionHandlerInterface $handler
+     *
+     * @return static
+     */
+    public function registerActionHandler(ActionHandlerInterface $handler)
+    {
+        $this->handlers[$handler->getSupportedAction()] = $handler;
+
+        return $this;
+    }
+
+    /**
+     * @param string $action on of @see {Action}
+     *
+     * @return ActionHandlerInterface
+     *
+     * @throws \RuntimeException when can't find corresponding handler
+     */
+    public function getHandlerForAction($action)
+    {
+        if (isset($this->handlers[$action])) {
+            return $this->handlers[$action];
+        }
+
+        throw new \RuntimeException(sprintf("No handler registered for %s action", $action));
+    }
+}

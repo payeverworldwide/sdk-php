@@ -10,7 +10,7 @@ use Payever\Tests\Unit\ExternalIntegration\Payments\Http\MessageEntity\CartItemE
 /**
  * Class CreatePaymentRequestTest
  *
- * @covers \Payever\ExternalIntegration\Payments\Http\RequestEntity\CreatePaymentRequest
+ * @see \Payever\ExternalIntegration\Payments\Http\RequestEntity\CreatePaymentRequest
  *
  * @package Payever\Tests\Unit\ExternalIntegration\Payments\Http\RequestEntity
  */

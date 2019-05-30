@@ -8,7 +8,7 @@ use Payever\Tests\Unit\ExternalIntegration\Core\Http\AbstractRequestEntityTest;
 /**
  * Class ShippingGoodsPaymentRequestTest
  *
- * @covers \Payever\ExternalIntegration\Payments\Http\RequestEntity\ShippingGoodsPaymentRequest
+ * @see \Payever\ExternalIntegration\Payments\Http\RequestEntity\ShippingGoodsPaymentRequest
  *
  * @package Payever\Tests\Unit\ExternalIntegration\Payments\Http\RequestEntity
  */

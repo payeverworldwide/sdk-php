@@ -2,32 +2,35 @@
 
 namespace Payever\Tests\Unit\ExternalIntegration\Core\Authorization;
 
-use Payever\Tests\Bootstrap\Plugin\Core\Authorization\Token;
+use Payever\ExternalIntegration\Core\Authorization\OauthToken;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class TokenTest
  *
- * @covers \Payever\ExternalIntegration\Core\Authorization\Token
+ * @see \Payever\ExternalIntegration\Core\Authorization\OauthToken
  *
  * @package Payever\ExternalIntegration\Core\Authorization
  */
 class TokenTest extends TestCase
 {
-    /** @var Token */
+    /** @var OauthToken */
     private $token;
 
+    /**
+     * @throws \Exception
+     */
     public function setUp()
     {
         parent::setUp();
 
-        $this->token = $this->getMockForAbstractClass('Payever\Tests\Bootstrap\Plugin\Core\Authorization\Token');
+        $this->token = new OauthToken();
     }
 
     private function getTokenFields()
     {
         return array(
-            'scope'         => Token::SCOPE_CREATE_PAYMENT,
+            'scope'         => OauthToken::SCOPE_CREATE_PAYMENT,
             'access_token'  => 'stub_access_token',
             'refresh_token' => 'stub_refresh_token',
             'created_at'    => time(),
@@ -36,34 +39,23 @@ class TokenTest extends TestCase
     }
 
     /**
-     * @covers \Payever\ExternalIntegration\Core\Authorization\Token::__construct()
-     * @covers \Payever\ExternalIntegration\Core\Authorization\Token::load()
-     * @covers \Payever\ExternalIntegration\Core\Authorization\Token::getParams()
-     *
      * @throws \Exception
      */
     public function testLoadOnConstruct()
     {
         $fields = $this->getTokenFields();
-        $token = new Token($fields);
+        $token = new OauthToken($fields);
 
         $this->assertEquals($fields, $token->getParams());
     }
 
     /**
-     * @covers \Payever\ExternalIntegration\Core\Authorization\Token::load()
-     * @covers \Payever\ExternalIntegration\Core\Authorization\Token::getCreatedAt()
-     * @covers \Payever\ExternalIntegration\Core\Authorization\Token::getUpdatedAt()
-     * @covers \Payever\ExternalIntegration\Core\Authorization\Token::getAccessToken()
-     * @covers \Payever\ExternalIntegration\Core\Authorization\Token::getRefreshToken()
-     * @covers \Payever\ExternalIntegration\Core\Authorization\Token::getScope()
-     *
      * @throws \Exception
      */
     public function testLoadFields()
     {
         $fields = $this->getTokenFields();
-        $token = new Token();
+        $token = new OauthToken();
 
         $this->assertNotEmpty($token->getCreatedAt());
         $this->assertEmpty($token->getUpdatedAt());
@@ -83,26 +75,26 @@ class TokenTest extends TestCase
     }
 
     /**
-     * @covers \Payever\ExternalIntegration\Core\Authorization\Token::load()
+     * @see \Payever\ExternalIntegration\Core\Authorization\OauthToken::load()
      *
      * @expectedException  \Exception
      */
     public function testLoadFailedBadJson()
     {
-        $token = new Token();
+        $token = new OauthToken();
 
         $token->load("[\"\"access_token\": \"stub\"]");
     }
 
     /**
-     * @covers \Payever\ExternalIntegration\Core\Authorization\Token::getHash()
+     * @see \Payever\ExternalIntegration\Core\Authorization\OauthToken::getHash()
      *
      * @throws \Exception
      */
     public function testGetHash()
     {
         $fields = $this->getTokenFields();
-        $token = new Token($fields);
+        $token = new OauthToken($fields);
 
         $expectedHash = md5(json_encode($fields));
 
@@ -110,54 +102,54 @@ class TokenTest extends TestCase
     }
 
     /**
-     * @covers \Payever\ExternalIntegration\Core\Authorization\Token::isExpired()
-     * @covers \Payever\ExternalIntegration\Core\Authorization\Token::getExpiresIn()
+     * @see \Payever\ExternalIntegration\Core\Authorization\OauthToken::isExpired()
+     * @see \Payever\ExternalIntegration\Core\Authorization\OauthToken::getExpiresIn()
      *
      * @throws \Exception
      */
     public function testIsExpired()
     {
-        $token = new Token();
+        $token = new OauthToken();
 
-        $this->assertFalse($token->getExpiresIn());
+        $this->assertEquals(0, $token->getExpiresIn());
         $this->assertFalse($token->isExpired());
 
         $token->load($this->getTokenFields());
 
-        $token->setUpdatedAt(time()-Token::ACCESS_TOKEN_LIFETIME);
+        $token->setUpdatedAt(time()-OauthToken::ACCESS_TOKEN_LIFETIME);
 
         $this->assertTrue($token->isExpired());
 
         // 1 sec difference should matter
-        $token->setUpdatedAt(time()-Token::ACCESS_TOKEN_LIFETIME + 1);
+        $token->setUpdatedAt(time()-OauthToken::ACCESS_TOKEN_LIFETIME + 1);
 
         $this->assertFalse($token->isExpired());
     }
 
     /**
-     * @covers \Payever\ExternalIntegration\Core\Authorization\Token::isRefreshable()
+     * @see \Payever\ExternalIntegration\Core\Authorization\OauthToken::isRefreshable()
      *
      * @throws \Exception
      */
     public function testIsRefreshable()
     {
-        $token = new Token();
+        $token = new OauthToken();
 
         $this->assertFalse($token->isRefreshable());
 
         $token->load($this->getTokenFields());
 
-        $token->setUpdatedAt(time() - Token::REFRESH_TOKEN_LIFETIME);
+        $token->setUpdatedAt(time() - OauthToken::REFRESH_TOKEN_LIFETIME);
 
         $this->assertFalse($token->isRefreshable());
 
-        $token->setUpdatedAt(time() - Token::REFRESH_TOKEN_LIFETIME + 1);
+        $token->setUpdatedAt(time() - OauthToken::REFRESH_TOKEN_LIFETIME + 1);
 
         $this->assertTrue($token->isRefreshable());
     }
 
     /**
-     * @covers \Payever\ExternalIntegration\Core\Authorization\Token::getScopes()
+     * @see \Payever\ExternalIntegration\Core\Authorization\OauthToken::getScopes()
      */
     public function testGetScopes()
     {
@@ -167,6 +159,17 @@ class TokenTest extends TestCase
             'API_PAYMENT_INFO',
         );
 
-        $this->assertEquals($scopes, Token::getScopes());
+        $this->assertEquals($scopes, OauthToken::getScopes());
+    }
+
+    /**
+     * @see \Payever\ExternalIntegration\Core\Authorization\OauthToken::getGrandTypes()
+     */
+    public function testGrantTypes()
+    {
+        $this->assertEquals(
+            array('refresh_token', 'http://www.payever.de/api/payment'),
+            OauthToken::getGrandTypes()
+        );
     }
 }

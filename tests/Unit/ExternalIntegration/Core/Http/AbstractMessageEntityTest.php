@@ -90,6 +90,11 @@ abstract class AbstractMessageEntityTest extends TestCase
                 continue;
             }
 
+            if (is_float($expectedValue) && is_float($expectedValue)) {
+                $expectedValue = round($expectedValue, 2);
+                $realValue = round($realValue, 2);
+            }
+
             $this->assertEquals($expectedValue, $realValue, $key);
         }
     }

@@ -14,6 +14,8 @@
 
 namespace Payever\ExternalIntegration\Core\Http;
 
+use Payever\ExternalIntegration\Core\Engine;
+
 /**
  * This class represents Request Builder
  *
@@ -50,7 +52,7 @@ class RequestBuilder
     protected $responseEntity;
 
     /**
-     * HttpRequestBuilder constructor
+     * RequestBuilder constructor
      *
      * @param string $url
      * @param string $method
@@ -61,10 +63,11 @@ class RequestBuilder
         $this->url = $url;
         $this->requestEntity = new RequestEntity();
         $this->responseEntity = new ResponseEntity();
+        $this->headers = $this->getDefaultHeaders();
     }
 
     /**
-     * Instantiates HttpRequestBuilder with GET method set
+     * Instantiates RequestBuilder with GET method set
      *
      * @param string|null $url
      *
@@ -76,7 +79,7 @@ class RequestBuilder
     }
 
     /**
-     * Instantiates HttpRequestBuilder with POST method set
+     * Instantiates RequestBuilder with POST method set
      *
      * @param string|null $url
      *
@@ -85,6 +88,39 @@ class RequestBuilder
     public static function post($url = null)
     {
         return new static($url, Request::METHOD_POST);
+    }
+
+    /**
+     * Instantiates RequestBuilder with PUT method set
+     *
+     * @param string|null $url
+     * @return self
+     */
+    public static function put($url = null)
+    {
+        return new static($url, Request::METHOD_PUT);
+    }
+
+    /**
+     * Instantiates RequestBuilder with PATCH method set
+     *
+     * @param string|null $url
+     * @return self
+     */
+    public static function patch($url = null)
+    {
+        return new static($url, Request::METHOD_PATCH);
+    }
+
+    /**
+     * Instantiates RequestBuilder with DELETE method set
+     *
+     * @param string|null $url
+     * @return self
+     */
+    public static function delete($url = null)
+    {
+        return new static($url, Request::METHOD_DELETE);
     }
 
     /**
@@ -122,6 +158,22 @@ class RequestBuilder
     public function addHeader($name, $value = null)
     {
         $this->headers[$name] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Adds Header from a string
+     *
+     * @param string $string
+     *
+     * @return self
+     */
+    public function addRawHeader($string)
+    {
+        $pieces = explode(':', $string, 2);
+
+        $this->addHeader($pieces[0], $pieces[1]);
 
         return $this;
     }
@@ -338,6 +390,28 @@ class RequestBuilder
     }
 
     /**
+     * Send payload as application/x-www-form-urlencoded
+     *
+     * @return $this
+     */
+    public function setFormUrlencoded()
+    {
+        $this->addHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        return $this;
+    }
+
+    /**
+     * Send payload as JSON string
+     */
+    public function contentTypeIsJson()
+    {
+        $this->addHeader('Content-Type', 'application/json');
+
+        return $this;
+    }
+
+    /**
      * Returns Http method used
      *
      * @return string
@@ -372,7 +446,7 @@ class RequestBuilder
     }
 
     /**
-     * Sets Response Entity
+     * Sets ResponseInterface Entity
      *
      * @param ResponseEntity $responseEntity
      *
@@ -396,7 +470,7 @@ class RequestBuilder
     }
 
     /**
-     * Returns Response Entity used
+     * Returns ResponseInterface Entity used
      *
      * @return ResponseEntity
      */
@@ -427,5 +501,15 @@ class RequestBuilder
         $this->protocolVersion = $protocolVersion;
 
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDefaultHeaders()
+    {
+        return array(
+            'User-agent' => sprintf('payever PHP SDK v%s / cURL client', Engine::SDK_VERSION),
+        );
     }
 }

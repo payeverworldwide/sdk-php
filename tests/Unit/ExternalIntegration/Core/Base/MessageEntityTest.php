@@ -2,20 +2,20 @@
 
 namespace Payever\Tests\Unit\Core\Base;
 
-use PHPUnit\Framework\MockObject\MockObject;
+use Payever\ExternalIntegration\Core\Base\MessageEntity;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class MessageEntityTest
  *
- * @covers \Payever\ExternalIntegration\Core\Base\MessageEntity
+ * @see \Payever\ExternalIntegration\Core\Base\MessageEntity
  *
  * @package Payever\ExternalIntegration\Core\Base
  */
 class MessageEntityTest extends TestCase
 {
     /**
-     * @var MockObject
+     * @var MessageEntity
      */
     private $entity;
 
@@ -29,7 +29,7 @@ class MessageEntityTest extends TestCase
     /**
      * @param array $data
      *
-     * @covers \Payever\ExternalIntegration\Core\Base\MessageEntity::load()
+     * @see \Payever\ExternalIntegration\Core\Base\MessageEntity::load()
      *
      * @dataProvider loadDataProvider
      */
@@ -41,6 +41,46 @@ class MessageEntityTest extends TestCase
 
         /** Abstract class has no fields, so it should be always empty */
         $this->assertEquals(array(), $this->entity->toArray());
+    }
+
+    public function testSerialization()
+    {
+        $this->assertEquals('[]', (string) $this->entity);
+
+        $this->entity->offsetSet('stub', 'value');
+
+        $this->assertEquals('{"stub":"value"}', (string) $this->entity);
+    }
+
+    public function testGettingNotExistingProperty()
+    {
+        $this->assertNull($this->entity->offsetGet('nonexistent'));
+    }
+
+    public function testIsset()
+    {
+        $this->assertFalse($this->entity->offsetExists('stub'));
+
+        $this->entity->offsetSet('stub', true);
+
+        $this->assertTrue($this->entity->offsetExists('stub'));
+    }
+
+    public function testUnset()
+    {
+        $key = 'stub';
+        $value = 'stub_value';
+
+        $this->assertNull($this->entity->offsetGet($key));
+
+        $this->entity->offsetSet($key, $value);
+
+        $this->assertEquals($value, $this->entity->offsetGet($key));
+
+        $this->entity->offsetUnset($key);
+
+        $this->assertFalse($this->entity->offsetExists($key));
+        $this->assertNull($this->entity->offsetGet($key));
     }
 
     /**
@@ -59,7 +99,7 @@ class MessageEntityTest extends TestCase
     }
 
     /**
-     * @covers \Payever\ExternalIntegration\Core\Base\MessageEntity::isValid()
+     * @see \Payever\ExternalIntegration\Core\Base\MessageEntity::isValid()
      */
     public function testIsValid()
     {

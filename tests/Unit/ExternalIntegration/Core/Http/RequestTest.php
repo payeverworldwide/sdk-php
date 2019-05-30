@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Class RequestTest
  *
- * @covers \Payever\ExternalIntegration\Core\Http\Request
+ * @see \Payever\ExternalIntegration\Core\Http\Request
  *
  * @package Payever\ExternalIntegration\Tests\Plugin\Core\Http
  */
@@ -28,12 +28,12 @@ class RequestTest extends TestCase
      * @param string $key
      * @param mixed $value
      *
-     * @covers \Payever\ExternalIntegration\Core\Http\Request::addHeader()
-     * @covers \Payever\ExternalIntegration\Core\Http\Request::removeHeader()
-     * @covers \Payever\ExternalIntegration\Core\Http\Request::getHeader()
-     * @covers \Payever\ExternalIntegration\Core\Http\Request::getHeaders()
-     * @covers \Payever\ExternalIntegration\Core\Http\Request::cleanHeaders()
-     * @covers \Payever\ExternalIntegration\Core\Http\Request::containsHeader()
+     * @see \Payever\ExternalIntegration\Core\Http\Request::addHeader()
+     * @see \Payever\ExternalIntegration\Core\Http\Request::removeHeader()
+     * @see \Payever\ExternalIntegration\Core\Http\Request::getHeader()
+     * @see \Payever\ExternalIntegration\Core\Http\Request::getHeaders()
+     * @see \Payever\ExternalIntegration\Core\Http\Request::cleanHeaders()
+     * @see \Payever\ExternalIntegration\Core\Http\Request::containsHeader()
      *
      * @dataProvider keyValueDataProvider
      */
@@ -47,7 +47,7 @@ class RequestTest extends TestCase
 
         $this->assertTrue($this->request->containsHeader($key));
         $this->assertEquals($value, $this->request->getHeader($key));
-        $this->assertEquals(array($key => $value), $this->request->getHeaders());
+        $this->assertEquals(array($key . ': ' . $value), $this->request->getHeaders());
 
         $this->request->removeHeader($key);
 
@@ -64,13 +64,13 @@ class RequestTest extends TestCase
      * @param string $key
      * @param mixed $value
      *
-     * @covers \Payever\ExternalIntegration\Core\Http\Request::addParam()
-     * @covers \Payever\ExternalIntegration\Core\Http\Request::removeParam()
-     * @covers \Payever\ExternalIntegration\Core\Http\Request::getParam()
-     * @covers \Payever\ExternalIntegration\Core\Http\Request::getParams()
-     * @covers \Payever\ExternalIntegration\Core\Http\Request::cleanParams()
-     * @covers \Payever\ExternalIntegration\Core\Http\Request::containsParam()
-     * @covers \Payever\ExternalIntegration\Core\Http\Request::setParams()
+     * @see \Payever\ExternalIntegration\Core\Http\Request::addParam()
+     * @see \Payever\ExternalIntegration\Core\Http\Request::removeParam()
+     * @see \Payever\ExternalIntegration\Core\Http\Request::getParam()
+     * @see \Payever\ExternalIntegration\Core\Http\Request::getParams()
+     * @see \Payever\ExternalIntegration\Core\Http\Request::cleanParams()
+     * @see \Payever\ExternalIntegration\Core\Http\Request::containsParam()
+     * @see \Payever\ExternalIntegration\Core\Http\Request::setParams()
      *
      * @dataProvider keyValueDataProvider
      */
@@ -112,9 +112,9 @@ class RequestTest extends TestCase
     }
 
     /**
-     * @covers \Payever\ExternalIntegration\Core\Http\Request::getMethod()
-     * @covers \Payever\ExternalIntegration\Core\Http\Request::getMethods()
-     * @covers \Payever\ExternalIntegration\Core\Http\Request::setMethod()
+     * @see \Payever\ExternalIntegration\Core\Http\Request::getMethod()
+     * @see \Payever\ExternalIntegration\Core\Http\Request::getMethods()
+     * @see \Payever\ExternalIntegration\Core\Http\Request::setMethod()
      */
     public function testHttpMethod()
     {
@@ -132,8 +132,8 @@ class RequestTest extends TestCase
     }
 
     /**
-     * @covers \Payever\ExternalIntegration\Core\Http\Request::getUrl()
-     * @covers \Payever\ExternalIntegration\Core\Http\Request::setUrl()
+     * @see \Payever\ExternalIntegration\Core\Http\Request::getUrl()
+     * @see \Payever\ExternalIntegration\Core\Http\Request::setUrl()
      */
     public function testUrl()
     {
@@ -147,8 +147,8 @@ class RequestTest extends TestCase
     }
 
     /**
-     * @covers \Payever\ExternalIntegration\Core\Http\Request::setRequestEntity()
-     * @covers \Payever\ExternalIntegration\Core\Http\Request::getRequestEntity()
+     * @see \Payever\ExternalIntegration\Core\Http\Request::setRequestEntity()
+     * @see \Payever\ExternalIntegration\Core\Http\Request::getRequestEntity()
      */
     public function testRequestEntity()
     {
@@ -162,8 +162,8 @@ class RequestTest extends TestCase
     }
 
     /**
-     * @covers \Payever\ExternalIntegration\Core\Http\Request::setResponseEntity()
-     * @covers \Payever\ExternalIntegration\Core\Http\Request::getResponseEntity()
+     * @see \Payever\ExternalIntegration\Core\Http\Request::setResponseEntity()
+     * @see \Payever\ExternalIntegration\Core\Http\Request::getResponseEntity()
      */
     public function testResponseEntity()
     {
@@ -177,7 +177,7 @@ class RequestTest extends TestCase
     }
 
     /**
-     * @covers \Payever\ExternalIntegration\Core\Http\Request::validate()
+     * @see \Payever\ExternalIntegration\Core\Http\Request::validate()
      */
     public function testValidate()
     {

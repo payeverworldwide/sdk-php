@@ -1,6 +1,6 @@
 <?php
 /**
- * This class represents Request
+ * This class represents RequestInterface
  *
  * PHP version 5.4
  *
@@ -14,10 +14,10 @@
 
 namespace Payever\ExternalIntegration\Core\Http;
 
-use Payever\ExternalIntegration\Core\Base\IRequest;
+use Payever\ExternalIntegration\Core\Base\RequestInterface;
 
 /**
- * This class represents Request
+ * This class represents RequestInterface
  *
  * PHP version 5.4
  *
@@ -28,16 +28,19 @@ use Payever\ExternalIntegration\Core\Base\IRequest;
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/developer/api-documentation/ Documentation
  */
-class Request implements IRequest
+class Request implements RequestInterface
 {
-    const METHOD_GET  = 'GET';
-    const METHOD_POST = 'POST';
+    const METHOD_GET     = 'GET';
+    const METHOD_POST    = 'POST';
+    const METHOD_PUT     = 'PUT';
+    const METHOD_PATCH   = 'PATCH';
+    const METHOD_DELETE  = 'DELETE';
 
     /** @var null|string $url */
     protected $url;
 
     /** @var string $method */
-    protected $method = Request::METHOD_GET;
+    protected $method = self::METHOD_GET;
 
     /** @var array $headers */
     protected $headers = array();
@@ -67,7 +70,7 @@ class Request implements IRequest
     /**
      * {@inheritdoc}
      */
-    public function setHeaders($headers)
+    public function setHeaders(array $headers)
     {
         $this->headers = $headers;
 
@@ -91,7 +94,13 @@ class Request implements IRequest
      */
     public function getHeaders()
     {
-        return $this->headers;
+        $prettyHeaders = array();
+
+        foreach ($this->headers as $name => $value) {
+            $prettyHeaders[] = sprintf('%s: %s', $name, $value);
+        }
+
+        return $prettyHeaders;
     }
 
     /**
@@ -135,7 +144,7 @@ class Request implements IRequest
     /**
      * {@inheritdoc}
      */
-    public function setParams($params)
+    public function setParams(array $params)
     {
         $this->params = $params;
 
@@ -229,7 +238,7 @@ class Request implements IRequest
     /**
      * {@inheritdoc}
      */
-    public function setRequestEntity($requestEntity)
+    public function setRequestEntity(RequestEntity $requestEntity)
     {
         $this->requestEntity = $requestEntity;
 
@@ -239,7 +248,7 @@ class Request implements IRequest
     /**
      * {@inheritdoc}
      */
-    public function setResponseEntity($responseEntity)
+    public function setResponseEntity(ResponseEntity $responseEntity)
     {
         $this->responseEntity = $responseEntity;
 
@@ -305,6 +314,12 @@ class Request implements IRequest
     public function toArray()
     {
         $array = $this->getRequestEntity()->toArray();
+
+        if ($this->getHeader('Content-Type') == 'application/x-www-form-urlencoded'
+            || $this->getHeader('Content-Type') == 'application/json'
+        ) {
+            return $array;
+        }
 
         foreach ($array as $key => $value) {
             if (is_array($value)) {

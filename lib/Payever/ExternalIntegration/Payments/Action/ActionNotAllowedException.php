@@ -2,9 +2,8 @@
 /**
  * This exception is thrown when a certain payment action is not allowed
  *
- * PHP version 5.4
+ * PHP version 5.4 and 7
  *
- * @category  Payments
  * @package   Payever\Payments
  * @author    payever GmbH <service@payever.de>
  * @copyright 2017-2018 payever GmbH
@@ -17,9 +16,8 @@ namespace Payever\ExternalIntegration\Payments\Action;
 /**
  * This exception is thrown when a certain payment action is not allowed
  *
- * PHP version 5.4
+ * PHP version 5.4 and 7
  *
- * @category  Payments
  * @package   Payever\Payments
  * @author    payever GmbH <service@payever.de>
  * @copyright 2017-2018 payever GmbH

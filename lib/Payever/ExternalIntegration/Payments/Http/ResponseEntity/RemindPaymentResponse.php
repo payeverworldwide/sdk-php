@@ -1,6 +1,6 @@
 <?php
 /**
- * This class represents Remind Payment Response Entity
+ * This class represents Remind Payment ResponseInterface Entity
  *
  * PHP version 5.4
  *
@@ -18,7 +18,7 @@ use Payever\ExternalIntegration\Core\Http\ResponseEntity;
 use Payever\ExternalIntegration\Payments\Http\MessageEntity\PaymentCallEntity;
 
 /**
- * This class represents Remind Payment Response Entity
+ * This class represents Remind Payment ResponseInterface Entity
  *
  * PHP version 5.4
  *

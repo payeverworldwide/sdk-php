@@ -1,6 +1,6 @@
 <?php
 /**
- * This class represents Response Entity
+ * This class represents ResponseInterface Entity
  *
  * PHP version 5.4
  *
@@ -15,11 +15,11 @@
 namespace Payever\ExternalIntegration\Core\Http;
 
 use Payever\ExternalIntegration\Core\Base\MessageEntity;
-use Payever\ExternalIntegration\Payments\Http\MessageEntity\CallEntity;
-use Payever\ExternalIntegration\Payments\Http\MessageEntity\ResultEntity;
+use Payever\ExternalIntegration\Core\Http\MessageEntity\CallEntity;
+use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
 
 /**
- * This class represents Response Entity
+ * This class represents ResponseInterface Entity
  *
  * PHP version 5.4
  *
@@ -46,7 +46,7 @@ class ResponseEntity extends MessageEntity
     /** @var string $errorDescription */
     protected $errorDescription;
 
-    /** @var ResultEntity $result */
+    /** @var ResultEntity|array $result */
     protected $result;
 
     /**
@@ -87,9 +87,6 @@ class ResponseEntity extends MessageEntity
      */
     public function setCall($call)
     {
-        /**
-         * @TODO CallEntity is a dependency from an external package Payments, reconsider it here
-         */
         $this->call = new CallEntity($call);
     }
 
@@ -128,9 +125,6 @@ class ResponseEntity extends MessageEntity
      */
     public function setResult($result)
     {
-        /**
-         * @TODO ResultEntity is a dependency from an external package Payments, reconsider it here
-         */
         $this->result = new ResultEntity($result);
     }
 }

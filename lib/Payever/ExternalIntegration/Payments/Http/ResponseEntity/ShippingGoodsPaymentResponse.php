@@ -1,6 +1,6 @@
 <?php
 /**
- * This class represents Shipping Goods Payment Response Entity
+ * This class represents Shipping Goods Payment ResponseInterface Entity
  *
  * PHP version 5.4
  *
@@ -19,7 +19,7 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\PaymentCallEntity;
 use Payever\ExternalIntegration\Payments\Http\MessageEntity\ShippingGoodsPaymentResultEntity;
 
 /**
- * This class represents Shipping Goods Payment Response Entity
+ * This class represents Shipping Goods Payment ResponseInterface Entity
  *
  * PHP version 5.4
  *

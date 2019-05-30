@@ -4,18 +4,17 @@
  *
  * PHP version 5.4
  *
- * @category  Payments
  * @package   Payever\Payments
  * @author    payever GmbH <service@payever.de>
- * @copyright 2017-2018 payever GmbH
+ * @copyright 2017-2019 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/developer/api-documentation/ Documentation
  */
 
 namespace Payever\ExternalIntegration\Payments\Action;
 
-use Payever\ExternalIntegration\Core\Base\IResponse;
-use Payever\ExternalIntegration\Payments\Base\IApi;
+use Payever\ExternalIntegration\Core\Base\ResponseInterface;
+use Payever\ExternalIntegration\Payments\Base\PaymentsApiClientInterface;
 use Payever\ExternalIntegration\Payments\Http\MessageEntity\GetTransactionResultEntity;
 use Payever\ExternalIntegration\Payments\Http\ResponseEntity\GetTransactionResponse;
 
@@ -33,15 +32,15 @@ use Payever\ExternalIntegration\Payments\Http\ResponseEntity\GetTransactionRespo
  */
 class ActionDecider implements ActionDeciderInterface
 {
-    /** @var IApi */
+    /** @var PaymentsApiClientInterface */
     protected $api;
 
     /**
      * AbstractActionDecider constructor.
      *
-     * @param IApi $api
+     * @param PaymentsApiClientInterface $api
      */
-    public function __construct(IApi $api)
+    public function __construct(PaymentsApiClientInterface $api)
     {
         $this->api = $api;
     }
@@ -54,7 +53,8 @@ class ActionDecider implements ActionDeciderInterface
      * @param bool $throwException
      *
      * @return bool
-     * @throws \Exception
+     *
+     * @throws \Exception when $throwException is true and target action is not allowed
      */
     public function isActionAllowed($paymentId, $transactionAction, $throwException = true)
     {
@@ -62,7 +62,7 @@ class ActionDecider implements ActionDeciderInterface
             throw new \Exception('Wrong arguments.');
         }
 
-        /** @var IResponse $getTransactionResponse */
+        /** @var ResponseInterface $getTransactionResponse */
         $getTransactionResponse = $this->api->getTransactionRequest($paymentId);
 
         /** @var GetTransactionResponse $getTransactionEntity */

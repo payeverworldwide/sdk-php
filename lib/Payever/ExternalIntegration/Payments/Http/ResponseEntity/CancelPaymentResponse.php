@@ -1,6 +1,6 @@
 <?php
 /**
- * This class represents Cancel Payment Response Entity
+ * This class represents Cancel Payment ResponseInterface Entity
  *
  * PHP version 5.4
  *
@@ -19,7 +19,7 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\CancelPaymentResultE
 use Payever\ExternalIntegration\Payments\Http\MessageEntity\PaymentCallEntity;
 
 /**
- * This class represents Cancel Payment Response Entity
+ * This class represents Cancel Payment ResponseInterface Entity
  *
  * PHP version 5.4
  *

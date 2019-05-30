@@ -2,13 +2,13 @@
 
 namespace Payever\Tests\Unit\ExternalIntegration\Payments\Http\MessageEntity;
 
-use Payever\Tests\Unit\ExternalIntegration\Core\Http\AbstractMessageEntityTest;
 use Payever\ExternalIntegration\Payments\Http\MessageEntity\ListPaymentsResultEntity;
+use Payever\Tests\Unit\ExternalIntegration\Core\Http\AbstractMessageEntityTest;
 
 /**
  * Class ListPaymentsResultEntityTest
  *
- * @covers \Payever\ExternalIntegration\Payments\Http\MessageEntity\ListPaymentsResultEntity
+ * @see \Payever\ExternalIntegration\Payments\Http\MessageEntity\ListPaymentsResultEntity
  *
  * @package Payever\Tests\Unit\ExternalIntegration\Payments\Http\MessageEntity
  */

@@ -14,6 +14,9 @@
 
 namespace Payever\ExternalIntegration\Payments\Http\MessageEntity;
 
+use Payever\ExternalIntegration\Core\Http\MessageEntity\ChannelSetEntity;
+use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
+
 /**
  * This class represents Retrieve Payment Result Entity
  *
@@ -33,8 +36,8 @@ namespace Payever\ExternalIntegration\Payments\Http\MessageEntity;
  * @method string               getCustomerName()
  * @method string               getPaymentType()
  * @method string               getLastAction()
- * @method \DateTime            getCreatedAt()
- * @method \DateTime            getUpdatedAt()
+ * @method \DateTime|false      getCreatedAt()
+ * @method \DateTime|false      getUpdatedAt()
  * @method string               getChannel()
  * @method string               getReference()
  * @method float                getAmount()
@@ -44,20 +47,21 @@ namespace Payever\ExternalIntegration\Payments\Http\MessageEntity;
  * @method AddressEntity        getAddress()
  * @method PaymentDetailsEntity getPaymentDetails()
  * @method array                getPaymentDetailsArray()
- * @method self                 setId()
- * @method self                 setStatus()
- * @method self                 setColorState()
- * @method self                 setMerchantName()
- * @method self                 setCustomerName()
- * @method self                 setPaymentType()
- * @method self                 setLastAction()
- * @method self                 setChannel()
- * @method self                 setReference()
- * @method self                 setAmount()
- * @method self                 setCurrency()
- * @method self                 setFee()
- * @method self                 setTotal()
- * @method self                 setPaymentDetailsArray()
+ * @method ChannelSetEntity     getChannelSet()
+ * @method self                 setId(string $id)
+ * @method self                 setStatus(string $status)
+ * @method self                 setColorState(string $colorState)
+ * @method self                 setMerchantName(string $merchantName)
+ * @method self                 setCustomerName(string $customerName)
+ * @method self                 setPaymentType(string $paymentType)
+ * @method self                 setLastAction(string $lastAction)
+ * @method self                 setChannel(string $channel)
+ * @method self                 setReference(string $reference)
+ * @method self                 setAmount(float $amount)
+ * @method self                 setCurrency(string $currency)
+ * @method self                 setFee(float $fee)
+ * @method self                 setTotal(float $total)
+ * @method self                 setPaymentDetailsArray(array $details)
  */
 class RetrievePaymentResultEntity extends ResultEntity
 {
@@ -82,10 +86,10 @@ class RetrievePaymentResultEntity extends ResultEntity
     /** @var string $lastAction */
     protected $lastAction;
 
-    /** @var \DateTime $createdAt */
+    /** @var \DateTime|bool $createdAt */
     protected $createdAt;
 
-    /** @var \DateTime $updatedAt */
+    /** @var \DateTime|bool $updatedAt */
     protected $updatedAt;
 
     /** @var string $channel */
@@ -114,6 +118,9 @@ class RetrievePaymentResultEntity extends ResultEntity
 
     /** @var array $paymentDetailsArray */
     protected $paymentDetailsArray;
+
+    /** @var ChannelSetEntity */
+    protected $channelSet;
 
     /**
      * Sets Created At

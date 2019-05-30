@@ -10,7 +10,7 @@ use Payever\Tests\Unit\ExternalIntegration\Payments\Http\MessageEntity\ListPayme
 /**
  * Class ListPaymentsResponseTest
  *
- * @covers \Payever\ExternalIntegration\Payments\Http\ResponseEntity\ListPaymentsResponse
+ * @see \Payever\ExternalIntegration\Payments\Http\ResponseEntity\ListPaymentsResponse
  *
  * @package Payever\Tests\Unit\ExternalIntegration\Payments\Http\ResponseEntity
  */

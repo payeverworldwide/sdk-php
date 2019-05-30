@@ -15,12 +15,16 @@
 namespace Payever\ExternalIntegration\Core;
 
 // @codeCoverageIgnoreStart
-define('PEI_CORE_VERSION', '1.3.4');
-define('PEI_CORE_MAJOR_VERSION', 1);
-define('PEI_CORE_MINOR_VERSION', 3);
-define('PEI_CORE_RELEASE_VERSION', 4);
+define('PEI_CORE_VERSION', '2.0.0');
+define('PEI_CORE_MAJOR_VERSION', 2);
+define('PEI_CORE_MINOR_VERSION', 0);
+define('PEI_CORE_RELEASE_VERSION', 0);
 
 define('PEI_NAMESPACE', 'Payever\ExternalIntegration');
+
+if (version_compare(PHP_VERSION, '5.4.0', '<')) {
+    throw new \Exception('payever SDK requires PHP version 5.4 or higher.');
+}
 // @codeCoverageIgnoreEnd
 
 /**
@@ -37,9 +41,11 @@ define('PEI_NAMESPACE', 'Payever\ExternalIntegration');
  */
 class Engine
 {
+    const SDK_VERSION = PEI_CORE_VERSION;
+
     protected static $registered = false;
 
-    public static function getLoader()
+    public static function registerAutoloader()
     {
         if (!self::$registered) {
             self::$registered = spl_autoload_register(

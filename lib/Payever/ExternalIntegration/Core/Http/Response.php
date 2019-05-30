@@ -1,6 +1,6 @@
 <?php
 /**
- * This class represents Response
+ * This class represents ResponseInterface
  *
  * PHP version 5.4
  *
@@ -14,11 +14,11 @@
 
 namespace Payever\ExternalIntegration\Core\Http;
 
-use Payever\ExternalIntegration\Core\Base\IResponse;
+use Payever\ExternalIntegration\Core\Base\ResponseInterface;
 use Payever\ExternalIntegration\Core\Helper\StringHelper;
 
 /**
- * This class represents Response
+ * This class represents ResponseInterface
  *
  * PHP version 5.4
  *
@@ -29,7 +29,7 @@ use Payever\ExternalIntegration\Core\Helper\StringHelper;
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/developer/api-documentation/ Documentation
  */
-class Response implements IResponse
+class Response implements ResponseInterface
 {
     /** @var RequestEntity $requestEntity */
     protected $requestEntity;
@@ -41,7 +41,7 @@ class Response implements IResponse
     protected $data;
 
     /**
-     * Response constructor
+     * ResponseInterface constructor
      */
     public function __construct()
     {
@@ -57,7 +57,7 @@ class Response implements IResponse
 
         $this
             ->getResponseEntity()
-            ->load(StringHelper::jsonDecode($this->data))
+            ->load($data ? StringHelper::jsonDecode($this->data) : array())
         ;
 
         return $this;
@@ -66,7 +66,7 @@ class Response implements IResponse
     /**
      * {@inheritdoc}
      */
-    public function setRequestEntity($requestEntity)
+    public function setRequestEntity(RequestEntity $requestEntity)
     {
         $this->requestEntity = $requestEntity;
 
@@ -76,7 +76,7 @@ class Response implements IResponse
     /**
      * {@inheritdoc}
      */
-    public function setResponseEntity($responseEntity)
+    public function setResponseEntity(ResponseEntity $responseEntity)
     {
         $this->responseEntity = $responseEntity;
 
@@ -100,7 +100,7 @@ class Response implements IResponse
     }
 
     /**
-     * Returns if Response is successful
+     * Returns if ResponseInterface is successful
      *
      * @return bool
      */
@@ -110,7 +110,7 @@ class Response implements IResponse
     }
 
     /**
-     * Returns if Response is failed
+     * Returns if ResponseInterface is failed
      *
      * @return bool
      */
@@ -120,7 +120,7 @@ class Response implements IResponse
     }
 
     /**
-     * Returns data from Response
+     * Returns data from ResponseInterface
      *
      * @return string
      */

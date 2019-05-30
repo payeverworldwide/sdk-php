@@ -14,6 +14,8 @@
 
 namespace Payever\ExternalIntegration\Payments\Http\MessageEntity;
 
+use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
+
 /**
  * This class represents List Payments Result Entity
  *
@@ -32,8 +34,8 @@ namespace Payever\ExternalIntegration\Payments\Http\MessageEntity;
  * @method string               getMerchantName()
  * @method string               getCustomerName()
  * @method string               getPaymentType()
- * @method \DateTime            getCreatedAt()
- * @method \DateTime            getUpdatedAt()
+ * @method \DateTime|false      getCreatedAt()
+ * @method \DateTime|false      getUpdatedAt()
  * @method string               getChannel()
  * @method string               getReference()
  * @method float                getAmount()
@@ -75,10 +77,10 @@ class ListPaymentsResultEntity extends ResultEntity
     /** @var string $paymentType */
     protected $paymentType;
 
-    /** @var \DateTime $createdAt */
+    /** @var \DateTime|bool $createdAt */
     protected $createdAt;
 
-    /** @var \DateTime $updatedAt */
+    /** @var \DateTime|bool $updatedAt */
     protected $updatedAt;
 
     /** @var string $channel */

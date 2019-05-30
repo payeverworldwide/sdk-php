@@ -1,6 +1,6 @@
 <?php
 /**
- * This class represents Create Payment Response Entity
+ * This class represents Create Payment ResponseInterface Entity
  *
  * PHP version 5.4
  *
@@ -15,12 +15,12 @@
 namespace Payever\ExternalIntegration\Payments\Http\ResponseEntity;
 
 use Payever\ExternalIntegration\Core\Http\ResponseEntity;
-use Payever\ExternalIntegration\Payments\Http\MessageEntity\CallEntity;
+use Payever\ExternalIntegration\Core\Http\MessageEntity\CallEntity;
+use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
 use Payever\ExternalIntegration\Payments\Http\MessageEntity\CreatePaymentCallEntity;
-use Payever\ExternalIntegration\Payments\Http\MessageEntity\ResultEntity;
 
 /**
- * This class represents Create Payment Response Entity
+ * This class represents Create Payment ResponseInterface Entity
  *
  * PHP version 5.4
  *

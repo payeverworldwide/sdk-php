@@ -10,7 +10,7 @@ use Payever\Tests\Unit\ExternalIntegration\Payments\Http\MessageEntity\PaymentCa
 /**
  * Class CancelPaymentResponseTest
  *
- * @covers \Payever\ExternalIntegration\Payments\Http\ResponseEntity\CancelPaymentResponse
+ * @see \Payever\ExternalIntegration\Payments\Http\ResponseEntity\CancelPaymentResponse
  *
  * @package Payever\Tests\Unit\ExternalIntegration\Payments\Http\ResponseEntity
  */

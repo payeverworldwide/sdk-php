@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Class ResponseTest
  *
- * @covers \Payever\ExternalIntegration\Core\Http\Response
+ * @see \Payever\ExternalIntegration\Core\Http\Response
  *
  * @package Payever\ExternalIntegration\Core\Http
  */
@@ -28,9 +28,9 @@ class ResponseTest extends TestCase
     /**
      * @param string $json
      *
-     * @covers \Payever\ExternalIntegration\Core\Http\Response::__construct()
-     * @covers \Payever\ExternalIntegration\Core\Http\Response::load()
-     * @covers \Payever\ExternalIntegration\Core\Http\Response::getData()
+     * @see \Payever\ExternalIntegration\Core\Http\Response::__construct()
+     * @see \Payever\ExternalIntegration\Core\Http\Response::load()
+     * @see \Payever\ExternalIntegration\Core\Http\Response::getData()
      *
      * @dataProvider jsonDataProvider
      *
@@ -50,7 +50,7 @@ class ResponseTest extends TestCase
      * @param string $json
      * @param bool $positive
      *
-     * @covers \Payever\ExternalIntegration\Core\Http\Response::isSuccessful()
+     * @see \Payever\ExternalIntegration\Core\Http\Response::isSuccessful()
      *
      * @dataProvider jsonDataProvider
      */
@@ -70,7 +70,7 @@ class ResponseTest extends TestCase
      * @param string $json
      * @param bool $positive
      *
-     * @covers \Payever\ExternalIntegration\Core\Http\Response::isFailed()
+     * @see \Payever\ExternalIntegration\Core\Http\Response::isFailed()
      *
      * @dataProvider jsonDataProvider
      */
@@ -87,8 +87,8 @@ class ResponseTest extends TestCase
     }
 
     /**
-     * @covers \Payever\ExternalIntegration\Core\Http\Response::getRequestEntity()
-     * @covers \Payever\ExternalIntegration\Core\Http\Response::setRequestEntity()
+     * @see \Payever\ExternalIntegration\Core\Http\Response::getRequestEntity()
+     * @see \Payever\ExternalIntegration\Core\Http\Response::setRequestEntity()
      */
     public function testRequestEntityConnection()
     {
@@ -105,8 +105,8 @@ class ResponseTest extends TestCase
     }
 
     /**
-     * @covers \Payever\ExternalIntegration\Core\Http\Response::getResponseEntity()
-     * @covers \Payever\ExternalIntegration\Core\Http\Response::setResponseEntity()
+     * @see \Payever\ExternalIntegration\Core\Http\Response::getResponseEntity()
+     * @see \Payever\ExternalIntegration\Core\Http\Response::setResponseEntity()
      */
     public function testResponseEntityConnection()
     {

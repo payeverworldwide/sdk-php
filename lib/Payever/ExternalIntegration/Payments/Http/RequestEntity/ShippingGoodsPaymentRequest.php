@@ -1,6 +1,6 @@
 <?php
 /**
- * This class represents Shipping Goods Payment Request Entity
+ * This class represents Shipping Goods Payment RequestInterface Entity
  *
  * PHP version 5.4
  *
@@ -17,7 +17,7 @@ namespace Payever\ExternalIntegration\Payments\Http\RequestEntity;
 use Payever\ExternalIntegration\Core\Http\RequestEntity;
 
 /**
- * This class represents Shipping Goods Payment Request Entity
+ * This class represents Shipping Goods Payment RequestInterface Entity
  *
  * PHP version 5.4
  *

@@ -1,6 +1,6 @@
 <?php
 /**
- * This class represents Request Entity
+ * This class represents RequestInterface Entity
  *
  * PHP version 5.4
  *
@@ -17,7 +17,7 @@ namespace Payever\ExternalIntegration\Core\Http;
 use Payever\ExternalIntegration\Core\Base\MessageEntity;
 
 /**
- * This class represents Request Entity
+ * This class represents RequestInterface Entity
  *
  * PHP version 5.4
  *

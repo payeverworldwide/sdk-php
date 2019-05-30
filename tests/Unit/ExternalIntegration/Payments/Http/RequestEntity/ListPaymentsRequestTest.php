@@ -3,14 +3,14 @@
 namespace Payever\Tests\Unit\ExternalIntegration\Payments\Http\RequestEntity;
 
 use Payever\ExternalIntegration\Core\Base\MessageEntity;
+use Payever\ExternalIntegration\Payments\Enum\Status;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\ListPaymentsRequest;
-use Payever\ExternalIntegration\Payments\Status;
 use Payever\Tests\Unit\ExternalIntegration\Core\Http\AbstractRequestEntityTest;
 
 /**
  * Class ListPaymentsRequestTest
  *
- * @covers \Payever\ExternalIntegration\Payments\Http\RequestEntity\ListPaymentsRequest
+ * @see \Payever\ExternalIntegration\Payments\Http\RequestEntity\ListPaymentsRequest
  *
  * @package Payever\Tests\Unit\ExternalIntegration\Payments\Http\RequestEntity
  */

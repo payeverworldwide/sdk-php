@@ -14,6 +14,9 @@
 
 namespace Payever\ExternalIntegration\Payments\Http\MessageEntity;
 
+use Payever\ExternalIntegration\Core\Http\MessageEntity\ChannelSetEntity;
+use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
+
 /**
  * This class represents Shipping Goods Payment Result Entity
  *
@@ -31,7 +34,7 @@ namespace Payever\ExternalIntegration\Payments\Http\MessageEntity;
  * @method string               getChannel()
  * @method ChannelSetEntity     getChannelSet()
  * @method string               getColorState()
- * @method \DateTime            getCreatedAt()
+ * @method \DateTime|false      getCreatedAt()
  * @method string               getCurrency()
  * @method string               getCustomerName()
  * @method float                getFee()
@@ -45,7 +48,7 @@ namespace Payever\ExternalIntegration\Payments\Http\MessageEntity;
  * @method string               getReference()
  * @method string               getStatus()
  * @method float                getTotal()
- * @method \DateTime            getUpdatedAt()
+ * @method \DateTime|false      getUpdatedAt()
  * @method PaymentDetailsEntity getPaymentDetails()
  * @method self                 setAmount()
  * @method self                 setChannel()
@@ -81,7 +84,7 @@ class ShippingGoodsPaymentResultEntity extends ResultEntity
     /** @var string $colorState */
     protected $colorState;
 
-    /** @var \DateTime $createdAt */
+    /** @var \DateTime|bool $createdAt */
     protected $createdAt;
 
     /** @var string $currency */
@@ -123,7 +126,7 @@ class ShippingGoodsPaymentResultEntity extends ResultEntity
     /** @var float $total */
     protected $total;
 
-    /** @var \DateTime $updatedAt */
+    /** @var \DateTime|bool $updatedAt */
     protected $updatedAt;
 
     /** @var PaymentDetailsEntity $paymentDetails */
@@ -162,7 +165,7 @@ class ShippingGoodsPaymentResultEntity extends ResultEntity
     /**
      * Sets Updated At
      *
-     * @param mixed $updatedAt
+     * @param string $updatedAt
      */
     public function setUpdatedAt($updatedAt)
     {

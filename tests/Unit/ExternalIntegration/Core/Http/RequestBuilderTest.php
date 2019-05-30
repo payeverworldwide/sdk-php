@@ -8,8 +8,6 @@ use PHPUnit\Framework\TestCase;
 /**
  * Class RequestBuilderTest
  *
- * @covers \Payever\ExternalIntegration\Core\Http\RequestBuilder
- *
  * @package Payever\ExternalIntegration\Core\Http
  */
 class RequestBuilderTest extends TestCase
@@ -17,13 +15,6 @@ class RequestBuilderTest extends TestCase
 
     const URL = 'https://some.domain.com/path/';
 
-    /**
-     * @covers \Payever\ExternalIntegration\Core\Http\RequestBuilder::build()
-     * @covers \Payever\ExternalIntegration\Core\Http\RequestBuilder::setUrl()
-     * @covers \Payever\ExternalIntegration\Core\Http\RequestBuilder::setMethod()
-     * @covers \Payever\ExternalIntegration\Core\Http\RequestBuilder::setParams()
-     * @covers \Payever\ExternalIntegration\Core\Http\RequestBuilder::setHeaders()
-     */
     public function testBuild()
     {
         $method = 'POST';
@@ -31,15 +22,14 @@ class RequestBuilderTest extends TestCase
             'one' => 'value1',
             'two' => 'value2',
         );
-        $headers = array(
-            'Authotization' => 'Bearer stub_token',
-        );
+        $headerKey = 'Authotization';
+        $headerValue = 'Bearer stub_token';
 
         $builder = new RequestBuilder();
 
         $builder->setUrl(static::URL)
             ->setParams($params)
-            ->setHeaders($headers)
+            ->addHeader($headerKey, $headerValue)
             ->setMethod($method);
 
         $request = $builder->build();
@@ -47,11 +37,30 @@ class RequestBuilderTest extends TestCase
         $this->assertEquals($method, $request->getMethod());
         $this->assertEquals(static::URL, $request->getUrl());
         $this->assertEquals($params, $request->getParams());
-        $this->assertEquals($headers, $request->getHeaders());
+        $this->assertContains("$headerKey: $headerValue", $request->getHeaders());
+    }
+
+    public function testHeaders()
+    {
+        $builder = new RequestBuilder();
+
+        $builder->addHeader('key', 'value');
+        $this->assertEquals('value', $builder->getHeader('key'));
+        $this->assertTrue($builder->containsHeader('key'));
+
+        $builder->addHeader('key2', 'value2');
+        $this->assertTrue($builder->containsHeader('key2'));
+
+        $builder->removeHeader('key2');
+        $this->assertFalse($builder->containsHeader('key2'));
+        $this->assertTrue($builder->containsHeader('key'));
+
+        $builder->cleanHeaders();
+        $this->assertEmpty($builder->getHeaders());
     }
 
     /**
-     * @covers \Payever\ExternalIntegration\Core\Http\RequestBuilder::get()
+     * @see \Payever\ExternalIntegration\Core\Http\RequestBuilder::get()
      */
     public function testGet()
     {
@@ -62,13 +71,37 @@ class RequestBuilderTest extends TestCase
     }
 
     /**
-     * @covers \Payever\ExternalIntegration\Core\Http\RequestBuilder::post()
+     * @see \Payever\ExternalIntegration\Core\Http\RequestBuilder::post()
      */
     public function testPost()
     {
         $builder = RequestBuilder::post(static::URL);
 
         $this->assertEquals('POST', $builder->getMethod());
+        $this->assertEquals(static::URL, $builder->getUrl());
+    }
+
+    public function testPut()
+    {
+        $builder = RequestBuilder::put(static::URL);
+
+        $this->assertEquals('PUT', $builder->getMethod());
+        $this->assertEquals(static::URL, $builder->getUrl());
+    }
+
+    public function testPatch()
+    {
+        $builder = RequestBuilder::patch(static::URL);
+
+        $this->assertEquals('PATCH', $builder->getMethod());
+        $this->assertEquals(static::URL, $builder->getUrl());
+    }
+
+    public function testDelete()
+    {
+        $builder = RequestBuilder::delete(static::URL);
+
+        $this->assertEquals('DELETE', $builder->getMethod());
         $this->assertEquals(static::URL, $builder->getUrl());
     }
 }

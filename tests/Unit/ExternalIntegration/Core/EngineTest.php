@@ -8,26 +8,26 @@ use PHPUnit\Framework\TestCase;
 /**
  * Class EngineTest
  *
- * @covers \Payever\ExternalIntegration\Core\Engine
+ * @see \Payever\ExternalIntegration\Core\Engine
  *
  * @package Payever\ExternalIntegration\Core
  */
 class EngineTest extends TestCase
 {
     /**
-     * @covers \Payever\ExternalIntegration\Core\Engine::getLoader()
+     * @see \Payever\ExternalIntegration\Core\Engine::registerAutoloader()
      */
     public function testAutoloaderRegistered()
     {
         $loadersCount = count(spl_autoload_functions()) + 1;
 
-        Engine::getLoader();
+        Engine::registerAutoloader();
 
         $this->assertEquals($loadersCount, count(spl_autoload_functions()));
 
-        Engine::getLoader();
+        Engine::registerAutoloader();
 
-        // second call should not register any loader
+        // second call must not register any loader
         $this->assertEquals($loadersCount, count(spl_autoload_functions()));
     }
 }

@@ -35,7 +35,7 @@ class NamedList
      * Adds an item to the list
      *
      * @param string $name
-     * @param null   $value
+     * @param mixed  $value
      *
      * @return $this
      */
@@ -53,7 +53,7 @@ class NamedList
      *
      * @return $this
      */
-    public function addAll($array)
+    public function addAll(array $array)
     {
         $this->list = array_merge($this->list, $array);
 

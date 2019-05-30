@@ -28,8 +28,13 @@ use Payever\ExternalIntegration\Core\Helper\StringHelper;
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/shopsystem/
  */
-abstract class MessageEntity implements IMessageEntity, \ArrayAccess
+abstract class MessageEntity implements MessageEntityInterface, \ArrayAccess
 {
+    /**
+     * Whether entity fields must be underscored when converting to array/json
+     */
+    const UNDERSCORE_ON_SERIALIZATION = true;
+
     /**
      * {@inheritdoc}
      */
@@ -74,14 +79,22 @@ abstract class MessageEntity implements IMessageEntity, \ArrayAccess
         }
 
         foreach ($object as $property => $value) {
+            if (is_null($value)) {
+                continue;
+            }
+
+            if (static::UNDERSCORE_ON_SERIALIZATION) {
+                $property = StringHelper::underscore($property);
+            }
+
             if (is_array($value)) {
-                $result[StringHelper::underscore($property)] = $this->toArray($value);
+                $result[$property] = $this->toArray($value);
             } elseif ($value instanceof MessageEntity) {
-                $result[StringHelper::underscore($property)] = $value->toArray();
+                $result[$property] = $value->toArray();
             } elseif ($value instanceof \DateTime) {
-                $result[StringHelper::underscore($property)] = $value->format(DATE_ATOM);
+                $result[$property] = $value->format(DATE_ATOM);
             } else {
-                $result[StringHelper::underscore($property)] = $value;
+                $result[$property] = $value;
             }
         }
 
@@ -102,7 +115,11 @@ abstract class MessageEntity implements IMessageEntity, \ArrayAccess
     public function isValid()
     {
         foreach ($this->getRequired() as $property) {
-            if ($this->{StringHelper::camelize($property)} === null) {
+            if (static::UNDERSCORE_ON_SERIALIZATION) {
+                $property = StringHelper::camelize($property);
+            }
+
+            if ($this->{$property} === null) {
                 return false;
             }
         }
