@@ -1,6 +1,6 @@
 # PHP SDK for payever Payments
 [![coverage report](http://gitlab.devpayever.com/backend/sdk.plugins/badges/master/coverage.svg)](http://gitlab.devpayever.com/backend/sdk.plugins/commits/master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/payeverworldwide/sdk-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/gendosua/sdk-php/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/payeverworldwide/sdk-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/payeverworldwide/sdk-php/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/payeverworldwide/sdk-php/badges/build.png?b=master)](https://scrutinizer-ci.com/g/payeverworldwide/sdk-php/build-status/master)
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/payeverworldwide/sdk-php/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 [![Latest Stable Version](https://poser.pugx.org/payever/sdk-php/v/stable)](https://packagist.org/packages/payever/sdk-php)
@@ -17,7 +17,7 @@ Feel free to open an (issue)[issues] if you found a bug.
 
 ## Requirements
 
-* [PHP 5.4.0 and later](http://www.php.net/)
+* [PHP 5.4.0 and later][2]
 
 ## Documentation
 
@@ -29,8 +29,8 @@ You can use **Composer** or **install manually**
 
 ### Composer
 
-The preferred method is via [composer](https://getcomposer.org). Follow the
-[installation instructions](https://getcomposer.org/doc/00-intro.md) if you do not already have
+The preferred method is via [composer][3]. Follow the
+[installation instructions][4] if you do not already have
 composer installed.
 
 Once composer is installed, execute the following command in your project root to install this library:
@@ -41,7 +41,7 @@ composer require payever/sdk-php
 
 ### Manual Installation
 
-Alternatively you can download the package entirety. The [Releases](../../releases) page lists all stable versions.
+Alternatively you can download the package entirety. The [Releases][5] page lists all stable versions.
 
 Uncompress the zip file you download, and invoke the autoloader in your project:
 
@@ -115,4 +115,11 @@ try {
 
 ## License
 
-Please see the [license file](LICENSE.md) for more information.
+Please see the [license file][6] for more information.
+
+[1]: http://semver.org
+[2]: http://www.php.net/
+[3]: https://getcomposer.org
+[4]: https://getcomposer.org/doc/00-intro.md
+[5]: ../../releases
+[6]: LICENSE.md

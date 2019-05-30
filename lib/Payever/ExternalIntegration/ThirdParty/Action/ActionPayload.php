@@ -29,14 +29,14 @@ class ActionPayload
     /** @var string */
     protected $action;
 
-    /** @var string */
+    /** @var string|array */
     protected $rawPayload;
 
     /**
      * ActionPayload constructor.
      *
      * @param string $action @see Action
-     * @param string|null $rawPayload
+     * @param string|array|null $rawPayload
      */
     public function __construct($action, $rawPayload = null)
     {
@@ -62,6 +62,8 @@ class ActionPayload
 
         if (is_string($this->rawPayload)) {
             $payload = $this->unserializePayload($this->rawPayload);
+        } else {
+            $payload = $this->rawPayload;
         }
 
         if (isset($payload['payload'])) {

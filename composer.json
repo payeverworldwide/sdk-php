@@ -1,15 +1,43 @@
 {
-   "license" : "MIT",
+   "homepage" : "https://github.com/payever/sdk-php",
    "autoload-dev" : {
+      "psr-4" : {
+         "Payever\\Tests\\" : "tests/"
+      },
       "classmap" : [
          "lib",
          "tests"
-      ],
-      "psr-4" : {
-         "Payever\\Tests\\" : "tests/"
-      }
+      ]
    },
+   "autoload" : {
+      "classmap" : [
+         "lib"
+      ]
+   },
+   "authors" : [
+      {
+         "homepage" : "https://getpayever.com/",
+         "role" : "Initial version",
+         "email" : "a.puhovsky@gmail.com",
+         "name" : "Andrey Puhovsky"
+      },
+      {
+         "role" : "1.x, 2.x and further development",
+         "name" : "Hennadii Shymanskyi",
+         "email" : "gendosua@gmail.com"
+      }
+   ],
    "name" : "payever/sdk-php",
+   "require" : {
+      "ext-json" : "*",
+      "php" : ">=5.4.0",
+      "psr/log" : "^1.1",
+      "ext-curl" : "*"
+   },
+   "minimum-stability" : "stable",
+   "license" : "MIT",
+   "type" : "library",
+   "description" : "PHP SDK for payever",
    "keywords" : [
       "payments",
       "payever",
@@ -19,36 +47,8 @@
       "e-commerce"
    ],
    "require-dev" : {
+      "behat/behat" : "^3.4",
       "beberlei/assert" : "^3.0",
-      "phpunit/phpunit" : "^6",
-      "behat/behat" : "^3.4"
-   },
-   "type" : "library",
-   "authors" : [
-      {
-         "name" : "Andrey Puhovsky",
-         "role" : "Initial version",
-         "homepage" : "https://getpayever.com/",
-         "email" : "a.puhovsky@gmail.com"
-      },
-      {
-         "email" : "gendosua@gmail.com",
-         "name" : "Hennadii Shymanskyi",
-         "role" : "1.x, 2.x and further development"
-      }
-   ],
-   "description" : "PHP SDK for payever",
-   "require" : {
-      "ext-json" : "*",
-      "php" : ">=5.4.0",
-      "psr/log" : "^1.1",
-      "ext-curl" : "*"
-   },
-   "autoload" : {
-      "classmap" : [
-         "lib"
-      ]
-   },
-   "minimum-stability" : "stable",
-   "homepage" : "https://github.com/payever/sdk-php"
+      "phpunit/phpunit" : "^6"
+   }
 }

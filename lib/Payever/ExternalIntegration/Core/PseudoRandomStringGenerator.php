@@ -39,7 +39,7 @@ class PseudoRandomStringGenerator
         if (function_exists('random_bytes')) {
             $binaryString = random_bytes($length);
         } elseif (function_exists('mcrypt_create_iv')) {
-            $binaryString = mcrypt_create_iv($length, MCRYPT_DEV_URANDOM);
+            $binaryString = /** @scrutinizer ignore-deprecated */ mcrypt_create_iv($length, MCRYPT_DEV_URANDOM);
         } elseif (function_exists('openssl_random_pseudo_bytes')) {
             $binaryString = openssl_random_pseudo_bytes($length);
         } elseif (($stream = fopen('/dev/urandom', 'rb'))) {
