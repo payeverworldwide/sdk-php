@@ -74,7 +74,7 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
     {
         $this->configuration->assertLoaded();
 
-        if ($createPaymentRequest->getChannel()) {
+        if (!$createPaymentRequest->getChannel()) {
             $createPaymentRequest->setChannel(
                 $this->configuration->getChannelSet()
             );

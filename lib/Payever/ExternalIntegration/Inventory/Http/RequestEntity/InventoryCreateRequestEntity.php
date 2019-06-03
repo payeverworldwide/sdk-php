@@ -24,7 +24,6 @@ use Payever\ExternalIntegration\Core\Http\RequestEntity;
  * @method int getStock()
  * @method string getExternalId()
  *
- * @method self setStock(int $quantity)
  * @method self setExternalId(string $externalId)
  */
 class InventoryCreateRequestEntity extends RequestEntity
@@ -62,6 +61,17 @@ class InventoryCreateRequestEntity extends RequestEntity
     public function setSku($sku)
     {
         $this->sku = (string) $sku;
+
+        return $this;
+    }
+
+    /**
+     * @param int|float|string $stock
+     * @return static
+     */
+    public function setStock($stock)
+    {
+        $this->stock = (int) $stock;
 
         return $this;
     }

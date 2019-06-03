@@ -30,7 +30,7 @@ use Payever\ExternalIntegration\Core\Http\RequestEntity;
  *
  * @method string    getCustomerId()
  * @method string    getInvoiceId()
- * @method \DateTime getInvoiceDate()
+ * @method \DateTime|false getInvoiceDate()
  * @method self      setCustomerId(string $id)
  * @method self      setInvoiceId(string $id)
  */
@@ -42,7 +42,7 @@ class ShippingGoodsPaymentRequest extends RequestEntity
     /** @var string $invoiceId */
     protected $invoiceId;
 
-    /** @var \DateTime $invoiceDate */
+    /** @var \DateTime|bool $invoiceDate */
     protected $invoiceDate;
 
     /**

@@ -69,7 +69,6 @@ class SubscriptionRequestEntity extends RequestEntity
     {
         return array(
             'businessUuid',
-            'externalId',
             'thirdPartyName',
         );
     }

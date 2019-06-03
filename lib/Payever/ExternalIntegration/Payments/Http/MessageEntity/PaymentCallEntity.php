@@ -31,7 +31,7 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\CallEntity;
  * @method string    getPaymentId()
  * @method string    getCustomerId()
  * @method string    getInvoiceId()
- * @method \DateTime getInvoiceDate()
+ * @method \DateTime|false getInvoiceDate()
  * @method string    getType()
  * @method string    getMessage()
  * @method self      setPaymentId()
@@ -51,7 +51,7 @@ class PaymentCallEntity extends CallEntity
     /** @var string $invoiceId */
     protected $invoiceId;
 
-    /** @var \DateTime $invoiceDate */
+    /** @var \DateTime|bool $invoiceDate */
     protected $invoiceDate;
 
     /** @var string $type */

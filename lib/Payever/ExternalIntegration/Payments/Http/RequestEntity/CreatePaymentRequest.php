@@ -37,6 +37,7 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\CartItemEntity;
  * @method string           getCurrency()
  * @method CartItemEntity[] getCart()
  * @method string           getSalutation()
+ * @method string           getPaymentMethod()
  * @method string           getFirstName()
  * @method string           getLastName()
  * @method string           getStreet()
@@ -45,7 +46,7 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\CartItemEntity;
  * @method string           getCity()
  * @method string           getCountry()
  * @method string           getSocialSecurityNumber()
- * @method \DateTime        getBirthdate()
+ * @method \DateTime|false  getBirthdate()
  * @method string           getPhone()
  * @method string           getEmail()
  * @method string           getSuccessUrl()
@@ -60,6 +61,7 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\CartItemEntity;
  * @method self             setAmount(float $amount)
  * @method self             setFee(float $fee)
  * @method self             setOrderId(string $id)
+ * @method self             setPaymentMethod(string $method)
  * @method self             setCurrency(string $currency)
  * @method self             setSalutation(string $salutation)
  * @method self             setFirstName(string $name)
@@ -133,7 +135,7 @@ class CreatePaymentRequest extends RequestEntity
     /** @var string $socialSecurityNumber */
     protected $socialSecurityNumber;
 
-    /** @var \DateTime $birthdate */
+    /** @var \DateTime|bool $birthdate */
     protected $birthdate;
 
     /** @var string $phone */

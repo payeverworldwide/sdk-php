@@ -1,5 +1,4 @@
 # PHP SDK for payever Payments
-[![coverage report](http://gitlab.devpayever.com/backend/sdk.plugins/badges/master/coverage.svg)](http://gitlab.devpayever.com/backend/sdk.plugins/commits/master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/payeverworldwide/sdk-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/payeverworldwide/sdk-php/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/payeverworldwide/sdk-php/badges/build.png?b=master)](https://scrutinizer-ci.com/g/payeverworldwide/sdk-php/build-status/master)
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/payeverworldwide/sdk-php/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
@@ -13,7 +12,7 @@ This library follows semantic versioning. Read more on [semver.org][1].
 
 ## Troubleshooting 
 
-Feel free to open an (issue)[issues] if you found a bug.
+Feel free to open an [issue][7] if you found a bug.
 
 ## Requirements
 
@@ -123,3 +122,4 @@ Please see the [license file][6] for more information.
 [4]: https://getcomposer.org/doc/00-intro.md
 [5]: ../../releases
 [6]: LICENSE.md
+[7]: ../../issues

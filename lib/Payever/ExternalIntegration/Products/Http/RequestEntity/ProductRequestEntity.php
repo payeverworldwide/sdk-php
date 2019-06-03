@@ -72,10 +72,10 @@ class ProductRequestEntity extends RequestEntity
     protected $externalId;
 
     /** @var array */
-    protected $images = [];
+    protected $images = array();
 
     /** @var array */
-    protected $imagesUrl = [];
+    protected $imagesUrl = array();
 
     /** @var bool */
     protected $enabled = true;
@@ -90,7 +90,7 @@ class ProductRequestEntity extends RequestEntity
     protected $businessUuid;
 
     /** @var ProductCategoryEntity[]|string[] */
-    protected $categories;
+    protected $categories = array();
 
     /** @var string */
     protected $currency;
@@ -196,21 +196,30 @@ class ProductRequestEntity extends RequestEntity
     }
 
     /**
-     * @param array $data
+     * @param array[array]|static[] $data
      *
      * @return static
      */
     public function setVariants($data)
     {
-        foreach ($data as $plainVariant) {
-            $variant = new static($plainVariant);
-
-            $variant->setCurrency($this->getCurrency());
-
-            $this->variants[] = $variant;
+        foreach ($data as $variant) {
+            $this->addVariant($variant);
         }
 
         return $this;
+    }
+
+    /**
+     * @param array|static $variant
+     */
+    public function addVariant($variant)
+    {
+        if (is_array($variant)) {
+            $variant = new static($variant);
+            $variant->setCurrency($this->getCurrency());
+        }
+
+        $this->variants[] = $variant;
     }
 
     /**

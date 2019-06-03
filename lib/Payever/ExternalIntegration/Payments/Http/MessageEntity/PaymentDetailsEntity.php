@@ -55,7 +55,7 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method string                  getFinanceId()
  * @method bool                    getFreelancer()
  * @method float                   getInitialPayment()
- * @method \DateTime               getPersonalDateOfBirth()
+ * @method \DateTime|false         getPersonalDateOfBirth()
  * @method bool                    getPrevAddress()
  * @method bool                    getPrevEmploymentDetails()
  * @method string                  getUniqueId()
@@ -175,7 +175,7 @@ class PaymentDetailsEntity extends MessageEntity
     /** @var float $initialPayment */
     protected $initialPayment;
 
-    /** @var \DateTime $personalDateOfBirth */
+    /** @var \DateTime|bool $personalDateOfBirth */
     protected $personalDateOfBirth;
 
     /** @var bool $prevAddress */

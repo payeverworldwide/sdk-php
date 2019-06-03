@@ -84,6 +84,30 @@ class ProductsApiClient extends ThirdPartyApiClient implements ProductsApiClient
      *
      * @throws \Exception
      */
+    public function createOrUpdateProduct(ProductRequestEntity $entity)
+    {
+        $this->configuration->assertLoaded();
+
+        $url = $this->getProductUrl($entity->getExternalId());
+
+        $request = RequestBuilder::put($url)
+            ->contentTypeIsJson()
+            ->addRawHeader(
+                $this->getToken(OauthTokenInterface::SCOPE_PAYMENT_ACTIONS)->getAuthorizationString()
+            )
+            ->setRequestEntity($entity)
+            ->setResponseEntity(new DynamicResponse())
+            ->build()
+        ;
+
+        return $this->getHttpClient()->execute($request);
+    }
+
+    /**
+     * @inheritdoc
+     *
+     * @throws \Exception
+     */
     public function removeProduct(ProductRemovedRequestEntity $entity)
     {
         $this->configuration->assertLoaded();
@@ -114,7 +138,7 @@ class ProductsApiClient extends ThirdPartyApiClient implements ProductsApiClient
         foreach ($productsIterator as $productRequestEntity) {
             try {
                 $productRequestEntity->setExternalId($externalId);
-                $this->createProduct($productRequestEntity);
+                $this->createOrUpdateProduct($productRequestEntity);
                 $successCount++;
             } catch (\Exception $exception) {
                 $this->configuration->getLogger()

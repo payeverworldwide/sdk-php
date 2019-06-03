@@ -31,7 +31,7 @@ use Payever\ExternalIntegration\Payments\Enum\Status;
  *
  * @method string     getAccessToken()
  * @method string     getPaymentMethod()
- * @method \DateTime  getDate()
+ * @method \DateTime|false  getDate()
  * @method string     getCurrency()
  * @method string     getState()
  * @method int|string getLimit()
@@ -49,7 +49,7 @@ class ListPaymentsRequest extends RequestEntity
     /** @var string $paymentMethod */
     protected $paymentMethod;
 
-    /** @var \DateTime $date */
+    /** @var \DateTime|bool $date */
     protected $date;
 
     /** @var string $currency */

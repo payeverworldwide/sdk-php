@@ -42,6 +42,13 @@ interface ProductsApiClientInterface
     public function updateProduct(ProductRequestEntity $entity);
 
     /**
+     * @param ProductRequestEntity $entity
+     *
+     * @return \Payever\ExternalIntegration\Core\Http\Response
+     */
+    public function createOrUpdateProduct(ProductRequestEntity $entity);
+
+    /**
      * Inform payever about product being removed
      *
      * @param ProductRemovedRequestEntity $entity

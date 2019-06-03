@@ -122,7 +122,7 @@ class InventoryApiClient extends ThirdPartyApiClient implements InventoryApiClie
                 $this->configuration->getLogger()
                     ->critical(
                         sprintf(
-                            'Inventory item SDU=%s failed to export: %s',
+                            'Inventory item SKU=%s failed to export: %s',
                             $inventoryCreatedRequestEntity->getSku(),
                             $exception->getMessage()
                         )

@@ -141,7 +141,7 @@ class NotificationResult
             $pieces[] = 'FAILED';
         }
 
-        if ($this->errors) {
+        if (!empty($this->errors)) {
             $pieces[] = sprintf('[errors=%s]', implode(';', $this->$this->errors));
         }
 
@@ -161,7 +161,7 @@ class NotificationResult
             $pieces[] = sprintf('[currentStatus=%s]', $this->currentOrderStatus);
         }
 
-        if ($this->messages) {
+        if (!empty($this->messages)) {
             $pieces[] = sprintf('[messages=%s]', implode(';', $this->messages));
         }
 

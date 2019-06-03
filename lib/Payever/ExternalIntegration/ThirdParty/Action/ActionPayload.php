@@ -89,7 +89,7 @@ class ActionPayload
     }
 
     /**
-     * @return false|string
+     * @return false|array|string
      */
     public function getRawPayload()
     {
