@@ -1,20 +1,42 @@
 {
-   "autoload-dev" : {
-      "classmap" : [
-         "lib",
-         "tests"
-      ],
-      "psr-4" : {
-         "Payever\\Tests\\" : "tests/"
+   "authors" : [
+      {
+         "homepage" : "https://getpayever.com/",
+         "role" : "Initial version",
+         "name" : "Andrey Puhovsky",
+         "email" : "a.puhovsky@gmail.com"
+      },
+      {
+         "email" : "gendosua@gmail.com",
+         "role" : "1.x, 2.x and further development",
+         "name" : "Hennadii Shymanskyi"
       }
-   },
-   "description" : "PHP SDK for payever",
-   "name" : "payever/sdk-php",
+   ],
+   "license" : "MIT",
    "autoload" : {
       "classmap" : [
          "lib"
       ]
    },
+   "homepage" : "https://github.com/payever/sdk-php",
+   "type" : "library",
+   "name" : "payever/sdk-php",
+   "require" : {
+      "php" : ">=5.4.0",
+      "ext-json" : "*",
+      "psr/log" : "^1.1",
+      "ext-curl" : "*"
+   },
+   "autoload-dev" : {
+      "psr-4" : {
+         "Payever\\Tests\\" : "tests/"
+      },
+      "classmap" : [
+         "lib",
+         "tests"
+      ]
+   },
+   "description" : "PHP SDK for payever",
    "keywords" : [
       "payments",
       "payever",
@@ -23,32 +45,10 @@
       "inventory",
       "e-commerce"
    ],
-   "require" : {
-      "psr/log" : "^1.1",
-      "ext-json" : "*",
-      "ext-curl" : "*",
-      "php" : ">=5.4.0"
-   },
    "minimum-stability" : "stable",
-   "homepage" : "https://github.com/payever/sdk-php",
-   "authors" : [
-      {
-         "name" : "Andrey Puhovsky",
-         "role" : "Initial version",
-         "email" : "a.puhovsky@gmail.com",
-         "homepage" : "https://getpayever.com/"
-      },
-      {
-         "email" : "gendosua@gmail.com",
-         "role" : "1.x, 2.x and further development",
-         "name" : "Hennadii Shymanskyi"
-      }
-   ],
    "require-dev" : {
       "behat/behat" : "^3.4",
-      "phpunit/phpunit" : "^6",
-      "beberlei/assert" : "^3.0"
-   },
-   "type" : "library",
-   "license" : "MIT"
+      "beberlei/assert" : "^3.0",
+      "phpunit/phpunit" : "^6"
+   }
 }

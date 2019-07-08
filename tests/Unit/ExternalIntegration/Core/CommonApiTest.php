@@ -64,7 +64,7 @@ class CommonApiTest extends TestCase
     public function modeUrlDataProvider()
     {
         return array(
-            array(ClientConfiguration::API_MODE_SANDBOX, "https://sandbox.payever.de/"),
+            array(ClientConfiguration::API_MODE_SANDBOX, "https://proxy.staging.devpayever.com/"),
             array(ClientConfiguration::API_MODE_LIVE, "https://mein.payever.de/"),
             array('', "https://mein.payever.de/"),
             array(null, "https://mein.payever.de/"),

@@ -20,7 +20,7 @@ use Psr\Log\LoggerAwareInterface;
 
 class CommonApiClient implements CommonApiClientInterface
 {
-    const URL_SANDBOX = 'https://sandbox.payever.de/';
+    const URL_SANDBOX = 'https://proxy.staging.devpayever.com/';
     const URL_LIVE    = 'https://mein.payever.de/';
 
     const SUB_URL_AUTH              = 'oauth/v2/token';
