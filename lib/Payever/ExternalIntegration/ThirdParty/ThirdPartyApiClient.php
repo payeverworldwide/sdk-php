@@ -33,7 +33,7 @@ use Payever\ExternalIntegration\ThirdParty\Http\ResponseEntity\SubscriptionRespo
 class ThirdPartyApiClient extends CommonApiClient implements ThirdPartyApiClientInterface
 {
     const URL_THIRD_PARTY_LIVE = 'https://third-party.payever.org/';
-    const URL_THIRD_PARTY_SANDBOX = 'https://third-party.test.devpayever.com/';
+    const URL_THIRD_PARTY_SANDBOX = 'https://third-party.staging.devpayever.com/';
 
     const SUB_URL_BUSINESS_INFO = 'api/business/%s/plugins';
     const SUB_URL_SUBSCRIPTION = 'api/business/%s/plugins/subscription/%s';
