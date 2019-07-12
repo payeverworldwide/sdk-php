@@ -60,7 +60,7 @@ use Payever\ExternalIntegration\Payments\Http\ResponseEntity\ShippingGoodsPaymen
 abstract class Api implements IApi
 {
     const URL_LIVE    = 'https://mein.payever.de/';
-    const URL_SANDBOX = 'https://sandbox.payever.de/';
+    const URL_SANDBOX = 'https://proxy.staging.devpayever.com/';
 
     const SUB_URL_AUTH                   = 'oauth/v2/token';
     const SUB_URL_CREATE_PAYMENT         = 'api/payment';
