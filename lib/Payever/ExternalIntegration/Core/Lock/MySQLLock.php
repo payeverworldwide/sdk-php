@@ -47,7 +47,7 @@ class MySQLLock implements LockInterface
 
         $result = $statement->fetch(\PDO::FETCH_NUM);
 
-        if ($result[0] !== 1) {
+        if ($result[0] != 1) {
             throw new \RuntimeException(sprintf('Unable to acquire lock with name %s', $lockName));
         }
     }
