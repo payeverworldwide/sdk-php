@@ -27,7 +27,7 @@ class PaymentDetailsEntityTest extends AbstractMessageEntityTest
         'application_number' => 'NUMBER',
         'monthly_amount' => 145.32,
         'credit_duration_in_month' => 12,
-        'credit_calculation' => array(), //TODO CreditCalculationEntity
+        'credit_calculation' => array(),
         'discr' => 'stub_description',
         'accept_terms_credit_europe' => true,
         'application_no' => 'application_num',

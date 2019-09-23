@@ -7,16 +7,16 @@
  * @category  ResponseEntity
  * @package   Payever\Payments
  * @author    payever GmbH <service@payever.de>
- * @copyright 2017-2018 payever GmbH
+ * @copyright 2017-2019 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/shopsystem/
  */
 
 namespace Payever\ExternalIntegration\Payments\Http\ResponseEntity;
 
-use Payever\ExternalIntegration\Core\Http\ResponseEntity;
 use Payever\ExternalIntegration\Core\Http\MessageEntity\CallEntity;
 use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
+use Payever\ExternalIntegration\Core\Http\ResponseEntity;
 use Payever\ExternalIntegration\Payments\Http\MessageEntity\CreatePaymentCallEntity;
 
 /**
@@ -27,7 +27,7 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\CreatePaymentCallEnt
  * @category  ResponseEntity
  * @package   Payever\Payments
  * @author    payever GmbH <service@payever.de>
- * @copyright 2017-2018 payever GmbH
+ * @copyright 2017-2019 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/shopsystem/
  *

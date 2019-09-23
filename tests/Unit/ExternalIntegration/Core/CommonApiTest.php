@@ -58,6 +58,18 @@ class CommonApiTest extends TestCase
         $this->assertEquals($expectedUrl, $baseUrl);
     }
 
+    public function testCustomBaseUrl()
+    {
+        $customSandboxUrl = 'https://sandbox.some.domain/';
+        $customLiveUrl = 'https://live.some.domain/';
+
+        $this->config->setCustomApiUrl($customSandboxUrl)->setApiMode(ClientConfiguration::API_MODE_SANDBOX);
+        $this->assertEquals($customSandboxUrl, $this->commonApi->getBaseUrl());
+
+        $this->config->setCustomApiUrl($customLiveUrl)->setApiMode(ClientConfiguration::API_MODE_LIVE);
+        $this->assertEquals($customLiveUrl, $this->commonApi->getBaseUrl());
+    }
+
     /**
      * @return array
      */
@@ -65,9 +77,9 @@ class CommonApiTest extends TestCase
     {
         return array(
             array(ClientConfiguration::API_MODE_SANDBOX, "https://proxy.staging.devpayever.com/"),
-            array(ClientConfiguration::API_MODE_LIVE, "https://mein.payever.de/"),
-            array('', "https://mein.payever.de/"),
-            array(null, "https://mein.payever.de/"),
+            array(ClientConfiguration::API_MODE_LIVE, "https://proxy.payever.org/"),
+            array('', "https://proxy.payever.org/"),
+            array(null, "https://proxy.payever.org/"),
         );
     }
 }

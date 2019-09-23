@@ -7,15 +7,15 @@
  * @category  ResponseEntity
  * @package   Payever\Payments
  * @author    Andrey Puhovsky <a.puhovsky@gmail.com>
- * @copyright 2017-2018 payever GmbH
+ * @copyright 2017-2019 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/shopsystem/
  */
 
 namespace Payever\ExternalIntegration\Payments\Http\ResponseEntity;
 
-use Payever\ExternalIntegration\Core\Http\ResponseEntity;
 use Payever\ExternalIntegration\Core\Http\MessageEntity\DynamicEntity;
+use Payever\ExternalIntegration\Core\Http\ResponseEntity;
 
 /**
  * This class represents Retrieve Api Call Entity
@@ -25,7 +25,7 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\DynamicEntity;
  * @category  ResponseEntity
  * @package   Payever\Payments
  * @author    Andrey Puhovsky <a.puhovsky@gmail.com>
- * @copyright 2017-2018 payever GmbH
+ * @copyright 2017-2019 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/shopsystem/
  */

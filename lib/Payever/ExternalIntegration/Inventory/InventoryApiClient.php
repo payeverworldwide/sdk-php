@@ -11,13 +11,13 @@
 namespace Payever\ExternalIntegration\Inventory;
 
 use Payever\ExternalIntegration\Core\Base\OauthTokenInterface;
+use Payever\ExternalIntegration\Core\CommonApiClient;
 use Payever\ExternalIntegration\Core\Http\RequestBuilder;
 use Payever\ExternalIntegration\Core\Http\ResponseEntity\DynamicResponse;
 use Payever\ExternalIntegration\Inventory\Base\InventoryApiClientInterface;
 use Payever\ExternalIntegration\Inventory\Base\InventoryIteratorInterface;
 use Payever\ExternalIntegration\Inventory\Http\RequestEntity\InventoryChangedRequestEntity;
 use Payever\ExternalIntegration\Inventory\Http\RequestEntity\InventoryCreateRequestEntity;
-use Payever\ExternalIntegration\ThirdParty\ThirdPartyApiClient;
 
 /**
  * PHP version 5.4 and 7
@@ -27,7 +27,7 @@ use Payever\ExternalIntegration\ThirdParty\ThirdPartyApiClient;
  * @copyright 2017-2019 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  */
-class InventoryApiClient extends ThirdPartyApiClient implements InventoryApiClientInterface
+class InventoryApiClient extends CommonApiClient implements InventoryApiClientInterface
 {
     const SUB_URL_INVENTORY_CREATE = 'api/inventory/%s';
     const SUB_URL_INVENTORY_ADD = 'api/inventory/%s/add';
@@ -140,7 +140,7 @@ class InventoryApiClient extends ThirdPartyApiClient implements InventoryApiClie
      */
     private function getCreateInventoryUrl($externalId)
     {
-        return $this->getThirdPartyBaseUrl()
+        return $this->getBaseUrl()
             . sprintf(static::SUB_URL_INVENTORY_CREATE, $externalId)
         ;
     }
@@ -151,7 +151,7 @@ class InventoryApiClient extends ThirdPartyApiClient implements InventoryApiClie
      */
     private function getAddInventoryUrl($externalId)
     {
-        return $this->getThirdPartyBaseUrl()
+        return $this->getBaseUrl()
             . sprintf(static::SUB_URL_INVENTORY_ADD, $externalId)
         ;
     }
@@ -162,7 +162,7 @@ class InventoryApiClient extends ThirdPartyApiClient implements InventoryApiClie
      */
     private function getSubtractInventoryUrl($externalId)
     {
-        return $this->getThirdPartyBaseUrl()
+        return $this->getBaseUrl()
             . sprintf(static::SUB_URL_INVENTORY_SUBTRACT, $externalId)
             ;
     }

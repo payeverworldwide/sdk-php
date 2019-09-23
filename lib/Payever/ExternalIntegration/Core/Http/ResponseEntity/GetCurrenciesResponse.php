@@ -7,15 +7,15 @@
  * @category  ResponseEntity
  * @package   Payever\Core
  * @author    payever GmbH <service@payever.de>
- * @copyright 2017-2018 payever GmbH
+ * @copyright 2017-2019 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/shopsystem/
  */
 
 namespace Payever\ExternalIntegration\Core\Http\ResponseEntity;
 
-use Payever\ExternalIntegration\Core\Http\ResponseEntity;
 use Payever\ExternalIntegration\Core\Http\MessageEntity\GetCurrenciesResultEntity;
+use Payever\ExternalIntegration\Core\Http\ResponseEntity;
 
 /**
  * This class represents Get Currencies ResponseInterface Entity
@@ -25,7 +25,7 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\GetCurrenciesResultEntit
  * @category  ResponseEntity
  * @package   Payever\Core
  * @author    payever GmbH <service@payever.de>
- * @copyright 2017-2018 payever GmbH
+ * @copyright 2017-2019 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/shopsystem/
  */

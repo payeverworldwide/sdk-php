@@ -7,7 +7,7 @@
  * @category  ResponseEntity
  * @package   Payever\Payments
  * @author    payever GmbH <service@payever.de>
- * @copyright 2017-2018 payever GmbH
+ * @copyright 2017-2019 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/shopsystem/
  */
@@ -26,7 +26,7 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\ListPaymentsResultEn
  * @category  ResponseEntity
  * @package   Payever\Payments
  * @author    payever GmbH <service@payever.de>
- * @copyright 2017-2018 payever GmbH
+ * @copyright 2017-2019 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/shopsystem/
  *

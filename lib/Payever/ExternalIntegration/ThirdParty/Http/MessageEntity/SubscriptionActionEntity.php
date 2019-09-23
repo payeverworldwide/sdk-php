@@ -11,6 +11,7 @@
 namespace Payever\ExternalIntegration\ThirdParty\Http\MessageEntity;
 
 use Payever\ExternalIntegration\Core\Base\MessageEntity;
+use Payever\ExternalIntegration\ThirdParty\Enum\Action;
 
 /**
  * PHP version 5.4 and 7
@@ -33,7 +34,10 @@ class SubscriptionActionEntity extends MessageEntity
 {
     const UNDERSCORE_ON_SERIALIZATION = false;
 
-    /** @var string */
+    /**
+     * @var string
+     * @see Action
+     */
     protected $name;
 
     /** @var string */

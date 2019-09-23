@@ -11,13 +11,13 @@
 namespace Payever\ExternalIntegration\Products;
 
 use Payever\ExternalIntegration\Core\Base\OauthTokenInterface;
+use Payever\ExternalIntegration\Core\CommonApiClient;
 use Payever\ExternalIntegration\Core\Http\RequestBuilder;
 use Payever\ExternalIntegration\Core\Http\ResponseEntity\DynamicResponse;
 use Payever\ExternalIntegration\Products\Base\ProductsApiClientInterface;
 use Payever\ExternalIntegration\Products\Base\ProductsIteratorInterface;
 use Payever\ExternalIntegration\Products\Http\RequestEntity\ProductRemovedRequestEntity;
 use Payever\ExternalIntegration\Products\Http\RequestEntity\ProductRequestEntity;
-use Payever\ExternalIntegration\ThirdParty\ThirdPartyApiClient;
 
 /**
  * PHP version 5.4 and 7
@@ -27,7 +27,7 @@ use Payever\ExternalIntegration\ThirdParty\ThirdPartyApiClient;
  * @copyright 2017-2019 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  */
-class ProductsApiClient extends ThirdPartyApiClient implements ProductsApiClientInterface
+class ProductsApiClient extends CommonApiClient implements ProductsApiClientInterface
 {
     const SUB_URL_PRODUCT = 'api/product/%s';
 
@@ -161,6 +161,6 @@ class ProductsApiClient extends ThirdPartyApiClient implements ProductsApiClient
      */
     protected function getProductUrl($externalId)
     {
-        return $this->getThirdPartyBaseUrl() . sprintf(static::SUB_URL_PRODUCT, $externalId);
+        return $this->getBaseUrl() . sprintf(static::SUB_URL_PRODUCT, $externalId);
     }
 }

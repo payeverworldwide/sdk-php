@@ -11,7 +11,6 @@
 namespace Payever\ExternalIntegration\ThirdParty;
 
 use Payever\ExternalIntegration\Core\Authorization\OauthToken;
-use Payever\ExternalIntegration\Core\ClientConfiguration;
 use Payever\ExternalIntegration\Core\CommonApiClient;
 use Payever\ExternalIntegration\Core\Http\RequestBuilder;
 use Payever\ExternalIntegration\Core\Http\ResponseEntity\DynamicResponse;
@@ -32,33 +31,8 @@ use Payever\ExternalIntegration\ThirdParty\Http\ResponseEntity\SubscriptionRespo
  */
 class ThirdPartyApiClient extends CommonApiClient implements ThirdPartyApiClientInterface
 {
-    const URL_THIRD_PARTY_LIVE = 'https://third-party.payever.org/';
-    const URL_THIRD_PARTY_SANDBOX = 'https://third-party.staging.devpayever.com/';
-
     const SUB_URL_BUSINESS_INFO = 'api/business/%s/plugins';
     const SUB_URL_SUBSCRIPTION = 'api/business/%s/plugins/subscription/%s';
-
-    /**
-     * @return string
-     */
-    public function getThirdPartyBaseUrl()
-    {
-        switch ($this->configuration->getApiMode()) {
-            case ClientConfiguration::API_MODE_SANDBOX:
-                $url = $this->configuration->getCustomApiUrl() ?: static::URL_THIRD_PARTY_SANDBOX;
-                break;
-            case ClientConfiguration::API_MODE_LIVE:
-            default:
-                $url = static::URL_THIRD_PARTY_LIVE;
-                break;
-        }
-
-        if (substr($url, -1) != '/') {
-            $url .= '/';
-        }
-
-        return $url;
-    }
 
     /**
      * @inheritdoc
@@ -164,7 +138,7 @@ class ThirdPartyApiClient extends CommonApiClient implements ThirdPartyApiClient
      */
     protected function getSubscriptionUrl(SubscriptionRequestEntity $subscriptionRequestEntity)
     {
-        return $this->getThirdPartyBaseUrl()
+        return $this->getBaseUrl()
             . sprintf(
                 static::SUB_URL_SUBSCRIPTION,
                 $subscriptionRequestEntity->getBusinessUuid(),
@@ -179,7 +153,7 @@ class ThirdPartyApiClient extends CommonApiClient implements ThirdPartyApiClient
      */
     protected function getBusinessInfoUrl($businessUuid)
     {
-        return $this->getThirdPartyBaseUrl()
+        return $this->getBaseUrl()
             . sprintf(static::SUB_URL_BUSINESS_INFO, $businessUuid);
     }
 

@@ -7,7 +7,7 @@
  * @category  Http
  * @package   Payever\Core
  * @author    payever GmbH <service@payever.de>
- * @copyright 2017-2018 payever GmbH
+ * @copyright 2017-2019 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/developer/api-documentation/ Documentation
  */
@@ -24,7 +24,7 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @category  Http
  * @package   Payever\Core
  * @author    payever GmbH <service@payever.de>
- * @copyright 2017-2018 payever GmbH
+ * @copyright 2017-2019 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/developer/api-documentation/ Documentation
  */

@@ -58,11 +58,4 @@ interface ThirdPartyApiClientInterface extends CommonApiClientInterface
      * @return Response
      */
     public function unsubscribe(SubscriptionRequestEntity $subscriptionRequestEntity);
-
-    /**
-     * Returns base URL of third-party payever microservice
-     *
-     * @return string
-     */
-    public function getThirdPartyBaseUrl();
 }

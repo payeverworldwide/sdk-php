@@ -7,7 +7,7 @@
  * @category  API
  * @package   Payever\Core
  * @author    payever GmbH <service@payever.de>
- * @copyright 2017-2018 payever GmbH
+ * @copyright 2017-2019 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/shopsystem/
  */
@@ -15,15 +15,15 @@
 namespace Payever\ExternalIntegration\Core;
 
 // @codeCoverageIgnoreStart
-define('PEI_CORE_VERSION', '2.1.1');
+define('PEI_CORE_VERSION', '2.2.0');
 define('PEI_CORE_MAJOR_VERSION', 2);
-define('PEI_CORE_MINOR_VERSION', 1);
-define('PEI_CORE_RELEASE_VERSION', 1);
+define('PEI_CORE_MINOR_VERSION', 2);
+define('PEI_CORE_RELEASE_VERSION', 0);
 
 define('PEI_NAMESPACE', 'Payever\ExternalIntegration');
 
 if (version_compare(PHP_VERSION, '5.4.0', '<')) {
-    throw new \Exception('payever SDK requires PHP version 5.4 or higher.');
+    throw new \RuntimeException('payever SDK requires PHP version 5.4 or higher.');
 }
 // @codeCoverageIgnoreEnd
 
@@ -35,7 +35,7 @@ if (version_compare(PHP_VERSION, '5.4.0', '<')) {
  * @category  API
  * @package   Payever\Core
  * @author    Andrey Puhovsky <a.puhovsky@gmail.com>
- * @copyright 2017-2018 payever GmbH
+ * @copyright 2017-2019 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/shopsystem/
  */

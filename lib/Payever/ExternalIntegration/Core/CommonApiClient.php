@@ -1,4 +1,13 @@
 <?php
+/**
+ * PHP version 5.4 and 7
+ *
+ * @package   Payever\Core
+ * @author    Andrey Puhovsky <a.puhovsky@gmail.com>
+ * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
+ * @copyright 2017-2019 payever GmbH
+ * @license   MIT <https://opensource.org/licenses/MIT>
+ */
 
 namespace Payever\ExternalIntegration\Core;
 
@@ -21,7 +30,7 @@ use Psr\Log\LoggerAwareInterface;
 class CommonApiClient implements CommonApiClientInterface
 {
     const URL_SANDBOX = 'https://proxy.staging.devpayever.com/';
-    const URL_LIVE    = 'https://mein.payever.de/';
+    const URL_LIVE    = 'https://proxy.payever.org/';
 
     const SUB_URL_AUTH              = 'oauth/v2/token';
     const SUB_URL_LIST_CHANNEL_SETS = 'api/shop/%s/channel-sets';
@@ -74,14 +83,18 @@ class CommonApiClient implements CommonApiClientInterface
      */
     public function getBaseUrl()
     {
-        switch ($this->configuration->getApiMode()) {
-            case ClientConfiguration::API_MODE_SANDBOX:
-                $url = $this->configuration->getCustomApiUrl() ?: static::URL_SANDBOX;
-                break;
-            case ClientConfiguration::API_MODE_LIVE:
-            default:
-                $url = static::URL_LIVE;
-                break;
+        $url = $this->configuration->getCustomApiUrl();
+
+        if (!$url) {
+            switch ($this->configuration->getApiMode()) {
+                case ClientConfiguration::API_MODE_SANDBOX:
+                    $url = static::URL_SANDBOX;
+                    break;
+                case ClientConfiguration::API_MODE_LIVE:
+                default:
+                    $url = static::URL_LIVE;
+                    break;
+            }
         }
 
         if (substr($url, -1) != '/') {
