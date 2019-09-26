@@ -10,52 +10,64 @@
 
 namespace Payever\ExternalIntegration\Plugins\Command;
 
-use Payever\ExternalIntegration\Plugins\Base\PluginRegistryInfoProviderInterface;
 use Payever\ExternalIntegration\Plugins\Base\PluginsApiClientInterface;
 use Payever\ExternalIntegration\Plugins\Http\ResponseEntity\CommandsResponseEntity;
+use Psr\Log\LoggerInterface;
 
 class PluginCommandManager
 {
-    /** @var int|null */
-    private $lastCommandTimestamp;
-
     /** @var PluginsApiClientInterface */
     private $pluginsApiClient;
 
     /** @var PluginCommandExecutorInterface */
     private $commandExecutor;
 
-    /** @var PluginRegistryInfoProviderInterface */
-    private $registryInfoProvider;
+    /** @var LoggerInterface */
+    private $logger;
 
     public function __construct(
         PluginsApiClientInterface $pluginsApiClient,
         PluginCommandExecutorInterface $commandExecutor,
-        PluginRegistryInfoProviderInterface $registryInfoProvider,
-        $lastCommandTimestamp = null
+        LoggerInterface $logger
     ) {
         $this->pluginsApiClient = $pluginsApiClient;
         $this->commandExecutor = $commandExecutor;
-        $this->registryInfoProvider = $registryInfoProvider;
-        $this->lastCommandTimestamp = $lastCommandTimestamp;
+        $this->logger = $logger;
     }
 
     /**
      * Gets up to date commands and executes them
      *
+     * @param int|null $lastCommandTimestamp
+     *
      * @throws \Exception - bubbles up anything thrown by API or CommandExecutor
      */
-    public function executePluginCommands()
+    public function executePluginCommands($lastCommandTimestamp = null)
     {
-        $commandsResponse = $this->pluginsApiClient->getCommands($this->lastCommandTimestamp);
+        $commandsResponse = $this->pluginsApiClient->getCommands($lastCommandTimestamp);
         /** @var CommandsResponseEntity $commandsResponseEntity */
         $commandsResponseEntity = $commandsResponse->getResponseEntity();
         $commandsList = $commandsResponseEntity->getCommands();
 
         foreach ($commandsList as $commandEntity) {
             if ($this->isCommandSupported($commandEntity->getName())) {
+                $this->logger->info(
+                    sprintf(
+                        'Executing plugin command %s with value %s',
+                        $commandEntity->getName(),
+                        $commandEntity->getValue()
+                    )
+                );
                 $this->commandExecutor->executeCommand($commandEntity->getName(), $commandEntity->getValue());
                 $this->pluginsApiClient->acknowledgePluginCommand($commandEntity->getId());
+            } else {
+                $this->logger->info(
+                    sprintf(
+                        'Plugin command %s with value %s is not supported',
+                        $commandEntity->getName(),
+                        $commandEntity->getValue()
+                    )
+                );
             }
         }
     }
@@ -66,6 +78,6 @@ class PluginCommandManager
      */
     private function isCommandSupported($commandName)
     {
-        return in_array($commandName, $this->registryInfoProvider->getSupportedCommands());
+        return in_array($commandName, $this->pluginsApiClient->getRegistryInfoProvider()->getSupportedCommands());
     }
 }

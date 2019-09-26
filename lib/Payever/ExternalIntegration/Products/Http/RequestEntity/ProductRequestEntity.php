@@ -196,7 +196,7 @@ class ProductRequestEntity extends RequestEntity
     }
 
     /**
-     * @param array[array]|static[] $data
+     * @param array[]|static[] $data
      *
      * @return static
      */

@@ -207,11 +207,13 @@ class CreatePaymentRequest extends RequestEntity
      * Sets Cart
      *
      * @param array|string $cart
+     *
+     * @return $this
      */
     public function setCart($cart)
     {
         if (!$cart) {
-            return;
+            return $this;
         }
 
         if (is_string($cart)) {
@@ -219,7 +221,7 @@ class CreatePaymentRequest extends RequestEntity
         }
 
         if (!is_array($cart)) {
-            return;
+            return $this;
         }
 
         $this->cart = array();
@@ -227,15 +229,21 @@ class CreatePaymentRequest extends RequestEntity
         foreach ($cart as $item) {
             $this->cart[] = new CartItemEntity($item);
         }
+
+        return $this;
     }
 
     /**
      * Sets Birthdate
      *
      * @param string $birthdate
+     *
+     * @return $this
      */
     public function setBirthdate($birthdate)
     {
         $this->birthdate = date_create($birthdate);
+
+        return $this;
     }
 }

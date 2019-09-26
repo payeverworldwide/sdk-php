@@ -79,7 +79,7 @@ class FileLock implements LockInterface
     private function lock($filename)
     {
         $handle = fopen($filename, "w");
-        fclose($handle);
+        $handle && fclose($handle);
     }
 
     /**

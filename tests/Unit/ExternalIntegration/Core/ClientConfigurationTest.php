@@ -106,8 +106,8 @@ class ClientConfigurationTest extends TestCase
      * @see \Payever\ExternalIntegration\Core\ClientConfiguration::getClientId()
      * @see \Payever\ExternalIntegration\Core\ClientConfiguration::setClientSecret()
      * @see \Payever\ExternalIntegration\Core\ClientConfiguration::getClientSecret()
-     * @see \Payever\ExternalIntegration\Core\ClientConfiguration::setCustomApiUrl()
-     * @see \Payever\ExternalIntegration\Core\ClientConfiguration::getCustomApiUrl()
+     * @see \Payever\ExternalIntegration\Core\ClientConfiguration::setCustomSandboxUrl()
+     * @see \Payever\ExternalIntegration\Core\ClientConfiguration::getCustomSandboxUrl()
      * @see \Payever\ExternalIntegration\Core\ClientConfiguration::setApiMode()
      * @see \Payever\ExternalIntegration\Core\ClientConfiguration::getApiMode()
      *
@@ -131,7 +131,8 @@ class ClientConfigurationTest extends TestCase
             array('getBusinessUuid', 'setBusinessUuid', 'business_uuid'),
             array('getClientId', 'setClientId', 'client_id'),
             array('getClientSecret', 'setClientSecret', 'client_secret'),
-            array('getCustomApiUrl', 'setCustomApiUrl', 'https://sandbox.com/'),
+            array('getCustomSandboxUrl', 'setCustomSandboxUrl', 'https://sandbox.com/'),
+            array('getCustomLiveUrl', 'setCustomLiveUrl', 'https://live.com/'),
             array('getApiMode', 'setApiMode', true, 'live'),
         );
     }

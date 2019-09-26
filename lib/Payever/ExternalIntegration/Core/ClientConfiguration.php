@@ -31,27 +31,28 @@ class ClientConfiguration implements ClientConfigurationInterface
     /** @var string */
     protected $apiMode = self::API_MODE_LIVE;
 
-    /** @var string $clientId */
+    /** @var string */
     protected $clientId;
 
-    /** @var string $clientSecret */
+    /** @var string */
     protected $clientSecret;
 
-    /** @var string $customApiUrl */
-    protected $customApiUrl;
+    /** @var string */
+    protected $customSandboxUrl;
 
-    /** @var string $businessUuid */
+    /** @var string */
+    protected $customLiveUrl;
+
+    /** @var string */
     protected $businessUuid;
 
-    /** @var string $channelSet */
+    /** @var string */
     protected $channelSet = ChannelSet::CHANNEL_OTHER_SHOPSYSTEM;
 
     /** @var LoggerInterface */
     protected $logger;
 
     /**
-     * ClientConfiguration constructor.
-     *
      * @param string|null $clientId
      * @param string|null $clientSecret
      * @param string|null $businessUuid
@@ -109,9 +110,17 @@ class ClientConfiguration implements ClientConfigurationInterface
     /**
      * {@inheritdoc}
      */
-    public function getCustomApiUrl()
+    public function getCustomSandboxUrl()
     {
-        return $this->customApiUrl;
+        return $this->customSandboxUrl;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getCustomLiveUrl()
+    {
+        return $this->customLiveUrl;
     }
 
     /**
@@ -210,15 +219,31 @@ class ClientConfiguration implements ClientConfigurationInterface
     /**
      * @internal
      *
-     * Sets Custom API URL for all packages at once
+     * Sets Custom sandbox API URL for all packages at once
      *
-     * @param string $customApiUrl
+     * @param string $customSandboxUrl
      *
      * @return $this
      */
-    public function setCustomApiUrl($customApiUrl)
+    public function setCustomSandboxUrl($customSandboxUrl)
     {
-        $this->customApiUrl = $customApiUrl;
+        $this->customSandboxUrl = $customSandboxUrl;
+
+        return $this;
+    }
+
+    /**
+     * @internal
+     *
+     * Sets Custom live API URL for all packages at once
+     *
+     * @param string $customLiveUrl
+     *
+     * @return $this
+     */
+    public function setCustomLiveUrl($customLiveUrl)
+    {
+        $this->customLiveUrl = $customLiveUrl;
 
         return $this;
     }

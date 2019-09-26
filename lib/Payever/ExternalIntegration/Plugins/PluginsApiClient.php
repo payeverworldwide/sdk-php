@@ -14,7 +14,6 @@ use Payever\ExternalIntegration\Core\Authorization\OauthTokenList;
 use Payever\ExternalIntegration\Core\Base\ClientConfigurationInterface;
 use Payever\ExternalIntegration\Core\Base\HttpClientInterface;
 use Payever\ExternalIntegration\Core\CommonApiClient;
-use Payever\ExternalIntegration\Core\Exception\PayeverCommunicationException;
 use Payever\ExternalIntegration\Core\Http\RequestBuilder;
 use Payever\ExternalIntegration\Core\Http\RequestEntity;
 use Payever\ExternalIntegration\Core\Http\Response;
@@ -27,10 +26,10 @@ use Payever\ExternalIntegration\Plugins\Http\ResponseEntity\PluginRegistryRespon
 
 class PluginsApiClient extends CommonApiClient implements PluginsApiClientInterface
 {
-    const SUB_URL_REGISTER = 'api/plugins/registry/register';
-    const SUB_URL_UNREGISTER = 'api/plugins/registry/unregister';
-    const SUB_URL_ACK_COMMAND = 'api/plugins/registry/ack/%s';
-    const SUB_URL_GET_COMMANDS = 'api/plugins/command/list';
+    const SUB_URL_REGISTER = 'api/plugin/registry/register';
+    const SUB_URL_UNREGISTER = 'api/plugin/registry/unregister';
+    const SUB_URL_ACK_COMMAND = 'api/plugin/registry/ack/%s';
+    const SUB_URL_GET_COMMANDS = 'api/plugin/command/list';
 
     /** @var PluginRegistryInfoProviderInterface */
     private $registryInfoProvider;
@@ -48,12 +47,20 @@ class PluginsApiClient extends CommonApiClient implements PluginsApiClientInterf
 
     /**
      * @inheritdoc
+     */
+    public function getRegistryInfoProvider()
+    {
+        return $this->registryInfoProvider;
+    }
+
+    /**
+     * @inheritdoc
      *
-     * @throws PayeverCommunicationException
+     * @throws \Exception
      */
     public function registerPlugin()
     {
-        $url = sprintf('%s%s', $this->getBaseUrl(), static::SUB_URL_REGISTER);
+        $url = sprintf('%s%s', $this->getLiveBaseUrl(), static::SUB_URL_REGISTER);
 
         return $this->doPublicJsonPostRequest(
             $url,
@@ -65,11 +72,11 @@ class PluginsApiClient extends CommonApiClient implements PluginsApiClientInterf
     /**
      * @inheritdoc
      *
-     * @throws PayeverCommunicationException
+     * @throws \Exception
      */
     public function unregisterPlugin()
     {
-        $url = sprintf('%s%s', $this->getBaseUrl(), static::SUB_URL_UNREGISTER);
+        $url = sprintf('%s%s', $this->getLiveBaseUrl(), static::SUB_URL_UNREGISTER);
 
         return $this->doPublicJsonPostRequest(
             $url,
@@ -81,7 +88,7 @@ class PluginsApiClient extends CommonApiClient implements PluginsApiClientInterf
     /**
      * @inheritdoc
      *
-     * @throws PayeverCommunicationException
+     * @throws \Exception
      */
     public function acknowledgePluginCommand($commandId)
     {
@@ -97,7 +104,7 @@ class PluginsApiClient extends CommonApiClient implements PluginsApiClientInterf
      *
      * @pga-return Response<CommandsResponseEntity>
      *
-     * @throws PayeverCommunicationException
+     * @throws \Exception
      */
     public function getCommands($fromTimestamp = null)
     {
@@ -105,7 +112,7 @@ class PluginsApiClient extends CommonApiClient implements PluginsApiClientInterf
             ->setResponseEntity(new CommandsResponseEntity())
             ->build();
 
-        return $this->httpClient->execute($request);
+        return $this->getHttpClient()->execute($request);
     }
 
     /**
@@ -140,7 +147,7 @@ class PluginsApiClient extends CommonApiClient implements PluginsApiClientInterf
      * @param ResponseEntity $responseEntity
      * @return Response
      *
-     * @throws PayeverCommunicationException
+     * @throws \Exception
      */
     private function doPublicJsonPostRequest($url, RequestEntity $requestEntity, ResponseEntity $responseEntity)
     {
@@ -150,7 +157,7 @@ class PluginsApiClient extends CommonApiClient implements PluginsApiClientInterf
             ->setResponseEntity($responseEntity)
             ->build();
 
-        return $this->httpClient->execute($request);
+        return $this->getHttpClient()->execute($request);
     }
 
     /**
@@ -159,7 +166,7 @@ class PluginsApiClient extends CommonApiClient implements PluginsApiClientInterf
      */
     private function buildAcknowledgePluginCommandUrl($commandId)
     {
-        return sprintf('%s%s', $this->getBaseUrl(), sprintf(static::SUB_URL_ACK_COMMAND, $commandId));
+        return sprintf('%s%s', $this->getLiveBaseUrl(), sprintf(static::SUB_URL_ACK_COMMAND, $commandId));
     }
 
     /**
@@ -168,10 +175,24 @@ class PluginsApiClient extends CommonApiClient implements PluginsApiClientInterf
      */
     private function buildGetCommandsUrl($fromTimestamp = null)
     {
-        $url = sprintf('%s%s', $this->getBaseUrl(), static::SUB_URL_GET_COMMANDS);
+        $url = sprintf('%s%s', $this->getLiveBaseUrl(), static::SUB_URL_GET_COMMANDS);
 
-        if ($fromTimestamp) {
-            $url .= sprintf('?timestamp=%s', $fromTimestamp);
+        if ((int) $fromTimestamp > 0) {
+            $url .= sprintf('?from=%s', $fromTimestamp);
+        }
+
+        return $url;
+    }
+
+    /**
+     * @return string
+     */
+    private function getLiveBaseUrl()
+    {
+        $url = $this->configuration->getCustomLiveUrl() ?: static::URL_LIVE;
+
+        if (substr($url, -1) != '/') {
+            $url .= '/';
         }
 
         return $url;

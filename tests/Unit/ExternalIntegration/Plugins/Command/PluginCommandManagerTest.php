@@ -11,6 +11,7 @@
 namespace Payever\Tests\Unit\ExternalIntegration\Plugins\Command;
 
 use Payever\ExternalIntegration\Core\Http\Response;
+use Payever\ExternalIntegration\Plugins\Base\PluginRegistryInfoProviderInterface;
 use Payever\ExternalIntegration\Plugins\Command\PluginCommandExecutorInterface;
 use Payever\ExternalIntegration\Plugins\Command\PluginCommandManager;
 use Payever\ExternalIntegration\Plugins\Enum\PluginCommandNameEnum;
@@ -19,6 +20,7 @@ use Payever\ExternalIntegration\Plugins\PluginsApiClient;
 use Payever\Tests\Bootstrap\Plugins\PluginRegistryIntoProvider;
 use Payever\Tests\Bootstrap\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
+use Psr\Log\NullLogger;
 
 class PluginCommandManagerTest extends TestCase
 {
@@ -31,17 +33,20 @@ class PluginCommandManagerTest extends TestCase
     /** @var PluginCommandExecutorInterface|MockObject */
     private $pluginCommandExecutor;
 
+    /** @var PluginRegistryInfoProviderInterface */
+    private $registryInfoProvider;
+
     protected function setUp()
     {
         $this->pluginApiClient = $this->getMockBuilder(PluginsApiClient::class)
             ->disableOriginalConstructor()
             ->getMock();
         $this->pluginCommandExecutor = $this->getMockForAbstractClass(PluginCommandExecutorInterface::class);
-
+        $this->registryInfoProvider = new PluginRegistryIntoProvider();
         $this->pluginCommandManager = new PluginCommandManager(
             $this->pluginApiClient,
             $this->pluginCommandExecutor,
-            new PluginRegistryIntoProvider()
+            new NullLogger()
         );
     }
 
@@ -62,6 +67,10 @@ class PluginCommandManagerTest extends TestCase
         $this->pluginApiClient->expects($this->once())
             ->method('getCommands')
             ->willReturn($response);
+
+        $this->pluginApiClient->expects($this->once())
+            ->method('getRegistryInfoProvider')
+            ->willReturn($this->registryInfoProvider);
 
         $this->pluginCommandExecutor->expects($this->once())
             ->method('executeCommand')

@@ -60,7 +60,7 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method bool                    getPrevEmploymentDetails()
  * @method string                  getUniqueId()
  * @method string                  getUsageText()
- * @method string                  getBirthday()
+ * @method \DateTime|false         getBirthday()
  * @method self                    setId()
  * @method self                    setDeliveryFee()
  * @method self                    setPaymentFee()
@@ -190,7 +190,7 @@ class PaymentDetailsEntity extends MessageEntity
     /** @var string */
     protected $usageText;
 
-    /** @var string */
+    /** @var \DateTime|bool */
     protected $birthday;
 
     /**

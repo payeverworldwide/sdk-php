@@ -15,6 +15,11 @@ use Payever\ExternalIntegration\Core\Http\Response;
 interface PluginsApiClientInterface
 {
     /**
+     * @return PluginRegistryInfoProviderInterface
+     */
+    public function getRegistryInfoProvider();
+
+    /**
      * @return Response
      */
     public function registerPlugin();

@@ -164,13 +164,13 @@ interface PaymentsApiClientInterface extends CommonApiClientInterface
      *
      * @link https://getpayever.com/developer/api-documentation/#list-payment-options Documentation
      *
-     * @param array  $queryParams   Query part of , available params: _locale, _currency
+     * @param array  $params   Query part of , available params: _locale, _currency
      * @param string $businessUuid  Business UUID
      * @param string $channel       Shopsystem channel
      *
      * @return ResponseInterface
      */
-    public function listPaymentOptionsRequest($queryParams, $businessUuid, $channel);
+    public function listPaymentOptionsRequest($params = array(), $businessUuid = '', $channel = '');
 
     /**
      * Returns transaction

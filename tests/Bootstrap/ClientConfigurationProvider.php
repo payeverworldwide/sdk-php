@@ -27,7 +27,7 @@ class ClientConfigurationProvider
             ->setClientSecret(static::CLIENT_SECRET)
             ->setBusinessUuid(static::BUSINESS_UUID)
             ->setChannelSet(ChannelSet::CHANNEL_OTHER_SHOPSYSTEM)
-            ->setCustomApiUrl($stubSandboxUrl)
+            ->setCustomSandboxUrl($stubSandboxUrl)
         ;
 
         return $configuration;

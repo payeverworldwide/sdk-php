@@ -69,11 +69,8 @@ class ActionRequestProcessor
             }
 
             $this->logger->debug(
-                sprintf(
-                    '%s Action request payload: %s',
-                    $loggerPrefix,
-                    $actionPayload->getRawPayload()
-                )
+                sprintf('%s Action request payload', $loggerPrefix),
+                array($actionPayload->getRawPayload())
             );
 
             $handler->handle($actionPayload, $this->actionResult);

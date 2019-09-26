@@ -63,10 +63,10 @@ class CommonApiTest extends TestCase
         $customSandboxUrl = 'https://sandbox.some.domain/';
         $customLiveUrl = 'https://live.some.domain/';
 
-        $this->config->setCustomApiUrl($customSandboxUrl)->setApiMode(ClientConfiguration::API_MODE_SANDBOX);
+        $this->config->setCustomSandboxUrl($customSandboxUrl)->setApiMode(ClientConfiguration::API_MODE_SANDBOX);
         $this->assertEquals($customSandboxUrl, $this->commonApi->getBaseUrl());
 
-        $this->config->setCustomApiUrl($customLiveUrl)->setApiMode(ClientConfiguration::API_MODE_LIVE);
+        $this->config->setCustomLiveUrl($customLiveUrl)->setApiMode(ClientConfiguration::API_MODE_LIVE);
         $this->assertEquals($customLiveUrl, $this->commonApi->getBaseUrl());
     }
 

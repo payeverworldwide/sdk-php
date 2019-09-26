@@ -83,18 +83,14 @@ class CommonApiClient implements CommonApiClientInterface
      */
     public function getBaseUrl()
     {
-        $url = $this->configuration->getCustomApiUrl();
-
-        if (!$url) {
-            switch ($this->configuration->getApiMode()) {
-                case ClientConfiguration::API_MODE_SANDBOX:
-                    $url = static::URL_SANDBOX;
-                    break;
-                case ClientConfiguration::API_MODE_LIVE:
-                default:
-                    $url = static::URL_LIVE;
-                    break;
-            }
+        switch ($this->configuration->getApiMode()) {
+            case ClientConfiguration::API_MODE_SANDBOX:
+                $url = $this->configuration->getCustomSandboxUrl() ?: static::URL_SANDBOX;
+                break;
+            case ClientConfiguration::API_MODE_LIVE:
+            default:
+                $url = $this->configuration->getCustomLiveUrl() ?: static::URL_LIVE;
+                break;
         }
 
         if (substr($url, -1) != '/') {

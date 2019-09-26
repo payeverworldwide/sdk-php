@@ -55,11 +55,20 @@ interface ClientConfigurationInterface
     /**
      * @internal
      *
-     * Returns custom API URL
+     * Returns custom sandbox API URL
      *
      * @return string
      */
-    public function getCustomApiUrl();
+    public function getCustomSandboxUrl();
+
+    /**
+     * @internal
+     *
+     * Returns custom live API URL
+     *
+     * @return string
+     */
+    public function getCustomLiveUrl();
 
     /**
      * Returns Configuration Hash
