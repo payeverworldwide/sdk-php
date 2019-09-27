@@ -249,6 +249,18 @@ class ClientConfiguration implements ClientConfigurationInterface
     }
 
     /**
+     * @param string $url
+     *
+     * @return ClientConfiguration
+     *
+     * @deprecated Use setCustomSandboxUrl instead
+     */
+    public function setCustomApiUrl($url)
+    {
+        return $this->setCustomSandboxUrl($url);
+    }
+
+    /**
      * @param LoggerInterface $logger
      *
      * @return $this
