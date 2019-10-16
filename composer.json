@@ -1,6 +1,31 @@
 {
-   "license" : "MIT",
    "name" : "payever/sdk-php",
+   "autoload" : {
+      "classmap" : [
+         "lib"
+      ]
+   },
+   "type" : "library",
+   "require-dev" : {
+      "behat/behat" : "^3.4",
+      "phpunit/phpunit" : "^6",
+      "beberlei/assert" : "^3.0"
+   },
+   "authors" : [
+      {
+         "homepage" : "https://getpayever.com/",
+         "email" : "a.puhovsky@gmail.com",
+         "name" : "Andrey Puhovsky",
+         "role" : "Initial version"
+      },
+      {
+         "role" : "1.x, 2.x and further development",
+         "email" : "gendosua@gmail.com",
+         "name" : "Hennadii Shymanskyi"
+      }
+   ],
+   "homepage" : "https://github.com/payever/sdk-php",
+   "minimum-stability" : "stable",
    "autoload-dev" : {
       "classmap" : [
          "lib",
@@ -10,6 +35,14 @@
          "Payever\\Tests\\" : "tests/"
       }
    },
+   "description" : "PHP SDK for payever",
+   "require" : {
+      "ext-json" : "*",
+      "psr/log" : "^1.1",
+      "ext-curl" : "*",
+      "php" : ">=5.4.0"
+   },
+   "license" : "MIT",
    "keywords" : [
       "payments",
       "payever",
@@ -17,38 +50,5 @@
       "products",
       "inventory",
       "e-commerce"
-   ],
-   "minimum-stability" : "stable",
-   "require-dev" : {
-      "phpunit/phpunit" : "^6",
-      "behat/behat" : "^3.4",
-      "beberlei/assert" : "^3.0"
-   },
-   "type" : "library",
-   "authors" : [
-      {
-         "name" : "Andrey Puhovsky",
-         "role" : "Initial version",
-         "homepage" : "https://getpayever.com/",
-         "email" : "a.puhovsky@gmail.com"
-      },
-      {
-         "email" : "gendosua@gmail.com",
-         "role" : "1.x, 2.x and further development",
-         "name" : "Hennadii Shymanskyi"
-      }
-   ],
-   "require" : {
-      "ext-json" : "*",
-      "psr/log" : "^1.1",
-      "ext-curl" : "*",
-      "php" : ">=5.4.0"
-   },
-   "homepage" : "https://github.com/payever/sdk-php",
-   "autoload" : {
-      "classmap" : [
-         "lib"
-      ]
-   },
-   "description" : "PHP SDK for payever"
+   ]
 }

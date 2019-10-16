@@ -20,8 +20,10 @@ class CommandsResponseEntity extends ResponseEntity
 
     public function load($data)
     {
-        foreach ($data as $plainCommand) {
-            $this->commands[] = new PluginCommandEntity($plainCommand);
+        if (is_array($data)) {
+            foreach ($data as $plainCommand) {
+                $this->commands[] = new PluginCommandEntity($plainCommand);
+            }
         }
     }
 
