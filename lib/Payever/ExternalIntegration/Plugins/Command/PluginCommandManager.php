@@ -11,6 +11,8 @@
 namespace Payever\ExternalIntegration\Plugins\Command;
 
 use Payever\ExternalIntegration\Plugins\Base\PluginsApiClientInterface;
+use Payever\ExternalIntegration\Plugins\Enum\PluginCommandNameEnum;
+use Payever\ExternalIntegration\Plugins\Http\MessageEntity\PluginCommandEntity;
 use Payever\ExternalIntegration\Plugins\Http\ResponseEntity\CommandsResponseEntity;
 use Psr\Log\LoggerInterface;
 
@@ -50,7 +52,7 @@ class PluginCommandManager
         $commandsList = $commandsResponseEntity->getCommands();
 
         foreach ($commandsList as $commandEntity) {
-            if ($this->isCommandSupported($commandEntity->getName())) {
+            if ($this->isCommandSupported($commandEntity)) {
                 $this->logger->info(
                     sprintf(
                         'Executing plugin command %s with value %s',
@@ -58,7 +60,7 @@ class PluginCommandManager
                         $commandEntity->getValue()
                     )
                 );
-                $this->commandExecutor->executeCommand($commandEntity->getName(), $commandEntity->getValue());
+                $this->commandExecutor->executeCommand($commandEntity);
                 $this->pluginsApiClient->acknowledgePluginCommand($commandEntity->getId());
             } else {
                 $this->logger->info(
@@ -73,11 +75,24 @@ class PluginCommandManager
     }
 
     /**
-     * @param string $commandName
+     * @param PluginCommandEntity $commandEntity
+     *
      * @return bool
      */
-    private function isCommandSupported($commandName)
+    private function isCommandSupported(PluginCommandEntity $commandEntity)
     {
-        return in_array($commandName, $this->pluginsApiClient->getRegistryInfoProvider()->getSupportedCommands());
+        $infoProvider = $this->pluginsApiClient->getRegistryInfoProvider();
+
+        if (!in_array($commandEntity->getName(), $infoProvider->getSupportedCommands())) {
+            return false;
+        }
+
+        if ($commandEntity->getName() === PluginCommandNameEnum::NOTIFY_NEW_PLUGIN_VERSION
+            && version_compare($commandEntity->getValue(), $infoProvider->getPluginVersion(), '<=')
+        ) {
+            return false;
+        }
+
+        return true;
     }
 }

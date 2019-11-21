@@ -19,4 +19,6 @@ class PluginCommandNameEnum extends EnumerableConstants
     const SET_LIVE_HOST = 'set-live-host';
 
     const SET_COMMAND_POLLING_DELAY = 'set-command-polling-delay';
+
+    const NOTIFY_NEW_PLUGIN_VERSION = 'notify-new-plugin-version';
 }

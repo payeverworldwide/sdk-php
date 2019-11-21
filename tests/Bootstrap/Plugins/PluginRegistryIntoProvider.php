@@ -21,7 +21,7 @@ class PluginRegistryIntoProvider implements PluginRegistryInfoProviderInterface
      */
     public function getCmsVersion()
     {
-        return '2.0.0';
+        return '5.5.0';
     }
 
     /**
@@ -47,7 +47,11 @@ class PluginRegistryIntoProvider implements PluginRegistryInfoProviderInterface
      */
     public function getSupportedCommands()
     {
-        return PluginCommandNameEnum::enum();
+        return [
+            PluginCommandNameEnum::SET_SANDBOX_HOST,
+            PluginCommandNameEnum::SET_LIVE_HOST,
+            PluginCommandNameEnum::NOTIFY_NEW_PLUGIN_VERSION,
+        ];
     }
 
     /**
@@ -63,6 +67,6 @@ class PluginRegistryIntoProvider implements PluginRegistryInfoProviderInterface
      */
     public function getBusinessIds()
     {
-        return [];
+        return ['payever'];
     }
 }

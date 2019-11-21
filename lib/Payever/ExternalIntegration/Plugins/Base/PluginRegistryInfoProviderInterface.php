@@ -10,27 +10,29 @@
 
 namespace Payever\ExternalIntegration\Plugins\Base;
 
+use Payever\ExternalIntegration\Core\Enum\ChannelSet;
 use Payever\ExternalIntegration\Plugins\Enum\PluginCommandNameEnum;
 
 interface PluginRegistryInfoProviderInterface
 {
     /**
-     * @return string
+     * @return string - MUST return a semver (https://semver.org/) value of plugin version
      */
     public function getPluginVersion();
 
     /**
-     * @return string
+     * @return string - MUST return a semver (https://semver.org/) value of CMS version
      */
     public function getCmsVersion();
 
     /**
-     * @return string
+     * @return string - hostname of a CMS installation
      */
     public function getHost();
 
     /**
      * @return string
+     * @see ChannelSet
      */
     public function getChannel();
 
@@ -41,12 +43,15 @@ interface PluginRegistryInfoProviderInterface
     public function getSupportedCommands();
 
     /**
-     * @return string|null
+     * @return string|null - A URL which must be called whenever new command created.
+     *                       Useful when there is no cron schedule available in the user's system.
+     *                       NOTE: It will be a POST request with no payload, you still need to poll for suitable commands.
+     *                       NOTE: Trust no one - Please include some kind of secret token in this URL and check if it is valid when handling this request.
      */
     public function getCommandEndpoint();
 
     /**
-     * @return string[]
+     * @return string[] - List of business UUID's used by plugin
      */
     public function getBusinessIds();
 }

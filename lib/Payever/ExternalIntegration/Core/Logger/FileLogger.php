@@ -163,7 +163,7 @@ class FileLogger extends AbstractLogger
     {
         $level = strtoupper($level);
 
-        return "[{$this->getTimestamp()}] {$this->channelName}.{$level} {$message}\t{$this->serializeContext($context)}\n";
+        return "[{$this->getTimestamp()}] {$this->channelName}.{$level}: {$message} {$this->serializeContext($context)}" . PHP_EOL;
     }
 
     /**
@@ -181,6 +181,6 @@ class FileLogger extends AbstractLogger
      */
     protected function getTimestamp()
     {
-        return date('Y-m-d H:i:s.' . microtime(true));
+        return date('Y-m-d H:i:s');
     }
 }

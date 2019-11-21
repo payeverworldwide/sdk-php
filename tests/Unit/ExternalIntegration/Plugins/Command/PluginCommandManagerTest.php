@@ -50,16 +50,15 @@ class PluginCommandManagerTest extends TestCase
         );
     }
 
-    public function testExecutePluginCommands()
+    /**
+     * @param $commands
+     * @param $shouldExecute
+     * @throws \Exception
+     *
+     * @dataProvider commandDataProvider
+     */
+    public function testExecutePluginCommands($commands, $shouldExecute)
     {
-        $commands = [
-            [
-                '_id' => 'stub-command-id',
-                'name' => PluginCommandNameEnum::SET_LIVE_HOST,
-                'value' => 'https://some.host.com',
-            ]
-        ];
-
         $commandsResponseEntity = new CommandsResponseEntity($commands);
         $response = new Response();
         $response->setResponseEntity($commandsResponseEntity);
@@ -72,14 +71,79 @@ class PluginCommandManagerTest extends TestCase
             ->method('getRegistryInfoProvider')
             ->willReturn($this->registryInfoProvider);
 
-        $this->pluginCommandExecutor->expects($this->once())
+        $this->pluginCommandExecutor->expects($shouldExecute ? $this->once() : $this->never())
             ->method('executeCommand')
-            ->with($commands[0]['name'], $commands[0]['value']);
+            ->with($commandsResponseEntity->getCommands()[0]);
 
-        $this->pluginApiClient->expects($this->once())
+        $this->pluginApiClient->expects($shouldExecute ? $this->once() : $this->never())
             ->method('acknowledgePluginCommand')
             ->with($commands[0]['_id']);
 
         $this->pluginCommandManager->executePluginCommands();
+    }
+
+    /**
+     * @param string $notifyVersion
+     * @param bool $shouldExecute
+     * @throws \Exception
+     *
+     * @dataProvider notifyVersionDataProvider
+     */
+    public function testVersionCommandHandling($notifyVersion, $shouldExecute)
+    {
+        $commands = [
+            [
+                '_id' => 'stub-command-id',
+                'name' => PluginCommandNameEnum::NOTIFY_NEW_PLUGIN_VERSION,
+                'value' => $notifyVersion,
+            ]
+        ];
+
+        $this->testExecutePluginCommands($commands, $shouldExecute);
+    }
+
+    /**
+     * @return array
+     */
+    public function commandDataProvider()
+    {
+        return [
+            [
+                [
+                    [
+                        '_id' => 'stub-command-id',
+                        'name' => PluginCommandNameEnum::SET_LIVE_HOST,
+                        'value' => 'https://some.host.com',
+                    ]
+                ],
+                true,
+            ],
+            [
+                [
+                    [
+                        '_id' => 'stub-command-id',
+                        'name' => PluginCommandNameEnum::SET_COMMAND_POLLING_DELAY,
+                        'value' => '36',
+                    ]
+                ],
+                false,
+            ],
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function notifyVersionDataProvider()
+    {
+        // version inside data provider is 1.0.0
+        return [
+            ['0.0.1', false],
+            ['0.1.0', false],
+            ['1.0.0', false],
+            ['1.0.1', true],
+            ['1.2.0', true],
+            ['2.0.0', true],
+        ];
     }
 }

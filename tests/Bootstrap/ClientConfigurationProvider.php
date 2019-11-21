@@ -28,6 +28,7 @@ class ClientConfigurationProvider
             ->setBusinessUuid(static::BUSINESS_UUID)
             ->setChannelSet(ChannelSet::CHANNEL_OTHER_SHOPSYSTEM)
             ->setCustomSandboxUrl($stubSandboxUrl)
+            ->setCustomLiveUrl($stubSandboxUrl)
         ;
 
         return $configuration;

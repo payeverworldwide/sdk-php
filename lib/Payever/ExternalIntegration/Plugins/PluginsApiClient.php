@@ -23,6 +23,7 @@ use Payever\ExternalIntegration\Plugins\Base\PluginsApiClientInterface;
 use Payever\ExternalIntegration\Plugins\Http\RequestEntity\PluginRegistryRequestEntity;
 use Payever\ExternalIntegration\Plugins\Http\ResponseEntity\CommandsResponseEntity;
 use Payever\ExternalIntegration\Plugins\Http\ResponseEntity\PluginRegistryResponseEntity;
+use Payever\ExternalIntegration\Plugins\Http\ResponseEntity\PluginVersionResponseEntity;
 
 class PluginsApiClient extends CommonApiClient implements PluginsApiClientInterface
 {
@@ -30,6 +31,7 @@ class PluginsApiClient extends CommonApiClient implements PluginsApiClientInterf
     const SUB_URL_UNREGISTER = 'api/plugin/registry/unregister';
     const SUB_URL_ACK_COMMAND = 'api/plugin/registry/ack/%s';
     const SUB_URL_GET_COMMANDS = 'api/plugin/command/list';
+    const SUB_URL_GET_LATEST_VERSION = 'api/plugin/channel/%s/latest?cmsVersion=%s';
 
     /** @var PluginRegistryInfoProviderInterface */
     private $registryInfoProvider;
@@ -102,14 +104,35 @@ class PluginsApiClient extends CommonApiClient implements PluginsApiClientInterf
     /**
      * @inheritdoc
      *
-     * @pga-return Response<CommandsResponseEntity>
-     *
      * @throws \Exception
      */
     public function getCommands($fromTimestamp = null)
     {
         $request = RequestBuilder::get($this->buildGetCommandsUrl($fromTimestamp))
             ->setResponseEntity(new CommandsResponseEntity())
+            ->build();
+
+        return $this->getHttpClient()->execute($request);
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @throws \Exception
+     */
+    public function getLatestPluginVersion()
+    {
+        $infoProvider = $this->getRegistryInfoProvider();
+
+        $path = sprintf(
+            static::SUB_URL_GET_LATEST_VERSION,
+            $this->configuration->getChannelSet(),
+            $infoProvider->getCmsVersion()
+        );
+        $url = sprintf('%s%s', $this->getLiveBaseUrl(), $path);
+
+        $request = RequestBuilder::get($url)
+            ->setResponseEntity(new PluginVersionResponseEntity())
             ->build();
 
         return $this->getHttpClient()->execute($request);
@@ -176,9 +199,10 @@ class PluginsApiClient extends CommonApiClient implements PluginsApiClientInterf
     private function buildGetCommandsUrl($fromTimestamp = null)
     {
         $url = sprintf('%s%s', $this->getLiveBaseUrl(), static::SUB_URL_GET_COMMANDS);
+        $url .= sprintf('?channelType=%s', $this->getConfiguration()->getChannelSet());
 
         if ((int) $fromTimestamp > 0) {
-            $url .= sprintf('?from=%s', $fromTimestamp);
+            $url .= sprintf('&from=%s', $fromTimestamp);
         }
 
         return $url;

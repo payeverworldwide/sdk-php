@@ -10,14 +10,16 @@
 
 namespace Payever\ExternalIntegration\Plugins\Command;
 
+use Payever\ExternalIntegration\Plugins\Http\MessageEntity\PluginCommandEntity;
+
 interface PluginCommandExecutorInterface
 {
     /**
-     * @param string $commandName {@see \Payever\ExternalIntegration\Plugins\Enum\PluginCommandNameEnum }
-     * @param string $commandValue
+     * @param PluginCommandEntity $command
+     *
      * @return bool
      *
      * @throws \Exception when command could not be executed at the moment
      */
-    public function executeCommand($commandName, $commandValue);
+    public function executeCommand(PluginCommandEntity $command);
 }

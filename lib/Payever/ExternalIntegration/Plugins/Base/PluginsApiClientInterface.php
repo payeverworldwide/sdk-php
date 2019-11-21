@@ -40,4 +40,11 @@ interface PluginsApiClientInterface
      * @return Response
      */
     public function getCommands($fromTimestamp = null);
+
+    /**
+     * Retrieve the latest plugin info for current CMS.
+     *
+     * @return Response
+     */
+    public function getLatestPluginVersion();
 }
