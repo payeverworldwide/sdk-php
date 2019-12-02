@@ -38,6 +38,7 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\CartItemEntity;
  * @method CartItemEntity[] getCart()
  * @method string           getSalutation()
  * @method string           getPaymentMethod()
+ * @method string           getVariantId()
  * @method string           getFirstName()
  * @method string           getLastName()
  * @method string           getStreet()
@@ -62,6 +63,7 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\CartItemEntity;
  * @method self             setFee(float $fee)
  * @method self             setOrderId(string $id)
  * @method self             setPaymentMethod(string $method)
+ * @method self             setVariantId(string $variantId)
  * @method self             setCurrency(string $currency)
  * @method self             setSalutation(string $salutation)
  * @method self             setFirstName(string $name)
@@ -92,6 +94,9 @@ class CreatePaymentRequest extends RequestEntity
 
     /** @var string $paymentMethod */
     protected $paymentMethod;
+
+    /** @var string|null */
+    protected $variantId;
 
     /** @var float $amount */
     protected $amount;

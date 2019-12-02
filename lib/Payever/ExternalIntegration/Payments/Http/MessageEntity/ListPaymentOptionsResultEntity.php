@@ -14,8 +14,6 @@
 
 namespace Payever\ExternalIntegration\Payments\Http\MessageEntity;
 
-use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
-
 /**
  * This class represents List Payment Options Result Entity
  *
@@ -28,128 +26,12 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/shopsystem/
  *
- * @method string                           getId()
- * @method string                           getName()
- * @method bool                             getStatus()
- * @method float                            getVariableFee()
- * @method float                            getFixedFee()
  * @method bool                             getAcceptFee()
- * @method string                           getDescriptionOffer()
- * @method string                           getDescriptionFee()
- * @method float                            getMin()
- * @method float                            getMax()
- * @method string                           getPaymentMethod()
- * @method string                           getType()
- * @method string                           getSlug()
- * @method string                           getThumbnail1()
- * @method string                           getThumbnail2()
- * @method string                           getThumbnail3()
- * @method PaymentOptionOptionsEntity       getOptions()
- * @method PaymentOptionTranslationEntity[] getTranslations()
- * @method self                             setId()
- * @method self                             setName()
- * @method self                             setVariableFee()
- * @method self                             setFixedFee()
- * @method self                             setDescriptionOffer()
- * @method self                             setDescriptionFee()
- * @method self                             setMin()
- * @method self                             setMax()
- * @method self                             setPaymentMethod()
- * @method self                             setType()
- * @method self                             setSlug()
- * @method self                             setThumbnail1()
- * @method self                             setThumbnail2()
- * @method self                             setThumbnail3()
  */
-class ListPaymentOptionsResultEntity extends ResultEntity
+class ListPaymentOptionsResultEntity extends AbstractPaymentOptionEntity
 {
-    /** @var string $id */
-    protected $id;
-
-    /** @var string $name */
-    protected $name;
-
-    /** @var bool $status */
-    protected $status;
-
-    /** @var float $variableFee */
-    protected $variableFee;
-
-    /** @var float $fixedFee */
-    protected $fixedFee;
-
     /** @var bool $acceptFee */
     protected $acceptFee;
-
-    /** @var string $descriptionOffer */
-    protected $descriptionOffer;
-
-    /** @var string $descriptionFee */
-    protected $descriptionFee;
-
-    /** @var float $min */
-    protected $min;
-
-    /** @var float $max */
-    protected $max;
-
-    /** @var string $paymentMethod */
-    protected $paymentMethod;
-
-    /** @var string $type */
-    protected $type;
-
-    /** @var string $slug */
-    protected $slug;
-
-    /** @var string $thumbnail1 */
-    protected $thumbnail1;
-
-    /** @var string $thumbnail2 */
-    protected $thumbnail2;
-
-    /** @var string $thumbnail3 */
-    protected $thumbnail3;
-
-    /** @var PaymentOptionOptionsEntity $options */
-    protected $options;
-
-    /** @var PaymentOptionTranslationEntity[] $translations */
-    protected $translations;
-
-    /**
-     * Sets Status
-     *
-     * @param string $status
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status == 'active';
-    }
-
-    /**
-     * Sets Options
-     *
-     * @param array $options
-     */
-    public function setOptions($options)
-    {
-        $this->options = new PaymentOptionOptionsEntity($options);
-    }
-
-    /**
-     * Sets Translations
-     *
-     * @param array $translations
-     */
-    public function setTranslations($translations)
-    {
-        $this->translations = array();
-
-        foreach ($translations as $item) {
-            $this->translations[] = new PaymentOptionTranslationEntity($item);
-        }
-    }
 
     /**
      * Sets Accept Fee

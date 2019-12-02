@@ -30,6 +30,7 @@ use Payever\ExternalIntegration\Payments\Http\ResponseEntity\CreatePaymentRespon
 use Payever\ExternalIntegration\Payments\Http\ResponseEntity\GetTransactionResponse;
 use Payever\ExternalIntegration\Payments\Http\ResponseEntity\LatePaymentsResponse;
 use Payever\ExternalIntegration\Payments\Http\ResponseEntity\ListPaymentOptionsResponse;
+use Payever\ExternalIntegration\Payments\Http\ResponseEntity\ListPaymentOptionsWithVariantsResponse;
 use Payever\ExternalIntegration\Payments\Http\ResponseEntity\ListPaymentsResponse;
 use Payever\ExternalIntegration\Payments\Http\ResponseEntity\RefundPaymentResponse;
 use Payever\ExternalIntegration\Payments\Http\ResponseEntity\RemindPaymentResponse;
@@ -51,19 +52,20 @@ use Payever\ExternalIntegration\Payments\Http\ResponseEntity\ShippingGoodsPaymen
  */
 class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInterface
 {
-    const SUB_URL_CREATE_PAYMENT         = 'api/payment';
-    const SUB_URL_RETRIEVE_PAYMENT       = 'api/payment/%s';
-    const SUB_URL_LIST_PAYMENTS          = 'api/payment';
-    const SUB_URL_REFUND_PAYMENT         = 'api/payment/refund/%s';
-    const SUB_URL_AUTHORIZE_PAYMENT      = 'api/payment/authorize/%s';
-    const SUB_URL_REMIND_PAYMENT         = 'api/payment/remind/%s';
-    const SUB_URL_COLLECT_PAYMENTS       = 'api/payment/collect/%s';
-    const SUB_URL_LATE_PAYMENTS          = 'api/payment/late-payment/%s';
+    const SUB_URL_CREATE_PAYMENT = 'api/payment';
+    const SUB_URL_RETRIEVE_PAYMENT = 'api/payment/%s';
+    const SUB_URL_LIST_PAYMENTS = 'api/payment';
+    const SUB_URL_REFUND_PAYMENT = 'api/payment/refund/%s';
+    const SUB_URL_AUTHORIZE_PAYMENT = 'api/payment/authorize/%s';
+    const SUB_URL_REMIND_PAYMENT = 'api/payment/remind/%s';
+    const SUB_URL_COLLECT_PAYMENTS = 'api/payment/collect/%s';
+    const SUB_URL_LATE_PAYMENTS = 'api/payment/late-payment/%s';
     const SUB_URL_SHIPPING_GOODS_PAYMENT = 'api/payment/shipping-goods/%s';
-    const SUB_URL_CANCEL_PAYMENT         = 'api/payment/cancel/%s';
-    const SUB_URL_RETRIEVE_API_CALL      = 'api/%s';
-    const SUB_URL_LIST_PAYMENT_OPTIONS   = 'api/shop/%s/payment-options/%s';
-    const SUB_URL_TRANSACTION            = 'api/rest/v1/transactions/%s';
+    const SUB_URL_CANCEL_PAYMENT = 'api/payment/cancel/%s';
+    const SUB_URL_RETRIEVE_API_CALL = 'api/%s';
+    const SUB_URL_LIST_PAYMENT_OPTIONS = 'api/shop/%s/payment-options/%s';
+    const SUB_URL_LIST_PAYMENT_OPTIONS_VARIANTS = 'api/shop/%s/payment-options/variants/%s';
+    const SUB_URL_TRANSACTION = 'api/rest/v1/transactions/%s';
 
     /**
      * {@inheritdoc}
@@ -86,12 +88,9 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
             )
             ->setRequestEntity($createPaymentRequest)
             ->setResponseEntity(new CreatePaymentResponse())
-            ->build()
-        ;
+            ->build();
 
-        $response = $this->getHttpClient()->execute($request);
-
-        return $response;
+        return $this->getHttpClient()->execute($request);
     }
 
     /**
@@ -108,12 +107,9 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
                 $this->getToken(OauthToken::SCOPE_PAYMENT_INFO)->getAuthorizationString()
             )
             ->setResponseEntity(new RetrievePaymentResponse())
-            ->build()
-        ;
+            ->build();
 
-        $response = $this->getHttpClient()->execute($request);
-
-        return $response;
+        return $this->getHttpClient()->execute($request);
     }
 
     /**
@@ -131,12 +127,9 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
             )
             ->setRequestEntity($listPaymentsRequest)
             ->setResponseEntity(new ListPaymentsResponse())
-            ->build()
-        ;
+            ->build();
 
-        $response = $this->getHttpClient()->execute($request);
-
-        return $response;
+        return $this->getHttpClient()->execute($request);
     }
 
     /**
@@ -159,12 +152,9 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
             )
             ->setRequestEntity(new RefundPaymentRequest())
             ->setResponseEntity(new RefundPaymentResponse())
-            ->build()
-        ;
+            ->build();
 
-        $response = $this->getHttpClient()->execute($request);
-
-        return $response;
+        return $this->getHttpClient()->execute($request);
     }
 
     /**
@@ -182,20 +172,17 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
             )
             ->setRequestEntity($authorizePaymentRequest ?: new AuthorizePaymentRequest())
             ->setResponseEntity(new AuthorizePaymentResponse())
-            ->build()
-        ;
+            ->build();
 
-        $response = $this->getHttpClient()->execute($request);
-
-        return $response;
+        return $this->getHttpClient()->execute($request);
     }
 
     /**
      * {@inheritdoc}
      *
-     * @deprecated This request is only available for Santa DE Invoice and not used anywhere
-     *
      * @throws \Exception
+     *
+     * @deprecated This request is only available for Santander DE Invoice and not used anywhere
      */
     public function remindPaymentRequest($paymentId)
     {
@@ -206,20 +193,17 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
                 $this->getToken(OauthToken::SCOPE_PAYMENT_ACTIONS)->getAuthorizationString()
             )
             ->setResponseEntity(new RemindPaymentResponse())
-            ->build()
-        ;
+            ->build();
 
-        $response = $this->getHttpClient()->execute($request);
-
-        return $response;
+        return $this->getHttpClient()->execute($request);
     }
 
     /**
      * {@inheritdoc}
      *
-     * @deprecated This request is only available for Santa DE Invoice and not used anywhere
-     *
      * @throws \Exception
+     *
+     * @deprecated This request is only available for Santander DE Invoice and not used anywhere
      */
     public function collectPaymentsRequest($paymentId)
     {
@@ -230,20 +214,17 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
                 $this->getToken(OauthToken::SCOPE_PAYMENT_ACTIONS)->getAuthorizationString()
             )
             ->setResponseEntity(new CollectPaymentsResponse())
-            ->build()
-        ;
+            ->build();
 
-        $response = $this->getHttpClient()->execute($request);
-
-        return $response;
+        return $this->getHttpClient()->execute($request);
     }
 
     /**
      * {@inheritdoc}
      *
-     * @deprecated This request is only available for Santa DE Invoice and not used anywhere
-     *
      * @throws \Exception
+     *
+     * @deprecated This request is only available for Santander DE Invoice and not used anywhere
      */
     public function latePaymentsRequest($paymentId)
     {
@@ -254,12 +235,9 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
                 $this->getToken(OauthToken::SCOPE_PAYMENT_ACTIONS)->getAuthorizationString()
             )
             ->setResponseEntity(new LatePaymentsResponse())
-            ->build()
-        ;
+            ->build();
 
-        $response = $this->getHttpClient()->execute($request);
-
-        return $response;
+        return $this->getHttpClient()->execute($request);
     }
 
     /**
@@ -270,7 +248,8 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
     public function shippingGoodsPaymentRequest(
         $paymentId,
         ShippingGoodsPaymentRequest $shippingGoodsPaymentRequest = null
-    ) {
+    )
+    {
         $this->configuration->assertLoaded();
 
         $request = RequestBuilder::post($this->getShippingGoodsPaymentURL($paymentId))
@@ -279,12 +258,9 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
             )
             ->setRequestEntity($shippingGoodsPaymentRequest ?: new ShippingGoodsPaymentRequest())
             ->setResponseEntity(new ShippingGoodsPaymentResponse())
-            ->build()
-        ;
+            ->build();
 
-        $response = $this->getHttpClient()->execute($request);
-
-        return $response;
+        return $this->getHttpClient()->execute($request);
     }
 
     /**
@@ -301,12 +277,9 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
                 $this->getToken(OauthToken::SCOPE_PAYMENT_ACTIONS)->getAuthorizationString()
             )
             ->setResponseEntity(new CancelPaymentResponse())
-            ->build()
-        ;
+            ->build();
 
-        $response = $this->getHttpClient()->execute($request);
-
-        return $response;
+        return $this->getHttpClient()->execute($request);
     }
 
     /**
@@ -323,12 +296,9 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
                 $this->getToken(OauthToken::SCOPE_PAYMENT_ACTIONS)->getAuthorizationString()
             )
             ->setResponseEntity(new RetrieveApiCallResponse())
-            ->build()
-        ;
+            ->build();
 
-        $response = $this->getHttpClient()->execute($request);
-
-        return $response;
+        return $this->getHttpClient()->execute($request);
     }
 
     /**
@@ -343,12 +313,26 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
 
         $request = RequestBuilder::get($this->getListPaymentOptionsURL($businessUuid, $channel, $params))
             ->setResponseEntity(new ListPaymentOptionsResponse())
-            ->build()
-        ;
+            ->build();
 
-        $response = $this->getHttpClient()->execute($request);
+        return $this->getHttpClient()->execute($request);
+    }
 
-        return $response;
+    /**
+     * {@inheritdoc}
+     *
+     * @throws \Exception
+     */
+    public function listPaymentOptionsWithVariantsRequest($params = array(), $businessUuid = '', $channel = '')
+    {
+        $businessUuid = $businessUuid ?: $this->getConfiguration()->getBusinessUuid();
+        $channel = $channel ?: $this->getConfiguration()->getChannelSet();
+
+        $request = RequestBuilder::get($this->getListPaymentOptionsVariantsURL($businessUuid, $channel, $params))
+            ->setResponseEntity(new ListPaymentOptionsWithVariantsResponse())
+            ->build();
+
+        return $this->getHttpClient()->execute($request);
     }
 
     /**
@@ -365,12 +349,9 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
                 $this->getToken(OauthToken::SCOPE_PAYMENT_ACTIONS)->getAuthorizationString()
             )
             ->setResponseEntity(new GetTransactionResponse())
-            ->build()
-        ;
+            ->build();
 
-        $response = $this->getHttpClient()->execute($request);
-
-        return $response;
+        return $this->getHttpClient()->execute($request);
     }
 
     /**
@@ -506,13 +487,30 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
      *
      * @param string $businessUuid
      * @param string $channel
-     * @param string $params
+     * @param array $params
      *
      * @return string
      */
     protected function getListPaymentOptionsURL($businessUuid, $channel, $params = array())
     {
-        return $this->getBaseUrl() . sprintf(self::SUB_URL_LIST_PAYMENT_OPTIONS, $businessUuid, $channel)
+        return $this->getBaseUrl()
+            . sprintf(self::SUB_URL_LIST_PAYMENT_OPTIONS, $businessUuid, $channel)
+            . (empty($params) ? '' : '?' . http_build_query($params));
+    }
+
+    /**
+     * Returns URL for Available Payment Options request
+     *
+     * @param string $businessUuid
+     * @param string $channel
+     * @param array $params
+     *
+     * @return string
+     */
+    protected function getListPaymentOptionsVariantsURL($businessUuid, $channel, $params = array())
+    {
+        return $this->getBaseUrl()
+            . sprintf(self::SUB_URL_LIST_PAYMENT_OPTIONS_VARIANTS, $businessUuid, $channel)
             . (empty($params) ? '' : '?' . http_build_query($params));
     }
 
