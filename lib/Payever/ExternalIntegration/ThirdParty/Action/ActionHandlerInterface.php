@@ -23,7 +23,7 @@ interface ActionHandlerInterface
     /**
      * Must tell us what action this handler intends to handle.
      *
-     * @see Action
+     * @see ActionEnum
      *
      * @return string
      */

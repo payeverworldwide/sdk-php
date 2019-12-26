@@ -14,7 +14,7 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
 use Payever\ExternalIntegration\Inventory\Http\MessageEntity\InventoryChangedEntity;
 use Payever\ExternalIntegration\Products\Http\RequestEntity\ProductRemovedRequestEntity;
 use Payever\ExternalIntegration\Products\Http\RequestEntity\ProductRequestEntity;
-use Payever\ExternalIntegration\ThirdParty\Enum\Action;
+use Payever\ExternalIntegration\ThirdParty\Enum\ActionEnum;
 
 /**
  * PHP version 5.4 and 7
@@ -35,7 +35,7 @@ class ActionPayload
     /**
      * ActionPayload constructor.
      *
-     * @param string $action @see Action
+     * @param string $action @see ActionEnum
      * @param string|array|null $rawPayload
      */
     public function __construct($action, $rawPayload = null)
@@ -71,14 +71,14 @@ class ActionPayload
         }
 
         switch ($this->action) {
-            case Action::ACTION_CREATE_PRODUCT:
-            case Action::ACTION_UPDATE_PRODUCT:
+            case ActionEnum::ACTION_CREATE_PRODUCT:
+            case ActionEnum::ACTION_UPDATE_PRODUCT:
                 return new ProductRequestEntity($payload);
-            case Action::ACTION_REMOVE_PRODUCT:
+            case ActionEnum::ACTION_REMOVE_PRODUCT:
                 return new ProductRemovedRequestEntity($payload);
-            case Action::ACTION_ADD_INVENTORY:
-            case Action::ACTION_SET_INVENTORY:
-            case Action::ACTION_SUBTRACT_INVENTORY:
+            case ActionEnum::ACTION_ADD_INVENTORY:
+            case ActionEnum::ACTION_SET_INVENTORY:
+            case ActionEnum::ACTION_SUBTRACT_INVENTORY:
                 return new InventoryChangedEntity($payload);
             default:
                 throw new \RuntimeException(

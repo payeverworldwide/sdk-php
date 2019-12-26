@@ -21,7 +21,7 @@ use Psr\Log\LoggerInterface;
  * @copyright 2017-2019 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  */
-class ActionRequestProcessor
+class InwardActionProcessor
 {
     /** @var ActionHandlerPool */
     protected $actionHandlerPool;
@@ -45,14 +45,14 @@ class ActionRequestProcessor
     /**
      * Do the job of processing payever third-party action request
      *
-     * @param string $action - action name {@see \Payever\ExternalIntegration\ThirdParty\Enum\Action}
-     * @param string|null $payload - user can pass payload directly if it's coming from custom source
+     * @param string $action - action name {@see ActionEnum}
+     * @param array|string|null $payload - user can pass payload directly if it's coming from custom source
      *
      * @throws \Exception - bubbles up anything thrown inside
      */
-    public function processActionRequest($action, $payload = null)
+    public function process($action, $payload = null)
     {
-        $loggerPrefix = '[ACTION_REQUEST]';
+        $loggerPrefix = '[INWARD_ACTION_REQUEST]';
 
         $this->logger->info(
             sprintf('%s Processing action request', $loggerPrefix),

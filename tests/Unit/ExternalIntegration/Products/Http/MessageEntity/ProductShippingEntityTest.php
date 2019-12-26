@@ -10,6 +10,7 @@ class ProductShippingEntityTest extends AbstractMessageEntityTest
     protected static $scheme = array(
         'measureMass' => 'kg',
         'measureSize' => 'cm',
+        'general' => true,
         'free' => true,
         'weight' => 1.1,
         'width' => 1.2,

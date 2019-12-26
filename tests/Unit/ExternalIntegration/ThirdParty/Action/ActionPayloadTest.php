@@ -3,7 +3,7 @@
 namespace Payever\Tests\Unit\ExternalIntegration\ThirdParty\Action;
 
 use Payever\ExternalIntegration\ThirdParty\Action\ActionPayload;
-use Payever\ExternalIntegration\ThirdParty\Enum\Action;
+use Payever\ExternalIntegration\ThirdParty\Enum\ActionEnum;
 use Payever\Tests\Bootstrap\TestCase;
 
 class ActionPayloadTest extends TestCase
@@ -58,12 +58,12 @@ class ActionPayloadTest extends TestCase
         $inventoryRequest = 'Payever\ExternalIntegration\Inventory\Http\MessageEntity\InventoryChangedEntity';
 
         return array(
-            array(Action::ACTION_CREATE_PRODUCT, $productRequest),
-            array(Action::ACTION_UPDATE_PRODUCT, $productRequest),
-            array(Action::ACTION_REMOVE_PRODUCT, $productRemovedRequest),
-            array(Action::ACTION_ADD_INVENTORY, $inventoryRequest),
-            array(Action::ACTION_SUBTRACT_INVENTORY, $inventoryRequest),
-            array(Action::ACTION_SET_INVENTORY, $inventoryRequest),
+            array(ActionEnum::ACTION_CREATE_PRODUCT, $productRequest),
+            array(ActionEnum::ACTION_UPDATE_PRODUCT, $productRequest),
+            array(ActionEnum::ACTION_REMOVE_PRODUCT, $productRemovedRequest),
+            array(ActionEnum::ACTION_ADD_INVENTORY, $inventoryRequest),
+            array(ActionEnum::ACTION_SUBTRACT_INVENTORY, $inventoryRequest),
+            array(ActionEnum::ACTION_SET_INVENTORY, $inventoryRequest),
 
         );
     }

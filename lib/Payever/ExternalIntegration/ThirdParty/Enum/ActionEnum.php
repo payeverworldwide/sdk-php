@@ -20,8 +20,13 @@ use Payever\ExternalIntegration\Core\Base\EnumerableConstants;
  * @copyright 2017-2019 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  */
-class Direction extends EnumerableConstants
+class ActionEnum extends EnumerableConstants
 {
-    const INWARD = 'inward';
-    const OUTWARD = 'outward';
+    const ACTION_CREATE_PRODUCT      = 'create-product';
+    const ACTION_UPDATE_PRODUCT      = 'update-product';
+    const ACTION_REMOVE_PRODUCT      = 'remove-product';
+    const ACTION_ADD_INVENTORY       = 'add-inventory';
+    const ACTION_SET_INVENTORY       = 'set-inventory';
+    const ACTION_SUBTRACT_INVENTORY  = 'subtract-inventory';
+    const ACTION_PRODUCTS_SYNC       = 'products-sync';
 }

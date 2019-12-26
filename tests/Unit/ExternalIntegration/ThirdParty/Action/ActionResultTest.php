@@ -42,11 +42,26 @@ class ActionResultTest extends TestCase
 
     public function testError()
     {
+        $this->assertFalse($this->actionResult->hasErrors());
+        $this->assertEquals(0, $this->actionResult->getErrorsCount());
         $this->actionResult->addError('error1');
+        $this->assertTrue($this->actionResult->hasErrors());
         $this->assertEquals(1, $this->actionResult->getErrorsCount());
         $this->assertEquals(array('error1'), $this->actionResult->getErrors());
 
         $this->actionResult->addError('error2');
         $this->assertEquals(array('error1', 'error2'), $this->actionResult->getErrors());
+    }
+
+    public function testAddException()
+    {
+        $this->assertFalse($this->actionResult->hasErrors());
+        $this->assertEquals(0, $this->actionResult->getErrorsCount());
+
+        $this->actionResult->addException(new \RuntimeException('critical error'));
+
+        $this->assertTrue($this->actionResult->hasErrors());
+        $this->assertEquals(1, $this->actionResult->getErrorsCount());
+        $this->assertEquals(array('critical error'), $this->actionResult->getErrors());
     }
 }

@@ -50,7 +50,7 @@ class ActionHandlerPool
     }
 
     /**
-     * @param string $action on of @see {Action}
+     * @param string $action on of @see {ActionEnum}
      *
      * @return ActionHandlerInterface
      *

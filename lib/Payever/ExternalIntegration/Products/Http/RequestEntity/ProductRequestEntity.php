@@ -13,6 +13,7 @@ namespace Payever\ExternalIntegration\Products\Http\RequestEntity;
 use Payever\ExternalIntegration\Core\Http\RequestEntity;
 use Payever\ExternalIntegration\Products\Http\MessageEntity\ProductCategoryEntity;
 use Payever\ExternalIntegration\Products\Http\MessageEntity\ProductShippingEntity;
+use Payever\ExternalIntegration\Products\Http\MessageEntity\ProductVariantOptionEntity;
 
 /**
  * PHP version 5.4 and 7
@@ -25,8 +26,7 @@ use Payever\ExternalIntegration\Products\Http\MessageEntity\ProductShippingEntit
  * @method string getExternalId()
  * @method string[] getImages()
  * @method string[] getImagesUrl()
- * @method bool getEnabled()
- * @method bool getInventoryTrackingEnabled()
+ * @method bool getActive()
  * @method string getUuid()
  * @method string getBusinessUuid()
  * @method ProductCategoryEntity[]|string[] getCategories()
@@ -35,27 +35,26 @@ use Payever\ExternalIntegration\Products\Http\MessageEntity\ProductShippingEntit
  * @method string getDescription()
  * @method float getPrice()
  * @method float|null getSalePrice()
+ * @method bool getOnSales()
  * @method string getSku()
- * @method int getInventory()
  * @method string getBarcode()
  * @method string getType()
- * @method self[]|null getVariants()
+ * @method self[]|array getVariants()
  * @method ProductShippingEntity|null getShipping()
  * @method \DateTime|false getCreatedAt()
  * @method \DateTime|false getUpdatedAt()
  * @method self setExternalId(string $externalId)
  * @method self setImages(array $images)
  * @method self setImagesUrl(array $imagesUrl)
- * @method self setEnabled(bool $enabled)
- * @method self setInventoryTrackingEnabled(bool $enabled)
+ * @method self setActive(bool $active)
  * @method self setUuid(string $uuid)
  * @method self setBusinessUuid(string $businessUuid)
  * @method self setCurrency(string $currency)
  * @method self setTitle(string $title)
  * @method self setDescription(string $description)
  * @method self setPrice(float $price)
+ * @method self setOnSales(bool $onSales)
  * @method self setSku(string $sku)
- * @method self setInventory(int $inventory)
  * @method self setBarcode(string $barcode)
  * @method self setType(string $type)
  */
@@ -78,10 +77,7 @@ class ProductRequestEntity extends RequestEntity
     protected $imagesUrl = array();
 
     /** @var bool */
-    protected $enabled = true;
-
-    /** @var bool */
-    protected $inventoryTrackingEnabled = false;
+    protected $active = true;
 
     /** @var string */
     protected $uuid;
@@ -107,21 +103,11 @@ class ProductRequestEntity extends RequestEntity
     /** @var float|null */
     protected $salePrice;
 
-    /**
-     * Read as 'salePriceHidden'
-     *
-     * @var bool
-     */
-    protected $hidden = true;
-
-    /** @var float */
-    protected $sortPrice;
+    /** @var bool */
+    protected $onSales = false;
 
     /** @var string */
     protected $sku;
-
-    /** @var int */
-    protected $inventory;
 
     /** @var string */
     protected $barcode;
@@ -129,8 +115,8 @@ class ProductRequestEntity extends RequestEntity
     /** @var string */
     protected $type;
 
-    /** @var self[]|null */
-    protected $variants;
+    /** @var self[]|array */
+    protected $variants = array();
 
     /** @var ProductShippingEntity|null */
     protected $shipping;
@@ -140,6 +126,13 @@ class ProductRequestEntity extends RequestEntity
 
     /** @var \DateTime|bool */
     protected $updatedAt;
+
+    /**
+     * Available only for product variants
+     *
+     * @var ProductVariantOptionEntity[]|array
+     */
+    protected $options = array();
 
     /**
      * @param string $updatedAt
@@ -211,6 +204,8 @@ class ProductRequestEntity extends RequestEntity
 
     /**
      * @param array|static $variant
+     *
+     * @return self
      */
     public function addVariant($variant)
     {
@@ -220,6 +215,41 @@ class ProductRequestEntity extends RequestEntity
         }
 
         $this->variants[] = $variant;
+
+        return $this;
+    }
+
+    /**
+     * Set product variant option
+     *
+     * @param array $options
+     *
+     * @return self
+     */
+    public function setOptions($options)
+    {
+        if (is_array($options)) {
+            foreach ($options as $option) {
+                $this->options[] = new ProductVariantOptionEntity($option);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Add product variant option
+     *
+     * @param string $name
+     * @param string $value
+     *
+     * @return self
+     */
+    public function addOption($name, $value)
+    {
+        $this->options[] = new ProductVariantOptionEntity(compact('name', 'value'));
+
+        return $this;
     }
 
     /**
@@ -236,14 +266,14 @@ class ProductRequestEntity extends RequestEntity
     }
 
     /**
-     * @param float $price
+     * @param float $salePrice
      *
      * @return self
      */
-    public function setSalePrice($price)
+    public function setSalePrice($salePrice)
     {
-        $this->salePrice = $price;
-        $this->hidden = !$price;
+        $this->salePrice = $salePrice;
+        $this->onSales = $salePrice > 0 && (!$this->getPrice() || $this->getPrice() > $salePrice);
 
         return $this;
     }

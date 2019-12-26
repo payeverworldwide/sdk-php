@@ -25,6 +25,7 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method string getMeasureMass()
  * @method string getMeasureSize()
  * @method bool getFree()
+ * @method bool getGeneral()
  * @method float getWeight()
  * @method float getWidth()
  * @method float getLength()
@@ -32,6 +33,7 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method self setMeasureMass(string $measureMass)
  * @method self setMeasureSize(string $measureSize)
  * @method self setFree(bool $free)
+ * @method self setGeneral(bool $general)
  * @method self setWeight(float $weight)
  * @method self setWidth(float $width)
  * @method self setLength(float $length)
@@ -48,6 +50,9 @@ class ProductShippingEntity extends MessageEntity
 
     /** @var bool */
     protected $free = false;
+
+    /** @var bool */
+    protected $general = false;
 
     /** @var float */
     protected $weight;
