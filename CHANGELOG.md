@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.5.1]
+
+- Minor PHPDoc updates
+
+### Added
+- method `getUnderscoreName(): string` in `\Payever\ExternalIntegration\Products\Http\MessageEntity\ProductVariantOptionEntity`
+- property `vatRate` (`setVatRate(float $vatRate): static`, `getVatRate(): float`) in `Payever\ExternalIntegration\Products\Http\RequestEntity\ProductRequestEntity`
+
+
+
 ## [2.5.0]
 
 ### Added

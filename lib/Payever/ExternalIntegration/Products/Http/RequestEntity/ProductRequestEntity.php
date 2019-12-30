@@ -38,6 +38,8 @@ use Payever\ExternalIntegration\Products\Http\MessageEntity\ProductVariantOption
  * @method bool getOnSales()
  * @method string getSku()
  * @method string getBarcode()
+ * @method float getVatRate()
+ * @method ProductVariantOptionEntity[]|array getOptions()
  * @method string getType()
  * @method self[]|array getVariants()
  * @method ProductShippingEntity|null getShipping()
@@ -56,6 +58,7 @@ use Payever\ExternalIntegration\Products\Http\MessageEntity\ProductVariantOption
  * @method self setOnSales(bool $onSales)
  * @method self setSku(string $sku)
  * @method self setBarcode(string $barcode)
+ * @method self setVatRate(float $vatRate)
  * @method self setType(string $type)
  */
 class ProductRequestEntity extends RequestEntity
@@ -114,6 +117,9 @@ class ProductRequestEntity extends RequestEntity
 
     /** @var string */
     protected $type;
+
+    /** @var float */
+    protected $vatRate;
 
     /** @var self[]|array */
     protected $variants = array();

@@ -33,4 +33,12 @@ class ProductVariantOptionEntity extends MessageEntity
 
     /** @var string */
     protected $value;
+
+    /**
+     * @return string
+     */
+    public function getUnderscoreName()
+    {
+        return strtolower(str_replace(' ', '_', $this->name));
+    }
 }

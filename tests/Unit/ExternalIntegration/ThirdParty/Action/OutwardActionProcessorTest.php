@@ -81,8 +81,8 @@ class OutwardActionProcessorTest extends TestCase
             array(ActionEnum::ACTION_ADD_INVENTORY, 'addInventory'),
             array(ActionEnum::ACTION_SUBTRACT_INVENTORY, 'subtractInventory'),
             array(ActionEnum::ACTION_SET_INVENTORY, 'createInventory'),
-            array(ActionEnum::ACTION_CREATE_PRODUCT, 'createProduct'),
-            array(ActionEnum::ACTION_UPDATE_PRODUCT, 'updateProduct'),
+            array(ActionEnum::ACTION_CREATE_PRODUCT, 'createOrUpdateProduct'),
+            array(ActionEnum::ACTION_UPDATE_PRODUCT, 'createOrUpdateProduct'),
             array(ActionEnum::ACTION_REMOVE_PRODUCT, 'removeProduct'),
         );
     }

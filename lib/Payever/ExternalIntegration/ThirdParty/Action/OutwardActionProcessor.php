@@ -103,12 +103,8 @@ class OutwardActionProcessor
                 );
                 break;
             case ActionEnum::ACTION_CREATE_PRODUCT:
-                $this->productsApiClient->createProduct(
-                    $payload instanceof ProductRequestEntity ? $payload : new ProductRequestEntity($payload)
-                );
-                break;
             case ActionEnum::ACTION_UPDATE_PRODUCT:
-                $this->productsApiClient->updateProduct(
+                $this->productsApiClient->createOrUpdateProduct(
                     $payload instanceof ProductRequestEntity ? $payload : new ProductRequestEntity($payload)
                 );
                 break;

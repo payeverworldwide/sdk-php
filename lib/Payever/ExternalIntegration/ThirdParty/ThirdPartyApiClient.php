@@ -123,7 +123,6 @@ class ThirdPartyApiClient extends CommonApiClient implements ThirdPartyApiClient
             ->addRawHeader(
                 $this->getToken(OauthToken::SCOPE_PAYMENT_ACTIONS)->getAuthorizationString()
             )
-            ->setRequestEntity($subscriptionRequestEntity)
             ->setResponseEntity(new DynamicResponse())
             ->build()
         ;
