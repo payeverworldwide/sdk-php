@@ -1,13 +1,18 @@
 # Changelog
 
-## [2.5.1]
+## [2.5.2]
 
-- Minor PHPDoc updates
+### Changed
+- method `\Payever\ExternalIntegration\ThirdParty\Action\InwardActionProcessor::process` now returns `\Payever\ExternalIntegration\ThirdParty\Action\ActionResult` instead of `void`
+
+## [2.5.1]
 
 ### Added
 - method `getUnderscoreName(): string` in `\Payever\ExternalIntegration\Products\Http\MessageEntity\ProductVariantOptionEntity`
 - property `vatRate` (`setVatRate(float $vatRate): static`, `getVatRate(): float`) in `Payever\ExternalIntegration\Products\Http\RequestEntity\ProductRequestEntity`
 
+### Changed
+- Minor PHPDoc updates
 
 
 ## [2.5.0]

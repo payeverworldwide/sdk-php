@@ -49,6 +49,8 @@ class InwardActionProcessor
      * @param array|string|null $payload - user can pass payload directly if it's coming from custom source
      *
      * @throws \Exception - bubbles up anything thrown inside
+     *
+     * @return ActionResult
      */
     public function process($action, $payload = null)
     {
@@ -92,6 +94,8 @@ class InwardActionProcessor
             sprintf('%s Processed action request', $loggerPrefix),
             $this->getFinishLogContext($action)
         );
+
+        return $this->actionResult;
     }
 
     /**

@@ -36,6 +36,8 @@ class BidirectionalActionProcessor
      * @param string $action - action name {@see ActionEnum}
      * @param array|string|null $payload - user can pass payload directly if it's coming from custom source
      *
+     * @return ActionResult
+     *
      * @throws \Exception - bubbles up anything thrown inside
      */
     public function processInwardAction($action, $payload = null)
