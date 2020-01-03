@@ -1,5 +1,10 @@
 # Changelog
 
+## [2.5.3]
+
+### Changed
+- Added plugin and CMS version into `\Payever\ExternalIntegration\Plugins\PluginsApiClient::getCommands` API request
+
 ## [2.5.2]
 
 ### Changed

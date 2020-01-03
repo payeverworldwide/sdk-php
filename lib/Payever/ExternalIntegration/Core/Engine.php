@@ -15,10 +15,10 @@
 namespace Payever\ExternalIntegration\Core;
 
 // @codeCoverageIgnoreStart
-define('PEI_CORE_VERSION', '2.5.2');
+define('PEI_CORE_VERSION', '2.5.3');
 define('PEI_CORE_MAJOR_VERSION', 2);
 define('PEI_CORE_MINOR_VERSION', 5);
-define('PEI_CORE_RELEASE_VERSION', 2);
+define('PEI_CORE_RELEASE_VERSION', 3);
 
 define('PEI_NAMESPACE', 'Payever\ExternalIntegration');
 

@@ -198,8 +198,15 @@ class PluginsApiClient extends CommonApiClient implements PluginsApiClientInterf
      */
     private function buildGetCommandsUrl($fromTimestamp = null)
     {
+        $infoProvider = $this->getRegistryInfoProvider();
+
         $url = sprintf('%s%s', $this->getLiveBaseUrl(), static::SUB_URL_GET_COMMANDS);
-        $url .= sprintf('?channelType=%s', $this->getConfiguration()->getChannelSet());
+        $url .= sprintf(
+            '?channelType=%s&cmsVersion=%s&pluginVersion=%s',
+            $this->getConfiguration()->getChannelSet(),
+            $infoProvider->getCmsVersion(),
+            $infoProvider->getPluginVersion()
+        );
 
         if ((int) $fromTimestamp > 0) {
             $url .= sprintf('&from=%s', $fromTimestamp);
