@@ -45,6 +45,8 @@ use Payever\ExternalIntegration\Products\Http\MessageEntity\ProductVariantOption
  * @method ProductShippingEntity|null getShipping()
  * @method \DateTime|false getCreatedAt()
  * @method \DateTime|false getUpdatedAt()
+ * @method string|null getParent()
+ * @method string|null getProduct()
  * @method self setExternalId(string $externalId)
  * @method self setImages(array $images)
  * @method self setImagesUrl(array $imagesUrl)
@@ -123,6 +125,22 @@ class ProductRequestEntity extends RequestEntity
 
     /** @var self[]|array */
     protected $variants = array();
+
+    /**
+     * Parent product id for variants.
+     * Present only in request with a single variant data inside.
+     *
+     * @var string|null
+     */
+    protected $parent;
+
+    /**
+     * Parent product id for variants.
+     * Present only in request with parent product with variants.
+     *
+     * @var string|null
+     */
+    protected $product;
 
     /** @var ProductShippingEntity|null */
     protected $shipping;
@@ -282,5 +300,15 @@ class ProductRequestEntity extends RequestEntity
         $this->onSales = $salePrice > 0 && (!$this->getPrice() || $this->getPrice() > $salePrice);
 
         return $this;
+    }
+
+    /**
+     * Whether this product entity represents product variant and should be linked to a product
+     *
+     * @return bool
+     */
+    public function isVariant()
+    {
+        return $this->getParent() || $this->getProduct() || count($this->getOptions());
     }
 }

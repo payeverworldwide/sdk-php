@@ -1,5 +1,13 @@
 # Changelog
 
+
+## [2.5.4]
+
+### Added
+- method `isVariant(): boolean` in `Payever\ExternalIntegration\Products\Http\RequestEntity\ProductRequestEntity`
+- property `parent` (`getParent(): string|null`) in `Payever\ExternalIntegration\Products\Http\RequestEntity\ProductRequestEntity`
+- property `product` (`getProduct(): string|null`) in `Payever\ExternalIntegration\Products\Http\RequestEntity\ProductRequestEntity`
+
 ## [2.5.3]
 
 ### Changed

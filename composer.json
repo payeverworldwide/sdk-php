@@ -1,9 +1,11 @@
 {
+   "homepage" : "https://github.com/payever/sdk-php",
+   "type" : "library",
    "authors" : [
       {
-         "homepage" : "https://getpayever.com/",
-         "role" : "Initial version",
          "name" : "Andrey Puhovsky",
+         "role" : "Initial version",
+         "homepage" : "https://getpayever.com/",
          "email" : "a.puhovsky@gmail.com"
       },
       {
@@ -12,37 +14,12 @@
          "email" : "gendosua@gmail.com"
       }
    ],
-   "autoload" : {
-      "classmap" : [
-         "lib"
-      ]
-   },
    "require-dev" : {
       "behat/behat" : "^3.4",
       "phpunit/phpunit" : "^6",
       "beberlei/assert" : "^3.0"
    },
-   "description" : "PHP SDK for payever",
-   "name" : "payever/sdk-php",
-   "minimum-stability" : "stable",
-   "type" : "library",
-   "homepage" : "https://github.com/payever/sdk-php",
-   "require" : {
-      "ext-curl" : "*",
-      "ext-json" : "*",
-      "php" : ">=5.4.0",
-      "psr/log" : "^1.1"
-   },
    "license" : "MIT",
-   "autoload-dev" : {
-      "psr-4" : {
-         "Payever\\Tests\\" : "tests/"
-      },
-      "classmap" : [
-         "lib",
-         "tests"
-      ]
-   },
    "keywords" : [
       "payments",
       "payever",
@@ -50,5 +27,28 @@
       "products",
       "inventory",
       "e-commerce"
-   ]
+   ],
+   "name" : "payever/sdk-php",
+   "autoload-dev" : {
+      "classmap" : [
+         "lib",
+         "tests"
+      ],
+      "psr-4" : {
+         "Payever\\Tests\\" : "tests/"
+      }
+   },
+   "description" : "PHP SDK for payever",
+   "autoload" : {
+      "classmap" : [
+         "lib"
+      ]
+   },
+   "require" : {
+      "psr/log" : "^1.1",
+      "php" : ">=5.4.0",
+      "ext-json" : "*",
+      "ext-curl" : "*"
+   },
+   "minimum-stability" : "stable"
 }
