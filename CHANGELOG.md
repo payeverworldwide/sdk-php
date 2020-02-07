@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.5.5]
+
+### Changed
+- Method `getSku(): string` is falling back to product UUID when SKU is empty in `Payever\ExternalIntegration\Products\Http\RequestEntity\ProductRequestEntity`
 
 ## [2.5.4]
 

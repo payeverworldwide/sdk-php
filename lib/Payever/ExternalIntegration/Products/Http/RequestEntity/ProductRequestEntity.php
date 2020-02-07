@@ -36,7 +36,6 @@ use Payever\ExternalIntegration\Products\Http\MessageEntity\ProductVariantOption
  * @method float getPrice()
  * @method float|null getSalePrice()
  * @method bool getOnSales()
- * @method string getSku()
  * @method string getBarcode()
  * @method float getVatRate()
  * @method ProductVariantOptionEntity[]|array getOptions()
@@ -310,5 +309,13 @@ class ProductRequestEntity extends RequestEntity
     public function isVariant()
     {
         return $this->getParent() || $this->getProduct() || count($this->getOptions());
+    }
+
+    /**
+     * @return string
+     */
+    public function getSku()
+    {
+        return $this->sku ? $this->sku : $this->uuid;
     }
 }
