@@ -58,7 +58,7 @@ class OutwardActionProcessor
 
         $this->logger->debug(
             sprintf('%s Action request payload', $loggerPrefix),
-            compact($payload)
+            compact('action', 'payload')
         );
 
         try {

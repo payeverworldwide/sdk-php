@@ -2,6 +2,14 @@
 
 ## [2.5.5]
 
+### Added
+- New payment method constant - `instant_payment` in `Payever\ExternalIntegration\Payments\Enum\PaymentMethod::METHOD_INSTANT_PAYMENT`
+
+### Changed
+- Updated readme with more usage examples
+
+## [2.5.5]
+
 ### Changed
 - Method `getSku(): string` is falling back to product UUID when SKU is empty in `Payever\ExternalIntegration\Products\Http\RequestEntity\ProductRequestEntity`
 

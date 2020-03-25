@@ -32,6 +32,7 @@ class PaymentMethod extends EnumerableConstants
     const METHOD_SANTANDER_NO_INSTALLMENT = 'santander_installment_no';
     const METHOD_SANTANDER_DK_INSTALLMENT = 'santander_installment_dk';
     const METHOD_SANTANDER_SE_INSTALLMENT = 'santander_installment_se';
+    const METHOD_INSTANT_PAYMENT = 'instant_payment';
 
     const METHOD_SOFORT = 'sofort';
     const METHOD_PAYMILL_CREDIT_CARD = 'paymill_creditcard';
