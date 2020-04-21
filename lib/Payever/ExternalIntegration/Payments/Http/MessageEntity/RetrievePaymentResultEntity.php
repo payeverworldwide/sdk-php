@@ -48,6 +48,7 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
  * @method PaymentDetailsEntity getPaymentDetails()
  * @method array                getPaymentDetailsArray()
  * @method ChannelSetEntity     getChannelSet()
+ * @method float                getDownPayment()
  * @method self                 setId(string $id)
  * @method self                 setStatus(string $status)
  * @method self                 setColorState(string $colorState)
@@ -58,6 +59,7 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
  * @method self                 setChannel(string $channel)
  * @method self                 setReference(string $reference)
  * @method self                 setAmount(float $amount)
+ * @method self                 setDownPayment(float $downPayment)
  * @method self                 setCurrency(string $currency)
  * @method self                 setFee(float $fee)
  * @method self                 setTotal(float $total)
@@ -100,6 +102,9 @@ class RetrievePaymentResultEntity extends ResultEntity
 
     /** @var float $amount */
     protected $amount;
+
+    /** @var float $amount */
+    protected $downPayment;
 
     /** @var string $currency */
     protected $currency;

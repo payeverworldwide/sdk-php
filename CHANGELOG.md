@@ -1,6 +1,11 @@
 # Changelog
 
-## [2.5.5]
+## [2.5.7]
+
+### Added
+- "downPayment" parameter to retrieve response
+
+## [2.5.6]
 
 ### Added
 - New payment method constant - `instant_payment` in `Payever\ExternalIntegration\Payments\Enum\PaymentMethod::METHOD_INSTANT_PAYMENT`
