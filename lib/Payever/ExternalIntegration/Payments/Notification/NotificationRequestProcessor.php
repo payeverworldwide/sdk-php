@@ -25,6 +25,7 @@ use Psr\Log\LoggerInterface;
 class NotificationRequestProcessor
 {
     const NOTIFICATION_LOCK_SECONDS = 30;
+    const LOG_PREFIX = '[Notification]';
 
     /** @var NotificationHandlerInterface */
     protected $handler;
@@ -70,7 +71,6 @@ class NotificationRequestProcessor
             throw new \RuntimeException('Got empty notification payload', 20);
         }
 
-        $logPrefix = '[Notification]';
         $notificationResult = new NotificationResult();
         $notificationEntity = $this->unserializePayload($payload);
 
@@ -80,26 +80,26 @@ class NotificationRequestProcessor
 
         $paymentId = $notificationEntity->getPayment()->getId();
 
-        $this->logger->debug(sprintf('%s Attempting to lock %s', $logPrefix, $paymentId));
+        $this->logger->debug(sprintf('%s Attempting to lock %s', static::LOG_PREFIX, $paymentId));
         $this->lock->acquireLock($paymentId, static::NOTIFICATION_LOCK_SECONDS);
-        $this->logger->debug(sprintf('%s Locked  %s', $logPrefix, $paymentId));
+        $this->logger->debug(sprintf('%s Locked  %s', static::LOG_PREFIX, $paymentId));
 
         try {
             $this->handler->handleNotification($notificationEntity, $notificationResult);
         } catch (\Exception $exception) {
             $this->logger->critical(
-                sprintf('%s Exception while handling notification: %s', $logPrefix, $exception->getMessage())
+                sprintf('%s Exception while handling notification: %s', static::LOG_PREFIX, $exception->getMessage())
             );
             $notificationResult->addException($exception);
         }
 
         $this->lock->releaseLock($paymentId);
-        $this->logger->debug(sprintf('%s Unlocked  %s', $logPrefix, $paymentId));
+        $this->logger->debug(sprintf('%s Unlocked  %s', static::LOG_PREFIX, $paymentId));
 
         $this->logger->info(
             sprintf(
                 '%s Processed notification for payment %s: %s',
-                $logPrefix,
+                static::LOG_PREFIX,
                 $paymentId,
                 (string) $notificationResult
             )

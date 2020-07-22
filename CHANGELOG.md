@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.5.8]
+
+### Fixed
+- typo in NotificationResult.php#L145
+- added annotations in NotificationRequestEntity
+
 ## [2.5.7]
 
 ### Added

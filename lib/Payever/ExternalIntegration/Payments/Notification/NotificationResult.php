@@ -142,7 +142,7 @@ class NotificationResult
         }
 
         if (!empty($this->errors)) {
-            $pieces[] = sprintf('[errors=%s]', implode(';', $this->$this->errors));
+            $pieces[] = sprintf('[errors=%s]', implode(';', $this->errors));
         }
 
         if ($this->orderHasBeenCreated) {
