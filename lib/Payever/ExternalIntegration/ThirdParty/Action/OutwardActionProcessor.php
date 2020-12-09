@@ -86,6 +86,9 @@ class OutwardActionProcessor
      */
     private function executeActionRequest($action, $payload)
     {
+        if (is_string($payload)) {
+            $payload = json_decode($payload, true);
+        }
         switch ($action) {
             case ActionEnum::ACTION_SET_INVENTORY:
                 $this->inventoryApiClient->createInventory(

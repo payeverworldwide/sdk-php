@@ -61,6 +61,7 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method string                  getUniqueId()
  * @method string                  getUsageText()
  * @method \DateTime|false         getBirthday()
+ * @method string                  getTransactionId()
  * @method self                    setId()
  * @method self                    setDeliveryFee()
  * @method self                    setPaymentFee()
@@ -91,6 +92,7 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method self                    setPrevEmploymentDetails()
  * @method self                    setUniqueId()
  * @method self                    setUsageText()
+ * @method self                    setTransactionId()
  */
 class PaymentDetailsEntity extends MessageEntity
 {
@@ -192,6 +194,9 @@ class PaymentDetailsEntity extends MessageEntity
 
     /** @var \DateTime|bool */
     protected $birthday;
+
+    /** @var string */
+    protected $transactionId;
 
     /**
      * Sets Credit Calculation
