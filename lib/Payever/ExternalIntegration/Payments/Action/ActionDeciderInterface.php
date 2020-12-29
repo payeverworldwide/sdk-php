@@ -33,7 +33,9 @@ interface ActionDeciderInterface
     const ACTION_LATE_PAYMENT = 'late_payment';
     const ACTION_PAID = 'paid';
     const ACTION_REMIND = 'remind';
+    /** @deprecated will be removed in future versions, refund should be used instead */
     const ACTION_RETURN = 'return';
+    const ACTION_REFUND = 'refund';
     const ACTION_SHIPPING_GOODS = 'shipping_goods';
     const ACTION_UPLOAD = 'upload';
     const ACTION_EDIT = 'edit';
@@ -46,7 +48,7 @@ interface ActionDeciderInterface
      * @param bool $throwException
      *
      * @return bool
-     * @throws \Exception
+     * @throws \Exception when $throwException is true and target action is not allowed
      */
     public function isActionAllowed($paymentId, $transactionAction, $throwException = true);
 }

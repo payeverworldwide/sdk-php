@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.6.0]
+
+### Added
+- New payment action constant - `refund` in `Payever\ExternalIntegration\Payments\Action\ActionDeciderInterface::ACTION_REFUND`
+- method `isCancelAllowed($paymentId, $throwException = true): bool` in `Payever\ExternalIntegration\Payments\Action\ActionDecider`
+- method `isRefundAllowed($paymentId, $throwException = true): bool` in `Payever\ExternalIntegration\Payments\Action\ActionDecider`
+- method `isShippingAllowed($paymentId, $throwException = true): bool` in `Payever\ExternalIntegration\Payments\Action\ActionDecider`
+
+### Changed
+- Payment action constant `return` marked as deprecated in `Payever\ExternalIntegration\Payments\Action\ActionDeciderInterface::ACTION_RETURN`
+- Method `isActionAllowed` consider old `return` and new `refund` payment actions in `Payever\ExternalIntegration\Payments\Action\ActionDecider`
+- Minor PHPDoc updates
+
+## [2.5.9]
+
+### Added
+- property `transactionId` (`getTransactionId(): string|null`) in `Payever\ExternalIntegration\Payments\Http\MessageEntity\PaymentDetailsEntity`
+
 ## [2.5.8]
 
 ### Fixed

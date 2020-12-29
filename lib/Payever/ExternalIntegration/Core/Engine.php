@@ -15,10 +15,10 @@
 namespace Payever\ExternalIntegration\Core;
 
 // @codeCoverageIgnoreStart
-define('PEI_CORE_VERSION', '2.5.9');
+define('PEI_CORE_VERSION', '2.6.0');
 define('PEI_CORE_MAJOR_VERSION', 2);
-define('PEI_CORE_MINOR_VERSION', 5);
-define('PEI_CORE_RELEASE_VERSION', 9);
+define('PEI_CORE_MINOR_VERSION', 6);
+define('PEI_CORE_RELEASE_VERSION', 0);
 
 define('PEI_NAMESPACE', 'Payever\ExternalIntegration');
 
@@ -43,8 +43,12 @@ class Engine
 {
     const SDK_VERSION = PEI_CORE_VERSION;
 
+    /** @var bool */
     protected static $registered = false;
 
+    /**
+     * @retrun void
+     */
     public static function registerAutoloader()
     {
         if (!self::$registered) {

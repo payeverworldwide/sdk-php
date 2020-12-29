@@ -202,7 +202,7 @@ class GetTransactionResultEntity extends ResultEntity
     /** @var bool $prefilled */
     protected $prefilled;
 
-    /** @var array $actions */
+    /** @var \stdClass[]|array $actions */
     protected $actions;
 
     /**

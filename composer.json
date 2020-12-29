@@ -1,22 +1,31 @@
 {
+   "homepage" : "https://github.com/payever/sdk-php",
+   "require-dev" : {
+      "laminas/laminas-diactoros" : "^1.8",
+      "phpunit/phpunit" : "^6",
+      "behat/behat" : "^3.4"
+   },
+   "license" : "MIT",
    "authors" : [
       {
-         "role" : "Initial version",
          "homepage" : "https://getpayever.com/",
+         "role" : "Initial version",
          "name" : "Andrey Puhovsky",
          "email" : "a.puhovsky@gmail.com"
       },
       {
-         "role" : "1.x, 2.x and further development",
          "email" : "gendosua@gmail.com",
-         "name" : "Hennadii Shymanskyi"
+         "name" : "Hennadii Shymanskyi",
+         "role" : "1.x, 2.x and further development"
       }
    ],
-   "require-dev" : {
-      "behat/behat" : "^3.4",
-      "phpunit/phpunit" : "^6",
-      "beberlei/assert" : "^3.0"
+   "require" : {
+      "ext-json" : "*",
+      "php" : ">=5.4.0",
+      "psr/log" : "^1.1",
+      "ext-curl" : "*"
    },
+   "type" : "library",
    "description" : "PHP SDK for payever",
    "keywords" : [
       "payments",
@@ -26,12 +35,12 @@
       "inventory",
       "e-commerce"
    ],
-   "homepage" : "https://github.com/payever/sdk-php",
    "autoload" : {
       "classmap" : [
          "lib"
       ]
    },
+   "minimum-stability" : "stable",
    "autoload-dev" : {
       "psr-4" : {
          "Payever\\Tests\\" : "tests/"
@@ -41,14 +50,5 @@
          "tests"
       ]
    },
-   "license" : "MIT",
-   "type" : "library",
-   "minimum-stability" : "stable",
-   "name" : "payever/sdk-php",
-   "require" : {
-      "ext-json" : "*",
-      "psr/log" : "^1.1",
-      "ext-curl" : "*",
-      "php" : ">=5.4.0"
-   }
+   "name" : "payever/sdk-php"
 }
