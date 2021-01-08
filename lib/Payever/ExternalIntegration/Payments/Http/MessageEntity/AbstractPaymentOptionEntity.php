@@ -5,7 +5,7 @@
  * @category  MessageEntity
  * @package   Payever\Payments
  * @author    payever GmbH <service@payever.de>
- * @copyright 2017-2019 payever GmbH
+ * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/shopsystem/
  */
@@ -22,7 +22,7 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
  * @category  MessageEntity
  * @package   Payever\Payments
  * @author    payever GmbH <service@payever.de>
- * @copyright 2017-2019 payever GmbH
+ * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/shopsystem/
  *
@@ -46,6 +46,7 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
  * @method self                             setId()
  * @method self                             setName()
  * @method self                             setVariableFee()
+ * @method self                             setIsRedirectMethod()
  * @method self                             setFixedFee()
  * @method self                             setDescriptionOffer()
  * @method self                             setDescriptionFee()
@@ -68,6 +69,9 @@ abstract class AbstractPaymentOptionEntity extends ResultEntity
 
     /** @var bool $status */
     protected $status;
+
+    /** @var bool $isRedirectMethod */
+    protected $isRedirectMethod;
 
     /** @var float $variableFee */
     protected $variableFee;
@@ -110,6 +114,16 @@ abstract class AbstractPaymentOptionEntity extends ResultEntity
 
     /** @var PaymentOptionTranslationEntity[] $translations */
     protected $translations;
+
+    /**
+     * Is redirect method
+     *
+     * @return bool
+     */
+    public function isRedirectMethod()
+    {
+        return (bool) $this->isRedirectMethod;
+    }
 
     /**
      * Sets Status

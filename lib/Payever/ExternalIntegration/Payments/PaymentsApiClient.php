@@ -7,7 +7,7 @@
  * @category  Payments
  * @package   Payever\Payments
  * @author    payever GmbH <service@payever.de>
- * @copyright 2017-2019 payever GmbH
+ * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/developer/api-documentation/ Documentation
  */
@@ -20,6 +20,7 @@ use Payever\ExternalIntegration\Core\Http\RequestBuilder;
 use Payever\ExternalIntegration\Payments\Base\PaymentsApiClientInterface;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\AuthorizePaymentRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\CreatePaymentRequest;
+use Payever\ExternalIntegration\Payments\Http\RequestEntity\SubmitPaymentRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\ListPaymentsRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\RefundPaymentRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\ShippingGoodsPaymentRequest;
@@ -46,13 +47,14 @@ use Payever\ExternalIntegration\Payments\Http\ResponseEntity\ShippingGoodsPaymen
  * @category  Payments
  * @package   Payever\Payments
  * @author    Andrey Puhovsky <a.puhovsky@gmail.com>
- * @copyright 2017-2019 payever GmbH
+ * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/developer/api-documentation/ Documentation
  */
 class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInterface
 {
     const SUB_URL_CREATE_PAYMENT = 'api/payment';
+    const SUB_URL_CREATE_PAYMENT_SUBMIT = 'api/payment/submit';
     const SUB_URL_RETRIEVE_PAYMENT = 'api/payment/%s';
     const SUB_URL_LIST_PAYMENTS = 'api/payment';
     const SUB_URL_REFUND_PAYMENT = 'api/payment/refund/%s';
@@ -88,6 +90,33 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
             )
             ->setRequestEntity($createPaymentRequest)
             ->setResponseEntity(new CreatePaymentResponse())
+            ->build();
+
+        return $this->getHttpClient()->execute($request);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @throws \Exception
+     */
+    public function submitPaymentRequest(SubmitPaymentRequest $submitPaymentRequest)
+    {
+        $this->configuration->assertLoaded();
+
+        if (!$submitPaymentRequest->getChannel()) {
+            $submitPaymentRequest->setChannel(
+                $this->configuration->getChannelSet()
+            );
+        }
+
+        $request = RequestBuilder::post($this->getSubmitPaymentURL())
+            ->addRawHeader(
+                $this->getToken(OauthToken::SCOPE_CREATE_PAYMENT)->getAuthorizationString()
+            )
+            ->contentTypeIsJson()
+            ->setRequestEntity($submitPaymentRequest)
+            ->setResponseEntity(new RetrievePaymentResponse())
             ->build();
 
         return $this->getHttpClient()->execute($request);
@@ -362,6 +391,16 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
     protected function getCreatePaymentURL()
     {
         return $this->getBaseUrl() . self::SUB_URL_CREATE_PAYMENT;
+    }
+
+    /**
+     * Returns URL for Submit Payment path
+     *
+     * @return string
+     */
+    protected function getSubmitPaymentURL()
+    {
+        return $this->getBaseUrl() . self::SUB_URL_CREATE_PAYMENT_SUBMIT;
     }
 
     /**

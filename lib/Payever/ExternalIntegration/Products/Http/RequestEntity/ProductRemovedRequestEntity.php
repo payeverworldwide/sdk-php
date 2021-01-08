@@ -4,7 +4,7 @@
  *
  * @package   Payever\Products
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
- * @copyright 2017-2019 payever GmbH
+ * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  */
 
@@ -18,7 +18,7 @@ use Payever\ExternalIntegration\Core\Http\RequestEntity;
  * @package   Payever\Products
  * @author    payever GmbH <service@payever.de>
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
- * @copyright 2017-2019 payever GmbH
+ * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  *
  * When sending entity to payever at least one of the following MUST be filled in: sku, uuid

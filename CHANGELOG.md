@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.7.0]
+
+### Added
+- "isRedirectMethod" parameter to list options response
+- new endpoint /api/payment/submit
+
 ## [2.6.0]
 
 ### Added

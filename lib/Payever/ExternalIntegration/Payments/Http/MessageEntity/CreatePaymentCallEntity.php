@@ -7,7 +7,7 @@
  * @category  MessageEntity
  * @package   Payever\Payments
  * @author    payever GmbH <service@payever.de>
- * @copyright 2017-2019 payever GmbH
+ * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/shopsystem/
  */
@@ -25,7 +25,7 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\CallEntity;
  * @category  MessageEntity
  * @package   Payever\Payments
  * @author    payever GmbH <service@payever.de>
- * @copyright 2017-2019 payever GmbH
+ * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/shopsystem/
  *

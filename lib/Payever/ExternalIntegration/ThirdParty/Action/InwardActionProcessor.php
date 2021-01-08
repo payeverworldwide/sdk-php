@@ -4,7 +4,7 @@
  *
  * @package   Payever\ThirdParty
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
- * @copyright 2017-2019 payever GmbH
+ * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  */
 
@@ -18,7 +18,7 @@ use Psr\Log\LoggerInterface;
  *
  * @package   Payever\ThirdParty
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
- * @copyright 2017-2019 payever GmbH
+ * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  */
 class InwardActionProcessor

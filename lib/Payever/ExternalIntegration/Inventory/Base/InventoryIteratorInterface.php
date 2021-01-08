@@ -4,7 +4,7 @@
  *
  * @package   Payever\Inventory
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
- * @copyright 2017-2019 payever GmbH
+ * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  */
 
@@ -22,7 +22,7 @@ use Payever\ExternalIntegration\Inventory\Http\RequestEntity\InventoryCreateRequ
  *
  * @package   Payever\Inventory
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
- * @copyright 2017-2019 payever GmbH
+ * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  */
 interface InventoryIteratorInterface extends \Iterator

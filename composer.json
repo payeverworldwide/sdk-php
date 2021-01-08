@@ -1,31 +1,24 @@
 {
-   "homepage" : "https://github.com/payever/sdk-php",
-   "require-dev" : {
-      "laminas/laminas-diactoros" : "^1.8",
-      "phpunit/phpunit" : "^6",
-      "behat/behat" : "^3.4"
-   },
    "license" : "MIT",
-   "authors" : [
-      {
-         "homepage" : "https://getpayever.com/",
-         "role" : "Initial version",
-         "name" : "Andrey Puhovsky",
-         "email" : "a.puhovsky@gmail.com"
-      },
-      {
-         "email" : "gendosua@gmail.com",
-         "name" : "Hennadii Shymanskyi",
-         "role" : "1.x, 2.x and further development"
-      }
-   ],
-   "require" : {
-      "ext-json" : "*",
-      "php" : ">=5.4.0",
-      "psr/log" : "^1.1",
-      "ext-curl" : "*"
+   "require-dev" : {
+      "behat/behat" : "^3.4",
+      "phpunit/phpunit" : "^6",
+      "laminas/laminas-diactoros" : "^1.8"
    },
-   "type" : "library",
+   "autoload-dev" : {
+      "classmap" : [
+         "lib",
+         "tests"
+      ],
+      "psr-4" : {
+         "Payever\\Tests\\" : "tests/"
+      }
+   },
+   "autoload" : {
+      "classmap" : [
+         "lib"
+      ]
+   },
    "description" : "PHP SDK for payever",
    "keywords" : [
       "payments",
@@ -35,20 +28,27 @@
       "inventory",
       "e-commerce"
    ],
-   "autoload" : {
-      "classmap" : [
-         "lib"
-      ]
-   },
    "minimum-stability" : "stable",
-   "autoload-dev" : {
-      "psr-4" : {
-         "Payever\\Tests\\" : "tests/"
-      },
-      "classmap" : [
-         "lib",
-         "tests"
-      ]
+   "require" : {
+      "ext-json" : "*",
+      "psr/log" : "^1.1",
+      "php" : ">=5.4.0",
+      "ext-curl" : "*"
    },
+   "type" : "library",
+   "authors" : [
+      {
+         "role" : "Initial version",
+         "name" : "Andrey Puhovsky",
+         "homepage" : "https://getpayever.com/",
+         "email" : "a.puhovsky@gmail.com"
+      },
+      {
+         "email" : "gendosua@gmail.com",
+         "role" : "1.x, 2.x and further development",
+         "name" : "Hennadii Shymanskyi"
+      }
+   ],
+   "homepage" : "https://github.com/payever/sdk-php",
    "name" : "payever/sdk-php"
 }

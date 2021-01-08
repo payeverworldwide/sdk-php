@@ -4,7 +4,7 @@
  *
  * @package   Payever\Products
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
- * @copyright 2017-2019 payever GmbH
+ * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  */
 
@@ -24,7 +24,7 @@ use Payever\ExternalIntegration\Products\Http\RequestEntity\ProductRequestEntity
  *
  * @package   Payever\Products
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
- * @copyright 2017-2019 payever GmbH
+ * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  */
 class ProductsApiClient extends CommonApiClient implements ProductsApiClientInterface

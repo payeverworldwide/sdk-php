@@ -4,7 +4,7 @@
  *
  * @package   Payever\Core
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
- * @copyright 2017-2019 payever GmbH
+ * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  */
 
@@ -15,7 +15,7 @@ namespace Payever\ExternalIntegration\Core\Base;
  *
  * @package   Payever\Core
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
- * @copyright 2017-2019 payever GmbH
+ * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  */
 abstract class EnumerableConstants

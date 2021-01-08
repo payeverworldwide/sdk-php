@@ -7,7 +7,7 @@
  * @category  MessageEntity
  * @package   Payever\Payments
  * @author    payever GmbH <service@payever.de>
- * @copyright 2017-2019 payever GmbH
+ * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/shopsystem/
  */
@@ -24,7 +24,7 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @category  MessageEntity
  * @package   Payever\Payments
  * @author    payever GmbH <service@payever.de>
- * @copyright 2017-2019 payever GmbH
+ * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/shopsystem/
  *
@@ -61,7 +61,10 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method string                  getUniqueId()
  * @method string                  getUsageText()
  * @method \DateTime|false         getBirthday()
+ * @method string                  getFrontendFinishUrl()
+ * @method string                  getFrontendCancelUrl()
  * @method string                  getTransactionId()
+ * @method string                  getRedirectUrl()
  * @method self                    setId()
  * @method self                    setDeliveryFee()
  * @method self                    setPaymentFee()
@@ -92,7 +95,10 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method self                    setPrevEmploymentDetails()
  * @method self                    setUniqueId()
  * @method self                    setUsageText()
+ * @method self                    setFrontendFinishUrl()
+ * @method self                    setFrontendCancelUrl()
  * @method self                    setTransactionId()
+ * @method self                    setRedirectUrl()
  */
 class PaymentDetailsEntity extends MessageEntity
 {
@@ -196,7 +202,16 @@ class PaymentDetailsEntity extends MessageEntity
     protected $birthday;
 
     /** @var string */
+    protected $frontendFinishUrl;
+
+    /** @var string */
+    protected $frontendCancelUrl;
+
+    /** @var string */
     protected $transactionId;
+
+    /** @var string */
+    protected $redirectUrl;
 
     /**
      * Sets Credit Calculation

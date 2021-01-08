@@ -14,8 +14,8 @@
 
 namespace Payever\ExternalIntegration\Payments\Http\RequestEntity;
 
-use Payever\ExternalIntegration\Core\Http\RequestEntity;
 use Payever\ExternalIntegration\Payments\Http\MessageEntity\CartItemEntity;
+use Payever\ExternalIntegration\Payments\Http\MessageEntity\PaymentDataEntity;
 
 /**
  * This class represents Create Payment RequestInterface Entity
@@ -36,6 +36,7 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\CartItemEntity;
  * @method string                 getOrderId()
  * @method string                 getCurrency()
  * @method CartItemEntity[]       getCart()
+ * @method PaymentDataEntity|null getPaymentData()
  * @method string                 getSalutation()
  * @method string                 getPaymentMethod()
  * @method string|null            getVariantId()
@@ -84,170 +85,45 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\CartItemEntity;
  * @method self                   setXFrameHost(string $host)
  * @method self                   setPluginVersion(string $version)
  */
-class CreatePaymentRequest extends RequestEntity
+class SubmitPaymentRequest extends CreatePaymentRequest
 {
-    /** @var string $channel */
-    protected $channel;
-
-    /** @var integer $channelSetId */
-    protected $channelSetId;
-
-    /** @var string $paymentMethod */
-    protected $paymentMethod;
-
-    /** @var string|null */
-    protected $variantId;
-
-    /** @var float $amount */
-    protected $amount;
-
-    /** @var float $fee */
-    protected $fee;
-
-    /** @var string $orderId */
-    protected $orderId;
-
-    /** @var string $currency */
-    protected $currency;
-
-    /** @var CartItemEntity[] $cart */
-    protected $cart;
-
-    /** @var string $salutation */
-    protected $salutation;
-
-    /** @var string $firstName */
-    protected $firstName;
-
-    /** @var string $lastName */
-    protected $lastName;
-
-    /** @var string $street */
-    protected $street;
-
-    /** @var string $streetNumber */
-    protected $streetNumber;
-
-    /** @var string $zip */
-    protected $zip;
-
-    /** @var string $city */
-    protected $city;
-
-    /** @var string $country */
-    protected $country;
-
-    /** @var string $socialSecurityNumber */
-    protected $socialSecurityNumber;
-
-    /** @var \DateTime|bool $birthdate */
-    protected $birthdate;
-
-    /** @var string $phone */
-    protected $phone;
-
-    /** @var string $email */
-    protected $email;
-
-    /** @var string $successUrl */
-    protected $successUrl;
-
-    /** @var string $failureUrl */
-    protected $failureUrl;
-
-    /** @var string $cancelUrl */
-    protected $cancelUrl;
-
-    /** @var string $noticeUrl */
-    protected $noticeUrl;
-
-    /** @var string $pendingUrl */
-    protected $pendingUrl;
-
-    /** @var string $xFrameHost */
-    protected $xFrameHost;
-
-    /** @var string $pluginVersion */
-    protected $pluginVersion;
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getRequired()
-    {
-        $required = array(
-            'channel',
-            'amount',
-            'order_id',
-            'currency',
-        );
-
-        return $required;
-    }
+    /** @var PaymentDataEntity $paymentData */
+    protected $paymentData;
 
     /**
      * {@inheritdoc}
      */
     public function isValid()
     {
-        if (is_array($this->cart)) {
-            foreach ($this->cart as $item) {
-                if (!$item instanceof CartItemEntity || !$item->isValid()) {
-                    return false;
-                }
-            }
+        if (!$this->paymentData instanceof PaymentDataEntity) {
+            return false;
         }
 
-        return parent::isValid() &&
-            is_numeric($this->amount) &&
-            is_array($this->cart) &&
-            !empty($this->cart) &&
-            (!$this->channelSetId || is_integer($this->channelSetId)) &&
-            (!$this->fee || is_numeric($this->fee)) &&
-            (!$this->birthdate || $this->birthdate instanceof \DateTime)
-        ;
+        return parent::isValid();
     }
 
     /**
-     * Sets Cart
+     * Sets payment data
      *
-     * @param array|string $cart
-     *
-     * @return $this
-     */
-    public function setCart($cart)
-    {
-        if (!$cart) {
-            return $this;
-        }
-
-        if (is_string($cart)) {
-            $cart = json_decode($cart);
-        }
-
-        if (!is_array($cart)) {
-            return $this;
-        }
-
-        $this->cart = array();
-
-        foreach ($cart as $item) {
-            $this->cart[] = new CartItemEntity($item);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Sets Birthdate
-     *
-     * @param string $birthdate
+     * @param array|string $paymentData
      *
      * @return $this
      */
-    public function setBirthdate($birthdate)
+    public function setPaymentData($paymentData)
     {
-        $this->birthdate = date_create($birthdate);
+        if (!$paymentData) {
+            return $this;
+        }
+
+        if (is_string($paymentData)) {
+            $paymentData = json_decode($paymentData, true);
+        }
+
+        if (!is_array($paymentData)) {
+            return $this;
+        }
+
+        $this->paymentData = new PaymentDataEntity($paymentData);
 
         return $this;
     }

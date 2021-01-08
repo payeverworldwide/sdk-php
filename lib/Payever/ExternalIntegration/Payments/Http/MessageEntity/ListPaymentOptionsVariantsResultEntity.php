@@ -4,7 +4,7 @@
  *
  * @package   Payever\Payments
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
- * @copyright 2017-2019 payever GmbH
+ * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  */
 
@@ -16,7 +16,7 @@ namespace Payever\ExternalIntegration\Payments\Http\MessageEntity;
  * @package   Payever\Payments
  * @author    payever GmbH <service@payever.de>
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
- * @copyright 2017-2019 payever GmbH
+ * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  *
  * @method array|PaymentOptionVariantEntity[] getVariants()

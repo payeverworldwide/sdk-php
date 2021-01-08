@@ -7,7 +7,7 @@
  * @category  Http
  * @package   Payever\Core
  * @author    payever GmbH <service@payever.de>
- * @copyright 2017-2019 payever GmbH
+ * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/developer/api-documentation/ Documentation
  */
@@ -30,7 +30,7 @@ use Psr\Log\LoggerInterface;
  * @category  Http
  * @package   Payever\Core
  * @author    payever GmbH <service@payever.de>
- * @copyright 2017-2019 payever GmbH
+ * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
  * @link      https://getpayever.com/developer/api-documentation/ Documentation
  */
