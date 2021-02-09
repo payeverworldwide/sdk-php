@@ -1,28 +1,20 @@
 <?php
+
 /**
- * This interface represents payment actions used in Payever API
+ * PHP version 5.4 and 7
  *
- * PHP version 5.4
- *
+ * @category  Action
  * @package   Payever\Payments
  * @author    payever GmbH <service@payever.de>
  * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
- * @link      https://getpayever.com/developer/api-documentation/ Documentation
+ * @link      https://docs.payever.org/shopsystems/api/getting-started
  */
 
 namespace Payever\ExternalIntegration\Payments\Action;
 
 /**
  * Interface ActionDeciderInterface
- *
- * PHP version 5.4
- *
- * @package   Payever\Payments
- * @author    payever GmbH <service@payever.de>
- * @copyright 2017-2021 payever GmbH
- * @license   MIT <https://opensource.org/licenses/MIT>
- * @link      https://getpayever.com/developer/api-documentation/ Documentation
  */
 interface ActionDeciderInterface
 {

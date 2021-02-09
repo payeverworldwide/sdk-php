@@ -16,4 +16,12 @@ class ProductVariantOptionEntityTest extends AbstractMessageEntityTest
     {
         return new ProductVariantOptionEntity();
     }
+
+    public function testGetUnderscoreName()
+    {
+        $entity = $this->getEntity();
+        $entity->setName('SomE nAmE');
+
+        $this->assertEquals('some_name', $entity->getUnderscoreName());
+    }
 }

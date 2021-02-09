@@ -1,11 +1,15 @@
 <?php
+
 /**
  * PHP version 5.4 and 7
  *
+ * @category  Logger
  * @package   Payever\Core
+ * @author    payever GmbH <service@payever.de>
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
  * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
+ * @link      https://docs.payever.org/shopsystems/api/getting-started
  */
 
 namespace Payever\ExternalIntegration\Core\Logger;
@@ -18,11 +22,6 @@ use Psr\Log\LogLevel;
  *
  * Simple PSR-3 compatible Logger class.
  * Recommended for use when there's no advanced logger (e.g. Monolog) provided in user's system.
- *
- * @package   Payever\Core
- * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
- * @copyright 2017-2021 payever GmbH
- * @license   MIT <https://opensource.org/licenses/MIT>
  */
 class FileLogger extends AbstractLogger
 {
@@ -137,7 +136,7 @@ class FileLogger extends AbstractLogger
     {
         $this->flush();
 
-        fclose($this->logFileHandle);
+        is_resource($this->logFileHandle) && fclose($this->logFileHandle);
     }
 
     /**
@@ -163,7 +162,15 @@ class FileLogger extends AbstractLogger
     {
         $level = strtoupper($level);
 
-        return "[{$this->getTimestamp()}] {$this->channelName}.{$level}: {$message} {$this->serializeContext($context)}" . PHP_EOL;
+        return sprintf(
+            '[%s] %s.%s: %s %s%s',
+            $this->getTimestamp(),
+            $this->channelName,
+            $level,
+            $message,
+            $this->serializeContext($context),
+            PHP_EOL
+        );
     }
 
     /**

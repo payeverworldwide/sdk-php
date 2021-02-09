@@ -23,4 +23,19 @@ class ChannelSetTest extends TestCase
     {
         $this->assertEquals($this->collectConstants('Payever\ExternalIntegration\Core\Enum\ChannelSet'), ChannelSet::enum());
     }
+
+    public function testConstantNameByValue()
+    {
+        $this->assertNotEmpty(ChannelSet::constantNameByValue('other_shopsystem'));
+    }
+
+    public function testConstantNameByValueCaseNotFound()
+    {
+        $this->assertEmpty(ChannelSet::constantNameByValue('unknown-value'));
+    }
+
+    public function testValueOf()
+    {
+        $this->assertNotEmpty(ChannelSet::valueOf('CHANNEL_OTHER_SHOPSYSTEM'));
+    }
 }

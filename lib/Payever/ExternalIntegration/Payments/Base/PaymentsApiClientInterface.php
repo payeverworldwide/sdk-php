@@ -1,15 +1,14 @@
 <?php
+
 /**
- * Interface represents Payever Payments API Connector
- *
- * PHP version 5.4
+ * PHP version 5.4 and 7
  *
  * @category  Base
  * @package   Payever\Payments
  * @author    payever GmbH <service@payever.de>
  * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
- * @link      https://getpayever.com/developer/api-documentation/ Documentation
+ * @link      https://docs.payever.org/shopsystems/api/getting-started
  */
 
 namespace Payever\ExternalIntegration\Payments\Base;
@@ -24,22 +23,13 @@ use Payever\ExternalIntegration\Payments\Http\RequestEntity\ShippingGoodsPayment
 
 /**
  * Interface represents Payever Payments API Connector
- *
- * PHP version 5.4
- *
- * @category  Base
- * @package   Payever\Payments
- * @author    Andrey Puhovsky <a.puhovsky@gmail.com>
- * @copyright 2017-2021 payever GmbH
- * @license   https://opensource.org/licenses/MIT MIT
- * @link      https://getpayever.com/developer/api-documentation/ Documentation
  */
 interface PaymentsApiClientInterface extends CommonApiClientInterface
 {
     /**
      * Sends a request to create payment
      *
-     * @link https://docs.payever.org/shopsystems/api/create-payment/create-payments Documentation
+     * @link https://docs.payever.org/shopsystems/api/getting-started/api/create-payment/create-payments Documentation
      *
      * @param CreatePaymentRequest $createPaymentRequest
      *
@@ -50,7 +40,7 @@ interface PaymentsApiClientInterface extends CommonApiClientInterface
     /**
      * Sends a request to submit payment
      *
-     * @link https://docs.payever.org/shopsystems/api/create-payment/submit-payments Documentation
+     * @link https://docs.payever.org/shopsystems/api/getting-started/api/create-payment/submit-payments Documentation
      *
      * @param SubmitPaymentRequest $createPaymentRequest
      *
@@ -61,7 +51,7 @@ interface PaymentsApiClientInterface extends CommonApiClientInterface
     /**
      * Requests payment details
      *
-     * @link https://docs.payever.org/shopsystems/api/view-payments/retrieve-payment Documentation
+     * @link https://docs.payever.org/shopsystems/api/getting-started/api/view-payments/retrieve-payment Documentation
      *
      * @param string $paymentId Payment ID
      *
@@ -72,7 +62,7 @@ interface PaymentsApiClientInterface extends CommonApiClientInterface
     /**
      * Requests payments details
      *
-     * @link https://docs.payever.org/shopsystems/api/view-payments/list-payments Documentation
+     * @link https://docs.payever.org/shopsystems/api/getting-started/api/view-payments/list-payments Documentation
      *
      * @param ListPaymentsRequest $listPaymentsRequest
      *
@@ -83,7 +73,7 @@ interface PaymentsApiClientInterface extends CommonApiClientInterface
     /**
      * Sends a request to refund payment
      *
-     * @link https://docs.payever.org/shopsystems/api/order-management/refund Documentation
+     * @link https://docs.payever.org/shopsystems/api/getting-started/api/order-management/refund Documentation
      *
      * @param string $paymentId   Payment ID
      * @param float  $amount Specify the refund amount. If no amount is set, the whole amount will be refunded.
@@ -140,7 +130,7 @@ interface PaymentsApiClientInterface extends CommonApiClientInterface
     /**
      * Sends a request about completing shipping
      *
-     * @link https://docs.payever.org/shopsystems/api/capture-payments/shipping-goods Documentation
+     * @link https://docs.payever.org/shopsystems/api/getting-started/api/capture-payments/shipping-goods Documentation
      *
      * @param string $paymentId  Payment ID
      * @param ShippingGoodsPaymentRequest $shippingGoodsPaymentRequest
@@ -152,7 +142,7 @@ interface PaymentsApiClientInterface extends CommonApiClientInterface
     /**
      * Sends a request to cancel non-completed payment
      *
-     * @link https://docs.payever.org/shopsystems/api/order-management/cancel Documentation
+     * @link https://docs.payever.org/shopsystems/api/getting-started/api/order-management/cancel Documentation
      *
      * @param string $paymentId Payment ID
      *
@@ -174,7 +164,7 @@ interface PaymentsApiClientInterface extends CommonApiClientInterface
     /**
      * Returns payment options
      *
-     * @link https://docs.payever.org/shopsystems/api/display-list&or&options/list-payment-options Documentation
+     * @link https://docs.payever.org/shopsystems/api/getting-started/api/display-list&or&options/list-payment-options Documentation
      *
      * @param array  $params   Query part of , available params: _locale, _currency
      * @param string $businessUuid  Business UUID
@@ -187,7 +177,7 @@ interface PaymentsApiClientInterface extends CommonApiClientInterface
     /**
      * Same as listPaymentOptionsRequest, additionally contains list of payment option variants
      *
-     * @link https://docs.payever.org/shopsystems/api/display-list&or&options/list-variant-options Documentation
+     * @link https://docs.payever.org/shopsystems/api/getting-started/api/display-list&or&options/list-variant-options Documentation
      *
      * @param array  $params   Query part of , available params: _locale, _currency
      * @param string $businessUuid  Business UUID

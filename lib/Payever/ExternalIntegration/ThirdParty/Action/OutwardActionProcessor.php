@@ -1,11 +1,15 @@
 <?php
+
 /**
  * PHP version 5.4 and 7
  *
+ * @category  Action
  * @package   Payever\ThirdParty
+ * @author    payever GmbH <service@payever.de>
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
  * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
+ * @link      https://docs.payever.org/shopsystems/api/getting-started
  */
 
 namespace Payever\ExternalIntegration\ThirdParty\Action;
@@ -30,6 +34,11 @@ class OutwardActionProcessor
     /** @var LoggerInterface */
     private $logger;
 
+    /**
+     * @param ProductsApiClient $productsApiClient
+     * @param InventoryApiClient $inventoryApiClient
+     * @param LoggerInterface $logger
+     */
     public function __construct(
         ProductsApiClient $productsApiClient,
         InventoryApiClient $inventoryApiClient,
@@ -92,17 +101,23 @@ class OutwardActionProcessor
         switch ($action) {
             case ActionEnum::ACTION_SET_INVENTORY:
                 $this->inventoryApiClient->createInventory(
-                    $payload instanceof InventoryCreateRequestEntity ? $payload : new InventoryCreateRequestEntity($payload)
+                    $payload instanceof InventoryCreateRequestEntity
+                        ? $payload
+                        : new InventoryCreateRequestEntity($payload)
                 );
                 break;
             case ActionEnum::ACTION_ADD_INVENTORY:
                 $this->inventoryApiClient->addInventory(
-                    $payload instanceof InventoryChangedRequestEntity ? $payload : new InventoryChangedRequestEntity($payload)
+                    $payload instanceof InventoryChangedRequestEntity
+                        ? $payload
+                        : new InventoryChangedRequestEntity($payload)
                 );
                 break;
             case ActionEnum::ACTION_SUBTRACT_INVENTORY:
                 $this->inventoryApiClient->subtractInventory(
-                    $payload instanceof InventoryChangedRequestEntity ? $payload : new InventoryChangedRequestEntity($payload)
+                    $payload instanceof InventoryChangedRequestEntity
+                        ? $payload
+                        : new InventoryChangedRequestEntity($payload)
                 );
                 break;
             case ActionEnum::ACTION_CREATE_PRODUCT:
@@ -113,7 +128,9 @@ class OutwardActionProcessor
                 break;
             case ActionEnum::ACTION_REMOVE_PRODUCT:
                 $this->productsApiClient->removeProduct(
-                    $payload instanceof ProductRemovedRequestEntity ? $payload : new ProductRemovedRequestEntity($payload)
+                    $payload instanceof ProductRemovedRequestEntity
+                        ? $payload
+                        : new ProductRemovedRequestEntity($payload)
                 );
                 break;
             default:

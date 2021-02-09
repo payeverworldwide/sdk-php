@@ -1,17 +1,20 @@
 <?php
+
 /**
  * PHP version 5.4 and 7
  *
+ * @category  Products
  * @package   Payever\Products
+ * @author    payever GmbH <service@payever.de>
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
  * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
+ * @link      https://docs.payever.org/shopsystems/api/getting-started
  */
 
 namespace Payever\ExternalIntegration\Products;
 
-use Payever\ExternalIntegration\Core\Base\OauthTokenInterface;
-use Payever\ExternalIntegration\Core\CommonApiClient;
+use Payever\ExternalIntegration\Core\CommonProductsThirdPartyApiClient;
 use Payever\ExternalIntegration\Core\Http\RequestBuilder;
 use Payever\ExternalIntegration\Core\Http\ResponseEntity\DynamicResponse;
 use Payever\ExternalIntegration\Products\Base\ProductsApiClientInterface;
@@ -19,15 +22,7 @@ use Payever\ExternalIntegration\Products\Base\ProductsIteratorInterface;
 use Payever\ExternalIntegration\Products\Http\RequestEntity\ProductRemovedRequestEntity;
 use Payever\ExternalIntegration\Products\Http\RequestEntity\ProductRequestEntity;
 
-/**
- * PHP version 5.4 and 7
- *
- * @package   Payever\Products
- * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
- * @copyright 2017-2021 payever GmbH
- * @license   MIT <https://opensource.org/licenses/MIT>
- */
-class ProductsApiClient extends CommonApiClient implements ProductsApiClientInterface
+class ProductsApiClient extends CommonProductsThirdPartyApiClient implements ProductsApiClientInterface
 {
     const SUB_URL_PRODUCT = 'api/product/%s';
 
@@ -45,12 +40,11 @@ class ProductsApiClient extends CommonApiClient implements ProductsApiClientInte
         $request = RequestBuilder::post($url)
             ->contentTypeIsJson()
             ->addRawHeader(
-                $this->getToken(OauthTokenInterface::SCOPE_PAYMENT_ACTIONS)->getAuthorizationString()
+                $this->getToken()->getAuthorizationString()
             )
             ->setRequestEntity($entity)
             ->setResponseEntity(new DynamicResponse())
-            ->build()
-        ;
+            ->build();
 
         return $this->getHttpClient()->execute($request);
     }
@@ -69,12 +63,11 @@ class ProductsApiClient extends CommonApiClient implements ProductsApiClientInte
         $request = RequestBuilder::patch($url)
             ->contentTypeIsJson()
             ->addRawHeader(
-                $this->getToken(OauthTokenInterface::SCOPE_PAYMENT_ACTIONS)->getAuthorizationString()
+                $this->getToken()->getAuthorizationString()
             )
             ->setRequestEntity($entity)
             ->setResponseEntity(new DynamicResponse())
-            ->build()
-        ;
+            ->build();
 
         return $this->getHttpClient()->execute($request);
     }
@@ -93,12 +86,11 @@ class ProductsApiClient extends CommonApiClient implements ProductsApiClientInte
         $request = RequestBuilder::put($url)
             ->contentTypeIsJson()
             ->addRawHeader(
-                $this->getToken(OauthTokenInterface::SCOPE_PAYMENT_ACTIONS)->getAuthorizationString()
+                $this->getToken()->getAuthorizationString()
             )
             ->setRequestEntity($entity)
             ->setResponseEntity(new DynamicResponse())
-            ->build()
-        ;
+            ->build();
 
         return $this->getHttpClient()->execute($request);
     }
@@ -117,12 +109,11 @@ class ProductsApiClient extends CommonApiClient implements ProductsApiClientInte
         $request = RequestBuilder::delete($url)
             ->contentTypeIsJson()
             ->addRawHeader(
-                $this->getToken(OauthTokenInterface::SCOPE_PAYMENT_ACTIONS)->getAuthorizationString()
+                $this->getToken()->getAuthorizationString()
             )
             ->setRequestEntity($entity)
             ->setResponseEntity(new DynamicResponse())
-            ->build()
-        ;
+            ->build();
 
         return $this->getHttpClient()->execute($request);
     }
@@ -143,10 +134,10 @@ class ProductsApiClient extends CommonApiClient implements ProductsApiClientInte
             } catch (\Exception $exception) {
                 $this->configuration->getLogger()
                     ->critical(
-                        sprintf(
-                            'Product SKU=%s failed to export: %s',
-                            $productRequestEntity->getSku(),
-                            $exception->getMessage()
+                        'Product failed to export',
+                        array(
+                            'sku' => $productRequestEntity->getSku(),
+                            'exception' => $exception->getMessage(),
                         )
                     );
             }

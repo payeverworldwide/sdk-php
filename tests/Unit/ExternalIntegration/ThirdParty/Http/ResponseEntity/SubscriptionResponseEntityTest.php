@@ -21,6 +21,7 @@ class SubscriptionResponseEntityTest extends AbstractMessageEntityTest
         'externalId' => 'abc123',
         'connected' => true,
         'actions' => array(),
+        'updatedAt' => '2020-01-01T00:00:00+00:00',
     );
 
     public static function getScheme()

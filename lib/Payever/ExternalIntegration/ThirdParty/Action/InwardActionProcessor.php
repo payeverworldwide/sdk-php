@@ -1,11 +1,15 @@
 <?php
+
 /**
  * PHP version 5.4 and 7
  *
+ * @category  Action
  * @package   Payever\ThirdParty
+ * @author    payever GmbH <service@payever.de>
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
  * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
+ * @link      https://docs.payever.org/shopsystems/api/getting-started
  */
 
 namespace Payever\ExternalIntegration\ThirdParty\Action;
@@ -13,14 +17,6 @@ namespace Payever\ExternalIntegration\ThirdParty\Action;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 
-/**
- * PHP version 5.4 and 7
- *
- * @package   Payever\ThirdParty
- * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
- * @copyright 2017-2021 payever GmbH
- * @license   MIT <https://opensource.org/licenses/MIT>
- */
 class InwardActionProcessor
 {
     /** @var ActionHandlerPool */
@@ -32,6 +28,11 @@ class InwardActionProcessor
     /** @var LoggerInterface */
     protected $logger;
 
+    /**
+     * @param ActionHandlerPool $actionHandlerPool
+     * @param ActionResult $actionResult
+     * @param LoggerInterface $logger
+     */
     public function __construct(
         ActionHandlerPool $actionHandlerPool,
         ActionResult $actionResult,

@@ -10,7 +10,6 @@
 
 namespace Payever\Tests\Unit\ExternalIntegration\ThirdParty\Action;
 
-
 use Payever\ExternalIntegration\ThirdParty\Action\BidirectionalActionProcessor;
 use Payever\ExternalIntegration\ThirdParty\Action\InwardActionProcessor;
 use Payever\ExternalIntegration\ThirdParty\Action\OutwardActionProcessor;
@@ -29,6 +28,9 @@ class BidirectionalActionProcessorTest extends TestCase
     /** @var BidirectionalActionProcessor */
     private $bidirectionalActionProcessor;
 
+    /**
+     * @inheritDoc
+     */
     protected function setUp()
     {
         $this->inwardActionProcessor = $this->getMockBuilder(InwardActionProcessor::class)
@@ -37,8 +39,10 @@ class BidirectionalActionProcessorTest extends TestCase
         $this->outwardActionProcessor = $this->getMockBuilder(OutwardActionProcessor::class)
             ->disableOriginalConstructor()
             ->getMock();
-
-        $this->bidirectionalActionProcessor = new BidirectionalActionProcessor($this->inwardActionProcessor, $this->outwardActionProcessor);
+        $this->bidirectionalActionProcessor = new BidirectionalActionProcessor(
+            $this->inwardActionProcessor,
+            $this->outwardActionProcessor
+        );
     }
 
     public function testInward()

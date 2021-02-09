@@ -1,13 +1,15 @@
 <?php
+
 /**
  * PHP version 5.4 and 7
  *
  * @category  RequestEntity
  * @package   Payever\Payments
+ * @author    payever GmbH <service@payever.de>
  * @author    Hennadii Shymanskyi <gendosua@gmail.com>
  * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
- * @link      https://getpayever.com/shopsystem/
+ * @link      https://docs.payever.org/shopsystems/api/getting-started
  */
 
 namespace Payever\ExternalIntegration\Payments\Http\RequestEntity;
@@ -16,10 +18,6 @@ use Payever\ExternalIntegration\Core\Http\RequestEntity;
 use Payever\ExternalIntegration\Payments\Http\MessageEntity\RetrievePaymentResultEntity;
 
 /**
- * Class NotificationRequestEntity
- *
- * @package Payever\ExternalIntegration\Payments\Http\RequestEntity
- *
  * @method string getNotificationType()
  * @method array getNotificationTypesAvailable()
  * @method setNotificationType(string $notificationType)

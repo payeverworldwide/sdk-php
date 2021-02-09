@@ -1,15 +1,14 @@
 <?php
+
 /**
- * This class represents ResponseInterface Entity
- *
- * PHP version 5.4
+ * PHP version 5.4 and 7
  *
  * @category  Http
  * @package   Payever\Core
  * @author    payever GmbH <service@payever.de>
  * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
- * @link      https://getpayever.com/developer/api-documentation/ Documentation
+ * @link      https://docs.payever.org/shopsystems/api/getting-started
  */
 
 namespace Payever\ExternalIntegration\Core\Http;
@@ -20,15 +19,6 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
 
 /**
  * This class represents ResponseInterface Entity
- *
- * PHP version 5.4
- *
- * @category  Http
- * @package   Payever\Core
- * @author    payever GmbH <service@payever.de>
- * @copyright 2017-2021 payever GmbH
- * @license   MIT <https://opensource.org/licenses/MIT>
- * @link      https://getpayever.com/developer/api-documentation/ Documentation
  *
  * @method CallEntity   getCall()
  * @method string       getError()
@@ -76,7 +66,10 @@ class ResponseEntity extends MessageEntity
     {
         return parent::isValid() &&
             (!$this->call   || ($this->call   instanceof CallEntity   && $this->call->isValid())) &&
-            (!$this->result || ($this->result instanceof ResultEntity && $this->result->isValid()) || is_array($this->result))
+            (
+                !$this->result || ($this->result instanceof ResultEntity && $this->result->isValid())
+                || is_array($this->result)
+            )
         ;
     }
 

@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.8.0]
+
+### Added
+- Class `Payever\ExternalIntegration\CoreCommonProductsThirdPartyApiClient`
+- Method `getBaseEntrypoint($staticBind = false): string` in `Payever\ExternalIntegration\Core\CommonApiClient`
+- Url constant - `api/business/%s/connection/authorization/%s` in `Payever\ExternalIntegration\ThirdParty\ThirdPartyApiClient::SUB_URL_CONNECTION`
+- Url constant - `api/business/%s/integration/%s` in `Payever\ExternalIntegration\ThirdParty\ThirdPartyApiClient::SUB_URL_INTEGRATION`
+### Changed
+- Method `close` in `Payever\ExternalIntegration\Core\Logger\FileLogger` to verify if file handle is resource
+- Method `getBaseUrl` in `Payever\ExternalIntegration\Core\CommonApiClient` to reuse method `getBaseEntrypoint`
+- Method `getAuthenticationURL` in `Payever\ExternalIntegration\Core\CommonApiClient` to reuse method `getBaseEntrypoint`
+- Method `getListChannelSetsURL` in `Payever\ExternalIntegration\Core\CommonApiClient` to reuse method `getBaseEntrypoint`
+- Method `getCurrenciesURL` in `Payever\ExternalIntegration\Core\CommonApiClient` to reuse method `getBaseEntrypoint`
+- Class `Payever\ExternalIntegration\Inventory\InventoryApiClient` extended `Payever\ExternalIntegration\Core\CommonProductsThirdPartyApiClient`
+- Class `Payever\ExternalIntegration\Products\ProductsApiClient` extended `Payever\ExternalIntegration\Core\CommonProductsThirdPartyApiClient`
+- Class `Payever\ExternalIntegration\ThirdParty\ThirdPartyApiClient` extended `Payever\ExternalIntegration\Core\CommonProductsThirdPartyApiClient`
+- Minor PHPDoc updates
+
 ## [2.7.0]
 
 ### Added

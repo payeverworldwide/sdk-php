@@ -478,7 +478,7 @@ try {
 
 #### InventoryApiClient
 
-This client class is dependant on `ThirdPartyApiClient` and requires active third-party subscription with known `externalId`;
+This client class is dependent on `ThirdPartyApiClient` and requires active third-party subscription with known `externalId`;
 
 This API client can be used to create/add/subtract (NOTE: "read" operation is not available atm) operations over payever inventory.
 Please note that product inventory between any external system and payever are identified by SKU field.

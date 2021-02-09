@@ -1,15 +1,14 @@
 <?php
+
 /**
- * This class represents Create Payment RequestInterface Entity
- *
- * PHP version 5.4
+ * PHP version 5.4 and 7
  *
  * @category  RequestEntity
  * @package   Payever\Payments
  * @author    payever GmbH <service@payever.de>
  * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
- * @link      https://getpayever.com/shopsystem/
+ * @link      https://docs.payever.org/shopsystems/api/getting-started
  */
 
 namespace Payever\ExternalIntegration\Payments\Http\RequestEntity;
@@ -19,15 +18,6 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\CartItemEntity;
 
 /**
  * This class represents Create Payment RequestInterface Entity
- *
- * PHP version 5.4
- *
- * @category  RequestEntity
- * @package   Payever\Payments
- * @author    payever GmbH <service@payever.de>
- * @copyright 2017-2021 payever GmbH
- * @license   MIT <https://opensource.org/licenses/MIT>
- * @link      https://getpayever.com/shopsystem/
  *
  * @method string                 getChannel()
  * @method integer                getChannelSetId()

@@ -20,6 +20,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 class OutwardActionProcessorTest extends TestCase
 {
+    /** @var OutwardActionProcessor|MockObject  */
     private $outwardActionProcessor;
 
     /** @var ProductsApiClient|MockObject */

@@ -8,9 +8,13 @@
 
 namespace Payever\Tests\Unit\ExternalIntegration\Core;
 
+use Payever\ExternalIntegration\Core\Base\ClientConfigurationInterface;
+use Payever\ExternalIntegration\Core\Base\HttpClientInterface;
 use Payever\ExternalIntegration\Core\ClientConfiguration;
 use Payever\ExternalIntegration\Core\CommonApiClient;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 
 /**
  * @see \Payever\ExternalIntegration\Core\ClientConfiguration
@@ -32,8 +36,7 @@ class CommonApiTest extends TestCase
         $config->setApiMode(ClientConfiguration::API_MODE_SANDBOX)
             ->setBusinessUuid('stub')
             ->setClientSecret('stub')
-            ->setClientId('stub')
-        ;
+            ->setClientId('stub');
 
         $this->config = $config;
         $this->commonApi = new CommonApiClient($this->config);
@@ -68,6 +71,25 @@ class CommonApiTest extends TestCase
 
         $this->config->setCustomLiveUrl($customLiveUrl)->setApiMode(ClientConfiguration::API_MODE_LIVE);
         $this->assertEquals($customLiveUrl, $this->commonApi->getBaseUrl());
+    }
+
+    public function testSetConfiguration()
+    {
+        /** @var MockObject|ClientConfigurationInterface $configuration */
+        $configuration = $this->getMockBuilder(ClientConfigurationInterface::class)->getMock();
+        $this->commonApi->setConfiguration($configuration);
+        $this->assertNotEmpty($this->commonApi->getTokens());
+    }
+
+    public function testSetHttpClient()
+    {
+        /** @var MockObject|HttpClientInterface $httpClient */
+        $httpClient = $this->getMockBuilder(HttpClientInterface::class)->getMock();
+        /** @var MockObject|LoggerInterface $logger */
+        $logger = $this->getMockBuilder(LoggerInterface::class)->getMock();
+        $this->config->setLogger($logger);
+        $logger->expects($this->once())->method('debug');
+        $this->commonApi->setHttpClient($httpClient);
     }
 
     /**

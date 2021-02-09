@@ -1,11 +1,15 @@
 <?php
+
 /**
  * PHP version 5.4 and 7
  *
+ * @category  Action
  * @package   Payever\ThirdParty
+ * @author    payever GmbH <service@payever.de>
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
  * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
+ * @link      https://docs.payever.org/shopsystems/api/getting-started
  */
 
 namespace Payever\ExternalIntegration\ThirdParty\Action;
@@ -16,14 +20,6 @@ use Payever\ExternalIntegration\Products\Http\RequestEntity\ProductRemovedReques
 use Payever\ExternalIntegration\Products\Http\RequestEntity\ProductRequestEntity;
 use Payever\ExternalIntegration\ThirdParty\Enum\ActionEnum;
 
-/**
- * PHP version 5.4 and 7
- *
- * @package   Payever\ThirdParty
- * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
- * @copyright 2017-2021 payever GmbH
- * @license   MIT <https://opensource.org/licenses/MIT>
- */
 class ActionPayload
 {
     /** @var string */
@@ -33,8 +29,6 @@ class ActionPayload
     protected $rawPayload;
 
     /**
-     * ActionPayload constructor.
-     *
      * @param string $action @see ActionEnum
      * @param string|array|null $rawPayload
      */

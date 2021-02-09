@@ -1,25 +1,22 @@
 <?php
+
 /**
  * PHP version 5.4 and 7
  *
+ * @category  Core
  * @package   Payever\Core
+ * @author    payever GmbH <service@payever.de>
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
  * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
+ * @link      https://docs.payever.org/shopsystems/api/getting-started
  */
 
 namespace Payever\ExternalIntegration\Core;
 
-/**
- * PHP version 5.4 and 7
- *
- * @package   Payever\Core
- * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
- * @copyright 2017-2021 payever GmbH
- * @license   MIT <https://opensource.org/licenses/MIT>
- */
 class PseudoRandomStringGenerator
 {
+    /** @var string */
     protected static $fallbackKeyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     /**
@@ -34,8 +31,6 @@ class PseudoRandomStringGenerator
      */
     public function generate($length = 64)
     {
-        $binaryString = false;
-
         if (function_exists('random_bytes')) {
             $binaryString = random_bytes($length);
         } elseif (function_exists('mcrypt_create_iv')) {
@@ -57,15 +52,15 @@ class PseudoRandomStringGenerator
         }
 
         if ($binaryString === false) {
-            throw new \RuntimeException("Unable to generate random string.");
+            throw new \RuntimeException('Unable to generate random string.');
         }
 
         return $this->binToHex($binaryString, $length);
     }
 
     /**
-     * @param $binaryData
-     * @param $length
+     * @param string $binaryData
+     * @param int $length
      *
      * @return bool|string
      */

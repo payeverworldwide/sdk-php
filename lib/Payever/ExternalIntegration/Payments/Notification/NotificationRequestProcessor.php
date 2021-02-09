@@ -1,11 +1,15 @@
 <?php
+
 /**
  * PHP version 5.4 and 7
  *
+ * @category  Notification
  * @package   Payever\Payments
+ * @author    payever GmbH <service@payever.de>
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
  * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
+ * @link      https://docs.payever.org/shopsystems/api/getting-started
  */
 
 namespace Payever\ExternalIntegration\Payments\Notification;
@@ -14,14 +18,6 @@ use Payever\ExternalIntegration\Core\Lock\LockInterface;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\NotificationRequestEntity;
 use Psr\Log\LoggerInterface;
 
-/**
- * PHP version 5.4 and 7
- *
- * @package   Payever\Payments
- * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
- * @copyright 2017-2021 payever GmbH
- * @license   MIT <https://opensource.org/licenses/MIT>
- */
 class NotificationRequestProcessor
 {
     const NOTIFICATION_LOCK_SECONDS = 30;

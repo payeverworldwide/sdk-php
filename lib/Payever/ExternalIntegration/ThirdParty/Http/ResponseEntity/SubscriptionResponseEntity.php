@@ -1,11 +1,15 @@
 <?php
+
 /**
  * PHP version 5.4 and 7
  *
+ * @category  ResponseEntity
  * @package   Payever\ThirdParty
+ * @author    payever GmbH <service@payever.de>
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
  * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
+ * @link      https://docs.payever.org/shopsystems/api/getting-started
  */
 
 namespace Payever\ExternalIntegration\ThirdParty\Http\ResponseEntity;
@@ -14,15 +18,6 @@ use Payever\ExternalIntegration\Core\Http\ResponseEntity;
 use Payever\ExternalIntegration\ThirdParty\Http\MessageEntity\SubscriptionActionEntity;
 
 /**
- * Class SubscriptionResponseEntity
- *
- * PHP version 5.4 and 7
- *
- * @package   Payever\ThirdParty
- * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
- * @copyright 2017-2021 payever GmbH
- * @license   MIT <https://opensource.org/licenses/MIT>
- *
  * @method string getId()
  * @method string getExternalId()
  * @method bool getConnected()

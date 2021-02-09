@@ -1,17 +1,20 @@
 <?php
+
 /**
  * PHP version 5.4 and 7
  *
+ * @category  ThirdParty
  * @package   Payever\ThirdParty
+ * @author    payever GmbH <service@payever.de>
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
  * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
+ * @link      https://docs.payever.org/shopsystems/api/getting-started
  */
 
 namespace Payever\ExternalIntegration\ThirdParty;
 
-use Payever\ExternalIntegration\Core\Authorization\OauthToken;
-use Payever\ExternalIntegration\Core\CommonApiClient;
+use Payever\ExternalIntegration\Core\CommonProductsThirdPartyApiClient;
 use Payever\ExternalIntegration\Core\Http\RequestBuilder;
 use Payever\ExternalIntegration\Core\Http\ResponseEntity\DynamicResponse;
 use Payever\ExternalIntegration\ThirdParty\Base\ThirdPartyApiClientInterface;
@@ -19,20 +22,11 @@ use Payever\ExternalIntegration\ThirdParty\Http\RequestEntity\SubscriptionReques
 use Payever\ExternalIntegration\ThirdParty\Http\ResponseEntity\BusinessResponseEntity;
 use Payever\ExternalIntegration\ThirdParty\Http\ResponseEntity\SubscriptionResponseEntity;
 
-/**
- * Class ThirdPartyApiClient
- *
- * PHP version 5.4 and 7
- *
- * @package   Payever\ThirdParty
- * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
- * @copyright 2017-2021 payever GmbH
- * @license   MIT <https://opensource.org/licenses/MIT>
- */
-class ThirdPartyApiClient extends CommonApiClient implements ThirdPartyApiClientInterface
+class ThirdPartyApiClient extends CommonProductsThirdPartyApiClient implements ThirdPartyApiClientInterface
 {
     const SUB_URL_BUSINESS_INFO = 'api/business/%s/plugins';
-    const SUB_URL_SUBSCRIPTION = 'api/business/%s/plugins/subscription/%s';
+    const SUB_URL_CONNECTION = 'api/business/%s/connection/authorization/%s';
+    const SUB_URL_INTEGRATION = 'api/business/%s/integration/%s';
 
     /**
      * @inheritdoc
@@ -45,15 +39,12 @@ class ThirdPartyApiClient extends CommonApiClient implements ThirdPartyApiClient
 
         $request = RequestBuilder::get($this->getBusinessInfoUrl($this->configuration->getBusinessUuid()))
             ->addRawHeader(
-                $this->getToken(OauthToken::SCOPE_PAYMENT_ACTIONS)->getAuthorizationString()
+                $this->getToken()->getAuthorizationString()
             )
             ->setResponseEntity(new BusinessResponseEntity())
-            ->build()
-        ;
+            ->build();
 
-        $response = $this->getHttpClient()->execute($request);
-
-        return $response;
+        return $this->getHttpClient()->execute($request);
     }
 
     /**
@@ -67,15 +58,12 @@ class ThirdPartyApiClient extends CommonApiClient implements ThirdPartyApiClient
 
         $this->fillSubscriptionEntityFromConfiguration($subscriptionRequestEntity);
 
-        $url = $this->getSubscriptionUrl($subscriptionRequestEntity);
-
-        $request = RequestBuilder::get($url)
+        $request = RequestBuilder::get($this->getConnectionUrl($subscriptionRequestEntity))
             ->addRawHeader(
-                $this->getToken(OauthToken::SCOPE_PAYMENT_ACTIONS)->getAuthorizationString()
+                $this->getToken()->getAuthorizationString()
             )
             ->setResponseEntity(new SubscriptionResponseEntity())
-            ->build()
-        ;
+            ->build();
 
         return $this->getHttpClient()->execute($request);
     }
@@ -91,17 +79,14 @@ class ThirdPartyApiClient extends CommonApiClient implements ThirdPartyApiClient
 
         $this->fillSubscriptionEntityFromConfiguration($subscriptionRequestEntity);
 
-        $url = $this->getSubscriptionUrl($subscriptionRequestEntity);
-
-        $request = RequestBuilder::post($url)
+        $request = RequestBuilder::post($this->getIntegrationUrl($subscriptionRequestEntity))
             ->contentTypeIsJson()
             ->addRawHeader(
-                $this->getToken(OauthToken::SCOPE_PAYMENT_ACTIONS)->getAuthorizationString()
+                $this->getToken()->getAuthorizationString()
             )
             ->setRequestEntity($subscriptionRequestEntity)
             ->setResponseEntity(new SubscriptionResponseEntity())
-            ->build()
-        ;
+            ->build();
 
         return $this->getHttpClient()->execute($request);
     }
@@ -117,32 +102,14 @@ class ThirdPartyApiClient extends CommonApiClient implements ThirdPartyApiClient
 
         $this->fillSubscriptionEntityFromConfiguration($subscriptionRequestEntity);
 
-        $url = $this->getSubscriptionUrl($subscriptionRequestEntity);
-
-        $request = RequestBuilder::delete($url)
+        $request = RequestBuilder::delete($this->getConnectionUrl($subscriptionRequestEntity))
             ->addRawHeader(
-                $this->getToken(OauthToken::SCOPE_PAYMENT_ACTIONS)->getAuthorizationString()
+                $this->getToken()->getAuthorizationString()
             )
             ->setResponseEntity(new DynamicResponse())
-            ->build()
-        ;
+            ->build();
 
         return $this->getHttpClient()->execute($request);
-    }
-
-    /**
-     * @param SubscriptionRequestEntity $subscriptionRequestEntity
-     *
-     * @return string
-     */
-    protected function getSubscriptionUrl(SubscriptionRequestEntity $subscriptionRequestEntity)
-    {
-        return $this->getBaseUrl()
-            . sprintf(
-                static::SUB_URL_SUBSCRIPTION,
-                $subscriptionRequestEntity->getBusinessUuid(),
-                $subscriptionRequestEntity->getThirdPartyName()
-            );
     }
 
     /**
@@ -152,8 +119,37 @@ class ThirdPartyApiClient extends CommonApiClient implements ThirdPartyApiClient
      */
     protected function getBusinessInfoUrl($businessUuid)
     {
-        return $this->getBaseUrl()
-            . sprintf(static::SUB_URL_BUSINESS_INFO, $businessUuid);
+        return $this->getBaseUrl() . sprintf(static::SUB_URL_BUSINESS_INFO, $businessUuid);
+    }
+
+    /**
+     * @param SubscriptionRequestEntity $subscriptionRequestEntity
+     * @return string
+     */
+    protected function getConnectionUrl(SubscriptionRequestEntity $subscriptionRequestEntity)
+    {
+        $path = sprintf(
+            static::SUB_URL_CONNECTION,
+            $subscriptionRequestEntity->getBusinessUuid(),
+            $subscriptionRequestEntity->getExternalId()
+        );
+
+        return $this->getBaseUrl() . $path;
+    }
+
+    /**
+     * @param SubscriptionRequestEntity $subscriptionRequestEntity
+     * @return string
+     */
+    protected function getIntegrationUrl(SubscriptionRequestEntity $subscriptionRequestEntity)
+    {
+        $path = sprintf(
+            static::SUB_URL_INTEGRATION,
+            $subscriptionRequestEntity->getBusinessUuid(),
+            $subscriptionRequestEntity->getThirdPartyName()
+        );
+
+        return $this->getBaseUrl() . $path;
     }
 
     /**

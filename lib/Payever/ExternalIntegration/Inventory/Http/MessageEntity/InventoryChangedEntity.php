@@ -1,11 +1,15 @@
 <?php
+
 /**
  * PHP version 5.4 and 7
  *
+ * @category  MessageEntity
  * @package   Payever\Inventory
+ * @author    payever GmbH <service@payever.de>
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
  * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
+ * @link      https://docs.payever.org/shopsystems/api/getting-started
  */
 
 namespace Payever\ExternalIntegration\Inventory\Http\MessageEntity;
@@ -13,13 +17,6 @@ namespace Payever\ExternalIntegration\Inventory\Http\MessageEntity;
 use Payever\ExternalIntegration\Core\Base\MessageEntity;
 
 /**
- * PHP version 5.4 and 7
- *
- * @package   Payever\Inventory
- * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
- * @copyright 2017-2021 payever GmbH
- * @license   MIT <https://opensource.org/licenses/MIT>
- *
  * @method string getSku()
  * @method int|null getQuantity()
  * @method int getStock()

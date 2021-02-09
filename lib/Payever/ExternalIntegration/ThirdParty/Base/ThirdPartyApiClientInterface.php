@@ -1,11 +1,15 @@
 <?php
+
 /**
  * PHP version 5.4 and 7
  *
+ * @category  Base
  * @package   Payever\ThirdParty
+ * @author    payever GmbH <service@payever.de>
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
  * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
+ * @link      https://docs.payever.org/shopsystems/api/getting-started
  */
 
 namespace Payever\ExternalIntegration\ThirdParty\Base;
@@ -15,14 +19,6 @@ use Payever\ExternalIntegration\Core\Base\ResponseInterface;
 use Payever\ExternalIntegration\Core\Http\Response;
 use Payever\ExternalIntegration\ThirdParty\Http\RequestEntity\SubscriptionRequestEntity;
 
-/**
- * PHP version 5.4 and 7
- *
- * @package   Payever\ThirdParty
- * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
- * @copyright 2017-2021 payever GmbH
- * @license   MIT <https://opensource.org/licenses/MIT>
- */
 interface ThirdPartyApiClientInterface extends CommonApiClientInterface
 {
     /**

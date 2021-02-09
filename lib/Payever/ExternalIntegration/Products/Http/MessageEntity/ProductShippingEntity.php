@@ -1,11 +1,15 @@
 <?php
+
 /**
  * PHP version 5.4 and 7
  *
+ * @category  MessageEntity
  * @package   Payever\Products
+ * @author    payever GmbH <service@payever.de>
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
  * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
+ * @link      https://docs.payever.org/shopsystems/api/getting-started
  */
 
 namespace Payever\ExternalIntegration\Products\Http\MessageEntity;
@@ -13,15 +17,6 @@ namespace Payever\ExternalIntegration\Products\Http\MessageEntity;
 use Payever\ExternalIntegration\Core\Base\MessageEntity;
 
 /**
- * Class ProductShippingEntity
- *
- * PHP version 5.4 and 7
- *
- * @package   Payever\Products
- * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
- * @copyright 2017-2021 payever GmbH
- * @license   MIT <https://opensource.org/licenses/MIT>
- *
  * @method string getMeasureMass()
  * @method string getMeasureSize()
  * @method bool getFree()
@@ -38,7 +33,6 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method self setWidth(float $width)
  * @method self setLength(float $length)
  * @method self setHeight(float $height)
- *
  */
 class ProductShippingEntity extends MessageEntity
 {

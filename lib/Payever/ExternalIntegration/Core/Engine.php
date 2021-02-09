@@ -1,23 +1,22 @@
 <?php
+
 /**
- * Class for Payever API Main Engine
- *
- * PHP version 5.4
+ * PHP version 5.4 and 7
  *
  * @category  API
  * @package   Payever\Core
  * @author    payever GmbH <service@payever.de>
  * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
- * @link      https://getpayever.com/shopsystem/
+ * @link      https://docs.payever.org/shopsystems/api/getting-started
  */
 
 namespace Payever\ExternalIntegration\Core;
 
 // @codeCoverageIgnoreStart
-define('PEI_CORE_VERSION', '2.7.0');
+define('PEI_CORE_VERSION', '2.8.0');
 define('PEI_CORE_MAJOR_VERSION', 2);
-define('PEI_CORE_MINOR_VERSION', 7);
+define('PEI_CORE_MINOR_VERSION', 8);
 define('PEI_CORE_RELEASE_VERSION', 0);
 
 define('PEI_NAMESPACE', 'Payever\ExternalIntegration');
@@ -29,15 +28,6 @@ if (version_compare(PHP_VERSION, '5.4.0', '<')) {
 
 /**
  * Class for Payever API Main Engine
- *
- * PHP version 5.4
- *
- * @category  API
- * @package   Payever\Core
- * @author    Andrey Puhovsky <a.puhovsky@gmail.com>
- * @copyright 2017-2021 payever GmbH
- * @license   MIT <https://opensource.org/licenses/MIT>
- * @link      https://getpayever.com/shopsystem/
  */
 class Engine
 {
@@ -60,7 +50,12 @@ class Engine
 
                     $class = substr($className, strlen(PEI_NAMESPACE));
 
-                    $filePath = __DIR__ . DIRECTORY_SEPARATOR . '..' . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
+                    $filePath = sprintf(
+                        '%s%s..%s.php',
+                        __DIR__,
+                        DIRECTORY_SEPARATOR,
+                        str_replace('\\', DIRECTORY_SEPARATOR, $class)
+                    );
 
                     if (file_exists($filePath)) {
                         require_once $filePath;

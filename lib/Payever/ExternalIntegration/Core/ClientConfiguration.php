@@ -1,12 +1,16 @@
 <?php
+
 /**
  * PHP version 5.4 and 7
  *
+ * @category  Core
  * @package   Payever\Core
+ * @author    payever GmbH <service@payever.de>
  * @author    Andrey Puhovsky <a.puhovsky@gmail.com>
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
  * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
+ * @link      https://docs.payever.org/shopsystems/api/getting-started
  */
 
 namespace Payever\ExternalIntegration\Core;
@@ -17,15 +21,6 @@ use Payever\ExternalIntegration\Core\Exception\ConfigurationException;
 use Payever\ExternalIntegration\Core\Logger\NullLogger;
 use Psr\Log\LoggerInterface;
 
-/**
- * PHP version 5.4 and 7
- *
- * @package   Payever\Core
- * @author    Andrey Puhovsky <a.puhovsky@gmail.com>
- * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
- * @copyright 2017-2021 payever GmbH
- * @license   MIT <https://opensource.org/licenses/MIT>
- */
 class ClientConfiguration implements ClientConfigurationInterface
 {
     /** @var string */
@@ -249,18 +244,6 @@ class ClientConfiguration implements ClientConfigurationInterface
     }
 
     /**
-     * @param string $url
-     *
-     * @return ClientConfiguration
-     *
-     * @deprecated Use setCustomSandboxUrl instead
-     */
-    public function setCustomApiUrl($url)
-    {
-        return $this->setCustomSandboxUrl($url);
-    }
-
-    /**
      * @param LoggerInterface $logger
      *
      * @return $this
@@ -291,7 +274,7 @@ class ClientConfiguration implements ClientConfigurationInterface
     {
         if (!$this->isLoaded()) {
             throw new ConfigurationException(
-                "Payever API client credentials (client_id, client_secret, business_uuid) are not set."
+                'Payever API client credentials (client_id, client_secret, business_uuid) are not set.'
             );
         }
     }

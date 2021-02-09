@@ -81,6 +81,16 @@ class FileLoggerTest extends TestCase
         $this->assertLogFileIsNotEmpty();
     }
 
+    public function testClose()
+    {
+        $logger = new FileLogger($this->logFilePath, LogLevel::DEBUG, 'stub', 2);
+        $this->assertLogFileIsEmpty();
+        $logger->debug('debug_skip');
+        $this->assertLogFileIsEmpty();
+        $logger->close();
+        $this->assertLogFileIsNotEmpty();
+    }
+
     private function assertLogFileIsEmpty()
     {
         $this->assertEquals('', file_get_contents($this->logFilePath));

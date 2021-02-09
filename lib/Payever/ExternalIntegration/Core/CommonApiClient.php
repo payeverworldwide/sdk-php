@@ -1,12 +1,16 @@
 <?php
+
 /**
  * PHP version 5.4 and 7
  *
+ * @category  Core
  * @package   Payever\Core
+ * @author    payever GmbH <service@payever.de>
  * @author    Andrey Puhovsky <a.puhovsky@gmail.com>
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
  * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
+ * @link      https://docs.payever.org/shopsystems/api/getting-started
  */
 
 namespace Payever\ExternalIntegration\Core;
@@ -58,8 +62,6 @@ class CommonApiClient implements CommonApiClientInterface
     protected $httpClient;
 
     /**
-     * Payever Payments API Instance constructor
-     *
      * @param ClientConfigurationInterface $clientConfiguration
      * @param OauthTokenList $oauthTokenList
      * @param HttpClientInterface $httpClient
@@ -83,21 +85,7 @@ class CommonApiClient implements CommonApiClientInterface
      */
     public function getBaseUrl()
     {
-        switch ($this->configuration->getApiMode()) {
-            case ClientConfiguration::API_MODE_SANDBOX:
-                $url = $this->configuration->getCustomSandboxUrl() ?: static::URL_SANDBOX;
-                break;
-            case ClientConfiguration::API_MODE_LIVE:
-            default:
-                $url = $this->configuration->getCustomLiveUrl() ?: static::URL_LIVE;
-                break;
-        }
-
-        if (substr($url, -1) != '/') {
-            $url .= '/';
-        }
-
-        return $url;
+        return $this->getBaseEntrypoint(true);
     }
 
     /**
@@ -242,6 +230,31 @@ class CommonApiClient implements CommonApiClientInterface
     }
 
     /**
+     * @param bool $staticBind
+     * @return string
+     */
+    protected function getBaseEntrypoint($staticBind = false)
+    {
+        switch ($this->configuration->getApiMode()) {
+            case ClientConfiguration::API_MODE_SANDBOX:
+                $default = $staticBind ? static::URL_SANDBOX : self::URL_SANDBOX;
+                $url = $this->configuration->getCustomSandboxUrl() ?: $default;
+                break;
+            case ClientConfiguration::API_MODE_LIVE:
+            default:
+                $default = $staticBind ? static::URL_LIVE : self::URL_LIVE;
+                $url = $this->configuration->getCustomLiveUrl() ?: $default;
+                break;
+        }
+
+        if (substr($url, -1) != '/') {
+            $url .= '/';
+        }
+
+        return $url;
+    }
+
+    /**
      * Loads Tokens
      *
      * @param OauthTokenList|null $oauthTokenList
@@ -262,7 +275,7 @@ class CommonApiClient implements CommonApiClientInterface
     /**
      * Requests new oAuth OauthToken which will be used further
      *
-     * @link https://getpayever.com/developer/api-documentation/#authentication Documentation
+     * @link https://docs.payever.org/shopsystems/api/getting-started/authentication Documentation
      *
      * @param string $scope Scope in which the token will be used
      *
@@ -337,7 +350,7 @@ class CommonApiClient implements CommonApiClientInterface
      */
     protected function getAuthenticationURL()
     {
-        return $this->getBaseUrl() . self::SUB_URL_AUTH;
+        return $this->getBaseEntrypoint() . self::SUB_URL_AUTH;
     }
 
     /**
@@ -349,7 +362,7 @@ class CommonApiClient implements CommonApiClientInterface
      */
     protected function getListChannelSetsURL($businessUuid)
     {
-        return $this->getBaseUrl() . sprintf(self::SUB_URL_LIST_CHANNEL_SETS, $businessUuid);
+        return $this->getBaseEntrypoint() . sprintf(self::SUB_URL_LIST_CHANNEL_SETS, $businessUuid);
     }
 
     /**
@@ -361,6 +374,6 @@ class CommonApiClient implements CommonApiClientInterface
      */
     protected function getCurrenciesURL($lang = '')
     {
-        return $this->getBaseUrl() . self::SUB_URL_CURRENCY . (empty($lang) ? '' : '?_locale=' . $lang);
+        return $this->getBaseEntrypoint() . self::SUB_URL_CURRENCY . (empty($lang) ? '' : '?_locale=' . $lang);
     }
 }

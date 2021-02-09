@@ -1,15 +1,14 @@
 <?php
+
 /**
- * Class represents Payever Payments API Connector
- *
- * PHP version 5.4
+ * PHP version 5.4 and 7
  *
  * @category  Payments
  * @package   Payever\Payments
  * @author    payever GmbH <service@payever.de>
  * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
- * @link      https://getpayever.com/developer/api-documentation/ Documentation
+ * @link      https://docs.payever.org/shopsystems/api/getting-started
  */
 
 namespace Payever\ExternalIntegration\Payments;
@@ -41,15 +40,6 @@ use Payever\ExternalIntegration\Payments\Http\ResponseEntity\ShippingGoodsPaymen
 
 /**
  * Class represents Payever Payments API Connector
- *
- * PHP version 5.4
- *
- * @category  Payments
- * @package   Payever\Payments
- * @author    Andrey Puhovsky <a.puhovsky@gmail.com>
- * @copyright 2017-2021 payever GmbH
- * @license   MIT <https://opensource.org/licenses/MIT>
- * @link      https://getpayever.com/developer/api-documentation/ Documentation
  */
 class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInterface
 {
@@ -277,8 +267,7 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
     public function shippingGoodsPaymentRequest(
         $paymentId,
         ShippingGoodsPaymentRequest $shippingGoodsPaymentRequest = null
-    )
-    {
+    ) {
         $this->configuration->assertLoaded();
 
         $request = RequestBuilder::post($this->getShippingGoodsPaymentURL($paymentId))

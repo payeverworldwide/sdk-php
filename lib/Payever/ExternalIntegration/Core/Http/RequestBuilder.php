@@ -1,15 +1,14 @@
 <?php
+
 /**
- * This class represents Request Builder
- *
- * PHP version 5.4
+ * PHP version 5.4 and 7
  *
  * @category  Http
  * @package   Payever\Core
  * @author    payever GmbH <service@payever.de>
  * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
- * @link      https://getpayever.com/developer/api-documentation/ Documentation
+ * @link      https://docs.payever.org/shopsystems/api/getting-started
  */
 
 namespace Payever\ExternalIntegration\Core\Http;
@@ -18,15 +17,6 @@ use Payever\ExternalIntegration\Core\Engine;
 
 /**
  * This class represents Request Builder
- *
- * PHP version 5.4
- *
- * @category  Http
- * @package   Payever\Core
- * @author    payever GmbH <service@payever.de>
- * @copyright 2017-2021 payever GmbH
- * @license   MIT <https://opensource.org/licenses/MIT>
- * @link      https://getpayever.com/developer/api-documentation/ Documentation
  */
 class RequestBuilder
 {
@@ -52,8 +42,6 @@ class RequestBuilder
     protected $responseEntity;
 
     /**
-     * RequestBuilder constructor
-     *
      * @param string $url
      * @param string $method
      */
@@ -430,7 +418,7 @@ class RequestBuilder
     {
         return Request::getMethods();
     }
-    
+
     /**
      * Sets Request Entity
      *

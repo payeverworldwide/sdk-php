@@ -1,12 +1,15 @@
 <?php
+
 /**
  * PHP version 5.4 and 7
  *
- * @package   Payever\Products
+ * @category  Enum
+ * @package   Payever\Payments
+ * @author    payever GmbH <service@payever.de>
  * @author    Andrey Puhovsky <a.puhovsky@gmail.com>
  * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
- * @link      https://getpayever.com/shopsystem/
+ * @link      https://docs.payever.org/shopsystems/api/getting-started
  */
 
 namespace Payever\ExternalIntegration\Payments\Enum;
@@ -15,14 +18,6 @@ use Payever\ExternalIntegration\Core\Base\EnumerableConstants;
 
 /**
  * This class represents Statuses
- *
- * PHP version 5.4 and 7
- *
- * @package   Payever\Payments
- * @author    Andrey Puhovsky <a.puhovsky@gmail.com>
- * @copyright 2017-2021 payever GmbH
- * @license   MIT <https://opensource.org/licenses/MIT>
- * @link      https://getpayever.com/shopsystem/
  */
 class Status extends EnumerableConstants
 {

@@ -1,11 +1,15 @@
 <?php
+
 /**
  * PHP version 5.4 and 7
  *
+ * @category  Command
  * @package   Payever\Plugins
+ * @author    payever GmbH <service@payever.de>
  * @author    Hennadii.Shymanskyi <gendosua@gmail.com>
  * @copyright 2017-2021 payever GmbH
  * @license   MIT <https://opensource.org/licenses/MIT>
+ * @link      https://docs.payever.org/shopsystems/api/getting-started
  */
 
 namespace Payever\ExternalIntegration\Plugins\Command;
@@ -27,6 +31,11 @@ class PluginCommandManager
     /** @var LoggerInterface */
     private $logger;
 
+    /**
+     * @param PluginsApiClientInterface $pluginsApiClient
+     * @param PluginCommandExecutorInterface $commandExecutor
+     * @param LoggerInterface $logger
+     */
     public function __construct(
         PluginsApiClientInterface $pluginsApiClient,
         PluginCommandExecutorInterface $commandExecutor,
@@ -87,7 +96,8 @@ class PluginCommandManager
             return false;
         }
 
-        if ($commandEntity->getName() === PluginCommandNameEnum::NOTIFY_NEW_PLUGIN_VERSION
+        if (
+            $commandEntity->getName() === PluginCommandNameEnum::NOTIFY_NEW_PLUGIN_VERSION
             && version_compare($commandEntity->getValue(), $infoProvider->getPluginVersion(), '<=')
         ) {
             return false;
