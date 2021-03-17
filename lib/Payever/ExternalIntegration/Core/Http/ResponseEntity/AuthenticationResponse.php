@@ -52,12 +52,10 @@ class AuthenticationResponse extends ResponseEntity
      */
     public function getRequired()
     {
-        $required = array(
+        return [
             'access_token',
             'refresh_token',
             'scope',
-        );
-
-        return $required;
+        ];
     }
 }

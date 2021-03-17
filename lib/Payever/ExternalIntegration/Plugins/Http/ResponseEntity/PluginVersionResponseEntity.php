@@ -22,6 +22,8 @@ use Payever\ExternalIntegration\Core\Http\ResponseEntity;
  * @method \DateTime getCreatedAt()
  * @method string getMinCmsVersion()
  * @method string getMaxCmsVersion()
+ *
+ * @SuppressWarnings(PHPMD.MissingImport)
  */
 class PluginVersionResponseEntity extends ResponseEntity
 {

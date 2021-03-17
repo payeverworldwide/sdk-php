@@ -20,7 +20,7 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
  *
  * @method string        getMerchantReference()
  * @method string        getId()
- * @method string        getStatu()
+ * @method string        getStatus()
  * @method string        getSpecificStatus()
  * @method string        getColorState()
  * @method string        getMerchantName()
@@ -53,10 +53,10 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
  * @method float         getDownPayment()
  * @method bool          getPaymentFeeAcceptedByMerchant()
  * @method bool          getPrefilled()
- * @method array         getActions()
+ * @method \stdClass[]   getActions()
  * @method self          setMerchantReference()
  * @method self          setId()
- * @method self          setStatu()
+ * @method self          setStatus()
  * @method self          setSpecificStatus()
  * @method self          setColorState()
  * @method self          setMerchantName()
@@ -84,6 +84,10 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
  * @method self          setPaymentFee()
  * @method self          setDownPayment()
  * @method self          setActions()
+ *
+ * @SuppressWarnings(PHPMD.LongVariable)
+ * @SuppressWarnings(PHPMD.ShortVariable)
+ * @SuppressWarnings(PHPMD.TooManyFields)
  */
 class GetTransactionResultEntity extends ResultEntity
 {

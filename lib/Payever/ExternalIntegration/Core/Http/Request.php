@@ -33,10 +33,10 @@ class Request implements RequestInterface
     protected $method = self::METHOD_GET;
 
     /** @var array $headers */
-    protected $headers = array();
+    protected $headers = [];
 
     /** @var array $params */
-    protected $params = array();
+    protected $params = [];
 
     /** @var string $protocolVersion */
     protected $protocolVersion = '1.1';
@@ -84,7 +84,7 @@ class Request implements RequestInterface
      */
     public function getHeaders()
     {
-        $prettyHeaders = array();
+        $prettyHeaders = [];
 
         foreach ($this->headers as $name => $value) {
             $prettyHeaders[] = sprintf('%s: %s', $name, $value);
@@ -98,7 +98,7 @@ class Request implements RequestInterface
      */
     public function cleanHeaders()
     {
-        $this->headers = array();
+        $this->headers = [];
 
         return $this;
     }
@@ -166,7 +166,7 @@ class Request implements RequestInterface
      */
     public function cleanParams()
     {
-        $this->params = array();
+        $this->params = [];
 
         return $this;
     }
@@ -292,10 +292,10 @@ class Request implements RequestInterface
      */
     public static function getMethods()
     {
-        return array(
+        return [
             self::METHOD_GET,
             self::METHOD_POST,
-        );
+        ];
     }
 
     /**

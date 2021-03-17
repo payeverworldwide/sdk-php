@@ -19,10 +19,10 @@ use Payever\ExternalIntegration\Core\Http\RequestBuilder;
 use Payever\ExternalIntegration\Payments\Base\PaymentsApiClientInterface;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\AuthorizePaymentRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\CreatePaymentRequest;
-use Payever\ExternalIntegration\Payments\Http\RequestEntity\SubmitPaymentRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\ListPaymentsRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\RefundPaymentRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\ShippingGoodsPaymentRequest;
+use Payever\ExternalIntegration\Payments\Http\RequestEntity\SubmitPaymentRequest;
 use Payever\ExternalIntegration\Payments\Http\ResponseEntity\AuthorizePaymentResponse;
 use Payever\ExternalIntegration\Payments\Http\ResponseEntity\CancelPaymentResponse;
 use Payever\ExternalIntegration\Payments\Http\ResponseEntity\CollectPaymentsResponse;
@@ -40,6 +40,8 @@ use Payever\ExternalIntegration\Payments\Http\ResponseEntity\ShippingGoodsPaymen
 
 /**
  * Class represents Payever Payments API Connector
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInterface
 {
@@ -161,11 +163,9 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
         $this->configuration->assertLoaded();
 
         $request = RequestBuilder::post($this->getRefundPaymentURL($paymentId))
-            ->setParams(
-                array(
-                    'amount' => $amount,
-                )
-            )
+            ->setParams([
+                'amount' => $amount,
+            ])
             ->addRawHeader(
                 $this->getToken(OauthToken::SCOPE_PAYMENT_ACTIONS)->getAuthorizationString()
             )
@@ -181,7 +181,7 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
      *
      * @throws \Exception
      */
-    public function authorizePaymentRequest($paymentId, AuthorizePaymentRequest $authorizePaymentRequest = null)
+    public function authorizePaymentRequest($paymentId, AuthorizePaymentRequest $paymentRequest = null)
     {
         $this->configuration->assertLoaded();
 
@@ -189,7 +189,7 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
             ->addRawHeader(
                 $this->getToken(OauthToken::SCOPE_PAYMENT_ACTIONS)->getAuthorizationString()
             )
-            ->setRequestEntity($authorizePaymentRequest ?: new AuthorizePaymentRequest())
+            ->setRequestEntity($paymentRequest ?: new AuthorizePaymentRequest())
             ->setResponseEntity(new AuthorizePaymentResponse())
             ->build();
 
@@ -266,7 +266,7 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
      */
     public function shippingGoodsPaymentRequest(
         $paymentId,
-        ShippingGoodsPaymentRequest $shippingGoodsPaymentRequest = null
+        ShippingGoodsPaymentRequest $paymentRequest = null
     ) {
         $this->configuration->assertLoaded();
 
@@ -274,7 +274,7 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
             ->addRawHeader(
                 $this->getToken(OauthToken::SCOPE_PAYMENT_ACTIONS)->getAuthorizationString()
             )
-            ->setRequestEntity($shippingGoodsPaymentRequest ?: new ShippingGoodsPaymentRequest())
+            ->setRequestEntity($paymentRequest ?: new ShippingGoodsPaymentRequest())
             ->setResponseEntity(new ShippingGoodsPaymentResponse())
             ->build();
 
@@ -324,7 +324,7 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
      *
      * @throws \Exception
      */
-    public function listPaymentOptionsRequest($params = array(), $businessUuid = '', $channel = '')
+    public function listPaymentOptionsRequest($params = [], $businessUuid = '', $channel = '')
     {
         $businessUuid = $businessUuid ?: $this->getConfiguration()->getBusinessUuid();
         $channel = $channel ?: $this->getConfiguration()->getChannelSet();
@@ -341,7 +341,7 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
      *
      * @throws \Exception
      */
-    public function listPaymentOptionsWithVariantsRequest($params = array(), $businessUuid = '', $channel = '')
+    public function listPaymentOptionsWithVariantsRequest($params = [], $businessUuid = '', $channel = '')
     {
         $businessUuid = $businessUuid ?: $this->getConfiguration()->getBusinessUuid();
         $channel = $channel ?: $this->getConfiguration()->getChannelSet();
@@ -519,7 +519,7 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
      *
      * @return string
      */
-    protected function getListPaymentOptionsURL($businessUuid, $channel, $params = array())
+    protected function getListPaymentOptionsURL($businessUuid, $channel, $params = [])
     {
         return $this->getBaseUrl()
             . sprintf(self::SUB_URL_LIST_PAYMENT_OPTIONS, $businessUuid, $channel)
@@ -535,7 +535,7 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
      *
      * @return string
      */
-    protected function getListPaymentOptionsVariantsURL($businessUuid, $channel, $params = array())
+    protected function getListPaymentOptionsVariantsURL($businessUuid, $channel, $params = [])
     {
         return $this->getBaseUrl()
             . sprintf(self::SUB_URL_LIST_PAYMENT_OPTIONS_VARIANTS, $businessUuid, $channel)

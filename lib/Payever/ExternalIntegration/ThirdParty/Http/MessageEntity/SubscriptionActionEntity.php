@@ -46,10 +46,10 @@ class SubscriptionActionEntity extends MessageEntity
      */
     public function getRequired()
     {
-        return array(
+        return [
             'name',
             'url',
             'method',
-        );
+        ];
     }
 }

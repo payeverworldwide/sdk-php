@@ -28,7 +28,7 @@ class RetrieveApiCallResponse extends ResponseEntity
     public function load($data)
     {
         if (!is_array($data) || !isset($data['call'])) {
-            $data = array('call' => $data);
+            $data = ['call' => $data];
         }
 
         return parent::load($data);

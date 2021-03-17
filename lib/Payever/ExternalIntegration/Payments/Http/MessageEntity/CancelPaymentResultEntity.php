@@ -56,6 +56,9 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
  * @method self                 setOtherFees()
  * @method self                 setPayeverCommission()
  * @method self                 setTotal()
+ *
+ * @SuppressWarnings(PHPMD.ShortVariable)
+ * @SuppressWarnings(PHPMD.TooManyFields)
  */
 class CancelPaymentResultEntity extends ResultEntity
 {

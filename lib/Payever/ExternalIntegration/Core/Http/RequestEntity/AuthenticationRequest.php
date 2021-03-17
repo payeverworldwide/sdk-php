@@ -29,6 +29,8 @@ use Payever\ExternalIntegration\Core\Http\RequestEntity;
  * @method self   setClientSecret(string $secret)
  * @method self   setGrantType(string $type)
  * @method self   setRefreshToken(string $scope)
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 class AuthenticationRequest extends RequestEntity
 {
@@ -52,12 +54,12 @@ class AuthenticationRequest extends RequestEntity
      */
     public function getRequired()
     {
-        $required = array(
+        $required = [
             'scope',
             'client_id',
             'client_secret',
             'grant_type',
-        );
+        ];
 
         if ($this->grantType == OauthToken::GRAND_TYPE_REFRESH_TOKEN) {
             $required[] = 'refresh_token';

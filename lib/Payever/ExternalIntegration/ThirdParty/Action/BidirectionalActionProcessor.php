@@ -18,6 +18,9 @@ use Payever\ExternalIntegration\Inventory\Http\RequestEntity\InventoryChangedReq
 use Payever\ExternalIntegration\Products\Http\RequestEntity\ProductRemovedRequestEntity;
 use Payever\ExternalIntegration\Products\Http\RequestEntity\ProductRequestEntity;
 
+/**
+ * @SuppressWarnings(PHPMD.LongVariable)
+ */
 class BidirectionalActionProcessor
 {
     /** @var InwardActionProcessor */

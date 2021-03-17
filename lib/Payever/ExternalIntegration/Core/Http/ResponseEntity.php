@@ -24,6 +24,8 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
  * @method string       getError()
  * @method string       getErrorDescription()
  * @method ResultEntity getResult()
+ *
+ * @SuppressWarnings(PHPMD.NumberOfChildren)
  */
 class ResponseEntity extends MessageEntity
 {

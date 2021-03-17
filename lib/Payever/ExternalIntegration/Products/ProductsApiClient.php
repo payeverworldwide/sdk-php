@@ -135,10 +135,10 @@ class ProductsApiClient extends CommonProductsThirdPartyApiClient implements Pro
                 $this->configuration->getLogger()
                     ->critical(
                         'Product failed to export',
-                        array(
+                        [
                             'sku' => $productRequestEntity->getSku(),
                             'exception' => $exception->getMessage(),
-                        )
+                        ]
                     );
             }
         }

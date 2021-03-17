@@ -25,6 +25,8 @@ use Payever\ExternalIntegration\Plugins\Enum\PluginCommandNameEnum;
  * @method string|null getMinCmsVersion()
  * @method string|null getMaxCmsVersion()
  * @method array getMetadata()
+ *
+ * @SuppressWarnings(PHPMD.ShortVariable)
  */
 class PluginCommandEntity extends MessageEntity
 {
@@ -40,6 +42,7 @@ class PluginCommandEntity extends MessageEntity
     /** @var string */
     protected $value;
 
+    /** @var string */
     protected $channelType;
 
     /** @var string */
@@ -53,7 +56,7 @@ class PluginCommandEntity extends MessageEntity
      *
      * @var array
      */
-    protected $metadata = array();
+    protected $metadata = [];
 
     /**
      * @param string $key

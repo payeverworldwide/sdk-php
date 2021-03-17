@@ -53,9 +53,9 @@ class InventoryChangedEntity extends MessageEntity
      */
     public function getRequired()
     {
-        return array(
+        return [
             'sku',
             'stock',
-        );
+        ];
     }
 }

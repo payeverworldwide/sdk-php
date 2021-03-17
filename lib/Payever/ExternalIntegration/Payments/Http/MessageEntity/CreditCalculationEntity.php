@@ -56,6 +56,8 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method self   setPrice()
  * @method self   setRatePa()
  * @method self   setTotalAmount()
+ *
+ * @SuppressWarnings(PHPMD.TooManyFields)
  */
 class CreditCalculationEntity extends MessageEntity
 {

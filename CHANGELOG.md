@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.9.0]
+
+### Added
+- Method `setHttpClientRequestFailureLogLevel($logLevel = LogLevel::CRITICAL): self` in `Payever\ExternalIntegration\Core\CommonApiClient`
+- Method `setHttpClientRequestFailureLogLevelOnce($logLevel): self` in `Payever\ExternalIntegration\Core\CommonApiClient`
+- Method `setLogLevel($logLevel = LogLevel::CRITICAL): void` in `Payever\ExternalIntegration\Core\Http\Client\CurlClient`
+- Method `setLogLevelOnce($logLevel): void` in `Payever\ExternalIntegration\Core\Http\Client\CurlClient`
+### Changed
+- Method `execute` in `Payever\ExternalIntegration\Core\Http\Client\CurlClient` to log exception with configured log level 
+- Minor PHPDoc updates
+- Short array syntax
+
 ## [2.8.0]
 
 ### Added

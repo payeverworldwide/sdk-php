@@ -17,6 +17,8 @@ use Payever\ExternalIntegration\Core\Helper\StringHelper;
 
 /**
  * Class implements and describes functions of Message Entity
+ * @SuppressWarnings(PHPMD.NumberOfChildren)
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 abstract class MessageEntity implements MessageEntityInterface, \ArrayAccess
 {
@@ -59,10 +61,11 @@ abstract class MessageEntity implements MessageEntityInterface, \ArrayAccess
 
     /**
      * {@inheritdoc}
+     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function toArray($object = null)
     {
-        $result = array();
+        $result = [];
 
         if ($object === null) {
             $object = get_object_vars($this);
@@ -96,7 +99,7 @@ abstract class MessageEntity implements MessageEntityInterface, \ArrayAccess
      */
     public function getRequired()
     {
-        return array();
+        return [];
     }
 
     /**

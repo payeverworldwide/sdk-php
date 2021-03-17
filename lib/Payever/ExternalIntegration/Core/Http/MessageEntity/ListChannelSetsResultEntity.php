@@ -22,6 +22,8 @@ namespace Payever\ExternalIntegration\Core\Http\MessageEntity;
  * @method bool               getEnabled()
  * @method self               setId()
  * @method self               setChannelType()
+ *
+ * @SuppressWarnings(PHPMD.ShortVariable)
  */
 class ListChannelSetsResultEntity extends ResultEntity
 {
@@ -44,7 +46,7 @@ class ListChannelSetsResultEntity extends ResultEntity
      */
     public function setChannelSets($channelSets)
     {
-        $this->channelSets = array();
+        $this->channelSets = [];
 
         foreach ($channelSets as $channelSet) {
             $this->channelSets[] = new ChannelSetEntity($channelSet);

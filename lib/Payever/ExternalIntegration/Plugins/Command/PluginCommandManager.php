@@ -52,13 +52,14 @@ class PluginCommandManager
      * @param int|null $lastCommandTimestamp
      *
      * @throws \Exception - bubbles up anything thrown by API or CommandExecutor
+     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function executePluginCommands($lastCommandTimestamp = null)
     {
         $commandsResponse = $this->pluginsApiClient->getCommands($lastCommandTimestamp);
-        /** @var CommandsResponseEntity $commandsResponseEntity */
-        $commandsResponseEntity = $commandsResponse->getResponseEntity();
-        $commandsList = $commandsResponseEntity->getCommands();
+        /** @var CommandsResponseEntity $responseEntity */
+        $responseEntity = $commandsResponse->getResponseEntity();
+        $commandsList = $responseEntity->getCommands();
 
         foreach ($commandsList as $commandEntity) {
             if ($this->isCommandSupported($commandEntity)) {

@@ -20,12 +20,15 @@ use Payever\ExternalIntegration\Products\Http\RequestEntity\ProductRemovedReques
 use Payever\ExternalIntegration\Products\Http\RequestEntity\ProductRequestEntity;
 use Payever\ExternalIntegration\ThirdParty\Enum\ActionEnum;
 
+/**
+ * @SuppressWarnings(PHPMD.MissingImport)
+ */
 class ActionPayload
 {
     /** @var string */
     protected $action;
 
-    /** @var string|array */
+    /** @var bool|string|array */
     protected $rawPayload;
 
     /**
@@ -43,6 +46,8 @@ class ActionPayload
      *
      * @throws \UnexpectedValueException when can't fetch request payload
      * @throws \RuntimeException when can't map action to payload entity
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function getPayloadEntity()
     {

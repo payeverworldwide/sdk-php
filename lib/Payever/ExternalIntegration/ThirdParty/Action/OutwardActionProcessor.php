@@ -23,6 +23,10 @@ use Payever\ExternalIntegration\Products\ProductsApiClient;
 use Payever\ExternalIntegration\ThirdParty\Enum\ActionEnum;
 use Psr\Log\LoggerInterface;
 
+/**
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.MissingImport)
+ */
 class OutwardActionProcessor
 {
     /** @var ProductsApiClient */

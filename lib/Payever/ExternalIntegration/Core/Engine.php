@@ -14,9 +14,10 @@
 namespace Payever\ExternalIntegration\Core;
 
 // @codeCoverageIgnoreStart
-define('PEI_CORE_VERSION', '2.8.0');
+// phpcs:disable PSR1.Files.SideEffects
+define('PEI_CORE_VERSION', '2.9.0');
 define('PEI_CORE_MAJOR_VERSION', 2);
-define('PEI_CORE_MINOR_VERSION', 8);
+define('PEI_CORE_MINOR_VERSION', 9);
 define('PEI_CORE_RELEASE_VERSION', 0);
 
 define('PEI_NAMESPACE', 'Payever\ExternalIntegration');
@@ -25,6 +26,7 @@ if (version_compare(PHP_VERSION, '5.4.0', '<')) {
     throw new \RuntimeException('payever SDK requires PHP version 5.4 or higher.');
 }
 // @codeCoverageIgnoreEnd
+// phpcs:enable PSR1.Files.SideEffects
 
 /**
  * Class for Payever API Main Engine

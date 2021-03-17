@@ -29,6 +29,8 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method self setName()
  * @method self setSlug()
  * @method self setDiscr()
+ *
+ * @SuppressWarnings(PHPMD.ShortVariable)
  */
 class ChannelSetEntity extends MessageEntity
 {

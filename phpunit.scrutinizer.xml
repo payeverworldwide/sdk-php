@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/6.5/phpunit.xsd"
+         addUncoveredFilesFromWhitelist="true"
+         verbose="false">
+    <testsuites>
+        <testsuite name="Integration">
+            <directory phpVersion="5.4.0">tests/Integration/Payever</directory>
+        </testsuite>
+        <testsuite name="Unit">
+            <directory phpVersion="5.4.0">tests/Unit</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">lib</directory>
+        </whitelist>
+    </filter>
+</phpunit>

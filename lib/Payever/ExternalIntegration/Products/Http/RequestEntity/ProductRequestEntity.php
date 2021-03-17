@@ -58,6 +58,8 @@ use Payever\ExternalIntegration\Products\Http\MessageEntity\ProductVariantOption
  * @method self setBarcode(string $barcode)
  * @method self setVatRate(float $vatRate)
  * @method self setType(string $type)
+ *
+ * @SuppressWarnings(PHPMD.TooManyFields)
  */
 class ProductRequestEntity extends RequestEntity
 {
@@ -72,10 +74,10 @@ class ProductRequestEntity extends RequestEntity
     protected $externalId;
 
     /** @var array */
-    protected $images = array();
+    protected $images = [];
 
     /** @var array */
-    protected $imagesUrl = array();
+    protected $imagesUrl = [];
 
     /** @var bool */
     protected $active = true;
@@ -87,7 +89,7 @@ class ProductRequestEntity extends RequestEntity
     protected $businessUuid;
 
     /** @var ProductCategoryEntity[]|string[] */
-    protected $categories = array();
+    protected $categories = [];
 
     /** @var string */
     protected $currency;
@@ -120,7 +122,7 @@ class ProductRequestEntity extends RequestEntity
     protected $vatRate;
 
     /** @var self[]|array */
-    protected $variants = array();
+    protected $variants = [];
 
     /**
      * Parent product id for variants.
@@ -152,7 +154,7 @@ class ProductRequestEntity extends RequestEntity
      *
      * @var ProductVariantOptionEntity[]|array
      */
-    protected $options = array();
+    protected $options = [];
 
     /**
      * @param string $updatedAt

@@ -21,6 +21,9 @@ use Payever\ExternalIntegration\Core\Exception\ConfigurationException;
 use Payever\ExternalIntegration\Core\Logger\NullLogger;
 use Psr\Log\LoggerInterface;
 
+/**
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
 class ClientConfiguration implements ClientConfigurationInterface
 {
     /** @var string */
@@ -143,7 +146,7 @@ class ClientConfiguration implements ClientConfigurationInterface
      *
      * @param mixed $clientId
      *
-     * @return self;
+     * @return self
      */
     public function setClientId($clientId)
     {
@@ -202,11 +205,10 @@ class ClientConfiguration implements ClientConfigurationInterface
      */
     public function setChannelSet($channelSet = null)
     {
-        if (in_array($channelSet, ChannelSet::enum())) {
-            $this->channelSet = $channelSet;
-        } else {
+        if (!in_array($channelSet, ChannelSet::enum())) {
             throw new ConfigurationException(sprintf('Channel Set `%s` is not valid', $channelSet));
         }
+        $this->channelSet = $channelSet;
 
         return $this;
     }

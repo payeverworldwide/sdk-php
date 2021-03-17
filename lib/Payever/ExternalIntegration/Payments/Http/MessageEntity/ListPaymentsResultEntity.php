@@ -46,6 +46,9 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
  * @method self                 setCurrency()
  * @method self                 setFee()
  * @method self                 setTotal()
+ *
+ * @SuppressWarnings(PHPMD.ShortVariable)
+ * @SuppressWarnings(PHPMD.TooManyFields)
  */
 class ListPaymentsResultEntity extends ResultEntity
 {

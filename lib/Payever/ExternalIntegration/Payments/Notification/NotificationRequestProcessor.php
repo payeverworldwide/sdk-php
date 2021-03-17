@@ -18,6 +18,9 @@ use Payever\ExternalIntegration\Core\Lock\LockInterface;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\NotificationRequestEntity;
 use Psr\Log\LoggerInterface;
 
+/**
+ * @SuppressWarnings(PHPMD.MissingImport)
+ */
 class NotificationRequestProcessor
 {
     const NOTIFICATION_LOCK_SECONDS = 30;

@@ -24,6 +24,8 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\RetrievePaymentResul
  * @method setNotificationTypesAvailable(array $notificationTypes)
  * @method \DateTime|false getCreatedAt()
  * @method RetrievePaymentResultEntity getPayment()
+ *
+ * @SuppressWarnings(PHPMD.LongVariable)
  */
 class NotificationRequestEntity extends RequestEntity
 {

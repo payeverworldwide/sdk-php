@@ -32,10 +32,10 @@ class NotificationResult
     protected $currentOrderStatus;
 
     /** @var string[] */
-    protected $messages = array();
+    protected $messages = [];
 
     /** @var string[] */
-    protected $errors = array();
+    protected $errors = [];
 
     /**
      * @param string $orderId
@@ -132,7 +132,7 @@ class NotificationResult
      */
     public function __toString()
     {
-        $pieces = array();
+        $pieces = [];
 
         if ($this->isFailed()) {
             $pieces[] = 'FAILED';

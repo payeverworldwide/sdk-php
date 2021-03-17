@@ -26,7 +26,7 @@ class PaymentOptionConverter
      */
     public static function convertPaymentOptionVariants(array $poWithVariants)
     {
-        $result = array();
+        $result = [];
 
         foreach ($poWithVariants as $poWithVariant) {
             $result = array_merge($result, $poWithVariant->toConvertedPaymentOptions());

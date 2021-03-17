@@ -106,18 +106,18 @@ class InventoryApiClient extends CommonProductsThirdPartyApiClient implements In
 
         $successCount = 0;
 
-        foreach ($inventoryIterator as $inventoryCreatedRequestEntity) {
+        foreach ($inventoryIterator as $requestEntity) {
             try {
-                $inventoryCreatedRequestEntity->setExternalId($externalId);
-                $this->createInventory($inventoryCreatedRequestEntity);
+                $requestEntity->setExternalId($externalId);
+                $this->createInventory($requestEntity);
             } catch (\Exception $exception) {
                 $this->configuration->getLogger()
                     ->critical(
                         'Inventory item failed to export',
-                        array(
-                            'sku' => $inventoryCreatedRequestEntity->getSku(),
+                        [
+                            'sku' => $requestEntity->getSku(),
                             'exception' => $exception->getMessage(),
-                        )
+                        ]
                     );
             }
         }

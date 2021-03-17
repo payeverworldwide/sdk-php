@@ -89,6 +89,10 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method self                    setFrontendCancelUrl()
  * @method self                    setTransactionId()
  * @method self                    setRedirectUrl()
+ *
+ * @SuppressWarnings(PHPMD.LongVariable)
+ * @SuppressWarnings(PHPMD.ShortVariable)
+ * @SuppressWarnings(PHPMD.TooManyFields)
  */
 class PaymentDetailsEntity extends MessageEntity
 {

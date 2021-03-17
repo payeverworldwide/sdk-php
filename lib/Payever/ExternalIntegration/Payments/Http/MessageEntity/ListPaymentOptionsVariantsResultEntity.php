@@ -20,7 +20,7 @@ namespace Payever\ExternalIntegration\Payments\Http\MessageEntity;
 class ListPaymentOptionsVariantsResultEntity extends AbstractPaymentOptionEntity
 {
     /** @var array|PaymentOptionVariantEntity[] */
-    protected $variants = array();
+    protected $variants = [];
 
     /**
      * @param array $rawVariants
@@ -41,7 +41,7 @@ class ListPaymentOptionsVariantsResultEntity extends AbstractPaymentOptionEntity
      */
     public function toConvertedPaymentOptions()
     {
-        $result = array();
+        $result = [];
         $baseData = $this->toArray();
 
         foreach ($this->getVariants() as $variant) {

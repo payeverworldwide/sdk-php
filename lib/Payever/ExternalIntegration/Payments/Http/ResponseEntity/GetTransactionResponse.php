@@ -27,7 +27,7 @@ class GetTransactionResponse extends ResponseEntity
     public function load($data)
     {
         if (!is_array($data) || !isset($data['result'])) {
-            $data = array('result' => $data);
+            $data = ['result' => $data];
         }
 
         return parent::load($data);

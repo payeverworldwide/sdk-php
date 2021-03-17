@@ -44,6 +44,8 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method self   setFirstName()
  * @method self   setLastName()
  * @method self   setType()
+ *
+ * @SuppressWarnings(PHPMD.ShortVariable)
  */
 class AddressEntity extends MessageEntity
 {

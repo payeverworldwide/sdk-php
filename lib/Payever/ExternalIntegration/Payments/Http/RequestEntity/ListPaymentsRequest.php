@@ -30,6 +30,8 @@ use Payever\ExternalIntegration\Payments\Enum\Status;
  * @method self       setCurrency(string $currency)
  * @method self       setState(string $state)
  * @method self       setLimit(int|string $limit)
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 class ListPaymentsRequest extends RequestEntity
 {

@@ -26,10 +26,10 @@ class ListChannelSetsResponse extends ResponseEntity
      */
     public function getRequired()
     {
-        return array(
+        return [
             'call',
             'result',
-        );
+        ];
     }
 
     /**
@@ -37,7 +37,7 @@ class ListChannelSetsResponse extends ResponseEntity
      */
     public function setResult($result)
     {
-        $this->result = array();
+        $this->result = [];
         foreach ($result as $item) {
             $this->result[] = new ListChannelSetsResultEntity($item);
         }

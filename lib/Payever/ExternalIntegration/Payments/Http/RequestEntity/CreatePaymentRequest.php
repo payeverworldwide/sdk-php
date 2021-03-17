@@ -73,6 +73,8 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\CartItemEntity;
  * @method self                   setPendingUrl(string $url)
  * @method self                   setXFrameHost(string $host)
  * @method self                   setPluginVersion(string $version)
+ *
+ * @SuppressWarnings(PHPMD.TooManyFields)
  */
 class CreatePaymentRequest extends RequestEntity
 {
@@ -165,18 +167,17 @@ class CreatePaymentRequest extends RequestEntity
      */
     public function getRequired()
     {
-        $required = array(
+        return [
             'channel',
             'amount',
             'order_id',
             'currency',
-        );
-
-        return $required;
+        ];
     }
 
     /**
      * {@inheritdoc}
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     public function isValid()
     {
@@ -219,7 +220,7 @@ class CreatePaymentRequest extends RequestEntity
             return $this;
         }
 
-        $this->cart = array();
+        $this->cart = [];
 
         foreach ($cart as $item) {
             $this->cart[] = new CartItemEntity($item);

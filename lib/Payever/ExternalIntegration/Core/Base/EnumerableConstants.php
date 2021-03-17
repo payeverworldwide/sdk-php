@@ -14,6 +14,9 @@
 
 namespace Payever\ExternalIntegration\Core\Base;
 
+/**
+ * @SuppressWarnings(PHPMD.MissingImport)
+ */
 abstract class EnumerableConstants
 {
     /**
@@ -24,9 +27,8 @@ abstract class EnumerableConstants
     public static function enum()
     {
         $ref = new \ReflectionClass(new static());
-        $constants = $ref->getConstants();
 
-        return $constants;
+        return $ref->getConstants();
     }
 
     /**

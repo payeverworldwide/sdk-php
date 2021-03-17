@@ -27,7 +27,7 @@ class GetCurrenciesResponse extends ResponseEntity
     public function load($data)
     {
         if (!is_array($data) || !isset($data['result'])) {
-            $data = array('result' => $data);
+            $data = ['result' => $data];
         }
 
         return parent::load($data);
@@ -38,9 +38,9 @@ class GetCurrenciesResponse extends ResponseEntity
      */
     public function getRequired()
     {
-        return array(
+        return [
             'result',
-        );
+        ];
     }
 
     /**
@@ -48,7 +48,7 @@ class GetCurrenciesResponse extends ResponseEntity
      */
     public function setResult($result)
     {
-        $this->result = array();
+        $this->result = [];
 
         foreach ($result as $item) {
             $entity = new GetCurrenciesResultEntity($item);

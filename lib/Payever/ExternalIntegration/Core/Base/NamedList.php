@@ -19,7 +19,7 @@ namespace Payever\ExternalIntegration\Core\Base;
 class NamedList
 {
     /** @var array $list */
-    protected $list = array();
+    protected $list = [];
 
     /**
      * Adds an item to the list
@@ -57,7 +57,7 @@ class NamedList
      */
     public function clear()
     {
-        $this->list = array();
+        $this->list = [];
 
         return $this;
     }

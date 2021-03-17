@@ -41,6 +41,7 @@ interface ActionDeciderInterface
      *
      * @return bool
      * @throws \Exception when $throwException is true and target action is not allowed
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
     public function isActionAllowed($paymentId, $transactionAction, $throwException = true);
 }

@@ -73,9 +73,9 @@ class PluginRegistryRequestEntity extends RequestEntity
      */
     public function getRequired()
     {
-        return array(
+        return [
             'channel',
             'host',
-        );
+        ];
     }
 }

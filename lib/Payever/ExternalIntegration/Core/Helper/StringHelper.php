@@ -15,6 +15,7 @@ namespace Payever\ExternalIntegration\Core\Helper;
 
 /**
  * This class represents helper functions for strings
+ * @SuppressWarnings(PHPMD.MissingImport)
  */
 class StringHelper
 {
@@ -37,6 +38,7 @@ class StringHelper
      * @param bool   $firstLetter
      *
      * @return string
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
     public static function camelize($name, $firstLetter = false)
     {
@@ -52,7 +54,7 @@ class StringHelper
     /**
      * Returns decoded JSON
      *
-     * @param array|\stdClass|string $object
+     * @param array|object|\stdClass|string $object
      *
      * @return bool|mixed
      * @throws \UnexpectedValueException
@@ -75,8 +77,8 @@ class StringHelper
 
         if (!empty($result)) {
             return $result;
-        } else {
-            return false;
         }
+
+        return false;
     }
 }

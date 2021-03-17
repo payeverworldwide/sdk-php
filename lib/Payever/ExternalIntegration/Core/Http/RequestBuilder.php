@@ -17,6 +17,8 @@ use Payever\ExternalIntegration\Core\Engine;
 
 /**
  * This class represents Request Builder
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class RequestBuilder
 {
@@ -27,10 +29,10 @@ class RequestBuilder
     protected $method = Request::METHOD_GET;
 
     /** @var array $headers */
-    protected $headers = array();
+    protected $headers = [];
 
     /** @var array $params */
-    protected $params = array();
+    protected $params = [];
 
     /** @var string $protocolVersion */
     protected $protocolVersion = '1.1';
@@ -213,7 +215,7 @@ class RequestBuilder
      */
     public function cleanHeaders()
     {
-        $this->headers = array();
+        $this->headers = [];
 
         return $this;
     }
@@ -306,7 +308,7 @@ class RequestBuilder
      */
     public function cleanParams()
     {
-        $this->params = array();
+        $this->params = [];
 
         return $this;
     }
@@ -496,8 +498,8 @@ class RequestBuilder
      */
     public function getDefaultHeaders()
     {
-        return array(
+        return [
             'User-agent' => sprintf('payever PHP SDK v%s / cURL client', Engine::SDK_VERSION),
-        );
+        ];
     }
 }

@@ -29,6 +29,9 @@ use Payever\ExternalIntegration\Plugins\Http\ResponseEntity\CommandsResponseEnti
 use Payever\ExternalIntegration\Plugins\Http\ResponseEntity\PluginRegistryResponseEntity;
 use Payever\ExternalIntegration\Plugins\Http\ResponseEntity\PluginVersionResponseEntity;
 
+/**
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
 class PluginsApiClient extends CommonApiClient implements PluginsApiClientInterface
 {
     const SUB_URL_REGISTER = 'api/plugin/registry/register';
@@ -153,6 +156,7 @@ class PluginsApiClient extends CommonApiClient implements PluginsApiClientInterf
      * @param bool $extended whether we should build entity for Register request
      *
      * @return PluginRegistryRequestEntity
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
     private function buildRegistryRequestEntity($extended = false)
     {

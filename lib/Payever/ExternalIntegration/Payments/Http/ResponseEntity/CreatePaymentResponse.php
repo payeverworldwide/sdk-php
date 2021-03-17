@@ -34,12 +34,10 @@ class CreatePaymentResponse extends ResponseEntity
      */
     public function getRequired()
     {
-        $required = array(
+        return [
             'call',
             'redirect_url',
-        );
-
-        return $required;
+        ];
     }
 
     /**

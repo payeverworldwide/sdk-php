@@ -50,6 +50,9 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
  * @method self                             setThumbnail1()
  * @method self                             setThumbnail2()
  * @method self                             setThumbnail3()
+ *
+ * @SuppressWarnings(PHPMD.ShortVariable)
+ * @SuppressWarnings(PHPMD.TooManyFields)
  */
 abstract class AbstractPaymentOptionEntity extends ResultEntity
 {
@@ -144,7 +147,7 @@ abstract class AbstractPaymentOptionEntity extends ResultEntity
      */
     public function setTranslations($translations)
     {
-        $this->translations = array();
+        $this->translations = [];
 
         foreach ($translations as $item) {
             $this->translations[] = new PaymentOptionTranslationEntity($item);

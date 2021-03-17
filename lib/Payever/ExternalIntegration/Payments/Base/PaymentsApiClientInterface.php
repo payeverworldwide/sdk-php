@@ -88,11 +88,11 @@ interface PaymentsApiClientInterface extends CommonApiClientInterface
      * @link https://getpayever.com/developer/api-documentation/#authorize-payment Documentation
      *
      * @param string $paymentId Payment ID
-     * @param AuthorizePaymentRequest $authorizePaymentRequest
+     * @param AuthorizePaymentRequest $paymentRequest
      *
      * @return ResponseInterface
      */
-    public function authorizePaymentRequest($paymentId, AuthorizePaymentRequest $authorizePaymentRequest);
+    public function authorizePaymentRequest($paymentId, AuthorizePaymentRequest $paymentRequest);
 
     /**
      * Requests to remind customer to pay the bill
@@ -133,11 +133,11 @@ interface PaymentsApiClientInterface extends CommonApiClientInterface
      * @link https://docs.payever.org/shopsystems/api/getting-started/api/capture-payments/shipping-goods Documentation
      *
      * @param string $paymentId  Payment ID
-     * @param ShippingGoodsPaymentRequest $shippingGoodsPaymentRequest
+     * @param ShippingGoodsPaymentRequest $paymentRequest
      *
      * @return ResponseInterface
      */
-    public function shippingGoodsPaymentRequest($paymentId, ShippingGoodsPaymentRequest $shippingGoodsPaymentRequest);
+    public function shippingGoodsPaymentRequest($paymentId, ShippingGoodsPaymentRequest $paymentRequest);
 
     /**
      * Sends a request to cancel non-completed payment
@@ -164,7 +164,7 @@ interface PaymentsApiClientInterface extends CommonApiClientInterface
     /**
      * Returns payment options
      *
-     * @link https://docs.payever.org/shopsystems/api/getting-started/api/display-list&or&options/list-payment-options Documentation
+     * @link https://docs.payever.org/shopsystems/api/getting-started/api/display-list&or&options/list-payment-options
      *
      * @param array  $params   Query part of , available params: _locale, _currency
      * @param string $businessUuid  Business UUID
@@ -172,12 +172,12 @@ interface PaymentsApiClientInterface extends CommonApiClientInterface
      *
      * @return ResponseInterface
      */
-    public function listPaymentOptionsRequest($params = array(), $businessUuid = '', $channel = '');
+    public function listPaymentOptionsRequest($params = [], $businessUuid = '', $channel = '');
 
     /**
      * Same as listPaymentOptionsRequest, additionally contains list of payment option variants
      *
-     * @link https://docs.payever.org/shopsystems/api/getting-started/api/display-list&or&options/list-variant-options Documentation
+     * @link https://docs.payever.org/shopsystems/api/getting-started/api/display-list&or&options/list-variant-options
      *
      * @param array  $params   Query part of , available params: _locale, _currency
      * @param string $businessUuid  Business UUID
@@ -185,7 +185,7 @@ interface PaymentsApiClientInterface extends CommonApiClientInterface
      *
      * @return ResponseInterface
      */
-    public function listPaymentOptionsWithVariantsRequest($params = array(), $businessUuid = '', $channel = '');
+    public function listPaymentOptionsWithVariantsRequest($params = [], $businessUuid = '', $channel = '');
 
     /**
      * Returns transaction

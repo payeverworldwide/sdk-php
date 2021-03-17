@@ -38,7 +38,7 @@ class ActionResult extends MessageEntity
     protected $skippedCount = 0;
 
     /** @var array */
-    protected $errors = array();
+    protected $errors = [];
 
     /**
      * @return static

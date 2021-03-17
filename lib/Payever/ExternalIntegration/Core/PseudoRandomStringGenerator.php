@@ -14,6 +14,9 @@
 
 namespace Payever\ExternalIntegration\Core;
 
+/**
+ * @SuppressWarnings(PHPMD.MissingImport)
+ */
 class PseudoRandomStringGenerator
 {
     /** @var string */
@@ -28,6 +31,8 @@ class PseudoRandomStringGenerator
      * @return string
      *
      * @throws \Exception when CSPRNG source failed to provide random bytes
+     * @SuppressWarnings(PHPMD.IfStatementAssignment)
+     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function generate($length = 64)
     {

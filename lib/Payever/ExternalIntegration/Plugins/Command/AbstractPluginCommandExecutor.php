@@ -16,6 +16,9 @@ namespace Payever\ExternalIntegration\Plugins\Command;
 
 use Payever\ExternalIntegration\Plugins\Http\MessageEntity\PluginCommandEntity;
 
+/**
+ * @SuppressWarnings(PHPMD.MissingImport)
+ */
 abstract class AbstractPluginCommandExecutor implements PluginCommandExecutorInterface
 {
     /**
@@ -40,7 +43,7 @@ abstract class AbstractPluginCommandExecutor implements PluginCommandExecutorInt
         PluginCommandEntity $commandEntity,
         $sentenceDelimiter = '. '
     ) {
-        $pieces = array();
+        $pieces = [];
         $commandEntity->setMeta('value', $commandEntity->getValue());
 
         foreach ($this->getNewPluginVersionMetaTemplates() as $metaName => $template) {
@@ -59,12 +62,12 @@ abstract class AbstractPluginCommandExecutor implements PluginCommandExecutorInt
      */
     protected function getNewPluginVersionMetaTemplates()
     {
-        return array(
+        return [
             'value' => 'New payever plugin version is available: %s',
             'filename' => 'You can download it <a href="%s" target="_blank">here</a>',
             'marketplaceLink' => 'You can also find this update <a href="%s" target="_blank">in marketplace</a>',
             'releaseNotes' => 'This update includes: %s',
             'callToAction' => '%s',
-        );
+        ];
     }
 }

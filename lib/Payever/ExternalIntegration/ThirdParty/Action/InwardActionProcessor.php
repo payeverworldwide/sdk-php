@@ -73,7 +73,7 @@ class InwardActionProcessor
 
             $this->logger->debug(
                 sprintf('%s Action request payload', $loggerPrefix),
-                array($actionPayload->getRawPayload())
+                [$actionPayload->getRawPayload()]
             );
 
             $handler->handle($actionPayload, $this->actionResult);
@@ -106,10 +106,10 @@ class InwardActionProcessor
      */
     protected function getFinishLogContext($action)
     {
-        return array(
+        return [
             'action' => $action,
             'result' => $this->actionResult->toString(),
             'errors' => $this->actionResult->getErrors(),
-        );
+        ];
     }
 }

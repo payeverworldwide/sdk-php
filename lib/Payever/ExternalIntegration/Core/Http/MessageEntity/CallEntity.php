@@ -25,6 +25,8 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method self setId(string $id)
  * @method self setStatus(string $status)
  * @method self setBusinessId(string $businessId)
+ *
+ * @SuppressWarnings(PHPMD.ShortVariable)
  */
 class CallEntity extends MessageEntity
 {

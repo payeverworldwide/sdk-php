@@ -80,9 +80,9 @@ class SubscriptionResponseEntity extends ResponseEntity
      */
     public function getRequired()
     {
-        return array(
+        return [
             'externalId',
             'connected',
-        );
+        ];
     }
 }

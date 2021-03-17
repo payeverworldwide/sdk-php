@@ -18,6 +18,7 @@ use Payever\ExternalIntegration\Core\Http\ResponseEntity;
 
 /**
  * This class represents Dynamic ResponseInterface Entity
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 class DynamicResponse extends ResponseEntity
 {
@@ -28,7 +29,6 @@ class DynamicResponse extends ResponseEntity
     {
         foreach ($data as $key => $value) {
             $property = StringHelper::camelize($key);
-
             $this->{$property} = $value;
         }
 

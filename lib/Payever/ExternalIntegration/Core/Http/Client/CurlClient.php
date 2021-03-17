@@ -20,15 +20,24 @@ use Payever\ExternalIntegration\Core\Http\Request;
 use Payever\ExternalIntegration\Core\Http\Response;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
 
 /**
  * This class represents Curl implementation of Client
+ * @SuppressWarnings(PHPMD.MissingImport)
  */
 class CurlClient implements HttpClientInterface, LoggerAwareInterface
 {
+    /** @var LoggerInterface */
+    protected $logger;
+
+    /** @var string */
+    protected $logLevel = LogLevel::CRITICAL;
+
+    /** @var string|null */
+    protected $tmpLogLevel;
+
     /**
-     * CurlClient constructor.
-     *
      * @throws \RuntimeException when cURL extension is not enabled
      */
     public function __construct()
@@ -38,19 +47,33 @@ class CurlClient implements HttpClientInterface, LoggerAwareInterface
         }
     }
 
-    /** @var LoggerInterface */
-    protected $logger;
-
+    /**
+     * @inheritDoc
+     */
     public function setLogger(LoggerInterface $logger)
     {
         $this->logger = $logger;
     }
 
     /**
-     * {@inheritdoc}
-     *
+     * @param string $logLevel
+     */
+    public function setLogLevel($logLevel = LogLevel::CRITICAL)
+    {
+        $this->logLevel = $logLevel;
+    }
+
+    /**
+     * @param string|null $logLevel
+     */
+    public function setLogLevelOnce($logLevel)
+    {
+        $this->tmpLogLevel = $logLevel;
+    }
+
+    /**
      * @param RequestInterface $request
-     *
+     * @return Response
      * @throws \Exception
      */
     public function execute(RequestInterface $request)
@@ -58,13 +81,19 @@ class CurlClient implements HttpClientInterface, LoggerAwareInterface
         try {
             return $this->executeRequest($request);
         } catch (\Exception $exception) {
-            $this->logger->critical(
+            $logLevel = $this->logLevel;
+            if (null !== $this->tmpLogLevel) {
+                $logLevel = $this->tmpLogLevel;
+                $this->tmpLogLevel = null;
+            }
+            $this->logger->log(
+                $logLevel,
                 sprintf(
                     'HTTP Request failed: %s %s',
                     $exception->getCode(),
                     $exception->getMessage()
                 ),
-                array('trace' => $exception->getTraceAsString())
+                ['trace' => $exception->getTraceAsString()]
             );
 
             throw $exception;
@@ -78,12 +107,16 @@ class CurlClient implements HttpClientInterface, LoggerAwareInterface
      *
      * @throws \RuntimeException
      * @throws PayeverCommunicationException
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     * @SuppressWarnings(PHPMD.NPathComplexity)
+     * @SuppressWarnings(PHPMD.ShortVariable)
      */
     protected function executeRequest(RequestInterface $request)
     {
         $this->logger->debug(
             sprintf('HTTP Request %s %s', $request->getMethod(), $request->getUrl()),
-            array('headers' => $request->getHeaders(), 'body' => $request->toArray())
+            ['headers' => $request->getHeaders(), 'body' => $request->toArray()]
         );
 
         if (!$request->validate()) {
@@ -96,17 +129,17 @@ class CurlClient implements HttpClientInterface, LoggerAwareInterface
             throw new \RuntimeException('Could not get cURL resource');
         }
 
-        $options = array(
+        $options = [
             CURLOPT_URL          => $request->getUrl(),
             CURLOPT_HTTPHEADER   => $request->getHeaders(),
             CURLOPT_HTTP_VERSION => $request->getProtocolVersion(),
-        );
+        ];
 
-        $customMethods = array(
+        $customMethods = [
             Request::METHOD_PUT,
             Request::METHOD_PATCH,
             Request::METHOD_DELETE,
-        );
+        ];
 
         if ($request->getMethod() === Request::METHOD_POST) {
             $options[CURLOPT_POST] = true;
@@ -119,11 +152,13 @@ class CurlClient implements HttpClientInterface, LoggerAwareInterface
             $options[CURLOPT_POSTFIELDS] = $request->toArray();
         }
 
-        if (isset($options[CURLOPT_POSTFIELDS])
+        if (
+            isset($options[CURLOPT_POSTFIELDS]) && is_array($options[CURLOPT_POSTFIELDS])
             && $request->getHeader('Content-Type') == 'application/x-www-form-urlencoded'
         ) {
             $options[CURLOPT_POSTFIELDS] = http_build_query($options[CURLOPT_POSTFIELDS]);
-        } elseif (isset($options[CURLOPT_POSTFIELDS])
+        } elseif (
+            isset($options[CURLOPT_POSTFIELDS]) && is_array($options[CURLOPT_POSTFIELDS])
             && $request->getHeader('Content-Type') == 'application/json'
         ) {
             $options[CURLOPT_POSTFIELDS] = json_encode($options[CURLOPT_POSTFIELDS]);
@@ -140,7 +175,7 @@ class CurlClient implements HttpClientInterface, LoggerAwareInterface
 
         $this->logger->debug(
             sprintf('HTTP Response %s %s', $request->getMethod(), $request->getUrl()),
-            array('httpCode' => $httpCode, 'body' => $result, 'curlError' => $errorMessage)
+            ['httpCode' => $httpCode, 'body' => $result, 'curlError' => $errorMessage]
         );
 
         if ($errorNumber !== 0) {
@@ -149,7 +184,7 @@ class CurlClient implements HttpClientInterface, LoggerAwareInterface
 
         if ($httpCode >= 400) {
             $message = $result;
-            $data = @json_decode($result, true);
+            $data = json_decode($result, true);
 
             if (isset($data['error_description'])) {
                 $message = $data['error_description'];
@@ -189,7 +224,7 @@ class CurlClient implements HttpClientInterface, LoggerAwareInterface
      */
     protected function getRequestOptions($override)
     {
-        $default = array(
+        $default = [
             CURLOPT_HEADER         => 0,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_SSL_VERIFYPEER => false,
@@ -197,7 +232,7 @@ class CurlClient implements HttpClientInterface, LoggerAwareInterface
             CURLOPT_TIMEOUT        => 30,
             CURLOPT_CONNECTTIMEOUT => 15,
             CURLOPT_HTTP_VERSION   => 1.1,
-        );
+        ];
 
         return $override + $default;
     }

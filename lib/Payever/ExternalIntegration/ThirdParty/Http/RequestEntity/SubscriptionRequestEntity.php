@@ -45,7 +45,7 @@ class SubscriptionRequestEntity extends RequestEntity
     protected $thirdPartyName;
 
     /** @var SubscriptionActionEntity[] */
-    protected $actions = array();
+    protected $actions = [];
 
     /**
      * @param SubscriptionActionEntity $actionEntity
@@ -64,9 +64,9 @@ class SubscriptionRequestEntity extends RequestEntity
      */
     public function getRequired()
     {
-        return array(
+        return [
             'businessUuid',
             'thirdPartyName',
-        );
+        ];
     }
 }

@@ -14,6 +14,9 @@
 
 namespace Payever\ExternalIntegration\Core\Lock;
 
+/**
+ * @SuppressWarnings(PHPMD.MissingImport)
+ */
 class FileLock implements LockInterface
 {
     const SLEEP_SECONDS = 1;

@@ -52,13 +52,13 @@ class ThirdPartyApiClient extends CommonProductsThirdPartyApiClient implements T
      *
      * @throws \Exception
      */
-    public function getSubscriptionStatus(SubscriptionRequestEntity $subscriptionRequestEntity)
+    public function getSubscriptionStatus(SubscriptionRequestEntity $requestEntity)
     {
         $this->configuration->assertLoaded();
 
-        $this->fillSubscriptionEntityFromConfiguration($subscriptionRequestEntity);
+        $this->fillSubscriptionEntityFromConfiguration($requestEntity);
 
-        $request = RequestBuilder::get($this->getConnectionUrl($subscriptionRequestEntity))
+        $request = RequestBuilder::get($this->getConnectionUrl($requestEntity))
             ->addRawHeader(
                 $this->getToken()->getAuthorizationString()
             )
@@ -73,18 +73,18 @@ class ThirdPartyApiClient extends CommonProductsThirdPartyApiClient implements T
      *
      * @throws \Exception
      */
-    public function subscribe(SubscriptionRequestEntity $subscriptionRequestEntity)
+    public function subscribe(SubscriptionRequestEntity $requestEntity)
     {
         $this->configuration->assertLoaded();
 
-        $this->fillSubscriptionEntityFromConfiguration($subscriptionRequestEntity);
+        $this->fillSubscriptionEntityFromConfiguration($requestEntity);
 
-        $request = RequestBuilder::post($this->getIntegrationUrl($subscriptionRequestEntity))
+        $request = RequestBuilder::post($this->getIntegrationUrl($requestEntity))
             ->contentTypeIsJson()
             ->addRawHeader(
                 $this->getToken()->getAuthorizationString()
             )
-            ->setRequestEntity($subscriptionRequestEntity)
+            ->setRequestEntity($requestEntity)
             ->setResponseEntity(new SubscriptionResponseEntity())
             ->build();
 
@@ -96,13 +96,13 @@ class ThirdPartyApiClient extends CommonProductsThirdPartyApiClient implements T
      *
      * @throws \Exception
      */
-    public function unsubscribe(SubscriptionRequestEntity $subscriptionRequestEntity)
+    public function unsubscribe(SubscriptionRequestEntity $requestEntity)
     {
         $this->configuration->assertLoaded();
 
-        $this->fillSubscriptionEntityFromConfiguration($subscriptionRequestEntity);
+        $this->fillSubscriptionEntityFromConfiguration($requestEntity);
 
-        $request = RequestBuilder::delete($this->getConnectionUrl($subscriptionRequestEntity))
+        $request = RequestBuilder::delete($this->getConnectionUrl($requestEntity))
             ->addRawHeader(
                 $this->getToken()->getAuthorizationString()
             )
@@ -123,45 +123,45 @@ class ThirdPartyApiClient extends CommonProductsThirdPartyApiClient implements T
     }
 
     /**
-     * @param SubscriptionRequestEntity $subscriptionRequestEntity
+     * @param SubscriptionRequestEntity $requestEntity
      * @return string
      */
-    protected function getConnectionUrl(SubscriptionRequestEntity $subscriptionRequestEntity)
+    protected function getConnectionUrl(SubscriptionRequestEntity $requestEntity)
     {
         $path = sprintf(
             static::SUB_URL_CONNECTION,
-            $subscriptionRequestEntity->getBusinessUuid(),
-            $subscriptionRequestEntity->getExternalId()
+            $requestEntity->getBusinessUuid(),
+            $requestEntity->getExternalId()
         );
 
         return $this->getBaseUrl() . $path;
     }
 
     /**
-     * @param SubscriptionRequestEntity $subscriptionRequestEntity
+     * @param SubscriptionRequestEntity $requestEntity
      * @return string
      */
-    protected function getIntegrationUrl(SubscriptionRequestEntity $subscriptionRequestEntity)
+    protected function getIntegrationUrl(SubscriptionRequestEntity $requestEntity)
     {
         $path = sprintf(
             static::SUB_URL_INTEGRATION,
-            $subscriptionRequestEntity->getBusinessUuid(),
-            $subscriptionRequestEntity->getThirdPartyName()
+            $requestEntity->getBusinessUuid(),
+            $requestEntity->getThirdPartyName()
         );
 
         return $this->getBaseUrl() . $path;
     }
 
     /**
-     * @param SubscriptionRequestEntity $subscriptionRequestEntity
+     * @param SubscriptionRequestEntity $requestEntity
      */
-    private function fillSubscriptionEntityFromConfiguration(SubscriptionRequestEntity $subscriptionRequestEntity)
+    private function fillSubscriptionEntityFromConfiguration(SubscriptionRequestEntity $requestEntity)
     {
-        if (!$subscriptionRequestEntity->getBusinessUuid()) {
-            $subscriptionRequestEntity->setBusinessUuid($this->configuration->getBusinessUuid());
+        if (!$requestEntity->getBusinessUuid()) {
+            $requestEntity->setBusinessUuid($this->configuration->getBusinessUuid());
         }
-        if (!$subscriptionRequestEntity->getThirdPartyName()) {
-            $subscriptionRequestEntity->setThirdPartyName($this->configuration->getChannelSet());
+        if (!$requestEntity->getThirdPartyName()) {
+            $requestEntity->setThirdPartyName($this->configuration->getChannelSet());
         }
     }
 }

@@ -18,6 +18,8 @@ use Payever\ExternalIntegration\Core\Helper\StringHelper;
 
 /**
  * This class represents Payever oAuth OauthToken
+ * @SuppressWarnings(PHPMD.MissingImport)
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 class OauthToken implements OauthTokenInterface
 {
@@ -74,7 +76,7 @@ class OauthToken implements OauthTokenInterface
         if (is_string($params)) {
             $params = json_decode($params);
 
-            if (json_last_error() !== JSON_ERROR_NONE) {
+            if (function_exists('json_last_error') && json_last_error() !== JSON_ERROR_NONE) {
                 throw new \Exception(json_last_error_msg(), json_last_error());
             }
         }
@@ -127,13 +129,13 @@ class OauthToken implements OauthTokenInterface
      */
     public function getParams()
     {
-        return array(
+        return [
             'scope'         => $this->scope,
             'access_token'  => $this->accessToken,
             'refresh_token' => $this->refreshToken,
             'created_at'    => $this->createdAt,
             'updated_at'    => $this->updatedAt,
-        );
+        ];
     }
 
     /**
@@ -201,11 +203,11 @@ class OauthToken implements OauthTokenInterface
      */
     public static function getScopes()
     {
-        return array(
+        return [
             static::SCOPE_PAYMENT_ACTIONS,
             static::SCOPE_CREATE_PAYMENT,
             static::SCOPE_PAYMENT_INFO,
-        );
+        ];
     }
 
     /**
@@ -213,10 +215,10 @@ class OauthToken implements OauthTokenInterface
      */
     public static function getGrandTypes()
     {
-        return array(
+        return [
             static::GRAND_TYPE_REFRESH_TOKEN,
             static::GRAND_TYPE_OBTAIN_TOKEN,
-        );
+        ];
     }
 
     /**

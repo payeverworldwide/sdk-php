@@ -64,6 +64,9 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\CallEntity;
  * @method self             setXFrameHost()
  * @method self             setPayments()
  * @method self             setType()
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.TooManyFields)
  */
 class CreatePaymentCallEntity extends CallEntity
 {

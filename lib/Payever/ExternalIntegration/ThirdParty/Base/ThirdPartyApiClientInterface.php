@@ -31,27 +31,27 @@ interface ThirdPartyApiClientInterface extends CommonApiClientInterface
     /**
      * Retrieves the subscription entity if client is subscribed
      *
-     * @param SubscriptionRequestEntity $subscriptionRequestEntity
+     * @param SubscriptionRequestEntity $requestEntity
      *
      * @return Response
      */
-    public function getSubscriptionStatus(SubscriptionRequestEntity $subscriptionRequestEntity);
+    public function getSubscriptionStatus(SubscriptionRequestEntity $requestEntity);
 
     /**
      * Subscribe for a products data
      *
-     * @param SubscriptionRequestEntity $subscriptionRequestEntity
+     * @param SubscriptionRequestEntity $requestEntity
      *
      * @return Response
      */
-    public function subscribe(SubscriptionRequestEntity $subscriptionRequestEntity);
+    public function subscribe(SubscriptionRequestEntity $requestEntity);
 
     /**
      * Unsubscribe from products data
      *
-     * @param SubscriptionRequestEntity $subscriptionRequestEntity
+     * @param SubscriptionRequestEntity $requestEntity
      *
      * @return Response
      */
-    public function unsubscribe(SubscriptionRequestEntity $subscriptionRequestEntity);
+    public function unsubscribe(SubscriptionRequestEntity $requestEntity);
 }

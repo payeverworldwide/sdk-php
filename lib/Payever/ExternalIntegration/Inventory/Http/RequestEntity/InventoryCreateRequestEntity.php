@@ -77,10 +77,10 @@ class InventoryCreateRequestEntity extends RequestEntity
      */
     public function getRequired()
     {
-        return array(
+        return [
             'externalId',
             'sku',
             'stock',
-        );
+        ];
     }
 }

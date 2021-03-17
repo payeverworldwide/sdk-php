@@ -17,6 +17,7 @@ use Payever\ExternalIntegration\Core\Helper\StringHelper;
 
 /**
  * This class represents Dynamic Call Entity
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 class DynamicEntity extends CallEntity
 {

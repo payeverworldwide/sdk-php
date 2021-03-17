@@ -25,6 +25,8 @@ use Payever\ExternalIntegration\Core\Http\ResponseEntity;
  * @method string[] getSupportedCommands()
  * @method string|null getCommandEndpoint()
  * @method string[] getBusinessIds()
+ *
+ * @SuppressWarnings(PHPMD.ShortVariable)
  */
 class PluginRegistryResponseEntity extends ResponseEntity
 {
@@ -63,11 +65,11 @@ class PluginRegistryResponseEntity extends ResponseEntity
      */
     public function getRequired()
     {
-        return array(
+        return [
             'pluginVersion',
             'cmsVersion',
             'host',
             'channel',
-        );
+        ];
     }
 }

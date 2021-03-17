@@ -19,6 +19,7 @@ use Payever\ExternalIntegration\Payments\Http\ResponseEntity\GetTransactionRespo
 
 /**
  * This class represents payment actions used in Payever API
+ * @SuppressWarnings(PHPMD.MissingImport)
  */
 class ActionDecider implements ActionDeciderInterface
 {
@@ -37,6 +38,7 @@ class ActionDecider implements ActionDeciderInterface
 
     /**
      * {@inheritDoc}
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
     public function isActionAllowed($paymentId, $transactionAction, $throwException = true)
     {
@@ -57,6 +59,7 @@ class ActionDecider implements ActionDeciderInterface
      * @return bool
      *
      * @throws \Exception when $throwException is true and target action is not allowed
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
     public function isCancelAllowed($paymentId, $throwException = true)
     {
@@ -72,6 +75,7 @@ class ActionDecider implements ActionDeciderInterface
      * @return bool
      *
      * @throws \Exception when $throwException is true and target action is not allowed
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
     public function isRefundAllowed($paymentId, $throwException = true)
     {
@@ -87,6 +91,7 @@ class ActionDecider implements ActionDeciderInterface
      * @return bool
      *
      * @throws \Exception when $throwException is true and target action is not allowed
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
     public function isShippingAllowed($paymentId, $throwException = true)
     {
@@ -99,9 +104,9 @@ class ActionDecider implements ActionDeciderInterface
      */
     protected function getEnabledActions($paymentId)
     {
-        $getTransactionResponse = $this->api->getTransactionRequest($paymentId);
+        $response = $this->api->getTransactionRequest($paymentId);
         /** @var GetTransactionResponse $getTransactionEntity */
-        $getTransactionEntity = $getTransactionResponse->getResponseEntity();
+        $getTransactionEntity = $response->getResponseEntity();
         /** @var GetTransactionResultEntity $getTransactionResult */
         $getTransactionResult = $getTransactionEntity->getResult();
         $actions = $getTransactionResult->getActions();

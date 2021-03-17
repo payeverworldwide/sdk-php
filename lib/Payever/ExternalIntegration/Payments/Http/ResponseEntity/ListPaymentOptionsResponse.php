@@ -35,7 +35,7 @@ class ListPaymentOptionsResponse extends ResponseEntity
      */
     public function setResult($result)
     {
-        $this->result = array();
+        $this->result = [];
 
         foreach ($result as $item) {
             $this->result[] = new ListPaymentOptionsResultEntity($item);

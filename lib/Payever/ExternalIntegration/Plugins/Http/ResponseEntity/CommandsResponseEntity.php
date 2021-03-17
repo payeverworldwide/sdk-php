@@ -20,7 +20,7 @@ use Payever\ExternalIntegration\Plugins\Http\MessageEntity\PluginCommandEntity;
 class CommandsResponseEntity extends ResponseEntity
 {
     /** @var PluginCommandEntity[] */
-    protected $commands = array();
+    protected $commands = [];
 
     /**
      * @inheritDoc

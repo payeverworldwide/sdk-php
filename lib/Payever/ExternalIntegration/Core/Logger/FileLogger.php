@@ -22,6 +22,8 @@ use Psr\Log\LogLevel;
  *
  * Simple PSR-3 compatible Logger class.
  * Recommended for use when there's no advanced logger (e.g. Monolog) provided in user's system.
+ *
+ * @SuppressWarnings(PHPMD.MissingImport)
  */
 class FileLogger extends AbstractLogger
 {
@@ -41,7 +43,7 @@ class FileLogger extends AbstractLogger
     protected $bufferSize;
 
     /** @var array */
-    protected $buffer = array();
+    protected $buffer = [];
 
     /** @var bool */
     protected $shutdownRegistered = false;
@@ -50,7 +52,7 @@ class FileLogger extends AbstractLogger
      * Log Levels
      * @var array
      */
-    protected $logLevels = array(
+    protected $logLevels = [
         LogLevel::EMERGENCY => 0,
         LogLevel::ALERT     => 1,
         LogLevel::CRITICAL  => 2,
@@ -59,11 +61,9 @@ class FileLogger extends AbstractLogger
         LogLevel::NOTICE    => 5,
         LogLevel::INFO      => 6,
         LogLevel::DEBUG     => 7
-    );
+    ];
 
     /**
-     * FileLogger constructor.
-     *
      * @param string $logFilePath
      * @param string $logLevel
      * @param string $channelName
@@ -92,8 +92,8 @@ class FileLogger extends AbstractLogger
         if (!file_exists($logFilePath)) {
             touch($logFilePath);
         }
-
-        if (!($this->logFileHandle = fopen($logFilePath, 'a'))) {
+        $this->logFileHandle = fopen($logFilePath, 'a');
+        if (!$this->logFileHandle) {
             throw new \UnexpectedValueException(
                 sprintf("Can't open file for writing: %s", $logFilePath)
             );
@@ -110,7 +110,7 @@ class FileLogger extends AbstractLogger
      * @param string $message
      * @param array  $context
      */
-    public function log($level, $message, array $context = array())
+    public function log($level, $message, array $context = [])
     {
         if ($this->logLevels[$level] > $this->logLevelInt) {
             return;
@@ -119,7 +119,7 @@ class FileLogger extends AbstractLogger
         if (!$this->shutdownRegistered) {
             $this->shutdownRegistered = true;
             /** __destruct doesn't get called on fatal errors */
-            register_shutdown_function(array($this, 'close'));
+            register_shutdown_function([$this, 'close']);
         }
 
         $this->buffer[] = $this->formatMessage($level, $message, $context);
@@ -148,7 +148,7 @@ class FileLogger extends AbstractLogger
             fwrite($this->logFileHandle, $message);
         }
 
-        $this->buffer = array();
+        $this->buffer = [];
     }
 
     /**

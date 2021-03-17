@@ -69,11 +69,11 @@ class PaymentMethod extends EnumerableConstants
      */
     public static function getShouldHideOnDifferentAddressMethods()
     {
-        return array(
+        return [
             static::METHOD_SANTANDER_DE_FACTORING,
             static::METHOD_SANTANDER_DE_INVOICE,
             static::METHOD_PAYEX_FAKTURA,
-        );
+        ];
     }
 
     /**
@@ -81,9 +81,9 @@ class PaymentMethod extends EnumerableConstants
      */
     public static function getShouldHideOnRejectMethods()
     {
-        return array(
+        return [
             static::METHOD_SANTANDER_DE_FACTORING,
             static::METHOD_SANTANDER_DE_INVOICE,
-        );
+        ];
     }
 }

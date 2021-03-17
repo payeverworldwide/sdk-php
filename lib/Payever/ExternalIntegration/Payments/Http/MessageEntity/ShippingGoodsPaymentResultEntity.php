@@ -56,6 +56,9 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
  * @method self                 setReference()
  * @method self                 setStatus()
  * @method self                 setTotal()
+ *
+ * @SuppressWarnings(PHPMD.ShortVariable)
+ * @SuppressWarnings(PHPMD.TooManyFields)
  */
 class ShippingGoodsPaymentResultEntity extends ResultEntity
 {
