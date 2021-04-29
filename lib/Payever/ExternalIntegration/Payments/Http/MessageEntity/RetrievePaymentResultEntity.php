@@ -24,6 +24,7 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
  * @method string               getColorState()
  * @method string               getMerchantName()
  * @method string               getCustomerName()
+ * @method string               getCustomerEmail()
  * @method string               getPaymentType()
  * @method string               getLastAction()
  * @method \DateTime|false      getCreatedAt()
@@ -44,6 +45,7 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
  * @method self                 setColorState(string $colorState)
  * @method self                 setMerchantName(string $merchantName)
  * @method self                 setCustomerName(string $customerName)
+ * @method self                 setCustomerEmail(string $customerEmail)
  * @method self                 setPaymentType(string $paymentType)
  * @method self                 setLastAction(string $lastAction)
  * @method self                 setChannel(string $channel)
@@ -74,6 +76,9 @@ class RetrievePaymentResultEntity extends ResultEntity
 
     /** @var string $customerName */
     protected $customerName;
+
+    /** @var string $customerName */
+    protected $customerEmail;
 
     /** @var string $paymentType */
     protected $paymentType;

@@ -30,6 +30,8 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method string getSalutation()
  * @method string getFirstName()
  * @method string getLastName()
+ * @method string getPhone()
+ * @method string getEmail()
  * @method string getType()
  * @method self   setId()
  * @method self   setUuid()
@@ -43,6 +45,8 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method self   setSalutation()
  * @method self   setFirstName()
  * @method self   setLastName()
+ * @method self   setPhone()
+ * @method self   setEmail()
  * @method self   setType()
  *
  * @SuppressWarnings(PHPMD.ShortVariable)
@@ -84,6 +88,12 @@ class AddressEntity extends MessageEntity
 
     /** @var string $lastName */
     protected $lastName;
+
+    /** @var string $phone */
+    protected $phone;
+
+    /** @var string $email */
+    protected $email;
 
     /** @var string $type */
     protected $type;
