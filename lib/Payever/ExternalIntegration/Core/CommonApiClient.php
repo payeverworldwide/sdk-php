@@ -43,7 +43,7 @@ class CommonApiClient implements CommonApiClientInterface
     const URL_LIVE    = 'https://proxy.payever.org/';
 
     const SUB_URL_AUTH              = 'oauth/v2/token';
-    const SUB_URL_LIST_CHANNEL_SETS = 'api/shop/%s/channel-sets';
+    const SUB_URL_LIST_CHANNEL_SETS = 'api/shop/oauth/%s/channel-sets';
     const SUB_URL_CURRENCY          = 'api/rest/v1/currency';
 
     /**
@@ -197,7 +197,7 @@ class CommonApiClient implements CommonApiClientInterface
 
         $this->configuration->getLogger()->debug(sprintf('Getting OAuth token. Hash: %s', $key));
 
-        /** @var OauthTokenInterface|false $token */
+        /** @var OauthTokenInterface $token */
         $token = $this->getTokens()->get($key);
 
         if (!$token || ($token instanceof OauthTokenInterface && $token->isExpired() && !$token->isRefreshable())) {
@@ -250,6 +250,9 @@ class CommonApiClient implements CommonApiClientInterface
         $this->configuration->assertLoaded();
 
         $request = RequestBuilder::get($this->getListChannelSetsURL($businessUuid))
+            ->addRawHeader(
+                $this->getToken(OauthToken::SCOPE_PAYMENT_INFO)->getAuthorizationString()
+            )
             ->setResponseEntity(new ListChannelSetsResponse())
             ->build()
         ;

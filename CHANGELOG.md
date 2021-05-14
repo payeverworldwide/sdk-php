@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.11.0]
+
+### Changed
+
+- Url constant - `api/shop/oauth/%s/channel-sets` in `Payever\ExternalIntegration\Core\CommonApiClient::SUB_URL_LIST_CHANNEL_SETS`
+- Url constant - `api/shop/oauth/%s/payment-options/%s` in `Payever\ExternalIntegration\Payments\PaymentsApiClient::SUB_URL_LIST_PAYMENT_OPTIONS`
+- Url constant - `api/shop/oauth/%s/payment-options/variants/%s` in `Payever\ExternalIntegration\Payments\PaymentsApiClient::SUB_URL_LIST_PAYMENT_OPTIONS_VARIANTS`
+
+## [2.10.0]
+
+### Added
+- property `phone` (`getPhone(): string|null`) in `Payever\ExternalIntegration\Payments\Http\MessageEntity\AddressEntity`
+- property `email` (`getEmail(): string|null`) in `Payever\ExternalIntegration\Payments\Http\MessageEntity\AddressEntity`
+- property `customerEmail` (`getCustomerEmail(): string|null`) in `Payever\ExternalIntegration\Payments\Http\MessageEntityRetrievePaymentResultEntity`
+
 ## [2.9.0]
 
 ### Added

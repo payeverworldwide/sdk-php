@@ -16,9 +16,10 @@
 namespace Payever\ExternalIntegration\Core;
 
 // @codeCoverageIgnoreStart
-define('PEI_CORE_VERSION', '2.10.0');
+// phpcs:disable PSR1.Files.SideEffects
+define('PEI_CORE_VERSION', '2.11.0');
 define('PEI_CORE_MAJOR_VERSION', 2);
-define('PEI_CORE_MINOR_VERSION', 10);
+define('PEI_CORE_MINOR_VERSION', 11);
 define('PEI_CORE_RELEASE_VERSION', 0);
 
 define('PEI_NAMESPACE', 'Payever\ExternalIntegration');

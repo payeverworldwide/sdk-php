@@ -66,7 +66,7 @@ class NotificationRequestProcessor
             $payload = $this->getRequestPayload();
         }
 
-        if (!$payload) {
+        if (empty($payload)) {
             throw new \RuntimeException('Got empty notification payload', 20);
         }
 

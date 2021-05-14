@@ -57,8 +57,8 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
     const SUB_URL_SHIPPING_GOODS_PAYMENT = 'api/payment/shipping-goods/%s';
     const SUB_URL_CANCEL_PAYMENT = 'api/payment/cancel/%s';
     const SUB_URL_RETRIEVE_API_CALL = 'api/%s';
-    const SUB_URL_LIST_PAYMENT_OPTIONS = 'api/shop/%s/payment-options/%s';
-    const SUB_URL_LIST_PAYMENT_OPTIONS_VARIANTS = 'api/shop/%s/payment-options/variants/%s';
+    const SUB_URL_LIST_PAYMENT_OPTIONS = 'api/shop/oauth/%s/payment-options/%s';
+    const SUB_URL_LIST_PAYMENT_OPTIONS_VARIANTS = 'api/shop/oauth/%s/payment-options/variants/%s';
     const SUB_URL_TRANSACTION = 'api/rest/v1/transactions/%s';
 
     /**
@@ -330,6 +330,9 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
         $channel = $channel ?: $this->getConfiguration()->getChannelSet();
 
         $request = RequestBuilder::get($this->getListPaymentOptionsURL($businessUuid, $channel, $params))
+            ->addRawHeader(
+                $this->getToken(OauthToken::SCOPE_PAYMENT_INFO)->getAuthorizationString()
+            )
             ->setResponseEntity(new ListPaymentOptionsResponse())
             ->build();
 
@@ -347,6 +350,9 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
         $channel = $channel ?: $this->getConfiguration()->getChannelSet();
 
         $request = RequestBuilder::get($this->getListPaymentOptionsVariantsURL($businessUuid, $channel, $params))
+            ->addRawHeader(
+                $this->getToken(OauthToken::SCOPE_PAYMENT_INFO)->getAuthorizationString()
+            )
             ->setResponseEntity(new ListPaymentOptionsWithVariantsResponse())
             ->build();
 

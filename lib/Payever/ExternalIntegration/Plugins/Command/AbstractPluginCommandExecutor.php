@@ -47,8 +47,9 @@ abstract class AbstractPluginCommandExecutor implements PluginCommandExecutorInt
         $commandEntity->setMeta('value', $commandEntity->getValue());
 
         foreach ($this->getNewPluginVersionMetaTemplates() as $metaName => $template) {
-            if ($commandEntity->getMeta($metaName)) {
-                $pieces[] = sprintf($template, $commandEntity->getMeta($metaName));
+            $meta = $commandEntity->getMeta($metaName);
+            if (!empty($meta)) {
+                $pieces[] = sprintf($template, $meta);
             }
         }
 
