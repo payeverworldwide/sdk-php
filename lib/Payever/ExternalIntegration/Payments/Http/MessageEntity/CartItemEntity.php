@@ -26,14 +26,14 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method string getDescription()
  * @method string getThumbnail()
  * @method string getSku()
- * @method self   setName()
- * @method self   setPrice()
- * @method self   setPriceNetto()
- * @method self   setVatRate()
- * @method self   setQuantity()
- * @method self   setDescription()
- * @method self   setThumbnail()
- * @method self   setSku()
+ * @method self   setName(string $name)
+ * @method self   setPrice(float $price)
+ * @method self   setPriceNetto(float $priceNetto)
+ * @method self   setVatRate(float $vatRate)
+ * @method self   setQuantity(float $quantity)
+ * @method self   setDescription(string $description)
+ * @method self   setThumbnail(string $thumbnail)
+ * @method self   setSku(string $sku)
  */
 class CartItemEntity extends MessageEntity
 {

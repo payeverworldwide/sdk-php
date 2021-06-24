@@ -25,10 +25,10 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method \DateTime|false getCreatedAt()
  * @method \DateTime|false getUpdatedAt()
  * @method string getDiscr()
- * @method self setId()
- * @method self setName()
- * @method self setSlug()
- * @method self setDiscr()
+ * @method self setId(string $id)
+ * @method self setName(string $name)
+ * @method self setSlug(string $slug)
+ * @method self setDiscr(string $discr)
  *
  * @SuppressWarnings(PHPMD.ShortVariable)
  */

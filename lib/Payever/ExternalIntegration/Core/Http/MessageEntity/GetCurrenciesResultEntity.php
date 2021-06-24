@@ -20,10 +20,10 @@ namespace Payever\ExternalIntegration\Core\Http\MessageEntity;
  * @method string getSymbol()
  * @method string getCode()
  * @method float  getRate()
- * @method self   setId()
- * @method self   setSymbol()
- * @method self   setCode()
- * @method self   setRate()
+ * @method self   setId(string $id)
+ * @method self   setSymbol(string $symbol)
+ * @method self   setCode(string $code)
+ * @method self   setRate(float $rate)
  */
 class GetCurrenciesResultEntity extends ResultEntity
 {

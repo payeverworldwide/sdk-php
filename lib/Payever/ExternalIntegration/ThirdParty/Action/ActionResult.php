@@ -37,7 +37,7 @@ class ActionResult extends MessageEntity
     /** @var int */
     protected $skippedCount = 0;
 
-    /** @var array */
+    /** @var string[] */
     protected $errors = [];
 
     /**
@@ -89,7 +89,7 @@ class ActionResult extends MessageEntity
     }
 
     /**
-     * @param $error
+     * @param string $error
      *
      * @return static
      */

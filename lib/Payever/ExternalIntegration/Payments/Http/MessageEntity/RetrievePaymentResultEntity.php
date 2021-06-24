@@ -55,7 +55,6 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
  * @method self                 setCurrency(string $currency)
  * @method self                 setFee(float $fee)
  * @method self                 setTotal(float $total)
- * @method self                 setPaymentDetailsArray(array $details)
  *
  * @SuppressWarnings(PHPMD.ShortVariable)
  * @SuppressWarnings(PHPMD.TooManyFields)
@@ -173,5 +172,16 @@ class RetrievePaymentResultEntity extends ResultEntity
     public function setPaymentDetails($paymentDetails)
     {
         $this->paymentDetails = new PaymentDetailsEntity($paymentDetails);
+    }
+
+    /**
+     * @param \stdClass|array $details
+     */
+    public function setPaymentDetailsArray($details)
+    {
+        if ($details instanceof \stdClass) {
+            $details = (array) $details;
+        }
+        $this->paymentDetailsArray = $details;
     }
 }

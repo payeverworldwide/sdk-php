@@ -30,8 +30,6 @@ class ThirdPartyApiClient extends CommonProductsThirdPartyApiClient implements T
 
     /**
      * @inheritdoc
-     *
-     * @throws \Exception
      */
     public function getBusinessRequest()
     {
@@ -49,8 +47,6 @@ class ThirdPartyApiClient extends CommonProductsThirdPartyApiClient implements T
 
     /**
      * @inheritdoc
-     *
-     * @throws \Exception
      */
     public function getSubscriptionStatus(SubscriptionRequestEntity $requestEntity)
     {
@@ -70,8 +66,6 @@ class ThirdPartyApiClient extends CommonProductsThirdPartyApiClient implements T
 
     /**
      * @inheritdoc
-     *
-     * @throws \Exception
      */
     public function subscribe(SubscriptionRequestEntity $requestEntity)
     {
@@ -93,8 +87,6 @@ class ThirdPartyApiClient extends CommonProductsThirdPartyApiClient implements T
 
     /**
      * @inheritdoc
-     *
-     * @throws \Exception
      */
     public function unsubscribe(SubscriptionRequestEntity $requestEntity)
     {

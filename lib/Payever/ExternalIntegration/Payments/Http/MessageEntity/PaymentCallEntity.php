@@ -24,11 +24,11 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\CallEntity;
  * @method \DateTime|false getInvoiceDate()
  * @method string    getType()
  * @method string    getMessage()
- * @method self      setPaymentId()
- * @method self      setCustomerId()
- * @method self      setInvoiceId()
- * @method self      setType()
- * @method self      setMessage()
+ * @method self      setPaymentId(string $paymentId)
+ * @method self      setCustomerId(string $customerId)
+ * @method self      setInvoiceId(string $invoiceId)
+ * @method self      setType(string $type)
+ * @method self      setMessage(string $message)
  */
 class PaymentCallEntity extends CallEntity
 {

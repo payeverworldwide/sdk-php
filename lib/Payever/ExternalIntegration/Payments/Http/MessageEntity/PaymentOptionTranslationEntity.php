@@ -21,9 +21,9 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method string getLocale()
  * @method string getField()
  * @method string getContent()
- * @method self   setLocale()
- * @method self   setField()
- * @method self   setContent()
+ * @method self   setLocale(string $locale)
+ * @method self   setField(string $field)
+ * @method self   setContent(string $content)
  */
 class PaymentOptionTranslationEntity extends MessageEntity
 {

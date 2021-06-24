@@ -25,6 +25,7 @@ interface ProductsApiClientInterface
      * @param ProductRequestEntity $entity
      *
      * @return mixed
+     * @throws \Exception
      */
     public function createProduct(ProductRequestEntity $entity);
 
@@ -34,6 +35,7 @@ interface ProductsApiClientInterface
      * @param ProductRequestEntity $entity
      *
      * @return \Payever\ExternalIntegration\Core\Http\Response
+     * @throws \Exception
      */
     public function updateProduct(ProductRequestEntity $entity);
 
@@ -41,6 +43,7 @@ interface ProductsApiClientInterface
      * @param ProductRequestEntity $entity
      *
      * @return \Payever\ExternalIntegration\Core\Http\Response
+     * @throws \Exception
      */
     public function createOrUpdateProduct(ProductRequestEntity $entity);
 
@@ -50,6 +53,7 @@ interface ProductsApiClientInterface
      * @param ProductRemovedRequestEntity $entity
      *
      * @return \Payever\ExternalIntegration\Core\Http\Response
+     * @throws \Exception
      */
     public function removeProduct(ProductRemovedRequestEntity $entity);
 
@@ -60,6 +64,7 @@ interface ProductsApiClientInterface
      * @param string $externalId
      *
      * @return int - Number of successfully exported records
+     * @throws \Exception
      */
     public function exportProducts(ProductsIteratorInterface $productsIterator, $externalId);
 }

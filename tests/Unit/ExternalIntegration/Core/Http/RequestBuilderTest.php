@@ -5,24 +5,18 @@ namespace Payever\Tests\Unit\ExternalIntegration\Core\Http;
 use Payever\ExternalIntegration\Core\Http\RequestBuilder;
 use PHPUnit\Framework\TestCase;
 
-/**
- * Class RequestBuilderTest
- *
- * @package Payever\ExternalIntegration\Core\Http
- */
 class RequestBuilderTest extends TestCase
 {
-
     const URL = 'https://some.domain.com/path/';
 
     public function testBuild()
     {
         $method = 'POST';
-        $params = array(
+        $params = [
             'one' => 'value1',
             'two' => 'value2',
-        );
-        $headerKey = 'Authotization';
+        ];
+        $headerKey = 'Authorization';
         $headerValue = 'Bearer stub_token';
 
         $builder = new RequestBuilder();
@@ -47,6 +41,7 @@ class RequestBuilderTest extends TestCase
         $builder->addHeader('key', 'value');
         $this->assertEquals('value', $builder->getHeader('key'));
         $this->assertTrue($builder->containsHeader('key'));
+        $this->assertFalse($builder->getHeader('key2'));
 
         $builder->addHeader('key2', 'value2');
         $this->assertTrue($builder->containsHeader('key2'));
@@ -57,6 +52,38 @@ class RequestBuilderTest extends TestCase
 
         $builder->cleanHeaders();
         $this->assertEmpty($builder->getHeaders());
+
+        $builder->setHeaders(['key' => 'value']);
+        $this->assertEquals('value', $builder->getHeader('key'));
+        $this->assertTrue($builder->containsHeader('key'));
+    }
+
+    public function testParams()
+    {
+        $builder = new RequestBuilder();
+        $builder->addParam('key', 'value');
+        $this->assertTrue($builder->containsParam('key'));
+        $this->assertEquals('value', $builder->getParam('key'));
+        $this->assertFalse($builder->getParam('key2'));
+        $builder->removeParam('key');
+        $this->assertEmpty($builder->getParams());
+        $builder->addParam('key', 'value');
+        $builder->cleanParams();
+        $this->assertEmpty($builder->getParams());
+    }
+
+    public function testSetFormUrlencoded()
+    {
+        $builder = new RequestBuilder();
+        $builder->setFormUrlencoded();
+        $this->assertEquals('application/x-www-form-urlencoded', $builder->getHeader('Content-Type'));
+    }
+
+    public function testSetGetProtocolVersion()
+    {
+        $builder = new RequestBuilder();
+        $builder->setProtocolVersion('0.0.1');
+        $this->assertEquals('0.0.1', $builder->getProtocolVersion());
     }
 
     /**

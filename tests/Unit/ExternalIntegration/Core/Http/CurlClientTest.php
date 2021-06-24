@@ -4,6 +4,7 @@ namespace Payever\Tests\Unit\ExternalIntegration\Core\Http;
 
 use Payever\ExternalIntegration\Core\Http\Client\CurlClient;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\LogLevel;
 
 class CurlClientTest extends TestCase
 {
@@ -15,8 +16,7 @@ class CurlClientTest extends TestCase
     protected static function getMethod($name)
     {
         try {
-            $class = new \ReflectionClass('Payever\ExternalIntegration\Core\Http\Client\CurlClient');
-
+            $class = new \ReflectionClass(CurlClient::class);
             $method = $class->getMethod($name);
             $method->setAccessible(true);
 
@@ -33,6 +33,8 @@ class CurlClientTest extends TestCase
         self::assertNotEquals(false, $method);
 
         $client = new CurlClient();
+        $client->setLogLevel(LogLevel::NOTICE);
+        $client->setLogLevelOnce(LogLevel::INFO);
         $options = array(
             CURLOPT_URL            => 'http://test.com',
             CURLOPT_POST           => true,

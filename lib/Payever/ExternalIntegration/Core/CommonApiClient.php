@@ -202,7 +202,7 @@ class CommonApiClient implements CommonApiClientInterface
 
         if (!$token || ($token instanceof OauthTokenInterface && $token->isExpired() && !$token->isRefreshable())) {
             $tokenData = $this->obtainTokenRequest($scope)->getResponseEntity()->toArray();
-
+            /** @var OauthTokenInterface $token */
             $token = $this->getTokens()->add(
                 $key,
                 $this->getTokens()->create()->load($tokenData)->setUpdatedAt()

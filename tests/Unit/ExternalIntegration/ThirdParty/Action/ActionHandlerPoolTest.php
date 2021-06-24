@@ -2,6 +2,7 @@
 
 namespace Payever\Tests\Unit\ExternalIntegration\ThirdParty\Action;
 
+use Payever\ExternalIntegration\ThirdParty\Action\ActionHandlerInterface;
 use Payever\ExternalIntegration\ThirdParty\Action\ActionHandlerPool;
 use Payever\Tests\Bootstrap\TestCase;
 
@@ -10,16 +11,19 @@ class ActionHandlerPoolTest extends TestCase
     /** @var ActionHandlerPool */
     private $actionHandlerPool;
 
+    /**
+     * @inheritDoc
+     */
     protected function setUp()
     {
-        $this->actionHandlerPool = new ActionHandlerPool();
+        $this->actionHandlerPool = new ActionHandlerPool([
+            $this->getMockForAbstractClass(ActionHandlerInterface::class)
+        ]);
     }
 
-    /**
-     * @expectedException \RuntimeException
-     */
     public function testEmptyPoolGetHandler()
     {
+        $this->expectException(\RuntimeException::class);
         $this->actionHandlerPool->getHandlerForAction('stub');
     }
 
@@ -27,7 +31,7 @@ class ActionHandlerPoolTest extends TestCase
     {
         $action = 'stub';
 
-        $handler = $this->getMockForAbstractClass('Payever\ExternalIntegration\ThirdParty\Action\ActionHandlerInterface');
+        $handler = $this->getMockForAbstractClass(ActionHandlerInterface::class);
         $handler->expects($this->once())->method('getSupportedAction')->willReturn($action);
 
         $this->actionHandlerPool->registerActionHandler($handler);

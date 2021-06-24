@@ -10,7 +10,6 @@
 
 namespace Payever\Tests\Unit\ExternalIntegration\ThirdParty\Http\ResponseEntity;
 
-
 use Payever\ExternalIntegration\ThirdParty\Http\ResponseEntity\SubscriptionResponseEntity;
 use Payever\Tests\Unit\ExternalIntegration\Core\Http\AbstractMessageEntityTest;
 use Payever\Tests\Unit\ExternalIntegration\ThirdParty\Http\MessageEntity\SubscriptionActionEntityTest;
@@ -18,7 +17,8 @@ use Payever\Tests\Unit\ExternalIntegration\ThirdParty\Http\MessageEntity\Subscri
 class SubscriptionResponseEntityTest extends AbstractMessageEntityTest
 {
     protected static $scheme = array(
-        'externalId' => 'abc123',
+        'externalId' => null,
+        'authorizationId' => 'abc123',
         'connected' => true,
         'actions' => array(),
         'updatedAt' => '2020-01-01T00:00:00+00:00',

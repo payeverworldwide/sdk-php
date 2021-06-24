@@ -38,6 +38,7 @@ class PseudoRandomStringGenerator
     {
         if (function_exists('random_bytes')) {
             $binaryString = random_bytes($length);
+        // @codeCoverageIgnoreStart
         } elseif (function_exists('mcrypt_create_iv')) {
             $binaryString = /** @scrutinizer ignore-deprecated */ mcrypt_create_iv($length, MCRYPT_DEV_URANDOM);
         } elseif (function_exists('openssl_random_pseudo_bytes')) {
@@ -59,6 +60,7 @@ class PseudoRandomStringGenerator
         if ($binaryString === false) {
             throw new \RuntimeException('Unable to generate random string.');
         }
+        // @codeCoverageIgnoreEnd
 
         return $this->binToHex($binaryString, $length);
     }

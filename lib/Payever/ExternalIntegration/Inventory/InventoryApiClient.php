@@ -30,13 +30,10 @@ class InventoryApiClient extends CommonProductsThirdPartyApiClient implements In
 
     /**
      * @inheritdoc
-     *
-     * @throws \Exception
      */
     public function createInventory(InventoryCreateRequestEntity $entity)
     {
         $this->configuration->assertLoaded();
-
         $url = $this->getCreateInventoryUrl($entity->getExternalId());
 
         $request = RequestBuilder::post($url)
@@ -53,13 +50,10 @@ class InventoryApiClient extends CommonProductsThirdPartyApiClient implements In
 
     /**
      * @inheritdoc
-     *
-     * @throws \Exception
      */
     public function addInventory(InventoryChangedRequestEntity $entity)
     {
         $this->configuration->assertLoaded();
-
         $url = $this->getAddInventoryUrl($entity->getExternalId());
 
         $request = RequestBuilder::post($url)
@@ -75,14 +69,11 @@ class InventoryApiClient extends CommonProductsThirdPartyApiClient implements In
     }
 
     /**
-     * @param InventoryChangedRequestEntity $entity
-     * @return \Payever\ExternalIntegration\Core\Http\Response
-     * @throws \Exception
+     * @inheritdoc
      */
     public function subtractInventory(InventoryChangedRequestEntity $entity)
     {
         $this->configuration->assertLoaded();
-
         $url = $this->getSubtractInventoryUrl($entity->getExternalId());
 
         $request = RequestBuilder::post($url)
@@ -103,7 +94,6 @@ class InventoryApiClient extends CommonProductsThirdPartyApiClient implements In
     public function exportInventory(InventoryIteratorInterface $inventoryIterator, $externalId)
     {
         $this->configuration->assertLoaded();
-
         $successCount = 0;
 
         foreach ($inventoryIterator as $requestEntity) {
@@ -119,6 +109,7 @@ class InventoryApiClient extends CommonProductsThirdPartyApiClient implements In
                             'exception' => $exception->getMessage(),
                         ]
                     );
+                throw $exception;
             }
         }
 

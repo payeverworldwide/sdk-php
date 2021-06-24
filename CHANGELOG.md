@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.12.0]
+
+### Added
+- Class `Payever\ExternalIntegration\Payments\Enum\Salutation`
+- Property `authorizationId` in `Payever\ExternalIntegration\ThirdParty\Http\ResponseEntity\SubscriptionResponseEntity`
+- Property `integration` in `Payever\ExternalIntegration\ThirdParty\Http\ResponseEntity\SubscriptionResponseEntity`
+- Method `setPaymentDetailsArray` in `Payever\ExternalIntegration\Payments\Http\MessageEntity\RetrievePaymentResultEntity`
+### Changed
+- Property `externalId` in `Payever\ExternalIntegration\ThirdParty\Http\ResponseEntity\SubscriptionResponseEntity` is marked as deprecated
+- Method `exportInventory` in `Payever\ExternalIntegration\Inventory\InventoryApiClient` throws exception
+- Method `exportProducts` in `Payever\ExternalIntegration\Products\ProductsApiClient` throws exception
+- Minor PHPDoc updates
+
 ## [2.11.0]
 
 ### Changed

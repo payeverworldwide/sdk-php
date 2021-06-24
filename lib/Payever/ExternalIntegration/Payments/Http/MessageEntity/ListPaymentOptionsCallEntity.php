@@ -23,9 +23,9 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\ChannelSetEntity;
  * @method string           getChannel()
  * @method ChannelSetEntity getChannelSet()
  * @method string           getType()
- * @method self             setAction()
- * @method self             setChannel()
- * @method self             setType()
+ * @method self             setAction(string $action)
+ * @method self             setChannel(string $channel)
+ * @method self             setType(string $type)
  */
 class ListPaymentOptionsCallEntity extends CallEntity
 {

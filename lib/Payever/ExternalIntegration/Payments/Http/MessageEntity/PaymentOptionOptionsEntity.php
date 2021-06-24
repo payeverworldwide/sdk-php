@@ -21,9 +21,9 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method array getCurrencies()
  * @method array getCountries()
  * @method array getActions()
- * @method self  setCurrencies()
- * @method self  setCountries()
- * @method self  setActions()
+ * @method self  setCurrencies(array $currencies)
+ * @method self  setCountries(array $countries)
+ * @method self  setActions(array $actions)
  */
 class PaymentOptionOptionsEntity extends MessageEntity
 {

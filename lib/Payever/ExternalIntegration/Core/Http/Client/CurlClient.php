@@ -39,6 +39,7 @@ class CurlClient implements HttpClientInterface, LoggerAwareInterface
 
     /**
      * @throws \RuntimeException when cURL extension is not enabled
+     * @codeCoverageIgnore
      */
     public function __construct()
     {

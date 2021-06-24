@@ -19,7 +19,8 @@ use Payever\ExternalIntegration\ThirdParty\Http\MessageEntity\SubscriptionAction
 
 /**
  * @method string getId()
- * @method string getExternalId()
+ * @method string getAuthorizationId()
+ * @method string getIntegration()
  * @method bool getConnected()
  * @method \DateTime|false getCreatedAt()
  * @method \DateTime|false getUpdatedAt()
@@ -28,11 +29,21 @@ use Payever\ExternalIntegration\ThirdParty\Http\MessageEntity\SubscriptionAction
 class SubscriptionResponseEntity extends ResponseEntity
 {
     /**
-     * Field value must be saved by user for further use in sync-related requests
+     * @deprecated use $authorizationId instead
      *
      * @var string
      */
     protected $externalId;
+
+    /**
+     * Field value must be saved by user for further use in sync-related requests
+     *
+     * @var string
+     */
+    protected $authorizationId;
+
+    /** @var string */
+    protected $integration;
 
     /** @var bool */
     protected $connected;
@@ -45,6 +56,18 @@ class SubscriptionResponseEntity extends ResponseEntity
 
     /** @var SubscriptionActionEntity[] */
     protected $actions;
+
+    /**
+     * @deprecated use getAuthorizationId() instead
+     *
+     * @return string
+     */
+    public function getExternalId()
+    {
+        return null === $this->externalId
+            ? $this->authorizationId
+            : $this->externalId;
+    }
 
     /**
      * @param string $createdAt
@@ -81,7 +104,7 @@ class SubscriptionResponseEntity extends ResponseEntity
     public function getRequired()
     {
         return [
-            'externalId',
+            'authorizationId',
             'connected',
         ];
     }

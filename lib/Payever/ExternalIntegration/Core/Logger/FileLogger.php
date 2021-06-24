@@ -78,9 +78,11 @@ class FileLogger extends AbstractLogger
         }
 
         if (!is_readable(dirname($logFilePath))) {
+            // @codeCoverageIgnoreStart
             throw new \UnexpectedValueException(
                 sprintf("The directory of log file is not readable: %s", $logFilePath)
             );
+            // @codeCoverageIgnoreEnd
         }
 
         $bufferSize = (int) $bufferSize;
@@ -90,13 +92,17 @@ class FileLogger extends AbstractLogger
         }
 
         if (!file_exists($logFilePath)) {
+            // @codeCoverageIgnoreStart
             touch($logFilePath);
+            // @codeCoverageIgnoreEnd
         }
         $this->logFileHandle = fopen($logFilePath, 'a');
         if (!$this->logFileHandle) {
+            // @codeCoverageIgnoreStart
             throw new \UnexpectedValueException(
                 sprintf("Can't open file for writing: %s", $logFilePath)
             );
+            // @codeCoverageIgnoreEnd
         }
 
         $this->logFilePath = $logFilePath;

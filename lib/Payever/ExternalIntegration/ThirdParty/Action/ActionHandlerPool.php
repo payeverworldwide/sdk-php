@@ -23,13 +23,11 @@ class ActionHandlerPool
     protected $handlers;
 
     /**
-     * ActionHandlerPool constructor.
      * @param ActionHandlerInterface[] $handlers
      */
     public function __construct(array $handlers = [])
     {
         $this->handlers = [];
-
         foreach ($handlers as $handler) {
             $this->registerActionHandler($handler);
         }
@@ -51,7 +49,6 @@ class ActionHandlerPool
      * @param string $action on of @see {ActionEnum}
      *
      * @return ActionHandlerInterface
-     *
      * @throws \RuntimeException when can't find corresponding handler
      */
     public function getHandlerForAction($action)

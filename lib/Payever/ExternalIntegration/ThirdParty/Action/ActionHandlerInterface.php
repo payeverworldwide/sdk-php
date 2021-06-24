@@ -32,7 +32,6 @@ interface ActionHandlerInterface
      * @param ActionResult $actionResult
      *
      * @return void - All results must be represented through given ActionResult instance
-     *
      * @throws \Exception - when action couldn't be handled, must have meaningful message
      */
     public function handle(ActionPayload $actionPayload, ActionResult $actionResult);

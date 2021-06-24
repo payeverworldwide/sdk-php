@@ -23,10 +23,10 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method string           getRiskSessionId()
  * @method string           getFrontendFinishUrl()
  * @method string           getFrontendCancelUrl()
- * @method self             setConditionsAccepted()
- * @method self             setRiskSessionId()
- * @method self             setFrontendFinishUrl()
- * @method self             setFrontendCancelUrl()
+ * @method self             setConditionsAccepted(bool $conditionsAccepted)
+ * @method self             setRiskSessionId(string $riskSessionId)
+ * @method self             setFrontendFinishUrl(string $frontendFinishUrl)
+ * @method self             setFrontendCancelUrl(string $frontendCancelUrl)
  */
 class PaymentDataEntity extends MessageEntity
 {

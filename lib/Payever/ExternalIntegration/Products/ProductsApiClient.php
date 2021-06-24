@@ -28,13 +28,10 @@ class ProductsApiClient extends CommonProductsThirdPartyApiClient implements Pro
 
     /**
      * @inheritdoc
-     *
-     * @throws \Exception
      */
     public function createProduct(ProductRequestEntity $entity)
     {
         $this->configuration->assertLoaded();
-
         $url = $this->getProductUrl($entity->getExternalId());
 
         $request = RequestBuilder::post($url)
@@ -51,13 +48,10 @@ class ProductsApiClient extends CommonProductsThirdPartyApiClient implements Pro
 
     /**
      * @inheritdoc
-     *
-     * @throws \Exception
      */
     public function updateProduct(ProductRequestEntity $entity)
     {
         $this->configuration->assertLoaded();
-
         $url = $this->getProductUrl($entity->getExternalId());
 
         $request = RequestBuilder::patch($url)
@@ -74,13 +68,10 @@ class ProductsApiClient extends CommonProductsThirdPartyApiClient implements Pro
 
     /**
      * @inheritdoc
-     *
-     * @throws \Exception
      */
     public function createOrUpdateProduct(ProductRequestEntity $entity)
     {
         $this->configuration->assertLoaded();
-
         $url = $this->getProductUrl($entity->getExternalId());
 
         $request = RequestBuilder::put($url)
@@ -97,13 +88,10 @@ class ProductsApiClient extends CommonProductsThirdPartyApiClient implements Pro
 
     /**
      * @inheritdoc
-     *
-     * @throws \Exception
      */
     public function removeProduct(ProductRemovedRequestEntity $entity)
     {
         $this->configuration->assertLoaded();
-
         $url = $this->getProductUrl($entity->getExternalId());
 
         $request = RequestBuilder::delete($url)
@@ -140,6 +128,7 @@ class ProductsApiClient extends CommonProductsThirdPartyApiClient implements Pro
                             'exception' => $exception->getMessage(),
                         ]
                     );
+                throw $exception;
             }
         }
 

@@ -2,6 +2,8 @@
 
 namespace Payever\Tests\Unit\ExternalIntegration\Core\Http;
 
+use Payever\ExternalIntegration\Core\Http\MessageEntity\CallEntity;
+use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
 use Payever\ExternalIntegration\Core\Http\ResponseEntity;
 use PHPUnit\Framework\TestCase;
 
@@ -24,11 +26,11 @@ class ResponseEntityTest extends TestCase
      */
     public function testValidation()
     {
-        $call = array(
+        $call = [
             'created_at' => time(),
             'status' => 'success',
             'id' => bin2hex(random_bytes(16)),
-        );
+        ];
         $result = [];
 
         $responseEntity = new ResponseEntity();
@@ -36,8 +38,8 @@ class ResponseEntityTest extends TestCase
         $responseEntity->setCall($call);
         $responseEntity->setResult($result);
 
-        $this->assertInstanceOf('Payever\ExternalIntegration\Core\Http\MessageEntity\CallEntity', $responseEntity->getCall());
-        $this->assertInstanceOf('Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity', $responseEntity->getResult());
+        $this->assertInstanceOf(CallEntity::class, $responseEntity->getCall());
+        $this->assertInstanceOf(ResultEntity::class, $responseEntity->getResult());
         $this->assertTrue($responseEntity->isSuccessful());
         $this->assertFalse($responseEntity->isFailed());
         $this->assertTrue($responseEntity->isValid());
@@ -50,8 +52,8 @@ class ResponseEntityTest extends TestCase
      */
     public function testError()
     {
-        $error = "ERROR";
-        $errorDescr = "ERROR_HAPPENED";
+        $error = 'ERROR';
+        $errorDescr = 'ERROR_HAPPENED';
 
         $responseEntity = new ResponseEntity();
         $responseEntity->setError($error);
@@ -61,5 +63,11 @@ class ResponseEntityTest extends TestCase
         $this->assertFalse($responseEntity->isSuccessful());
         $this->assertEquals($error, $responseEntity->getError());
         $this->assertEquals($errorDescr, $responseEntity->getErrorDescription());
+
+        $errors = ['error1', 'error2'];
+        $responseEntity->setError($errors);
+        $responseEntity->setErrorDescription($errors);
+        $this->assertEquals(json_encode($errors), $responseEntity->getError());
+        $this->assertEquals(json_encode($errors), $responseEntity->getErrorDescription());
     }
 }

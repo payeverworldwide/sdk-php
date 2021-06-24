@@ -1,20 +1,20 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: gendos
- * Date: 2019-04-15
- * Time: 16:20
- */
 
 namespace Payever\Tests\Unit\ExternalIntegration\Core;
 
+use Payever\ExternalIntegration\Core\Authorization\OauthTokenList;
 use Payever\ExternalIntegration\Core\Base\ClientConfigurationInterface;
 use Payever\ExternalIntegration\Core\Base\HttpClientInterface;
+use Payever\ExternalIntegration\Core\Base\OauthTokenInterface;
+use Payever\ExternalIntegration\Core\Base\ResponseInterface;
 use Payever\ExternalIntegration\Core\ClientConfiguration;
 use Payever\ExternalIntegration\Core\CommonApiClient;
+use Payever\ExternalIntegration\Core\Http\Client\CurlClient;
+use Payever\ExternalIntegration\Core\Http\ResponseEntity;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
 
 /**
  * @see \Payever\ExternalIntegration\Core\ClientConfiguration
@@ -27,6 +27,9 @@ class CommonApiTest extends TestCase
     /** @var CommonApiClient */
     private $commonApi;
 
+    /**
+     * @inheritDoc
+     */
     protected function setUp()
     {
         parent::setUp();
@@ -92,16 +95,75 @@ class CommonApiTest extends TestCase
         $this->commonApi->setHttpClient($httpClient);
     }
 
+    public function testSetHttpClientRequestFailureLogLevel()
+    {
+        /** @var MockObject|CurlClient $httpClient */
+        $httpClient = $this->getMockBuilder(CurlClient::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $this->commonApi->setHttpClient($httpClient);
+        $httpClient->expects($this->once())->method('setLogLevel');
+        $this->commonApi->setHttpClientRequestFailureLogLevel(LogLevel::NOTICE);
+    }
+
+    public function testSetHttpClientRequestFailureLogLevelOnce()
+    {
+        /** @var MockObject|CurlClient $httpClient */
+        $httpClient = $this->getMockBuilder(CurlClient::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $this->commonApi->setHttpClient($httpClient);
+        $httpClient->expects($this->once())->method('setLogLevelOnce');
+        $this->commonApi->setHttpClientRequestFailureLogLevelOnce(LogLevel::NOTICE);
+    }
+
+    public function testGetTokenCaseRefresh()
+    {
+        /** @var MockObject|OauthTokenList $oauthTokenList */
+        $oauthTokenList = $this->getMockBuilder(OauthTokenList::class)->getMock();
+        $oauthTokenList->expects($this->once())
+            ->method('load')
+            ->willReturn($oauthTokenList);
+        /** @var MockObject|HttpClientInterface $httpClient */
+        $httpClient = $this->getMockBuilder(HttpClientInterface::class)->getMock();
+        $this->commonApi = new CommonApiClient($this->config, $oauthTokenList, $httpClient);
+        $oauthTokenList->expects($this->once())
+            ->method('get')
+            ->willReturn($token = $this->getMockBuilder(OauthTokenInterface::class)->getMock());
+        $token->expects($this->any())
+            ->method('isExpired')
+            ->willReturn(true);
+        $token->expects($this->any())
+            ->method('isRefreshable')
+            ->willReturn(true);
+        $httpClient->expects($this->once())
+            ->method('execute')
+            ->willReturn($response = $this->getMockBuilder(ResponseInterface::class)->getMock());
+        $response->expects($this->once())
+            ->method('getResponseEntity')
+            ->willReturn($responseEntity = $this->getMockBuilder(ResponseEntity::class)->getMock());
+        $responseEntity->expects($this->once())
+            ->method('toArray')
+            ->willReturn(['some' => 'data']);
+        $token->expects($this->once())
+            ->method('load')
+            ->willReturn($token);
+        $token->expects($this->once())
+            ->method('getParams')
+            ->willReturn(['some' => 'data']);
+        $this->commonApi->getToken();
+    }
+
     /**
      * @return array
      */
     public function modeUrlDataProvider()
     {
-        return array(
-            array(ClientConfiguration::API_MODE_SANDBOX, "https://proxy.staging.devpayever.com/"),
-            array(ClientConfiguration::API_MODE_LIVE, "https://proxy.payever.org/"),
-            array('', "https://proxy.payever.org/"),
-            array(null, "https://proxy.payever.org/"),
-        );
+        return [
+            [ClientConfiguration::API_MODE_SANDBOX, 'https://proxy.staging.devpayever.com/'],
+            [ClientConfiguration::API_MODE_LIVE, 'https://proxy.payever.org/'],
+            ['', 'https://proxy.payever.org/'],
+            [null, 'https://proxy.payever.org/'],
+        ];
     }
 }

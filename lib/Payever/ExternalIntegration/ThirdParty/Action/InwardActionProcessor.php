@@ -66,7 +66,6 @@ class InwardActionProcessor
 
         try {
             $handler = $this->actionHandlerPool->getHandlerForAction($action);
-
             if ($handler instanceof LoggerAwareInterface) {
                 $handler->setLogger($this->logger);
             }

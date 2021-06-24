@@ -21,9 +21,9 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\CallEntity;
  * @method string     getCurrency()
  * @method string     getState()
  * @method string|int getLimit()
- * @method self       setCurrency()
- * @method self       setState()
- * @method self       setLimit()
+ * @method self       setCurrency(string $currency)
+ * @method self       setState(string $state)
+ * @method self       setLimit(string $limit)
  */
 class ListPaymentsCallEntity extends CallEntity
 {

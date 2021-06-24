@@ -28,6 +28,7 @@ interface InventoryApiClientInterface
      * @param InventoryCreateRequestEntity $entity
      *
      * @return \Payever\ExternalIntegration\Core\Http\Response
+     * @throws \Exception
      */
     public function createInventory(InventoryCreateRequestEntity $entity);
 
@@ -37,6 +38,7 @@ interface InventoryApiClientInterface
      * @param InventoryChangedRequestEntity $entity
      *
      * @return \Payever\ExternalIntegration\Core\Http\Response
+     * @throws \Exception
      */
     public function addInventory(InventoryChangedRequestEntity $entity);
 
@@ -46,6 +48,7 @@ interface InventoryApiClientInterface
      * @param InventoryChangedRequestEntity $entity
      *
      * @return \Payever\ExternalIntegration\Core\Http\Response
+     * @throws \Exception
      */
     public function subtractInventory(InventoryChangedRequestEntity $entity);
 
@@ -56,6 +59,7 @@ interface InventoryApiClientInterface
      * @param string $externalId
      *
      * @return int - Number of successfully exported records
+     * @throws \Exception
      */
     public function exportInventory(InventoryIteratorInterface $inventoryIterator, $externalId);
 }

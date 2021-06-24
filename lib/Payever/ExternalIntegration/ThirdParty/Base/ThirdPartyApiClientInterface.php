@@ -25,6 +25,7 @@ interface ThirdPartyApiClientInterface extends CommonApiClientInterface
      * Get current business entity
      *
      * @return ResponseInterface
+     * @throws \Exception
      */
     public function getBusinessRequest();
 
@@ -34,6 +35,7 @@ interface ThirdPartyApiClientInterface extends CommonApiClientInterface
      * @param SubscriptionRequestEntity $requestEntity
      *
      * @return Response
+     * @throws \Exception
      */
     public function getSubscriptionStatus(SubscriptionRequestEntity $requestEntity);
 
@@ -43,6 +45,7 @@ interface ThirdPartyApiClientInterface extends CommonApiClientInterface
      * @param SubscriptionRequestEntity $requestEntity
      *
      * @return Response
+     * @throws \Exception
      */
     public function subscribe(SubscriptionRequestEntity $requestEntity);
 
@@ -52,6 +55,7 @@ interface ThirdPartyApiClientInterface extends CommonApiClientInterface
      * @param SubscriptionRequestEntity $requestEntity
      *
      * @return Response
+     * @throws \Exception
      */
     public function unsubscribe(SubscriptionRequestEntity $requestEntity);
 }

@@ -20,8 +20,8 @@ namespace Payever\ExternalIntegration\Core\Http\MessageEntity;
  * @method string             getChannelType()
  * @method ChannelSetEntity[] getChannelSets()
  * @method bool               getEnabled()
- * @method self               setId()
- * @method self               setChannelType()
+ * @method self               setId(string $id)
+ * @method self               setChannelType(string $channelType)
  *
  * @SuppressWarnings(PHPMD.ShortVariable)
  */
