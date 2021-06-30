@@ -126,7 +126,7 @@ class CurlClient implements HttpClientInterface, LoggerAwareInterface
 
         $ch = curl_init();
 
-        if (!is_resource($ch)) {
+        if ($ch === false) {
             throw new \RuntimeException('Could not get cURL resource');
         }
 
