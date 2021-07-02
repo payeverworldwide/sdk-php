@@ -1,4 +1,4 @@
-# PHP SDK for payever Payments
+# PHP SDK for payever plugin interactions - internal, not for public use
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/payeverworldwide/sdk-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/payeverworldwide/sdk-php/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/payeverworldwide/sdk-php/badges/build.png?b=master)](https://scrutinizer-ci.com/g/payeverworldwide/sdk-php/build-status/master)
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/payeverworldwide/sdk-php/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
@@ -9,6 +9,8 @@
 This repository contains the open source PHP SDK that allows you to access payever from your PHP app.
 
 This library follows semantic versioning. Read more on [semver.org][1].
+
+Please note: this SDK is used within the payever plugins. It is NOT suitable for custom API integrations. If you would like to integrate with us via API, please visit https://docs.payever.org/shopsystems/api and follow the instructions and code examples provided there. 
 
 ## Troubleshooting 
 
