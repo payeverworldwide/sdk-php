@@ -33,7 +33,7 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
  * @method string               getReference()
  * @method float                getAmount()
  * @method string               getCurrency()
- * @method float                getFee()
+ * @method float                getPaymentFee()
  * @method float                getTotal()
  * @method AddressEntity        getAddress()
  * @method PaymentDetailsEntity getPaymentDetails()
@@ -54,6 +54,7 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\ResultEntity;
  * @method self                 setDownPayment(float $downPayment)
  * @method self                 setCurrency(string $currency)
  * @method self                 setFee(float $fee)
+ * @method self                 setPaymentFee(float $paymentFee)
  * @method self                 setTotal(float $total)
  *
  * @SuppressWarnings(PHPMD.ShortVariable)
@@ -108,6 +109,9 @@ class RetrievePaymentResultEntity extends ResultEntity
 
     /** @var float $fee */
     protected $fee;
+
+    /** @var float $paymentFee */
+    protected $paymentFee;
 
     /** @var float $total */
     protected $total;
@@ -183,5 +187,15 @@ class RetrievePaymentResultEntity extends ResultEntity
             $details = (array) $details;
         }
         $this->paymentDetailsArray = $details;
+    }
+
+    /**
+     * Gets payment fee value
+     *
+     * @return float
+     */
+    public function getFee()
+    {
+        return $this->getPaymentFee();
     }
 }
