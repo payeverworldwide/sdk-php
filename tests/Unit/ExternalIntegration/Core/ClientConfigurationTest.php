@@ -19,7 +19,10 @@ class ClientConfigurationTest extends TestCase
     /** @var ClientConfiguration $configuration */
     protected $configuration;
 
-    protected function setUp()
+    /**
+     * @inheritDoc
+     */
+    protected function setUp(): void
     {
         $this->configuration = new ClientConfiguration();
 
@@ -28,11 +31,10 @@ class ClientConfigurationTest extends TestCase
 
     /**
      * @see \Payever\ExternalIntegration\Core\ClientConfiguration::setChannelSet()
-     *
-     * @expectedException \Payever\ExternalIntegration\Core\Exception\ConfigurationException
      */
     public function testSetChannelSetException()
     {
+        $this->expectException(\Payever\ExternalIntegration\Core\Exception\ConfigurationException::class);
         $this->configuration->setChannelSet('unknown_channel');
     }
 
@@ -147,7 +149,7 @@ class ClientConfigurationTest extends TestCase
     public function testIsLoaded($method, $value, $isLoaded)
     {
         $this->configuration->{$method}($value);
-        
+
         self::assertEquals($isLoaded, $this->configuration->isLoaded());
     }
 
@@ -168,11 +170,10 @@ class ClientConfigurationTest extends TestCase
 
     /**
      * @see \Payever\ExternalIntegration\Core\ClientConfiguration::assertLoaded()
-     *
-     * @expectedException \Payever\ExternalIntegration\Core\Exception\ConfigurationException
      */
     public function testAssertLoadedNegative()
     {
+        $this->expectException(\Payever\ExternalIntegration\Core\Exception\ConfigurationException::class);
         $this->configuration->assertLoaded();
     }
 

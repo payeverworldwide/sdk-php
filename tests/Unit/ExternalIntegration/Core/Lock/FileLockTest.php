@@ -8,10 +8,11 @@ use Payever\Tests\Bootstrap\TestCase;
 class FileLockTest extends TestCase
 {
     /**
-     * @expectedException \UnexpectedValueException
+     * @throws \Exception
      */
     public function testBadDirectory()
     {
+        $this->expectException(\UnexpectedValueException::class);
         new FileLock('/wrong/dir');
     }
 

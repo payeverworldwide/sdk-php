@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHP version 5.4 and 7
+ * PHP version 5.4 and 8
  *
  * @category  Http
  * @package   Payever\Core
@@ -194,7 +194,13 @@ class CurlClient implements HttpClientInterface, LoggerAwareInterface
             }
 
             if (isset($data['error'])) {
-                $message = sprintf('%s: %s', $data['error'], $message ?: 'Unknown');
+                $message = sprintf(
+                    '%s: %s',
+                    $data['error'],
+                    $message
+                        ? (is_array($message) ? json_encode($message) : $message)
+                        : 'Unknown'
+                );
             }
 
             throw new PayeverCommunicationException($message, $httpCode);

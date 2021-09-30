@@ -26,7 +26,10 @@ class StubServerListener implements TestListener
     /** @var string */
     protected $stubWorkerPid;
 
-    public function startTestSuite(TestSuite $suite)
+    /**
+     * @inheritDoc
+     */
+    public function startTestSuite(TestSuite $suite): void
     {
         if (!$this->isStarted()) {
             $this->start();

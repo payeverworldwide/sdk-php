@@ -10,7 +10,10 @@ class ActionResultTest extends TestCase
     /** @var ActionResult */
     private $actionResult;
 
-    protected function setUp()
+    /**
+     * @inheritDoc
+     */
+    protected function setUp(): void
     {
         $this->actionResult = new ActionResult();
     }

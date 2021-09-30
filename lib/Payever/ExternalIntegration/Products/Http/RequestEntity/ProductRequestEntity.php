@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHP version 5.4 and 7
+ * PHP version 5.4 and 8
  *
  * @category  RequestEntity
  * @package   Payever\Products
@@ -316,5 +316,19 @@ class ProductRequestEntity extends RequestEntity
     public function getSku()
     {
         return $this->sku ? $this->sku : $this->uuid;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray($object = null)
+    {
+        $isRootObject = $object === null;
+        $result = parent::toArray($object);
+        if ($result && $isRootObject) {
+            $result['salePrice'] = $this->salePrice;
+        }
+
+        return $result;
     }
 }

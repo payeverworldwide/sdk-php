@@ -22,7 +22,7 @@ class ActionDeciderTest extends TestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->api = $this->getMockForAbstractClass(PaymentsApiClientInterface::class);
         $this->actionDecider = new ActionDecider($this->api);

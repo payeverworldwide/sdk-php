@@ -14,7 +14,10 @@ class FileLoggerTest extends TestCase
     /** @var string */
     private $logFilePath;
 
-    protected function setUp()
+    /**
+     * @inheritDoc
+     */
+    protected function setUp(): void
     {
         $this->logFileHandle = tmpfile();
 
@@ -23,7 +26,10 @@ class FileLoggerTest extends TestCase
         $this->logFilePath = $meta['uri'];
     }
 
-    protected function tearDown()
+    /**
+     * @inheritDoc
+     */
+    protected function tearDown(): void
     {
         flock($this->logFileHandle, LOCK_UN);
         fclose($this->logFileHandle);
@@ -32,18 +38,20 @@ class FileLoggerTest extends TestCase
     }
 
     /**
-     * @expectedException \InvalidArgumentException
+     * @throws \Exception
      */
     public function testUnacceptableLogLevel()
     {
+        $this->expectException(\InvalidArgumentException::class);
         new FileLogger($this->logFilePath, 'bad_level');
     }
 
     /**
-     * @expectedException \InvalidArgumentException
+     * @throws \Exception
      */
     public function testWrongBufferSize()
     {
+        $this->expectException(\InvalidArgumentException::class);
         new FileLogger($this->logFilePath, LogLevel::DEBUG, 'stub', 0);
     }
 

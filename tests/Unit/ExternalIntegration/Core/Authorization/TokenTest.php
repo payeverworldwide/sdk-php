@@ -20,7 +20,7 @@ class TokenTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -76,11 +76,10 @@ class TokenTest extends TestCase
 
     /**
      * @see \Payever\ExternalIntegration\Core\Authorization\OauthToken::load()
-     *
-     * @expectedException  \Exception
      */
     public function testLoadFailedBadJson()
     {
+        $this->expectException(\Exception::class);
         $token = new OauthToken();
 
         $token->load("[\"\"access_token\": \"stub\"]");
@@ -116,12 +115,12 @@ class TokenTest extends TestCase
 
         $token->load($this->getTokenFields());
 
-        $token->setUpdatedAt(time()-OauthToken::ACCESS_TOKEN_LIFETIME);
+        $token->setUpdatedAt(time() - OauthToken::ACCESS_TOKEN_LIFETIME);
 
         $this->assertTrue($token->isExpired());
 
         // 1 sec difference should matter
-        $token->setUpdatedAt(time()-OauthToken::ACCESS_TOKEN_LIFETIME + 1);
+        $token->setUpdatedAt(time() - OauthToken::ACCESS_TOKEN_LIFETIME + 1);
 
         $this->assertFalse($token->isExpired());
     }

@@ -1,23 +1,9 @@
 {
-   "license" : "MIT",
-   "suggest" : {
-      "ext-pdo" : "If you want to use MySQLLock",
-      "ext-mcrypt" : "If you want to use mcrypt at PseudoRandomStringGenerator",
-      "ext-openssl" : "If you want to use openssl at PseudoRandomStringGenerator"
-   },
-   "require-dev" : {
-      "squizlabs/php_codesniffer" : "^3.5",
-      "behat/behat" : "^3.4",
-      "phpmd/phpmd" : "^2.9",
-      "friendsofphp/php-cs-fixer" : "^2.18",
-      "laminas/laminas-diactoros" : "^1.8",
-      "phpunit/phpunit" : "^6"
-   },
    "authors" : [
       {
+         "email" : "a.puhovsky@gmail.com",
          "homepage" : "https://getpayever.com/",
          "name" : "Andrey Puhovsky",
-         "email" : "a.puhovsky@gmail.com",
          "role" : "Initial version"
       },
       {
@@ -26,6 +12,11 @@
          "role" : "1.x, 2.x and further development"
       }
    ],
+   "autoload" : {
+      "classmap" : [
+         "lib"
+      ]
+   },
    "autoload-dev" : {
       "classmap" : [
          "lib",
@@ -35,14 +26,8 @@
          "Payever\\Tests\\" : "tests/"
       }
    },
-   "require" : {
-      "psr/log" : "^1.1",
-      "ext-curl" : "*",
-      "ext-json" : "*",
-      "php" : ">=5.4.0"
-   },
-   "type" : "library",
    "description" : "PHP SDK for payever",
+   "homepage" : "https://github.com/payever/sdk-php",
    "keywords" : [
       "payments",
       "payever",
@@ -51,12 +36,28 @@
       "inventory",
       "e-commerce"
    ],
-   "name" : "payever/sdk-php",
+   "license" : "MIT",
    "minimum-stability" : "stable",
-   "homepage" : "https://github.com/payever/sdk-php",
-   "autoload" : {
-      "classmap" : [
-         "lib"
-      ]
-   }
+   "name" : "payever/sdk-php",
+   "require" : {
+      "ext-curl" : "*",
+      "ext-json" : "*",
+      "php" : ">=5.4.0",
+      "psr/log" : "^1.1"
+   },
+   "require-dev" : {
+      "behat/behat" : "^3.4",
+      "friendsofphp/php-cs-fixer" : "^2.18",
+      "laminas/laminas-diactoros" : "^2.5",
+      "laminas/laminas-httphandlerrunner" : "^1.4",
+      "phpmd/phpmd" : "^2.9",
+      "phpunit/phpunit" : "^9",
+      "squizlabs/php_codesniffer" : "^3.5"
+   },
+   "suggest" : {
+      "ext-mcrypt" : "If you want to use mcrypt at PseudoRandomStringGenerator",
+      "ext-openssl" : "If you want to use openssl at PseudoRandomStringGenerator",
+      "ext-pdo" : "If you want to use MySQLLock"
+   },
+   "type" : "library"
 }

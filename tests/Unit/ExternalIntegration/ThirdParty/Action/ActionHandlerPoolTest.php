@@ -14,7 +14,7 @@ class ActionHandlerPoolTest extends TestCase
     /**
      * @inheritDoc
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->actionHandlerPool = new ActionHandlerPool([
             $this->getMockForAbstractClass(ActionHandlerInterface::class)

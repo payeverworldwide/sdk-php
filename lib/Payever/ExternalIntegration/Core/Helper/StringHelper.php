@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHP version 5.4 and 7
+ * PHP version 5.4 and 8
  *
  * @category  Helper
  * @package   Payever\Core
@@ -28,7 +28,7 @@ class StringHelper
      */
     public static function underscore($name)
     {
-        return strtolower(preg_replace('/(.)([A-Z])/', "$1_$2", $name));
+        return strtolower(preg_replace('/(.)([A-Z0-9])/', "$1_$2", $name));
     }
 
     /**

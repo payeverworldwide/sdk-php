@@ -3,7 +3,7 @@
 /**
  * Class for Payever API Main Engine
  *
- * PHP version 5.4 and 7
+ * PHP version 5.4 and 8
  *
  * @category  API
  * @package   Payever\Core
@@ -17,10 +17,10 @@ namespace Payever\ExternalIntegration\Core;
 
 // @codeCoverageIgnoreStart
 // phpcs:disable PSR1.Files.SideEffects
-define('PEI_CORE_VERSION', '3.0.2');
+define('PEI_CORE_VERSION', '3.0.3');
 define('PEI_CORE_MAJOR_VERSION', 3);
 define('PEI_CORE_MINOR_VERSION', 0);
-define('PEI_CORE_RELEASE_VERSION', 2);
+define('PEI_CORE_RELEASE_VERSION', 3);
 
 define('PEI_NAMESPACE', 'Payever\ExternalIntegration');
 

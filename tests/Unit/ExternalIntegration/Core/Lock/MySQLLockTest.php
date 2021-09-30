@@ -21,7 +21,7 @@ class MySQLLockTest extends TestCase
     /**
      * @inheritDoc
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->pdo = $this->createMock(\PDO::class);
 

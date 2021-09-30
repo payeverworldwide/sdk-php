@@ -29,7 +29,10 @@ class OutwardActionProcessorTest extends TestCase
     /** @var InventoryApiClient|MockObject */
     private $inventoryApiClient;
 
-    protected function setUp()
+    /**
+     * @inheritDoc
+     */
+    protected function setUp(): void
     {
         $this->productsApiClient = $this->getMockBuilder(ProductsApiClient::class)
             ->disableOriginalConstructor()
@@ -46,12 +49,11 @@ class OutwardActionProcessorTest extends TestCase
     }
 
     /**
-     * @expectedException \RuntimeException
-     *
      * @throws \Exception
      */
     public function testUnknownAction()
     {
+        $this->expectException(\RuntimeException::class);
         $this->outwardActionProcessor->process('bad_action', '');
     }
 

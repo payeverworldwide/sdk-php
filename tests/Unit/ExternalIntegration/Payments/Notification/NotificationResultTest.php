@@ -10,7 +10,10 @@ class NotificationResultTest extends TestCase
     /** @var NotificationResult */
     private $result;
 
-    protected function setUp()
+    /**
+     * @inheritDoc
+     */
+    protected function setUp(): void
     {
         $this->result = new NotificationResult();
     }
@@ -50,10 +53,10 @@ class NotificationResultTest extends TestCase
 
         $resultString = (string) $this->result;
 
-        $this->assertContains('orderCreated', $resultString);
-        $this->assertContains($orderId, $resultString);
-        $this->assertContains($curStatus, $resultString);
-        $this->assertContains($prevStatus, $resultString);
-        $this->assertContains($message, $resultString);
+        $this->assertStringContainsString('orderCreated', $resultString);
+        $this->assertStringContainsString($orderId, $resultString);
+        $this->assertStringContainsString($curStatus, $resultString);
+        $this->assertStringContainsString($prevStatus, $resultString);
+        $this->assertStringContainsString($message, $resultString);
     }
 }

@@ -17,7 +17,10 @@ class NamedListTest extends TestCase
     /** @var NamedList */
     private $list;
 
-    public function setUp()
+    /**
+     * @inheritDoc
+     */
+    public function setUp(): void
     {
         parent::setUp();
 

@@ -17,7 +17,10 @@ class RequestTest extends TestCase
     /** @var Request */
     private $request;
 
-    public function setUp()
+    /**
+     * @inheritDoc
+     */
+    public function setUp(): void
     {
         parent::setUp();
 

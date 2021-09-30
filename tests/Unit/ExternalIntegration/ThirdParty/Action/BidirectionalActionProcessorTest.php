@@ -31,7 +31,7 @@ class BidirectionalActionProcessorTest extends TestCase
     /**
      * @inheritDoc
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->inwardActionProcessor = $this->getMockBuilder(InwardActionProcessor::class)
             ->disableOriginalConstructor()

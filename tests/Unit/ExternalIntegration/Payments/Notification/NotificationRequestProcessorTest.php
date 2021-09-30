@@ -20,7 +20,10 @@ class NotificationRequestProcessorTest extends TestCase
     /** @var LockInterface|MockObject */
     private $lock;
 
-    public function setUp()
+    /**
+     * @inheritDoc
+     */
+    public function setUp(): void
     {
         $this->notificationHandler = $this->getMockForAbstractClass(
             'Payever\ExternalIntegration\Payments\Notification\NotificationHandlerInterface'
@@ -37,18 +40,20 @@ class NotificationRequestProcessorTest extends TestCase
     }
 
     /**
-     * @expectedException \RuntimeException
+     * @throws \Exception
      */
     public function testEmptyPayload()
     {
+        $this->expectException(\RuntimeException::class);
         $this->notificationRequestProcessor->processNotification('');
     }
 
     /**
-     * @expectedException \UnexpectedValueException
+     * @throws \Exception
      */
     public function testInvalidPayload()
     {
+        $this->expectException(\UnexpectedValueException::class);
         $this->notificationRequestProcessor->processNotification('{"type":"unknown"}');
     }
 

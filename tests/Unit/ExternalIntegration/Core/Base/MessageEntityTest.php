@@ -19,7 +19,10 @@ class MessageEntityTest extends TestCase
      */
     private $entity;
 
-    public function setUp()
+    /**
+     * @inheritDoc
+     */
+    public function setUp(): void
     {
         parent::setUp();
 

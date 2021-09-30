@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHP version 5.4 and 7
+ * PHP version 5.4 and 8
  *
  * @category  ThirdParty
  * @package   Payever\ThirdParty

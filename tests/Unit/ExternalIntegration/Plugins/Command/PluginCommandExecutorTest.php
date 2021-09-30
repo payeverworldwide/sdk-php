@@ -12,7 +12,10 @@ class PluginCommandExecutorTest extends TestCase
     /** @var AbstractPluginCommandExecutor */
     private $pluginCommandExecutor;
 
-    protected function setUp()
+    /**
+     * @inheritDoc
+     */
+    protected function setUp(): void
     {
         $this->pluginCommandExecutor = $this->getMockForAbstractClass(AbstractPluginCommandExecutor::class);
     }
@@ -23,13 +26,13 @@ class PluginCommandExecutorTest extends TestCase
      *
      * @dataProvider apiHostDataProvider
      *
-     * @doesNotPerformAssertions
-     *
      * @throws \ReflectionException
      */
     public function testAssertApiHostValid($host, $isValid)
     {
-        if (!$isValid) {
+        if ($isValid) {
+            $this->expectNotToPerformAssertions();
+        } else {
             $this->expectException(\UnexpectedValueException::class);
         }
 

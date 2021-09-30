@@ -17,7 +17,10 @@ class InwardActionProcessorTest extends TestCase
     /** @var InwardActionProcessor */
     private $actionRequestProcessor;
 
-    protected function setUp()
+    /**
+     * @inheritDoc
+     */
+    protected function setUp(): void
     {
         $this->handlerPool = $this->createTestProxy('Payever\ExternalIntegration\ThirdParty\Action\ActionHandlerPool');
         $actionResult = new ActionResult();
@@ -31,10 +34,11 @@ class InwardActionProcessorTest extends TestCase
     }
 
     /**
-     * @expectedException \RuntimeException
+     * @throws \Exception
      */
     public function testNoHandlers()
     {
+        $this->expectException(\RuntimeException::class);
         $this->actionRequestProcessor->process('stub');
     }
 

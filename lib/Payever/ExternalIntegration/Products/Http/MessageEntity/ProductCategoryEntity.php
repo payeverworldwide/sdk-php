@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHP version 5.4 and 7
+ * PHP version 5.4 and 8
  *
  * @category  MessageEntity
  * @package   Payever\Products
@@ -17,15 +17,25 @@ namespace Payever\ExternalIntegration\Products\Http\MessageEntity;
 use Payever\ExternalIntegration\Core\Base\MessageEntity;
 
 /**
- * Class ProductCategoryEntity
- *
+ * @method string getId()
+ * @method string getBusinessUuid()
  * @method string getTitle()
  * @method string getSlug()
+ * @method string setId(string $id)
+ * @method self setBusinessUuid(string $businessUuid)
  * @method self setTitle(string $title)
  * @method self setSlug(string $slug)
+ *
+ * @SuppressWarnings(PHPMD.ShortVariable)
  */
 class ProductCategoryEntity extends MessageEntity
 {
+    /** @var string */
+    protected $id;
+
+    /** @var string */
+    protected $businessUuid;
+
     /** @var string */
     protected $title;
 

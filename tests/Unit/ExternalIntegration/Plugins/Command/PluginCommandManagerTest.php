@@ -36,7 +36,10 @@ class PluginCommandManagerTest extends TestCase
     /** @var PluginRegistryInfoProviderInterface */
     private $registryInfoProvider;
 
-    protected function setUp()
+    /**
+     * @inheritDoc
+     */
+    protected function setUp(): void
     {
         $this->pluginApiClient = $this->getMockBuilder(PluginsApiClient::class)
             ->disableOriginalConstructor()

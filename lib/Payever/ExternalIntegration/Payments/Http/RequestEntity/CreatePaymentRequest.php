@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHP version 5.4 and 7
+ * PHP version 5.4 and 8
  *
  * @category  RequestEntity
  * @package   Payever\Payments
@@ -15,6 +15,7 @@ namespace Payever\ExternalIntegration\Payments\Http\RequestEntity;
 
 use Payever\ExternalIntegration\Core\Http\RequestEntity;
 use Payever\ExternalIntegration\Payments\Http\MessageEntity\CartItemEntity;
+use Payever\ExternalIntegration\Payments\Http\MessageEntity\ShippingAddressEntity;
 
 /**
  * This class represents Create Payment RequestInterface Entity
@@ -40,6 +41,7 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\CartItemEntity;
  * @method \DateTime|false        getBirthdate()
  * @method string                 getPhone()
  * @method string                 getEmail()
+ * @method string                 getShippingAddress()
  * @method string                 getSuccessUrl()
  * @method string                 getFailureUrl()
  * @method string                 getCancelUrl()
@@ -162,6 +164,9 @@ class CreatePaymentRequest extends RequestEntity
     /** @var string $pluginVersion */
     protected $pluginVersion;
 
+    /** @var ShippingAddressEntity $shippingAddress */
+    protected $shippingAddress;
+
     /**
      * {@inheritdoc}
      */
@@ -195,8 +200,7 @@ class CreatePaymentRequest extends RequestEntity
             !empty($this->cart) &&
             (!$this->channelSetId || is_integer($this->channelSetId)) &&
             (!$this->fee || is_numeric($this->fee)) &&
-            (!$this->birthdate || $this->birthdate instanceof \DateTime)
-        ;
+            (!$this->birthdate || $this->birthdate instanceof \DateTime);
     }
 
     /**
@@ -225,6 +229,32 @@ class CreatePaymentRequest extends RequestEntity
         foreach ($cart as $item) {
             $this->cart[] = new CartItemEntity($item);
         }
+
+        return $this;
+    }
+
+    /**
+     * Sets shipping address
+     *
+     * @param ShippingAddressEntity|string $shippingAddress
+     *
+     * @return $this
+     */
+    public function setShippingAddress($shippingAddress)
+    {
+        if (!$shippingAddress) {
+            return $this;
+        }
+
+        if (is_string($shippingAddress)) {
+            $shippingAddress = json_decode($shippingAddress);
+        }
+
+        if (!is_array($shippingAddress) && !is_object($shippingAddress)) {
+            return $this;
+        }
+
+        $this->shippingAddress = new ShippingAddressEntity($shippingAddress);
 
         return $this;
     }

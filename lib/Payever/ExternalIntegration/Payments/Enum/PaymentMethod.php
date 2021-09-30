@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHP version 5.4 and 7
+ * PHP version 5.4 and 8
  *
  * @category  Enum
  * @package   Payever\Payments
@@ -70,6 +70,8 @@ class PaymentMethod extends EnumerableConstants
     public static function getShouldHideOnDifferentAddressMethods()
     {
         return [
+            static::METHOD_SANTANDER_DE_CCP_INSTALLMENT,
+            static::METHOD_SANTANDER_DE_INSTALLMENT,
             static::METHOD_SANTANDER_DE_FACTORING,
             static::METHOD_SANTANDER_DE_INVOICE,
             static::METHOD_PAYEX_FAKTURA,

@@ -9,19 +9,21 @@ use Payever\Tests\Bootstrap\TestCase;
 class ActionPayloadTest extends TestCase
 {
     /**
-     * @expectedException \RuntimeException
+     * @throws \Exception
      */
     public function testGetPayloadForUnknownAction()
     {
+        $this->expectException(\RuntimeException::class);
         $actionPayload = new ActionPayload('unknown', '{}');
         $actionPayload->getPayloadEntity();
     }
 
     /**
-     * @expectedException \UnexpectedValueException
+     * @throws \Exception
      */
     public function testNoPayload()
     {
+        $this->expectException(\UnexpectedValueException::class);
         $actionPayload = new ActionPayload('unknown');
         $actionPayload->getPayloadEntity();
     }
