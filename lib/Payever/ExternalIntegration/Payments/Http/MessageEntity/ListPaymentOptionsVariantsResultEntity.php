@@ -48,6 +48,8 @@ class ListPaymentOptionsVariantsResultEntity extends AbstractPaymentOptionEntity
             $convertedOption = new ConvertedPaymentOptionEntity($baseData);
             $convertedOption->setVariantId($variant->getId());
             $convertedOption->setAcceptFee($variant->getAcceptFee());
+            $convertedOption->setShippingAddressAllowed($variant->getShippingAddressAllowed());
+            $convertedOption->setShippingAddressEquality($variant->getShippingAddressEquality());
             $convertedOption->setVariantName($variant->getName());
 
             $result[$variant->getId()] = $convertedOption;

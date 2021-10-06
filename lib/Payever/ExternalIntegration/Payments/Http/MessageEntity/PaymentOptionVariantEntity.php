@@ -20,6 +20,10 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method string getVariantId()
  * @method null|string getName()
  * @method bool getAcceptFee()
+ * @method bool getShippingAddressAllowed()
+ * @method bool getShippingAddressEquality()
+ *
+ * @SuppressWarnings(PHPMD.LongVariable)
  */
 class PaymentOptionVariantEntity extends MessageEntity
 {
@@ -29,8 +33,14 @@ class PaymentOptionVariantEntity extends MessageEntity
     /** @var null|string - Variant name */
     protected $name;
 
-    /** @var bool */
+    /** @var bool $acceptFee */
     protected $acceptFee;
+
+    /** @var bool $shippingAddressAllowed */
+    protected $shippingAddressAllowed;
+
+    /** @var bool $shippingAddressEquality */
+    protected $shippingAddressEquality;
 
     /**
      * @return string

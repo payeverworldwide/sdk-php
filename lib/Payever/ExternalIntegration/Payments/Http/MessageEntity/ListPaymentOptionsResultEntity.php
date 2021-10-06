@@ -17,11 +17,21 @@ namespace Payever\ExternalIntegration\Payments\Http\MessageEntity;
  * This class represents List Payment Options Result Entity
  *
  * @method bool                             getAcceptFee()
+ * @method bool                             getShippingAddressAllowed()
+ * @method bool                             getShippingAddressEquality()
+ *
+ * @SuppressWarnings(PHPMD.LongVariable)
  */
 class ListPaymentOptionsResultEntity extends AbstractPaymentOptionEntity
 {
     /** @var bool $acceptFee */
     protected $acceptFee;
+
+    /** @var bool $shippingAddressAllowed */
+    protected $shippingAddressAllowed;
+
+    /** @var bool $shippingAddressEquality */
+    protected $shippingAddressEquality;
 
     /**
      * Sets Accept Fee
@@ -31,5 +41,25 @@ class ListPaymentOptionsResultEntity extends AbstractPaymentOptionEntity
     public function setAcceptFee($acceptFee)
     {
         $this->acceptFee = filter_var($acceptFee, FILTER_VALIDATE_BOOLEAN);
+    }
+
+    /**
+     * Sets shipping address allowed
+     *
+     * @param bool $shippingAddressAllowed
+     */
+    public function setShippingAddressAllowed($shippingAddressAllowed)
+    {
+        $this->shippingAddressAllowed = filter_var($shippingAddressAllowed, FILTER_VALIDATE_BOOLEAN);
+    }
+
+    /**
+     * Sets shipping address equality
+     *
+     * @param bool $shippingAddressEquality
+     */
+    public function setShippingAddressEquality($shippingAddressEquality)
+    {
+        $this->shippingAddressEquality = filter_var($shippingAddressEquality, FILTER_VALIDATE_BOOLEAN);
     }
 }
