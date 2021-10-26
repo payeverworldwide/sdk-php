@@ -26,6 +26,7 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method string getDescription()
  * @method string getThumbnail()
  * @method string getSku()
+ * @method string getIdentifier()
  * @method self   setName(string $name)
  * @method self   setPrice(float $price)
  * @method self   setPriceNetto(float $priceNetto)
@@ -34,6 +35,7 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method self   setDescription(string $description)
  * @method self   setThumbnail(string $thumbnail)
  * @method self   setSku(string $sku)
+ * @method self   setIdentifier(string $identifier)
  */
 class CartItemEntity extends MessageEntity
 {
@@ -60,6 +62,9 @@ class CartItemEntity extends MessageEntity
 
     /** @var string $sku */
     protected $sku;
+
+    /** @var string $identifier */
+    protected $identifier;
 
     /**
      * {@inheritdoc}

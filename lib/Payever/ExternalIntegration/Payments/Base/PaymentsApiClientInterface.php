@@ -20,6 +20,7 @@ use Payever\ExternalIntegration\Payments\Http\RequestEntity\CreatePaymentRequest
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\SubmitPaymentRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\ListPaymentsRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\ShippingGoodsPaymentRequest;
+use Payever\ExternalIntegration\Payments\Http\RequestEntity\RefundItemPaymentEntity;
 
 /**
  * Interface represents Payever Payments API Connector
@@ -75,12 +76,24 @@ interface PaymentsApiClientInterface extends CommonApiClientInterface
      *
      * @link https://docs.payever.org/shopsystems/api/getting-started/api/order-management/refund Documentation
      *
-     * @param string $paymentId   Payment ID
-     * @param float  $amount Specify the refund amount. If no amount is set, the whole amount will be refunded.
+     * @param string $paymentId Payment ID
+     * @param float $amount Specify the refund amount. If no amount is set, the whole amount will be refunded.
      *
      * @return ResponseInterface
      */
     public function refundPaymentRequest($paymentId, $amount);
+
+    /**
+     * Sends a request to refund payment
+     *
+     * @link https://docs.payever.org/shopsystems/api/getting-started/api/order-management/refund Documentation
+     *
+     * @param string $paymentId Payment ID
+     * @param RefundItemPaymentEntity[] $items Specify the refund items.
+     *
+     * @return ResponseInterface
+     */
+    public function refundItemsPaymentRequest($paymentId, $items);
 
     /**
      * Sends a request to authorize previously made payment
@@ -132,7 +145,7 @@ interface PaymentsApiClientInterface extends CommonApiClientInterface
      *
      * @link https://docs.payever.org/shopsystems/api/getting-started/api/capture-payments/shipping-goods Documentation
      *
-     * @param string $paymentId  Payment ID
+     * @param string $paymentId Payment ID
      * @param ShippingGoodsPaymentRequest $paymentRequest
      *
      * @return ResponseInterface
@@ -166,9 +179,9 @@ interface PaymentsApiClientInterface extends CommonApiClientInterface
      *
      * @link https://docs.payever.org/shopsystems/api/getting-started/api/display-list&or&options/list-payment-options
      *
-     * @param array  $params   Query part of , available params: _locale, _currency
-     * @param string $businessUuid  Business UUID
-     * @param string $channel       Shopsystem channel
+     * @param array $params Query part of , available params: _locale, _currency
+     * @param string $businessUuid Business UUID
+     * @param string $channel Shopsystem channel
      *
      * @return ResponseInterface
      */
@@ -179,9 +192,9 @@ interface PaymentsApiClientInterface extends CommonApiClientInterface
      *
      * @link https://docs.payever.org/shopsystems/api/getting-started/api/display-list&or&options/list-variant-options
      *
-     * @param array  $params   Query part of , available params: _locale, _currency
-     * @param string $businessUuid  Business UUID
-     * @param string $channel       Shopsystem channel
+     * @param array $params Query part of , available params: _locale, _currency
+     * @param string $businessUuid Business UUID
+     * @param string $channel Shopsystem channel
      *
      * @return ResponseInterface
      */

@@ -22,6 +22,7 @@ use Payever\ExternalIntegration\Payments\Http\RequestEntity\CreatePaymentRequest
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\ListPaymentsRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\RefundPaymentRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\ShippingGoodsPaymentRequest;
+use Payever\ExternalIntegration\Payments\Http\RequestEntity\RefundItemsPaymentRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\SubmitPaymentRequest;
 use Payever\ExternalIntegration\Payments\Http\ResponseEntity\AuthorizePaymentResponse;
 use Payever\ExternalIntegration\Payments\Http\ResponseEntity\CancelPaymentResponse;
@@ -170,6 +171,30 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
                 $this->getToken(OauthToken::SCOPE_PAYMENT_ACTIONS)->getAuthorizationString()
             )
             ->setRequestEntity(new RefundPaymentRequest())
+            ->setResponseEntity(new RefundPaymentResponse())
+            ->build();
+
+        return $this->getHttpClient()->execute($request);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @throws \Exception
+     */
+    public function refundItemsPaymentRequest($paymentId, $items)
+    {
+        $this->configuration->assertLoaded();
+
+        $refundPaymentRequest = new RefundItemsPaymentRequest();
+        $refundPaymentRequest->setPaymentItems($items);
+
+        $request = RequestBuilder::post($this->getRefundPaymentURL($paymentId))
+            ->addRawHeader(
+                $this->getToken(OauthToken::SCOPE_PAYMENT_ACTIONS)->getAuthorizationString()
+            )
+            ->contentTypeIsJson()
+            ->setRequestEntity($refundPaymentRequest)
             ->setResponseEntity(new RefundPaymentResponse())
             ->build();
 
