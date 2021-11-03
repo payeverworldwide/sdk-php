@@ -42,7 +42,7 @@ class ThirdPartyApiClient extends CommonProductsThirdPartyApiClient implements T
             ->setResponseEntity(new BusinessResponseEntity())
             ->build();
 
-        return $this->getHttpClient()->execute($request);
+        return $this->executeRequest($request);
     }
 
     /**
@@ -61,7 +61,7 @@ class ThirdPartyApiClient extends CommonProductsThirdPartyApiClient implements T
             ->setResponseEntity(new SubscriptionResponseEntity())
             ->build();
 
-        return $this->getHttpClient()->execute($request);
+        return $this->executeRequest($request);
     }
 
     /**
@@ -82,7 +82,7 @@ class ThirdPartyApiClient extends CommonProductsThirdPartyApiClient implements T
             ->setResponseEntity(new SubscriptionResponseEntity())
             ->build();
 
-        return $this->getHttpClient()->execute($request);
+        return $this->executeRequest($request);
     }
 
     /**
@@ -101,7 +101,7 @@ class ThirdPartyApiClient extends CommonProductsThirdPartyApiClient implements T
             ->setResponseEntity(new DynamicResponse())
             ->build();
 
-        return $this->getHttpClient()->execute($request);
+        return $this->executeRequest($request);
     }
 
     /**

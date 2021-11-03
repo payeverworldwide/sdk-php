@@ -43,7 +43,7 @@ class ProductsApiClient extends CommonProductsThirdPartyApiClient implements Pro
             ->setResponseEntity(new DynamicResponse())
             ->build();
 
-        return $this->getHttpClient()->execute($request);
+        return $this->executeRequest($request);
     }
 
     /**
@@ -63,7 +63,7 @@ class ProductsApiClient extends CommonProductsThirdPartyApiClient implements Pro
             ->setResponseEntity(new DynamicResponse())
             ->build();
 
-        return $this->getHttpClient()->execute($request);
+        return $this->executeRequest($request);
     }
 
     /**
@@ -83,7 +83,7 @@ class ProductsApiClient extends CommonProductsThirdPartyApiClient implements Pro
             ->setResponseEntity(new DynamicResponse())
             ->build();
 
-        return $this->getHttpClient()->execute($request);
+        return $this->executeRequest($request);
     }
 
     /**
@@ -103,7 +103,7 @@ class ProductsApiClient extends CommonProductsThirdPartyApiClient implements Pro
             ->setResponseEntity(new DynamicResponse())
             ->build();
 
-        return $this->getHttpClient()->execute($request);
+        return $this->executeRequest($request);
     }
 
     /**

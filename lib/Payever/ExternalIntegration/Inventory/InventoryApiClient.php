@@ -45,7 +45,7 @@ class InventoryApiClient extends CommonProductsThirdPartyApiClient implements In
             ->setResponseEntity(new DynamicResponse())
             ->build();
 
-        return $this->getHttpClient()->execute($request);
+        return $this->executeRequest($request);
     }
 
     /**
@@ -65,7 +65,7 @@ class InventoryApiClient extends CommonProductsThirdPartyApiClient implements In
             ->setResponseEntity(new DynamicResponse())
             ->build();
 
-        return $this->getHttpClient()->execute($request);
+        return $this->executeRequest($request);
     }
 
     /**
@@ -85,7 +85,7 @@ class InventoryApiClient extends CommonProductsThirdPartyApiClient implements In
             ->setResponseEntity(new DynamicResponse())
             ->build();
 
-        return $this->getHttpClient()->execute($request);
+        return $this->executeRequest($request);
     }
 
     /**

@@ -24,6 +24,7 @@ use Payever\ExternalIntegration\Core\Base\HttpClientInterface;
 use Payever\ExternalIntegration\Core\Base\OauthTokenInterface;
 use Payever\ExternalIntegration\Core\Base\ResponseInterface;
 use Payever\ExternalIntegration\Core\Http\Client\CurlClient;
+use Payever\ExternalIntegration\Core\Http\Request;
 use Payever\ExternalIntegration\Core\Http\RequestBuilder;
 use Payever\ExternalIntegration\Core\Http\RequestEntity\AuthenticationRequest;
 use Payever\ExternalIntegration\Core\Http\ResponseEntity\AuthenticationResponse;
@@ -45,6 +46,8 @@ class CommonApiClient implements CommonApiClientInterface
     const SUB_URL_AUTH              = 'oauth/v2/token';
     const SUB_URL_LIST_CHANNEL_SETS = 'api/shop/oauth/%s/channel-sets';
     const SUB_URL_CURRENCY          = 'api/rest/v1/currency';
+
+	const FORBIDDEN_ERROR_CODE = 403;
 
     /**
      * Stores oAuth Authentication Tokens
@@ -257,7 +260,7 @@ class CommonApiClient implements CommonApiClientInterface
             ->build()
         ;
 
-        return $this->getHttpClient()->execute($request);
+        return $this->executeRequest($request, OauthToken::SCOPE_PAYMENT_INFO);
     }
 
     /**
@@ -366,6 +369,32 @@ class CommonApiClient implements CommonApiClientInterface
 
         return $this->getHttpClient()->execute($request);
     }
+
+	/**
+	 * @param Request $request
+	 * @param string $scope
+	 *
+	 * @return \Payever\ExternalIntegration\Core\Http\Response
+	 * @throws \Exception
+	 */
+	protected function executeRequest($request, $scope = OauthToken::SCOPE_PAYMENT_ACTIONS)
+	{
+		try {
+			return $this->getHttpClient()->execute($request);
+		} catch (\Exception $exception) {
+			if ($exception->getCode() === self::FORBIDDEN_ERROR_CODE) {
+				$this->getTokens()->clear()->save();
+
+				$newToken = $this->getToken($scope)->getAuthorizationString();
+				$pieces = explode(':', $newToken, 2);
+				$request->addHeader($pieces[0], $pieces[1]);
+
+				return $this->getHttpClient()->execute($request);
+			}
+
+			throw $exception;
+		}
+	}
 
     /**
      * Returns URL for Authentication path
