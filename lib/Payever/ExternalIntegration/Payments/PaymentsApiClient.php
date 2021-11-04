@@ -113,7 +113,7 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
             ->setResponseEntity(new RetrievePaymentResponse())
             ->build();
 
-	    return $this->executeRequest($request, OauthToken::SCOPE_CREATE_PAYMENT);
+        return $this->executeRequest($request, OauthToken::SCOPE_CREATE_PAYMENT);
     }
 
     /**
@@ -132,7 +132,7 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
             ->setResponseEntity(new RetrievePaymentResponse())
             ->build();
 
-	    return $this->executeRequest($request, OauthToken::SCOPE_PAYMENT_INFO);
+        return $this->executeRequest($request, OauthToken::SCOPE_PAYMENT_INFO);
     }
 
     /**
@@ -152,7 +152,7 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
             ->setResponseEntity(new ListPaymentsResponse())
             ->build();
 
-	    return $this->executeRequest($request);
+        return $this->executeRequest($request);
     }
 
     /**
@@ -175,7 +175,7 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
             ->setResponseEntity(new RefundPaymentResponse())
             ->build();
 
-	    return $this->executeRequest($request);
+        return $this->executeRequest($request);
     }
 
     /**
@@ -199,7 +199,7 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
             ->setResponseEntity(new RefundPaymentResponse())
             ->build();
 
-	    return $this->executeRequest($request);
+        return $this->executeRequest($request);
     }
 
     /**
@@ -219,7 +219,7 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
             ->setResponseEntity(new AuthorizePaymentResponse())
             ->build();
 
-	    return $this->executeRequest($request);
+        return $this->executeRequest($request);
     }
 
     /**
@@ -240,7 +240,7 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
             ->setResponseEntity(new RemindPaymentResponse())
             ->build();
 
-	    return $this->executeRequest($request);
+        return $this->executeRequest($request);
     }
 
     /**
@@ -261,7 +261,7 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
             ->setResponseEntity(new CollectPaymentsResponse())
             ->build();
 
-	    return $this->executeRequest($request);
+        return $this->executeRequest($request);
     }
 
     /**
@@ -282,7 +282,7 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
             ->setResponseEntity(new LatePaymentsResponse())
             ->build();
 
-	    return $this->executeRequest($request);
+        return $this->executeRequest($request);
     }
 
     /**
@@ -304,7 +304,7 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
             ->setResponseEntity(new ShippingGoodsPaymentResponse())
             ->build();
 
-	    return $this->executeRequest($request);
+        return $this->executeRequest($request);
     }
 
     /**
@@ -323,7 +323,7 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
             ->setResponseEntity(new CancelPaymentResponse())
             ->build();
 
-	    return $this->executeRequest($request);
+        return $this->executeRequest($request);
     }
 
     /**
@@ -342,7 +342,7 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
             ->setResponseEntity(new RetrieveApiCallResponse())
             ->build();
 
-	    return $this->executeRequest($request);
+        return $this->executeRequest($request);
     }
 
     /**
@@ -362,7 +362,7 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
             ->setResponseEntity(new ListPaymentOptionsResponse())
             ->build();
 
-	    return $this->executeRequest($request, OauthToken::SCOPE_PAYMENT_INFO);
+        return $this->executeRequest($request, OauthToken::SCOPE_PAYMENT_INFO);
     }
 
     /**
@@ -382,7 +382,7 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
             ->setResponseEntity(new ListPaymentOptionsWithVariantsResponse())
             ->build();
 
-	    return $this->executeRequest($request, OauthToken::SCOPE_PAYMENT_INFO);
+        return $this->executeRequest($request, OauthToken::SCOPE_PAYMENT_INFO);
     }
 
     /**
@@ -401,7 +401,7 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
             ->setResponseEntity(new GetTransactionResponse())
             ->build();
 
-	    return $this->executeRequest($request);
+        return $this->executeRequest($request);
     }
 
     /**

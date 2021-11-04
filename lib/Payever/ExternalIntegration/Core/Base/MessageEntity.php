@@ -76,7 +76,7 @@ abstract class MessageEntity implements MessageEntityInterface, \ArrayAccess
                 continue;
             }
 
-            if (static::UNDERSCORE_ON_SERIALIZATION) {
+            if (static::UNDERSCORE_ON_SERIALIZATION && !is_integer($property)) {
                 $property = StringHelper::underscore($property);
             }
 
