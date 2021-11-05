@@ -39,6 +39,7 @@ class PaymentMethod extends EnumerableConstants
     const METHOD_STRIPE_DIRECT_DEBIT = 'stripe_directdebit';
     const METHOD_PAYEX_FAKTURA = 'payex_faktura';
     const METHOD_PAYEX_CREDIT_CARD = 'payex_creditcard';
+    const METHOD_OPENBANK = 'openbank';
 
     /**
      * Whether payment method must be hidden when shipping address differs from billing one
@@ -75,6 +76,7 @@ class PaymentMethod extends EnumerableConstants
             static::METHOD_SANTANDER_DE_FACTORING,
             static::METHOD_SANTANDER_DE_INVOICE,
             static::METHOD_PAYEX_FAKTURA,
+            static::METHOD_OPENBANK,
         ];
     }
 
