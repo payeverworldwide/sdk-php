@@ -266,21 +266,19 @@ class CurlClient implements HttpClientInterface, LoggerAwareInterface
             sprintf('HTTP download Request %s %s', $fileUrl, $savePath),
         );
 
+        $filePointer = fopen($savePath, 'w+');
         $ch = curl_init($fileUrl);
 
         if ($ch === false) {
             throw new \RuntimeException('Could not get cURL resource');
         }
 
-        $filePointer = fopen($savePath, 'w+');
+        $options = $this->getRequestOptions();
+        $options[CURLOPT_TIMEOUT] = 100;
+        $options[CURLOPT_CONNECTTIMEOUT] = 300;
+        $options[CURLOPT_FILE] = $filePointer;
 
-        $options = [
-            CURLOPT_TIMEOUT => 100,
-            CURLOPT_CONNECTTIMEOUT => 300,
-            CURLOPT_FILE => $filePointer
-        ];
-
-        curl_setopt_array($ch, $this->getRequestOptions($options));
+        curl_setopt_array($ch, $options);
 
         $result       = curl_exec($ch);
         $httpCode     = curl_getinfo($ch, CURLINFO_HTTP_CODE);
