@@ -223,6 +223,88 @@ class CurlClient implements HttpClientInterface, LoggerAwareInterface
     }
 
     /**
+     * @param $fileUrl
+     * @param $savePath
+     * @throws \Exception
+     */
+    public function download($fileUrl, $savePath)
+    {
+        try {
+            $this->downloadRequest($fileUrl, $savePath);
+        } catch (\Exception $exception) {
+            $logLevel = $this->logLevel;
+            if (null !== $this->tmpLogLevel) {
+                $logLevel = $this->tmpLogLevel;
+                $this->tmpLogLevel = null;
+            }
+            $this->logger->log(
+                $logLevel,
+                sprintf(
+                    'HTTP Request failed: %s %s',
+                    $exception->getCode(),
+                    $exception->getMessage()
+                ),
+                ['trace' => $exception->getTraceAsString()]
+            );
+
+            throw $exception;
+        }
+    }
+
+    /**
+     * @param $fileUrl
+     * @param $savePath
+     *
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     * @SuppressWarnings(PHPMD.NPathComplexity)
+     * @SuppressWarnings(PHPMD.ShortVariable)
+     */
+    protected function downloadRequest($fileUrl, $savePath)
+    {
+        $this->logger->debug(
+            sprintf('HTTP download Request %s %s', $fileUrl, $savePath),
+        );
+
+        $ch = curl_init($fileUrl);
+
+        if ($ch === false) {
+            throw new \RuntimeException('Could not get cURL resource');
+        }
+
+        $filePointer = fopen($savePath, 'w+');
+
+        $options = [
+            CURLOPT_TIMEOUT => 100,
+            CURLOPT_CONNECTTIMEOUT => 300,
+            CURLOPT_FILE => $filePointer
+        ];
+
+        curl_setopt_array($ch, $this->getRequestOptions($options));
+
+        $result       = curl_exec($ch);
+        $httpCode     = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $errorMessage = curl_error($ch);
+        $errorNumber  = curl_errno($ch);
+
+        curl_close($ch);
+        fclose($filePointer);
+
+        $this->logger->debug(
+            sprintf('HTTP Download Response %s', $savePath),
+            ['httpCode' => $httpCode, 'body' => $result, 'curlError' => $errorMessage]
+        );
+
+        if ($errorNumber !== 0) {
+            throw new PayeverCommunicationException($errorMessage, $errorNumber);
+        }
+
+        if ($httpCode >= 400) {
+            throw new PayeverCommunicationException('Could not download the file', $httpCode);
+        }
+    }
+
+    /**
      * Returns cURL request params array
      *
      * @param array $override
