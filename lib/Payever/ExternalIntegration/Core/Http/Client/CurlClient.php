@@ -309,7 +309,7 @@ class CurlClient implements HttpClientInterface, LoggerAwareInterface
      *
      * @return array
      */
-    protected function getRequestOptions($override)
+    protected function getRequestOptions($override = [])
     {
         $default = [
             CURLOPT_HEADER         => 0,
