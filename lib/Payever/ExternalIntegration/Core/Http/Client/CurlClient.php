@@ -263,7 +263,7 @@ class CurlClient implements HttpClientInterface, LoggerAwareInterface
     protected function downloadRequest($fileUrl, $savePath)
     {
         $this->logger->debug(
-            sprintf('HTTP download Request %s %s', $fileUrl, $savePath),
+            sprintf('HTTP download Request %s %s', $fileUrl, $savePath)
         );
 
         $filePointer = fopen($savePath, 'w+');
@@ -280,7 +280,7 @@ class CurlClient implements HttpClientInterface, LoggerAwareInterface
 
         curl_setopt_array($ch, $options);
 
-        $result       = curl_exec($ch);
+        curl_exec($ch);
         $httpCode     = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $errorMessage = curl_error($ch);
         $errorNumber  = curl_errno($ch);
@@ -290,7 +290,7 @@ class CurlClient implements HttpClientInterface, LoggerAwareInterface
 
         $this->logger->debug(
             sprintf('HTTP Download Response %s', $savePath),
-            ['httpCode' => $httpCode, 'body' => $result, 'curlError' => $errorMessage]
+            ['httpCode' => $httpCode, 'curlError' => $errorMessage]
         );
 
         if ($errorNumber !== 0) {
