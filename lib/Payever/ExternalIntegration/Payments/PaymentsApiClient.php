@@ -19,6 +19,7 @@ use Payever\ExternalIntegration\Core\Http\Request;
 use Payever\ExternalIntegration\Core\Http\RequestBuilder;
 use Payever\ExternalIntegration\Payments\Base\PaymentsApiClientInterface;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\AuthorizePaymentRequest;
+use Payever\ExternalIntegration\Payments\Http\RequestEntity\CancelPaymentRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\CreatePaymentRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\ListPaymentsRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\RefundPaymentRequest;
@@ -312,14 +313,18 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
      *
      * @throws \Exception
      */
-    public function cancelPaymentRequest($paymentId)
+    public function cancelPaymentRequest($paymentId, $amount = null)
     {
         $this->configuration->assertLoaded();
 
         $request = RequestBuilder::post($this->getCancelPaymentURL($paymentId))
+			->setParams([
+                'amount' => $amount,
+            ])
             ->addRawHeader(
                 $this->getToken(OauthToken::SCOPE_PAYMENT_ACTIONS)->getAuthorizationString()
             )
+	        ->setRequestEntity(new CancelPaymentRequest())
             ->setResponseEntity(new CancelPaymentResponse())
             ->build();
 

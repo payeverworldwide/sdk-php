@@ -158,10 +158,11 @@ interface PaymentsApiClientInterface extends CommonApiClientInterface
      * @link https://docs.payever.org/shopsystems/api/getting-started/api/order-management/cancel Documentation
      *
      * @param string $paymentId Payment ID
+	 * @param float $amount Specify the cancel/partial cancel amount. If no amount is set, the whole amount will be cancelled.
      *
      * @return ResponseInterface
      */
-    public function cancelPaymentRequest($paymentId);
+    public function cancelPaymentRequest($paymentId, $amount);
 
     /**
      * Requests serialized API Call record
