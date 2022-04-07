@@ -16,7 +16,7 @@ namespace Payever\ExternalIntegration\Payments\Http\RequestEntity;
 use Payever\ExternalIntegration\Core\Http\RequestEntity;
 
 /**
- * This class represents Refund Items Payment RequestInterface Entity
+ * This class represents Payment Item RequestInterface Entity
  *
  * @method string    getName()
  * @method string    getIdentifier()
@@ -27,7 +27,7 @@ use Payever\ExternalIntegration\Core\Http\RequestEntity;
  * @method self      setPrice(float $price)
  * @method self      setQuantity(integer $quantity)
  */
-class RefundItemPaymentEntity extends RequestEntity
+class PaymentItemEntity extends RequestEntity
 {
     /** @var string $name */
     protected $name;

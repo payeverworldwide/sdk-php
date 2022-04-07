@@ -20,7 +20,7 @@ use Payever\ExternalIntegration\Payments\Http\RequestEntity\CreatePaymentRequest
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\SubmitPaymentRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\ListPaymentsRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\ShippingGoodsPaymentRequest;
-use Payever\ExternalIntegration\Payments\Http\RequestEntity\RefundItemPaymentEntity;
+use Payever\ExternalIntegration\Payments\Http\RequestEntity\PaymentItemEntity;
 
 /**
  * Interface represents Payever Payments API Connector
@@ -89,7 +89,7 @@ interface PaymentsApiClientInterface extends CommonApiClientInterface
      * @link https://docs.payever.org/shopsystems/api/getting-started/api/order-management/refund Documentation
      *
      * @param string $paymentId Payment ID
-     * @param RefundItemPaymentEntity[] $items Specify the refund items.
+     * @param PaymentItemEntity[] $items Specify the refund items.
      *
      * @return ResponseInterface
      */
@@ -158,7 +158,7 @@ interface PaymentsApiClientInterface extends CommonApiClientInterface
      * @link https://docs.payever.org/shopsystems/api/getting-started/api/order-management/cancel Documentation
      *
      * @param string $paymentId Payment ID
-	 * @param float $amount Specify the cancel/partial cancel amount. If no amount is set, the whole amount will be cancelled.
+     * @param float $amount Specify the partial cancel amount. If no amount is set, the whole amount will be cancelled.
      *
      * @return ResponseInterface
      */

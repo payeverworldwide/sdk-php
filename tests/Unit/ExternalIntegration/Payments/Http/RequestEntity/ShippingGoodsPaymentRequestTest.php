@@ -15,9 +15,11 @@ use Payever\Tests\Unit\ExternalIntegration\Core\Http\AbstractRequestEntityTest;
 class ShippingGoodsPaymentRequestTest extends AbstractRequestEntityTest
 {
     protected static $scheme = array(
-        'customer_id' => 'stub_customer_id',
-        'invoice_id' => 'stub_invoice_id',
-        'invoice_date' => self::DEFAULT_STUB_DATE,
+        'reason' => 'reason',
+        'amount' => 1.00,
+        'shipping_details' => array(
+            "shippingMethod" => "Flat rate"
+        )
     );
 
     public function getEntity()

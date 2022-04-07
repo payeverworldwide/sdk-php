@@ -23,8 +23,7 @@ use Payever\ExternalIntegration\Core\Http\RequestEntity;
  */
 class RefundItemsPaymentRequest extends RequestEntity
 {
-
-    /** @var RefundItemPaymentEntity[] $paymentItems */
+    /** @var PaymentItemEntity[] $paymentItems */
     protected $paymentItems;
 
     /**

@@ -18,40 +18,96 @@ use Payever\ExternalIntegration\Core\Http\RequestEntity;
 /**
  * This class represents Shipping Goods Payment RequestInterface Entity
  *
- * @method string    getCustomerId()
- * @method string    getInvoiceId()
- * @method \DateTime|false getInvoiceDate()
- * @method self      setCustomerId(string $id)
- * @method self      setInvoiceId(string $id)
+ * @method float                 getAmount()
+ * @method self                  setAmount(float $amount)
+ * @method string                getReason()
+ * @method self                  setReason(string $reason)
+ * @method array                 getPaymentItems()
+ * @method ShippingDetailsEntity getShippingDetails()
  */
 class ShippingGoodsPaymentRequest extends RequestEntity
 {
-    /** @var string $customerId */
-    protected $customerId;
+    /** @var string $reason */
+    protected $reason;
 
-    /** @var string $invoiceId */
-    protected $invoiceId;
+    /** @var float $amount */
+    protected $amount;
 
-    /** @var \DateTime|bool $invoiceDate */
-    protected $invoiceDate;
+    /** @var PaymentItemEntity[] $paymentItems */
+    protected $paymentItems;
+
+    /** @var ShippingDetailsEntity $shippingDetails */
+    protected $shippingDetails;
+
+    /**
+     * Sets Payment Items
+     *
+     * @param array|string $paymentItems
+     *
+     * @return $this
+     */
+    public function setPaymentItems($paymentItems)
+    {
+        if (!$paymentItems) {
+            return $this;
+        }
+
+        if (is_string($paymentItems)) {
+            $paymentItems = json_decode($paymentItems);
+        }
+
+        if (!is_array($paymentItems)) {
+            return $this;
+        }
+
+        $this->paymentItems = [];
+
+        foreach ($paymentItems as $item) {
+            $this->paymentItems[] = new PaymentItemEntity($item);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Sets shipping details
+     *
+     * @param ShippingDetailsEntity|string $shippingDetails
+     *
+     * @return $this
+     */
+    public function setShippingDetails($shippingDetails)
+    {
+        if (!$shippingDetails) {
+            return $this;
+        }
+
+        if (is_string($shippingDetails)) {
+            $shippingDetails = json_decode($shippingDetails);
+        }
+
+        if (!is_array($shippingDetails) && !is_object($shippingDetails)) {
+            return $this;
+        }
+
+        $this->shippingDetails = new ShippingDetailsEntity($shippingDetails);
+
+        return $this;
+    }
 
     /**
      * {@inheritdoc}
      */
     public function isValid()
     {
-        return parent::isValid() &&
-            (!$this->invoiceDate || $this->invoiceDate instanceof \DateTime)
-        ;
-    }
+        if (is_array($this->paymentItems)) {
+            foreach ($this->paymentItems as $item) {
+                if (!$item instanceof PaymentItemEntity || !$item->isValid()) {
+                    return false;
+                }
+            }
+        }
 
-    /**
-     * Sets Invoice Date
-     *
-     * @param string $invoiceDate
-     */
-    public function setInvoiceDate($invoiceDate)
-    {
-        $this->invoiceDate = date_create($invoiceDate);
+        return parent::isValid() && (!$this->paymentItems || is_array($this->paymentItems));
     }
 }

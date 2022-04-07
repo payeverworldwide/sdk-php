@@ -10,6 +10,11 @@
          "email" : "gendosua@gmail.com",
          "name" : "Hennadii Shymanskyi",
          "role" : "1.x, 2.x and further development"
+      },
+      {
+         "email" : "igor.siary@gmail.com",
+         "name" : "Igor Siaryi",
+         "role" : "2.x, 3.x and further development"
       }
    ],
    "autoload" : {

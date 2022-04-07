@@ -301,6 +301,7 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
             ->addRawHeader(
                 $this->getToken(OauthToken::SCOPE_PAYMENT_ACTIONS)->getAuthorizationString()
             )
+            ->contentTypeIsJson()
             ->setRequestEntity($paymentRequest ?: new ShippingGoodsPaymentRequest())
             ->setResponseEntity(new ShippingGoodsPaymentResponse())
             ->build();
@@ -318,13 +319,13 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
         $this->configuration->assertLoaded();
 
         $request = RequestBuilder::post($this->getCancelPaymentURL($paymentId))
-			->setParams([
+            ->setParams([
                 'amount' => $amount,
             ])
             ->addRawHeader(
                 $this->getToken(OauthToken::SCOPE_PAYMENT_ACTIONS)->getAuthorizationString()
             )
-	        ->setRequestEntity(new CancelPaymentRequest())
+            ->setRequestEntity(new CancelPaymentRequest())
             ->setResponseEntity(new CancelPaymentResponse())
             ->build();
 
