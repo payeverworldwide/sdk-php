@@ -314,11 +314,11 @@ class CurlClient implements HttpClientInterface, LoggerAwareInterface
         $default = [
             CURLOPT_HEADER         => 0,
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_SSL_VERIFYPEER => false,
-            CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_SSL_VERIFYPEER => true,
+            CURLOPT_SSL_VERIFYHOST => 2,
             CURLOPT_TIMEOUT        => 30,
             CURLOPT_CONNECTTIMEOUT => 15,
-            CURLOPT_HTTP_VERSION   => 1.1,
+            CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
         ];
 
         return $override + $default;
