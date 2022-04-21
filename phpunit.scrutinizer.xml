@@ -4,9 +4,6 @@
          addUncoveredFilesFromWhitelist="true"
          verbose="false">
     <testsuites>
-        <testsuite name="Integration">
-            <directory phpVersion="5.4.0">tests/Integration/Payever</directory>
-        </testsuite>
         <testsuite name="Unit">
             <directory phpVersion="5.4.0">tests/Unit</directory>
         </testsuite>
