@@ -20,6 +20,8 @@ use Payever\ExternalIntegration\Core\Http\RequestEntity;
  *
  * @method float                 getAmount()
  * @method self                  setAmount(float $amount)
+ * @method float                 getDeliveryFee()
+ * @method self                  setDeliveryFee(float $deliveryFee)
  * @method string                getReason()
  * @method self                  setReason(string $reason)
  * @method array                 getPaymentItems()
@@ -32,6 +34,9 @@ class ShippingGoodsPaymentRequest extends RequestEntity
 
     /** @var float $amount */
     protected $amount;
+
+    /** @var float $deliveryFee */
+    protected $deliveryFee;
 
     /** @var PaymentItemEntity[] $paymentItems */
     protected $paymentItems;

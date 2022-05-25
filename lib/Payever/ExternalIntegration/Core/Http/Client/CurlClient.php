@@ -157,7 +157,7 @@ class CurlClient implements HttpClientInterface, LoggerAwareInterface
             isset($options[CURLOPT_POSTFIELDS]) && is_array($options[CURLOPT_POSTFIELDS])
             && $request->getHeader('Content-Type') == 'application/x-www-form-urlencoded'
         ) {
-            $options[CURLOPT_POSTFIELDS] = http_build_query(/** @scrutinizer ignore-type */ $options[CURLOPT_POSTFIELDS]);
+            $options[CURLOPT_POSTFIELDS] = http_build_query($options[CURLOPT_POSTFIELDS]);
         } elseif (
             isset($options[CURLOPT_POSTFIELDS]) && is_array($options[CURLOPT_POSTFIELDS])
             && $request->getHeader('Content-Type') == 'application/json'
@@ -185,7 +185,7 @@ class CurlClient implements HttpClientInterface, LoggerAwareInterface
 
         if ($httpCode >= 400) {
             $message = $result;
-            $data = json_decode(/** @scrutinizer ignore-type */ $result, true);
+            $data = json_decode($result, true);
 
             if (isset($data['error_description'])) {
                 $message = $data['error_description'];
