@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.1.3]
+
+### Added
+- method `isPartialActionAllowed($paymentId, $transactionAction, $throwException = true): bool` in `Payever\ExternalIntegration\Payments\Action\ActionDecider`
+- method `isPartialCancelAllowed($paymentId, $throwException = true): bool` in `Payever\ExternalIntegration\Payments\Action\ActionDecider`
+- method `isPartialRefundAllowed($paymentId, $throwException = true): bool` in `Payever\ExternalIntegration\Payments\Action\ActionDecider`
+- method `isPartialShippingAllowed($paymentId, $throwException = true): bool` in `Payever\ExternalIntegration\Payments\Action\ActionDecider`
+
 ## [3.0.0]
 
 ### Added

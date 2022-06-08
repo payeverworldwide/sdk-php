@@ -17,6 +17,7 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
 
 /**
  * This class represents RequestInterface Entity
+ * @SuppressWarnings(PHPMD.NumberOfChildren)
  */
 class RequestEntity extends MessageEntity
 {

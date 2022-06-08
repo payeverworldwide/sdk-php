@@ -44,4 +44,21 @@ interface ActionDeciderInterface
      * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
     public function isActionAllowed($paymentId, $transactionAction, $throwException = true);
+
+    /**
+     * Check if the partial action for the transaction is allowed
+     *
+     * @param string $paymentId
+     * @param string $transactionAction
+     * @param bool $throwException
+     *
+     * @return bool
+     * @throws \Exception when $throwException is true and target action is not allowed
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+     */
+    public function isPartialActionAllowed(
+        $paymentId,
+        $transactionAction,
+        $throwException = true
+    );
 }

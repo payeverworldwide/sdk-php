@@ -99,6 +99,111 @@ class ActionDecider implements ActionDeciderInterface
     }
 
     /**
+     * {@inheritDoc}
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     */
+    public function isPartialActionAllowed(
+        $paymentId,
+        $transactionAction,
+        $throwException = true
+    ) {
+        $response = $this->api->getTransactionRequest($paymentId);
+
+        /** @var GetTransactionResponse $getTransactionEntity */
+        $getTransactionEntity = $response->getResponseEntity();
+
+        /** @var GetTransactionResultEntity $getTransactionResult */
+        $getTransactionResult = $getTransactionEntity->getResult();
+        $actions = $getTransactionResult->getActions();
+
+        foreach ($actions as $action) {
+            if (!is_object($action) || !isset($action->action, $action->enabled) || !(bool) $action->enabled) {
+                continue;
+            }
+
+            if (
+                $transactionAction === $this->getPolyfillAction($action->action) &&
+                property_exists($action, 'partialAllowed') &&
+                $action->partialAllowed
+            ) {
+                return true;
+            }
+        }
+
+        if ($throwException) {
+            throw new ActionNotAllowedException(sprintf(
+                'Partial action "%s" is not allowed for payment id "%s"',
+                $transactionAction,
+                $paymentId
+            ));
+        }
+
+        return false;
+    }
+
+    /**
+     * Check if the partial cancel action for the transaction is allowed
+     *
+     * @param string $paymentId
+     * @param bool $throwException
+     *
+     * @return bool
+     *
+     * @throws \Exception when $throwException is true and target action is not allowed
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+     */
+    public function isPartialCancelAllowed($paymentId, $throwException = true)
+    {
+        return $this->isPartialActionAllowed(
+            $paymentId,
+            static::ACTION_CANCEL,
+            $throwException
+        );
+    }
+
+
+    /**
+     * Check if the partial refund action for the transaction is allowed
+     *
+     * @param string $paymentId
+     * @param bool $throwException
+     *
+     * @return bool
+     *
+     * @throws \Exception when $throwException is true and target action is not allowed
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+     */
+    public function isPartialRefundAllowed($paymentId, $throwException = true)
+    {
+        return $this->isPartialActionAllowed(
+            $paymentId,
+            static::ACTION_REFUND,
+            $throwException
+        );
+    }
+
+    /**
+     * Check if the partial shipping goods action for the transaction is allowed
+     *
+     * @param string $paymentId
+     * @param bool $throwException
+     *
+     * @return bool
+     *
+     * @throws \Exception when $throwException is true and target action is not allowed
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+     */
+    public function isPartialShippingAllowed($paymentId, $throwException = true)
+    {
+        return $this->isPartialActionAllowed(
+            $paymentId,
+            static::ACTION_SHIPPING_GOODS,
+            $throwException
+        );
+    }
+
+    /**
      * @param string $paymentId
      * @return string[]
      */
