@@ -168,6 +168,7 @@ abstract class MessageEntity implements MessageEntityInterface, \ArrayAccess
      * @return void
      * @link http://www.php.net/manual/en/arrayaccess.offsetset.php
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         $property = StringHelper::camelize($offset);
@@ -182,6 +183,7 @@ abstract class MessageEntity implements MessageEntityInterface, \ArrayAccess
      * @return bool
      * @link http://www.php.net/manual/en/arrayaccess.offsetexists.php
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         $property = StringHelper::camelize($offset);
@@ -196,6 +198,7 @@ abstract class MessageEntity implements MessageEntityInterface, \ArrayAccess
      * @return void
      * @link http://www.php.net/manual/en/arrayaccess.offsetunset.php
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         $property = StringHelper::camelize($offset);
@@ -210,6 +213,7 @@ abstract class MessageEntity implements MessageEntityInterface, \ArrayAccess
      * @return mixed
      * @link http://www.php.net/manual/en/arrayaccess.offsetget.php
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         $property = StringHelper::camelize($offset);

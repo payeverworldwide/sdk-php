@@ -1,5 +1,10 @@
 # Changelog
 
+## [3.2.0]
+
+### Added
+- Compatibility with PHP 8.1
+
 ## [3.1.3]
 
 ### Added

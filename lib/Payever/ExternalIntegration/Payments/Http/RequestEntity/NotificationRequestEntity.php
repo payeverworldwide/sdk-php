@@ -47,7 +47,9 @@ class NotificationRequestEntity extends RequestEntity
      */
     public function setCreatedAt($createdAt)
     {
-        $this->createdAt = date_create($createdAt);
+        if ($createdAt) {
+            $this->createdAt = date_create($createdAt);
+        }
 
         return $this;
     }

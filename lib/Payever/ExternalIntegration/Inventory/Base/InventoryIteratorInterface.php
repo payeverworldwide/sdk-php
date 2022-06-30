@@ -27,5 +27,6 @@ interface InventoryIteratorInterface extends \Iterator
     /**
      * @return InventoryCreateRequestEntity
      */
+    #[\ReturnTypeWillChange]
     public function current();
 }

@@ -72,6 +72,10 @@ class ListPaymentsRequest extends RequestEntity
      */
     public function setDate($date)
     {
-        $this->date = date_create($date);
+        if ($date) {
+            $this->date = date_create($date);
+        }
+
+        return $this;
     }
 }

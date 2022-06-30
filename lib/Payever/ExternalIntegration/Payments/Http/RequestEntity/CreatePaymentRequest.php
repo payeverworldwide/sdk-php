@@ -268,7 +268,9 @@ class CreatePaymentRequest extends RequestEntity
      */
     public function setBirthdate($birthdate)
     {
-        $this->birthdate = date_create($birthdate);
+        if ($birthdate) {
+            $this->birthdate = date_create($birthdate);
+        }
 
         return $this;
     }

@@ -50,10 +50,14 @@ class AuthorizePaymentRequest extends RequestEntity
      *
      * @param string $invoiceDate
      *
-     * @return void
+     * @return $this
      */
     public function setInvoiceDate($invoiceDate)
     {
-        $this->invoiceDate = date_create($invoiceDate);
+        if ($invoiceDate) {
+            $this->invoiceDate = date_create($invoiceDate);
+        }
+
+        return $this;
     }
 }

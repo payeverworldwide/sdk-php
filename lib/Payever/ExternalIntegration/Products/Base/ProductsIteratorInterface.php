@@ -27,5 +27,6 @@ interface ProductsIteratorInterface extends \Iterator
     /**
      * @return ProductRequestEntity
      */
+    #[\ReturnTypeWillChange]
     public function current();
 }
