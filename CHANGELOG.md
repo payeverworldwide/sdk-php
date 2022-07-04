@@ -1,5 +1,10 @@
 # Changelog
 
+## [3.2.1]
+
+### Added
+- New openbank payment method codes
+
 ## [3.2.0]
 
 ### Added
