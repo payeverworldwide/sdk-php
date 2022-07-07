@@ -18,11 +18,16 @@ use Payever\ExternalIntegration\Core\Http\RequestEntity;
 /**
  * This class represents Refund Payment items RequestInterface Entity
  *
+ * @method float getDeliveryFee()
+ * @method self  setDeliveryFee(float $deliveryFee)
  * @method float getPaymentItems()
  * @method self  setPaymentItems(array $paymentItems)
  */
 class RefundItemsPaymentRequest extends RequestEntity
 {
+    /** @var float $deliveryFee */
+    protected $deliveryFee;
+
     /** @var PaymentItemEntity[] $paymentItems */
     protected $paymentItems;
 

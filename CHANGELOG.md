@@ -1,5 +1,14 @@
 # Changelog
 
+## [3.3.0]
+
+### Added
+- method `getDeliveryFee()` in `Payever\ExternalIntegration\Payments\Http\RequestEntity\RefundItemsPaymentRequest`
+- method `setDeliveryFee(float $deliveryFee)` in `Payever\ExternalIntegration\Payments\Http\RequestEntity\RefundItemsPaymentRequest`
+
+### Changed
+- method `refundItemsPaymentRequest($paymentId, $items, $deliveryFee = null)` in `PaymentsApiClient`
+
 ## [3.2.1]
 
 ### Added

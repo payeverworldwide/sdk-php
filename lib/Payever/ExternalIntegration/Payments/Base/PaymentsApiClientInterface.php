@@ -90,10 +90,11 @@ interface PaymentsApiClientInterface extends CommonApiClientInterface
      *
      * @param string $paymentId Payment ID
      * @param PaymentItemEntity[] $items Specify the refund items.
+     * @param null|float $deliveryFee Shipping total.
      *
      * @return ResponseInterface
      */
-    public function refundItemsPaymentRequest($paymentId, $items);
+    public function refundItemsPaymentRequest($paymentId, $items, $deliveryFee = null);
 
     /**
      * Sends a request to authorize previously made payment

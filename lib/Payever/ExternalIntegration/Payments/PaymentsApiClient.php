@@ -184,12 +184,16 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
      *
      * @throws \Exception
      */
-    public function refundItemsPaymentRequest($paymentId, $items)
+    public function refundItemsPaymentRequest($paymentId, $items, $deliveryFee = null)
     {
         $this->configuration->assertLoaded();
 
         $refundPaymentRequest = new RefundItemsPaymentRequest();
         $refundPaymentRequest->setPaymentItems($items);
+
+        if ($deliveryFee) {
+            $refundPaymentRequest->setDeliveryFee($deliveryFee);
+        }
 
         $request = RequestBuilder::post($this->getRefundPaymentURL($paymentId))
             ->addRawHeader(
