@@ -26,6 +26,12 @@ use Payever\ExternalIntegration\Core\Http\RequestEntity;
  * @method self                  setReason(string $reason)
  * @method array                 getPaymentItems()
  * @method ShippingDetailsEntity getShippingDetails()
+ * @method string                getInvoiceId()
+ * @method self                  setInvoiceId(string $invoiceId)
+ * @method string                getInvoiceUrl()
+ * @method self                  setInvoiceUrl(string $invoiceUrl)
+ * @method string                getPoNumber()
+ * @method self                  setPoNumber(string $poNumber)
  */
 class ShippingGoodsPaymentRequest extends RequestEntity
 {
@@ -43,6 +49,15 @@ class ShippingGoodsPaymentRequest extends RequestEntity
 
     /** @var ShippingDetailsEntity $shippingDetails */
     protected $shippingDetails;
+
+    /** @var string $invoiceId */
+    protected $invoiceId;
+
+    /** @var string $invoiceUrl */
+    protected $invoiceUrl;
+
+    /** @var string $poNumber */
+    protected $poNumber;
 
     /**
      * Sets Payment Items

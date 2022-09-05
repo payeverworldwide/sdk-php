@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.0]
+
+### Added
+- methods `setInvoiceId(string $invoiceId)` and `getInvoiceId()` in `Payever\ExternalIntegration\Payments\Http\RequestEntity\ShippingGoodsPaymentRequest`
+- methods `setInvoiceUrl(string $invoiceUrl)` and `getInvoiceUrl()` in `Payever\ExternalIntegration\Payments\Http\RequestEntity\ShippingGoodsPaymentRequest`
+- methods `setPoNumber(string $poNumber)` and `getPoNumber()` in `Payever\ExternalIntegration\Payments\Http\RequestEntity\ShippingGoodsPaymentRequest`
+
 ## [3.3.0]
 
 ### Added
