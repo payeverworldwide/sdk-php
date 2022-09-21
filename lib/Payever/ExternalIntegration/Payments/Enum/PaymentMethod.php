@@ -42,6 +42,7 @@ class PaymentMethod extends EnumerableConstants
     const METHOD_OPENBANK = 'zinia_bnpl';
     const METHOD_ZINIA_BNPL = 'zinia_bnpl';
     const METHOD_ZINIA_BNPL_DE = 'zinia_bnpl_de';
+    const METHOD_ZINIA_SLICE_THREE = 'zinia_slice_three';
 
     /**
      * Whether payment method must be hidden when shipping address differs from billing one
@@ -79,7 +80,8 @@ class PaymentMethod extends EnumerableConstants
             static::METHOD_SANTANDER_DE_INVOICE,
             static::METHOD_PAYEX_FAKTURA,
             static::METHOD_ZINIA_BNPL,
-            static::METHOD_ZINIA_BNPL_DE
+            static::METHOD_ZINIA_BNPL_DE,
+            static::METHOD_ZINIA_SLICE_THREE
         ];
     }
 
