@@ -36,6 +36,7 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\ShippingAddressEntit
  * @method string                 getStreetNumber()
  * @method string                 getZip()
  * @method string                 getCity()
+ * @method string                 getRegion()
  * @method string                 getCountry()
  * @method string                 getSocialSecurityNumber()
  * @method \DateTime|false        getBirthdate()
@@ -64,6 +65,7 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\ShippingAddressEntit
  * @method self                   setStreetNumber(string $streetNumber)
  * @method self                   setZip(string $zip)
  * @method self                   setCity(string $city)
+ * @method self                   setRegion(string $region)
  * @method self                   setCountry(string $country)
  * @method self                   setSocialSecurityNumber(string $ssn)
  * @method self                   setPhone(string $phone)
@@ -127,6 +129,9 @@ class CreatePaymentRequest extends RequestEntity
 
     /** @var string $city */
     protected $city;
+
+    /** @var string $region */
+    protected $region;
 
     /** @var string $country */
     protected $country;

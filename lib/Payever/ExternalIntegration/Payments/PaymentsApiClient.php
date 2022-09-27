@@ -15,7 +15,6 @@ namespace Payever\ExternalIntegration\Payments;
 
 use Payever\ExternalIntegration\Core\Authorization\OauthToken;
 use Payever\ExternalIntegration\Core\CommonApiClient;
-use Payever\ExternalIntegration\Core\Http\Request;
 use Payever\ExternalIntegration\Core\Http\RequestBuilder;
 use Payever\ExternalIntegration\Payments\Base\PaymentsApiClientInterface;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\AuthorizePaymentRequest;

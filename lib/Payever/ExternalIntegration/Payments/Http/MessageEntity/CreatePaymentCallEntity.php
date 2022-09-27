@@ -31,6 +31,7 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\CallEntity;
  * @method string           getStreet()
  * @method string           getZip()
  * @method string           getCity()
+ * @method string           getRegion()
  * @method string           getCountry()
  * @method string           getPhone()
  * @method string           getEmail()
@@ -53,6 +54,7 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\CallEntity;
  * @method self             setStreet(string $street)
  * @method self             setZip(string $zip)
  * @method self             setCity(string $city)
+ * @method self             setRegion(string $region)
  * @method self             setCountry(string $country)
  * @method self             setPhone(string $phone)
  * @method self             setEmail(string $email)
@@ -105,6 +107,9 @@ class CreatePaymentCallEntity extends CallEntity
 
     /** @var string $city */
     protected $city;
+
+    /** @var string $region */
+    protected $region;
 
     /** @var string $country */
     protected $country;

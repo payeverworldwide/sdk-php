@@ -23,6 +23,7 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method string getCountry()
  * @method string getCountryName()
  * @method string getCity()
+ * @method string getRegion()
  * @method string getZipCode()
  * @method string getFullStreet()
  * @method string getStreet()
@@ -38,6 +39,7 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method self   setCountry(string $country)
  * @method self   setCountryName(string $countryName)
  * @method self   setCity(string $city)
+ * @method self   setRegion(string $region)
  * @method self   setZipCode(string $zipCode)
  * @method self   setFullStreet(string $fullStreet)
  * @method self   setStreet(string $street)
@@ -67,6 +69,9 @@ class AddressEntity extends MessageEntity
 
     /** @var string $city */
     protected $city;
+
+    /** @var string $region */
+    protected $region;
 
     /** @var string $zipCode */
     protected $zipCode;

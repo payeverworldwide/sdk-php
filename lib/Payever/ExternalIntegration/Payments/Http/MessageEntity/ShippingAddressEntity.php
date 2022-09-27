@@ -26,6 +26,7 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method string getZip()
  * @method string getCountry()
  * @method string getCity()
+ * @method string getRegion()
  * @method string getAddressLine2()
  * @method self   setSalutation(string $salutation)
  * @method self   setFirstName(string $firstName)
@@ -35,6 +36,7 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method self   setZip(string $zip)
  * @method self   setCountry(string $country)
  * @method self   setCity(string $city)
+ * @method self   setRegion(string $region)
  * @method self   setAddressLine2(string $addressLine2)
  */
 class ShippingAddressEntity extends MessageEntity
@@ -62,6 +64,9 @@ class ShippingAddressEntity extends MessageEntity
 
     /** @var string $city */
     protected $city;
+
+    /** @var string $region */
+    protected $region;
 
     /** @var string $addressLine2 */
     protected $addressLine2;
