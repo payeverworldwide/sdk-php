@@ -23,6 +23,7 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method string           getRiskSessionId()
  * @method string           getFrontendFinishUrl()
  * @method string           getFrontendCancelUrl()
+ * @method bool             getForceRedirect()
  * @method self             setConditionsAccepted(bool $conditionsAccepted)
  * @method self             setRiskSessionId(string $riskSessionId)
  * @method self             setFrontendFinishUrl(string $frontendFinishUrl)
@@ -45,6 +46,9 @@ class PaymentDataEntity extends MessageEntity
     /** @var string frontendCancelUrl */
     protected $frontendCancelUrl;
 
+    /** @var boolean $force_redirect */
+    protected $force_redirect;
+
     /**
      * Sets Birthdate
      *
@@ -55,6 +59,20 @@ class PaymentDataEntity extends MessageEntity
     public function setBirthdate($birthdate)
     {
         $this->birthdate = date_create($birthdate);
+
+        return $this;
+    }
+
+    /**
+     * Sets force redirect value
+     *
+     * @param string $forceRedirect
+     *
+     * @return $this
+     */
+    public function setForceRedirect($forceRedirect)
+    {
+        $this->force_redirect = $forceRedirect;
 
         return $this;
     }

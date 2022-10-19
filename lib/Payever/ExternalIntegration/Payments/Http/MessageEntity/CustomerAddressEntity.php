@@ -39,7 +39,7 @@ use Payever\ExternalIntegration\Core\Base\MessageEntity;
  * @method self   setRegion(string $region)
  * @method self   setAddressLine2(string $addressLine2)
  */
-class ShippingAddressEntity extends MessageEntity
+class CustomerAddressEntity extends MessageEntity
 {
     /** @var string $salutation */
     protected $salutation;

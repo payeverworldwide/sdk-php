@@ -20,6 +20,7 @@ use Payever\ExternalIntegration\Payments\Base\PaymentsApiClientInterface;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\AuthorizePaymentRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\CancelPaymentRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\CreatePaymentRequest;
+use Payever\ExternalIntegration\Payments\Http\RequestEntity\CreatePaymentV2Request;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\ListPaymentsRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\RefundPaymentRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\ShippingGoodsPaymentRequest;
@@ -48,6 +49,7 @@ use Payever\ExternalIntegration\Payments\Http\ResponseEntity\ShippingGoodsPaymen
 class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInterface
 {
     const SUB_URL_CREATE_PAYMENT = 'api/payment';
+    const SUB_URL_CREATE_PAYMENT_V2 = 'api/v2/payment';
     const SUB_URL_CREATE_PAYMENT_SUBMIT = 'api/payment/submit';
     const SUB_URL_RETRIEVE_PAYMENT = 'api/payment/%s';
     const SUB_URL_LIST_PAYMENTS = 'api/payment';
@@ -85,6 +87,27 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
             ->setRequestEntity($createPaymentRequest)
             ->setResponseEntity(new CreatePaymentResponse())
             ->build();
+
+        return $this->executeRequest($request, OauthToken::SCOPE_CREATE_PAYMENT);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @throws \Exception
+     */
+    public function createPaymentV2Request(CreatePaymentV2Request $createPaymentRequest)
+    {
+        $this->configuration->assertLoaded();
+
+        $request = RequestBuilder::post($this->getCreatePaymentV2URL())
+                                 ->addRawHeader(
+                                     $this->getToken(OauthToken::SCOPE_CREATE_PAYMENT)->getAuthorizationString()
+                                 )
+                                 ->contentTypeIsJson()
+                                 ->setRequestEntity($createPaymentRequest)
+                                 ->setResponseEntity(new CreatePaymentResponse())
+                                 ->build();
 
         return $this->executeRequest($request, OauthToken::SCOPE_CREATE_PAYMENT);
     }
@@ -421,6 +444,16 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
     protected function getCreatePaymentURL()
     {
         return $this->getBaseUrl() . self::SUB_URL_CREATE_PAYMENT;
+    }
+
+    /**
+     * Returns URL for Create Payment path
+     *
+     * @return string
+     */
+    protected function getCreatePaymentV2URL()
+    {
+        return $this->getBaseUrl() . self::SUB_URL_CREATE_PAYMENT_V2;
     }
 
     /**

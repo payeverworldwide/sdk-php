@@ -14,60 +14,41 @@
 namespace Payever\ExternalIntegration\Payments\Http\RequestEntity;
 
 use Payever\ExternalIntegration\Core\Http\RequestEntity;
-use Payever\ExternalIntegration\Payments\Http\MessageEntity\CartItemEntity;
 use Payever\ExternalIntegration\Payments\Http\MessageEntity\CustomerAddressEntity;
+use Payever\ExternalIntegration\Payments\Http\MessageEntity\CartItemEntity;
+use Payever\ExternalIntegration\Payments\Http\MessageEntity\ChannelEntity;
+use Payever\ExternalIntegration\Payments\Http\MessageEntity\PaymentDataEntity;
+
 
 /**
  * This class represents Create Payment RequestInterface Entity
  *
  * @method string                 getChannel()
- * @method integer                getChannelSetId()
  * @method float                  getAmount()
  * @method float                  getFee()
  * @method string                 getOrderId()
  * @method string                 getCurrency()
  * @method CartItemEntity[]       getCart()
- * @method string                 getSalutation()
  * @method string                 getPaymentMethod()
  * @method string|null            getVariantId()
- * @method string                 getFirstName()
- * @method string                 getLastName()
- * @method string                 getStreet()
- * @method string                 getStreetNumber()
- * @method string                 getZip()
- * @method string                 getCity()
- * @method string                 getRegion()
- * @method string                 getCountry()
- * @method string                 getSocialSecurityNumber()
  * @method \DateTime|false        getBirthdate()
  * @method string                 getPhone()
  * @method string                 getEmail()
  * @method string                 getShippingAddress()
+ * @method string                 getBillingAddress()
  * @method string                 getSuccessUrl()
  * @method string                 getFailureUrl()
  * @method string                 getCancelUrl()
  * @method string                 getNoticeUrl()
  * @method string                 getPendingUrl()
  * @method string                 getXFrameHost()
- * @method string                 getPluginVersion()
- * @method self                   setChannel(string $channel)
- * @method self                   setChannelSetId(int $id)
+ * @method PaymentDataEntity|null getPaymentData()
  * @method self                   setAmount(float $amount)
  * @method self                   setFee(float $fee)
  * @method self                   setOrderId(string $id)
  * @method self                   setPaymentMethod(string $method)
  * @method self                   setVariantId(string|null $variantId)
  * @method self                   setCurrency(string $currency)
- * @method self                   setSalutation(string $salutation)
- * @method self                   setFirstName(string $name)
- * @method self                   setLastName(string $name)
- * @method self                   setStreet(string $street)
- * @method self                   setStreetNumber(string $streetNumber)
- * @method self                   setZip(string $zip)
- * @method self                   setCity(string $city)
- * @method self                   setRegion(string $region)
- * @method self                   setCountry(string $country)
- * @method self                   setSocialSecurityNumber(string $ssn)
  * @method self                   setPhone(string $phone)
  * @method self                   setEmail(string $email)
  * @method self                   setSuccessUrl(string $url)
@@ -76,17 +57,13 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\CustomerAddressEntit
  * @method self                   setNoticeUrl(string $url)
  * @method self                   setPendingUrl(string $url)
  * @method self                   setXFrameHost(string $host)
- * @method self                   setPluginVersion(string $version)
  *
  * @SuppressWarnings(PHPMD.TooManyFields)
  */
-class CreatePaymentRequest extends RequestEntity
+class CreatePaymentV2Request extends RequestEntity
 {
-    /** @var string $channel */
+    /** @var ChannelEntity $channel */
     protected $channel;
-
-    /** @var integer $channelSetId */
-    protected $channelSetId;
 
     /** @var string $paymentMethod */
     protected $paymentMethod;
@@ -108,36 +85,6 @@ class CreatePaymentRequest extends RequestEntity
 
     /** @var CartItemEntity[] $cart */
     protected $cart;
-
-    /** @var string $salutation */
-    protected $salutation;
-
-    /** @var string $firstName */
-    protected $firstName;
-
-    /** @var string $lastName */
-    protected $lastName;
-
-    /** @var string $street */
-    protected $street;
-
-    /** @var string $streetNumber */
-    protected $streetNumber;
-
-    /** @var string $zip */
-    protected $zip;
-
-    /** @var string $city */
-    protected $city;
-
-    /** @var string $region */
-    protected $region;
-
-    /** @var string $country */
-    protected $country;
-
-    /** @var string $socialSecurityNumber */
-    protected $socialSecurityNumber;
 
     /** @var \DateTime|bool $birthdate */
     protected $birthdate;
@@ -166,11 +113,14 @@ class CreatePaymentRequest extends RequestEntity
     /** @var string $xFrameHost */
     protected $xFrameHost;
 
-    /** @var string $pluginVersion */
-    protected $pluginVersion;
-
     /** @var CustomerAddressEntity $shippingAddress */
     protected $shippingAddress;
+
+    /** @var CustomerAddressEntity $billingAddress */
+    protected $billingAddress;
+
+    /** @var PaymentDataEntity $paymentData */
+    protected $paymentData;
 
     /**
      * {@inheritdoc}
@@ -203,7 +153,6 @@ class CreatePaymentRequest extends RequestEntity
             is_numeric($this->amount) &&
             is_array($this->cart) &&
             !empty($this->cart) &&
-            (!$this->channelSetId || is_integer($this->channelSetId)) &&
             (!$this->fee || is_numeric($this->fee)) &&
             (!$this->birthdate || $this->birthdate instanceof \DateTime);
     }
@@ -265,6 +214,32 @@ class CreatePaymentRequest extends RequestEntity
     }
 
     /**
+     * Sets billing address
+     *
+     * @param CustomerAddressEntity|string $billingAddress
+     *
+     * @return $this
+     */
+    public function setBillingAddress($billingAddress)
+    {
+        if (!$billingAddress) {
+            return $this;
+        }
+
+        if (is_string($billingAddress)) {
+            $billingAddress = json_decode($billingAddress);
+        }
+
+        if (!is_array($billingAddress) && !is_object($billingAddress)) {
+            return $this;
+        }
+
+        $this->billingAddress = new CustomerAddressEntity($billingAddress);
+
+        return $this;
+    }
+
+    /**
      * Sets Birthdate
      *
      * @param string $birthdate
@@ -276,6 +251,58 @@ class CreatePaymentRequest extends RequestEntity
         if ($birthdate) {
             $this->birthdate = date_create($birthdate);
         }
+
+        return $this;
+    }
+
+    /**
+     * Sets payment data
+     *
+     * @param array|string $paymentData
+     *
+     * @return $this
+     */
+    public function setPaymentData($paymentData)
+    {
+        if (!$paymentData) {
+            return $this;
+        }
+
+        if (is_string($paymentData)) {
+            $paymentData = json_decode($paymentData, true);
+        }
+
+        if (!is_array($paymentData)) {
+            return $this;
+        }
+
+        $this->paymentData = new PaymentDataEntity($paymentData);
+
+        return $this;
+    }
+
+    /**
+     * Sets Channel
+     *
+     * @param ChannelEntity|string $channel
+     *
+     * @return $this
+     */
+    public function setChannel($channel)
+    {
+        if (!$channel) {
+            return $this;
+        }
+
+        if (is_string($channel)) {
+            $channel = json_decode($channel);
+        }
+
+        if (!is_array($channel) && !is_object($channel)) {
+            return $this;
+        }
+
+        $this->channel = new ChannelEntity($channel);
 
         return $this;
     }

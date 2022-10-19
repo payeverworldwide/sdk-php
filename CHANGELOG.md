@@ -1,5 +1,10 @@
 # Changelog
 
+## [4.0.0]
+
+### Implemented
+- /api/v2/payment endpoint
+
 ## [3.4.1]
 
 ### Added

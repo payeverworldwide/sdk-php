@@ -50,6 +50,9 @@ class ClientConfiguration implements ClientConfigurationInterface
     /** @var LoggerInterface */
     protected $logger;
 
+    /** @var string */
+    protected $apiVersion = self::API_VERSION_DEFAULT;
+
     /**
      * @param string|null $clientId
      * @param string|null $clientSecret
@@ -95,6 +98,14 @@ class ClientConfiguration implements ClientConfigurationInterface
     public function getApiMode()
     {
         return $this->apiMode;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getApiVersion()
+    {
+        return $this->apiVersion;
     }
 
     /**
@@ -190,6 +201,17 @@ class ClientConfiguration implements ClientConfigurationInterface
     public function setApiMode($apiMode)
     {
         $this->apiMode = $apiMode;
+
+        return $this;
+    }
+
+    /**
+     * @param string $apiVersion
+     * @return self
+     */
+    public function setApiVersion($apiVersion)
+    {
+        $this->apiVersion = $apiVersion;
 
         return $this;
     }

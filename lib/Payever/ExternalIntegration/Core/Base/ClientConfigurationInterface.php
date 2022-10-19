@@ -23,6 +23,10 @@ interface ClientConfigurationInterface
 
     const API_MODE_SANDBOX = 'sandbox';
 
+    const API_VERSION_DEFAULT = '';
+
+    const API_VERSION_2 = '/v2';
+
     /**
      * Returns Client ID
      *
@@ -48,6 +52,11 @@ interface ClientConfigurationInterface
      * @return string
      */
     public function getApiMode();
+
+    /**
+     * @return string
+     */
+    public function getApiVersion();
 
     /**
      * Returns Channel Set

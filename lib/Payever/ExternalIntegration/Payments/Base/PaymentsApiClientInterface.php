@@ -17,6 +17,7 @@ use Payever\ExternalIntegration\Core\Base\CommonApiClientInterface;
 use Payever\ExternalIntegration\Core\Base\ResponseInterface;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\AuthorizePaymentRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\CreatePaymentRequest;
+use Payever\ExternalIntegration\Payments\Http\RequestEntity\CreatePaymentV2Request;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\SubmitPaymentRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\ListPaymentsRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\ShippingGoodsPaymentRequest;
@@ -37,6 +38,17 @@ interface PaymentsApiClientInterface extends CommonApiClientInterface
      * @return ResponseInterface
      */
     public function createPaymentRequest(CreatePaymentRequest $createPaymentRequest);
+
+    /**
+     * Sends a request to create payment for v2 version of api
+     *
+     * @link https://docs.payever.org/shopsystems/api/getting-started/api/create-payment/create-payments Documentation
+     *
+     * @param CreatePaymentV2Request $createPaymentRequest
+     *
+     * @return ResponseInterface
+     */
+    public function createPaymentV2Request(CreatePaymentV2Request $createPaymentRequest);
 
     /**
      * Sends a request to submit payment
