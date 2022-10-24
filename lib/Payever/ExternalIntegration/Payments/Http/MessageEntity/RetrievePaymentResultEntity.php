@@ -101,7 +101,7 @@ class RetrievePaymentResultEntity extends ResultEntity
     /** @var float $amount */
     protected $amount;
 
-    /** @var float $amount */
+    /** @var float $downPayment */
     protected $downPayment;
 
     /** @var string $currency */
