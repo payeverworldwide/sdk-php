@@ -25,6 +25,7 @@ use Payever\ExternalIntegration\Payments\Http\RequestEntity\ListPaymentsRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\RefundPaymentRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\ShippingGoodsPaymentRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\RefundItemsPaymentRequest;
+use Payever\ExternalIntegration\Payments\Http\RequestEntity\CancelItemsPaymentRequest;
 use Payever\ExternalIntegration\Payments\Http\RequestEntity\SubmitPaymentRequest;
 use Payever\ExternalIntegration\Payments\Http\ResponseEntity\AuthorizePaymentResponse;
 use Payever\ExternalIntegration\Payments\Http\ResponseEntity\CancelPaymentResponse;
@@ -352,6 +353,34 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
                 $this->getToken(OauthToken::SCOPE_PAYMENT_ACTIONS)->getAuthorizationString()
             )
             ->setRequestEntity(new CancelPaymentRequest())
+            ->setResponseEntity(new CancelPaymentResponse())
+            ->build();
+
+        return $this->executeRequest($request);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @throws \Exception
+     */
+    public function cancelItemsPaymentRequest($paymentId, $items, $deliveryFee = null)
+    {
+        $this->configuration->assertLoaded();
+
+        $cancelPaymentRequest = new CancelItemsPaymentRequest();
+        $cancelPaymentRequest->setPaymentItems($items);
+
+        if ($deliveryFee) {
+            $cancelPaymentRequest->setDeliveryFee($deliveryFee);
+        }
+
+        $request = RequestBuilder::post($this->getCancelPaymentURL($paymentId))
+            ->addRawHeader(
+                $this->getToken(OauthToken::SCOPE_PAYMENT_ACTIONS)->getAuthorizationString()
+            )
+            ->contentTypeIsJson()
+            ->setRequestEntity($cancelPaymentRequest)
             ->setResponseEntity(new CancelPaymentResponse())
             ->build();
 

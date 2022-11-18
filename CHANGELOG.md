@@ -1,5 +1,10 @@
 # Changelog
 
+## [4.1.0]
+### Added
+- class `Payever\ExternalIntegration\Payments\Http\RequestEntity\CancelItemsPaymentRequest`
+- method `cancelItemsPaymentRequest($paymentId, $items, $deliveryFee = null)` in `Payever\ExternalIntegration\Payments\PaymentsApiClient`
+
 ## [4.0.0]
 
 ### Implemented

@@ -178,6 +178,19 @@ interface PaymentsApiClientInterface extends CommonApiClientInterface
     public function cancelPaymentRequest($paymentId, $amount);
 
     /**
+     * Sends a request to refund payment
+     *
+     * @link https://docs.payever.org/api/payments/order-management/cancel Documentation
+     *
+     * @param string $paymentId Payment ID
+     * @param PaymentItemEntity[] $items Specify the refund items.
+     * @param null|float $deliveryFee Shipping total.
+     *
+     * @return ResponseInterface
+     */
+    public function cancelItemsPaymentRequest($paymentId, $items, $deliveryFee = null);
+
+    /**
      * Requests serialized API Call record
      *
      * @link https://getpayever.com/developer/api-documentation/#retrieve-api-call Documentation
