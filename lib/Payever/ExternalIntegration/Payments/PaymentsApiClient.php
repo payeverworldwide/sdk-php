@@ -627,4 +627,14 @@ class PaymentsApiClient extends CommonApiClient implements PaymentsApiClientInte
     {
         return $this->getBaseUrl() . sprintf(self::SUB_URL_TRANSACTION, $paymentId);
     }
+
+    /**
+     * Returns Base URL to payever Payments API
+     *
+     * @return string
+     */
+    public function getBaseUrl()
+    {
+        return $this->getBaseEntrypoint();
+    }
 }
