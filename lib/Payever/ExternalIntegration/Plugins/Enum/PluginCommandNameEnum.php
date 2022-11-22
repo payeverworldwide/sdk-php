@@ -25,4 +25,6 @@ class PluginCommandNameEnum extends EnumerableConstants
     const SET_COMMAND_POLLING_DELAY = 'set-command-polling-delay';
 
     const NOTIFY_NEW_PLUGIN_VERSION = 'notify-new-plugin-version';
+
+    const SET_API_VERSION = 'set-api-version';
 }
