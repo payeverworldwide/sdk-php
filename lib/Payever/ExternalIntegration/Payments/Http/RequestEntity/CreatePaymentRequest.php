@@ -48,6 +48,7 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\CustomerAddressEntit
  * @method string                 getCancelUrl()
  * @method string                 getNoticeUrl()
  * @method string                 getPendingUrl()
+ * @method string                 getCustomerRedirectUrl()
  * @method string                 getXFrameHost()
  * @method string                 getPluginVersion()
  * @method self                   setChannel(string $channel)
@@ -75,6 +76,7 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\CustomerAddressEntit
  * @method self                   setCancelUrl(string $url)
  * @method self                   setNoticeUrl(string $url)
  * @method self                   setPendingUrl(string $url)
+ * @method self                   setCustomerRedirectUrl(string $url)
  * @method self                   setXFrameHost(string $host)
  * @method self                   setPluginVersion(string $version)
  *
@@ -162,6 +164,9 @@ class CreatePaymentRequest extends RequestEntity
 
     /** @var string $pendingUrl */
     protected $pendingUrl;
+
+    /** @var string $customerRedirectUrl */
+    protected $customerRedirectUrl;
 
     /** @var string $xFrameHost */
     protected $xFrameHost;

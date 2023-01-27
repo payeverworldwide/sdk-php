@@ -159,6 +159,16 @@ $createPaymentEntity
     ->setCancelUrl('https://your.domain/checkout?reason=cancel')
     ->setFailureUrl('https://your.domain/checkout?reason=failure')
     ->setNoticeUrl('https://your.domain/async-payment-callback?paymentId=--PAYMENT-ID--')
+    ->setCart([
+        [
+            'name'        => 'test',
+            'sku'         => 'test',
+            'identifier'  => 'test',
+            'price'       => 100.5,
+            'vatRate'     => 0,
+            'quantity'    => 1,
+        ]
+    ])
 ;
 
 try {

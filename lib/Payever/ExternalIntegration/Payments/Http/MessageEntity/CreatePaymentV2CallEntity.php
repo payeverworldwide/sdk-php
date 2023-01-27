@@ -39,6 +39,7 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\CallEntity;
  * @method string           getCancelUrl()
  * @method string           getNoticeUrl()
  * @method string           getPendingUrl()
+ * @method string           getCustomerRedirectUrl()
  * @method string           getPaymentType()
  * @method self             setStatus(string $status)
  * @method self             setId(string $id)
@@ -56,6 +57,7 @@ use Payever\ExternalIntegration\Core\Http\MessageEntity\CallEntity;
  * @method self             setCancelUrl(string $cancelUrl)
  * @method self             setNoticeUrl(string $noticeUrl)
  * @method self             setPendingUrl(string $pendingUrl)
+ * @method self             setCustomerRedirectUrl(string $url)
  * @method self             setPaymentType(string $paymentType)
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
@@ -122,6 +124,9 @@ class CreatePaymentV2CallEntity extends CallEntity
 
     /** @var string $pendingUrl */
     protected $pendingUrl;
+
+    /** @var string $customerRedirectUrl */
+    protected $customerRedirectUrl;
 
     /** @var string $paymentType */
     protected $paymentType;

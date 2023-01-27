@@ -41,7 +41,9 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\PaymentDataEntity;
  * @method string                 getCancelUrl()
  * @method string                 getNoticeUrl()
  * @method string                 getPendingUrl()
+ * @method string                 getCustomerRedirectUrl()
  * @method string                 getXFrameHost()
+ * @method string                 getPluginVersion()
  * @method PaymentDataEntity|null getPaymentData()
  * @method self                   setAmount(float $amount)
  * @method self                   setFee(float $fee)
@@ -56,7 +58,9 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\PaymentDataEntity;
  * @method self                   setCancelUrl(string $url)
  * @method self                   setNoticeUrl(string $url)
  * @method self                   setPendingUrl(string $url)
+ * @method self                   setCustomerRedirectUrl(string $url)
  * @method self                   setXFrameHost(string $host)
+ * @method self                   setPluginVersion(string $version)
  *
  * @SuppressWarnings(PHPMD.TooManyFields)
  */
@@ -110,8 +114,14 @@ class CreatePaymentV2Request extends RequestEntity
     /** @var string $pendingUrl */
     protected $pendingUrl;
 
+    /** @var string $customerRedirectUrl */
+    protected $customerRedirectUrl;
+
     /** @var string $xFrameHost */
     protected $xFrameHost;
+
+    /** @var string $pluginVersion */
+    protected $pluginVersion;
 
     /** @var CustomerAddressEntity $shippingAddress */
     protected $shippingAddress;

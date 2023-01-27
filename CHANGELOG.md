@@ -1,5 +1,11 @@
 # Changelog
 
+## [4.2.0]
+### Added
+- methods `setCustomerRedirectUrl()` and `getCustomerRedirectUrl()`
+- method `setPluginVersion(string $version)` in `Payever\ExternalIntegration\Payments\Http\RequestEntity\CreatePaymentV2Request`
+- method `getPluginVersion()` in `Payever\ExternalIntegration\Payments\Http\RequestEntity\CreatePaymentV2Request`
+
 ## [4.1.0]
 ### Added
 - class `Payever\ExternalIntegration\Payments\Http\RequestEntity\CancelItemsPaymentRequest`
