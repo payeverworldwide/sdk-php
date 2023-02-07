@@ -23,7 +23,7 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\PaymentDataEntity;
 /**
  * This class represents Create Payment RequestInterface Entity
  *
- * @method string                 getChannel()
+ * @method ChannelEntity          getChannel()
  * @method float                  getAmount()
  * @method float                  getFee()
  * @method string                 getOrderId()
@@ -268,13 +268,19 @@ class CreatePaymentV2Request extends RequestEntity
     /**
      * Sets payment data
      *
-     * @param array|string $paymentData
+     * @param PaymentDataEntity|array|string $paymentData
      *
      * @return $this
      */
     public function setPaymentData($paymentData)
     {
         if (!$paymentData) {
+            return $this;
+        }
+
+        if ($paymentData instanceof PaymentDataEntity) {
+            $this->paymentData = $paymentData;
+
             return $this;
         }
 

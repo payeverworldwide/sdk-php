@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.3.0]
+### Added
+- methods `setOrganizationName()`, `getOrganizationName()`, `setStreetType()`, `getStreetType()`, `setFloor()`, `getFloor()`, `setDoor()`, `getDoor()`, `setBlock()`, `getBlock()` in `Payever\ExternalIntegration\Payments\Http\MessageEntity\PaymentDataEntity`
+
+### Changed
+- Argument `$paymentData` can accept `PaymentDataEntity` in `setPaymentData($paymentData)` of `Payever\ExternalIntegration\Payments\Http\RequestEntity\SubmitPaymentRequest` and `Payever\ExternalIntegration\Payments\Http\RequestEntity\CreatePaymentV2Request`
+
 ## [4.2.0]
 ### Added
 - methods `setCustomerRedirectUrl()` and `getCustomerRedirectUrl()`

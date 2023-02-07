@@ -99,13 +99,19 @@ class SubmitPaymentRequest extends CreatePaymentRequest
     /**
      * Sets payment data
      *
-     * @param array|string $paymentData
+     * @param PaymentDataEntity|array|string $paymentData
      *
      * @return $this
      */
     public function setPaymentData($paymentData)
     {
         if (!$paymentData) {
+            return $this;
+        }
+
+        if ($paymentData instanceof PaymentDataEntity) {
+            $this->paymentData = $paymentData;
+
             return $this;
         }
 
