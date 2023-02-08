@@ -135,7 +135,7 @@ class CreatePaymentV2CallEntity extends CallEntity
      * Sets Cart
      *
      * @param array|string $cart
-     *
+     * @return self
      * @throws \Exception
      */
     public function setCart($cart)
@@ -149,35 +149,48 @@ class CreatePaymentV2CallEntity extends CallEntity
                 $this->cart[] = new CartItemEntity($item);
             }
         }
+
+        return $this;
     }
 
     /**
      * Sets Address
      *
      * @param array $address
+     * @return self
      */
     public function setAddress($address)
     {
         $this->address = new AddressEntity($address);
+
+        return $this;
     }
 
     /**
      * Sets Shipping Address
      *
      * @param array $shippingAddress
+     * @return self
      */
     public function setShippingAddress($shippingAddress)
     {
         $this->shippingAddress = new AddressEntity($shippingAddress);
+
+        return $this;
     }
 
     /**
      * Sets Created At
      *
      * @param string $createdAt
+     * @return self
      */
     public function setCreatedAt($createdAt)
     {
-        $this->createdAt = date_create($createdAt);
+        if ($createdAt) {
+            $this->createdAt = date_create($createdAt);
+        }
+
+        return $this;
     }
 }

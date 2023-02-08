@@ -1,5 +1,9 @@
 # Changelog
 
+## [4.3.1]
+### Changed
+- Fixed: deprecated functionality: date_create(): Passing null to parameter #1
+
 ## [4.3.0]
 ### Added
 - methods `setOrganizationName()`, `getOrganizationName()`, `setStreetType()`, `getStreetType()`, `setFloor()`, `getFloor()`, `setDoor()`, `getDoor()`, `setBlock()`, `getBlock()` in `Payever\ExternalIntegration\Payments\Http\MessageEntity\PaymentDataEntity`

@@ -71,18 +71,28 @@ class SubscriptionResponseEntity extends ResponseEntity
 
     /**
      * @param string $createdAt
+     * @return self
      */
     public function setCreatedAt($createdAt)
     {
-        $this->createdAt = date_create($createdAt);
+        if ($createdAt) {
+            $this->createdAt = date_create($createdAt);
+        }
+
+        return $this;
     }
 
     /**
      * @param string $updatedAt
+     * @return self
      */
     public function setUpdatedAt($updatedAt)
     {
-        $this->updatedAt = date_create($updatedAt);
+        if ($updatedAt) {
+            $this->updatedAt = date_create($updatedAt);
+        }
+
+        return $this;
     }
 
     /**

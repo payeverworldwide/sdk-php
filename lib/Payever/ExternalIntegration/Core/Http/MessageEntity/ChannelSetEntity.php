@@ -59,29 +59,42 @@ class ChannelSetEntity extends MessageEntity
      * Sets Configured
      *
      * @param string $configured
+     * @return self
      */
     public function setConfigured($configured)
     {
         $this->configured = filter_var($configured, FILTER_VALIDATE_BOOLEAN);
+
+        return $this;
     }
 
     /**
      * Sets Created At
      *
      * @param string $createdAt
+     * @return self
      */
     public function setCreatedAt($createdAt)
     {
-        $this->createdAt = date_create($createdAt);
+        if ($createdAt) {
+            $this->createdAt = date_create($createdAt);
+        }
+
+        return $this;
     }
 
     /**
      * Sets Updated At
      *
      * @param string $updatedAt
+     * @return self
      */
     public function setUpdatedAt($updatedAt)
     {
-        $this->updatedAt = date_create($updatedAt);
+        if ($updatedAt) {
+            $this->updatedAt = date_create($updatedAt);
+        }
+
+        return $this;
     }
 }

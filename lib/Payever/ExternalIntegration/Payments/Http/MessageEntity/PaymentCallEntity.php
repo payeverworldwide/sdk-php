@@ -54,9 +54,14 @@ class PaymentCallEntity extends CallEntity
      * Sets Invoice Date
      *
      * @param string $invoiceDate
+     * @return self
      */
     public function setInvoiceDate($invoiceDate)
     {
-        $this->invoiceDate = date_create($invoiceDate);
+        if ($invoiceDate) {
+            $this->invoiceDate = date_create($invoiceDate);
+        }
+
+        return $this;
     }
 }

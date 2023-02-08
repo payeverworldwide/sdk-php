@@ -211,29 +211,42 @@ class PaymentDetailsEntity extends MessageEntity
      * Sets Credit Calculation
      *
      * @param array $creditCalculation
+     * @return self
      */
     public function setCreditCalculation($creditCalculation)
     {
         $this->creditCalculation = new CreditCalculationEntity($creditCalculation);
+
+        return $this;
     }
 
     /**
      * Sets Personal Date of Birth
      *
      * @param string $personalDateOfBirth
+     * @return self
      */
     public function setPersonalDateOfBirth($personalDateOfBirth)
     {
-        $this->personalDateOfBirth = date_create($personalDateOfBirth);
+        if ($personalDateOfBirth) {
+            $this->personalDateOfBirth = date_create($personalDateOfBirth);
+        }
+
+        return $this;
     }
 
     /**
      * Sets Birthday
      *
      * @param string $birthday
+     * @return self
      */
     public function setBirthday($birthday)
     {
-        $this->birthday = date_create($birthday);
+        if ($birthday) {
+            $this->birthday = date_create($birthday);
+        }
+
+        return $this;
     }
 }

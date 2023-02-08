@@ -203,59 +203,81 @@ class GetTransactionResultEntity extends ResultEntity
      * Sets Created At
      *
      * @param string $createdAt
+     * @return self
      */
     public function setCreatedAt($createdAt)
     {
-        $this->createdAt = date_create($createdAt);
+        if ($createdAt) {
+            $this->createdAt = date_create($createdAt);
+        }
+
+        return $this;
     }
 
     /**
      * Sets Updated At
      *
      * @param string $updatedAt
+     * @return self
      */
     public function setUpdatedAt($updatedAt)
     {
-        $this->updatedAt = date_create($updatedAt);
+        if ($updatedAt) {
+            $this->updatedAt = date_create($updatedAt);
+        }
+
+        return $this;
     }
 
     /**
      * Sets Address
      *
      * @param array $address
+     * @return self
      */
     public function setAddress($address)
     {
         $this->address = new AddressEntity($address);
+
+        return $this;
     }
 
     /**
      * Sets Shipping Address
      *
      * @param array $shippingAddress
+     * @return self
      */
     public function setShippingAddress($shippingAddress)
     {
         $this->shippingAddress = new AddressEntity($shippingAddress);
+
+        return $this;
     }
 
     /**
      * Sets Payment Fee Accepted By Merchant
      *
      * @param bool $paymentFeeAcceptedByMerchant
+     * @return self
      */
     public function setPaymentFeeAcceptedByMerchant($paymentFeeAcceptedByMerchant)
     {
         $this->paymentFeeAcceptedByMerchant = filter_var($paymentFeeAcceptedByMerchant, FILTER_VALIDATE_BOOLEAN);
+
+        return $this;
     }
 
     /**
      * Sets Prefilled
      *
      * @param bool $prefilled
+     * @return self
      */
     public function setPrefilled($prefilled)
     {
         $this->prefilled = filter_var($prefilled, FILTER_VALIDATE_BOOLEAN);
+
+        return $this;
     }
 }

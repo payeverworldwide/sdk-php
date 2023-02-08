@@ -132,54 +132,74 @@ class RetrievePaymentResultEntity extends ResultEntity
      * Sets Created At
      *
      * @param string $createdAt
+     * @return self
      */
     public function setCreatedAt($createdAt)
     {
-        $this->createdAt = date_create($createdAt);
+        if ($createdAt) {
+            $this->createdAt = date_create($createdAt);
+        }
+
+        return $this;
     }
 
     /**
      * Sets Updated At
      *
      * @param string $updatedAt
+     * @return self
      */
     public function setUpdatedAt($updatedAt)
     {
-        $this->updatedAt = date_create($updatedAt);
+        if ($updatedAt) {
+            $this->updatedAt = date_create($updatedAt);
+        }
+
+        return $this;
     }
 
     /**
      * Sets Address
      *
      * @param array $address
+     * @return self
      */
     public function setAddress($address)
     {
         $this->address = new AddressEntity($address);
+
+        return $this;
     }
 
     /**
      * Sets Channel Set
      *
      * @param array $channelSet
+     * @return self
      */
     public function setChannelSet($channelSet)
     {
         $this->channelSet = new ChannelSetEntity($channelSet);
+
+        return $this;
     }
 
     /**
      * Sets Payment Details
      *
      * @param array $paymentDetails
+     * @return self
      */
     public function setPaymentDetails($paymentDetails)
     {
         $this->paymentDetails = new PaymentDetailsEntity($paymentDetails);
+
+        return $this;
     }
 
     /**
      * @param \stdClass|array $details
+     * @return self
      */
     public function setPaymentDetailsArray($details)
     {
@@ -187,6 +207,8 @@ class RetrievePaymentResultEntity extends ResultEntity
             $details = (array) $details;
         }
         $this->paymentDetailsArray = $details;
+
+        return $this;
     }
 
     /**
