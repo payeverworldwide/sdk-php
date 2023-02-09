@@ -34,6 +34,7 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\PaymentDataEntity;
  * @method \DateTime|false        getBirthdate()
  * @method string                 getPhone()
  * @method string                 getEmail()
+ * @method string                 getLocale()
  * @method string                 getShippingAddress()
  * @method string                 getBillingAddress()
  * @method string                 getSuccessUrl()
@@ -53,6 +54,7 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\PaymentDataEntity;
  * @method self                   setCurrency(string $currency)
  * @method self                   setPhone(string $phone)
  * @method self                   setEmail(string $email)
+ * @method self                   setLocale(string $locale)
  * @method self                   setSuccessUrl(string $url)
  * @method self                   setFailureUrl(string $url)
  * @method self                   setCancelUrl(string $url)
@@ -98,6 +100,9 @@ class CreatePaymentV2Request extends RequestEntity
 
     /** @var string $email */
     protected $email;
+
+    /** @var string $locale */
+    protected $locale;
 
     /** @var string $successUrl */
     protected $successUrl;
