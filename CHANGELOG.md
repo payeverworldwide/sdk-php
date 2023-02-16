@@ -1,5 +1,15 @@
 # Changelog
 
+## [4.5.0]
+### Changed
+- Resolved problems with `psr/log` dependency
+
+
+## [4.4.0]
+### Changed
+- Added locale to create payment request
+
+
 ## [4.3.1]
 ### Changed
 - Fixed: deprecated functionality: date_create(): Passing null to parameter #1

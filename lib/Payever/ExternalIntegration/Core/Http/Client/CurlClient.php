@@ -19,6 +19,7 @@ use Payever\ExternalIntegration\Core\Exception\PayeverCommunicationException;
 use Payever\ExternalIntegration\Core\Http\Request;
 use Payever\ExternalIntegration\Core\Http\Response;
 use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 
@@ -28,8 +29,7 @@ use Psr\Log\LogLevel;
  */
 class CurlClient implements HttpClientInterface, LoggerAwareInterface
 {
-    /** @var LoggerInterface */
-    protected $logger;
+    use LoggerAwareTrait;
 
     /** @var string */
     protected $logLevel = LogLevel::CRITICAL;
@@ -46,14 +46,6 @@ class CurlClient implements HttpClientInterface, LoggerAwareInterface
         if (!extension_loaded('curl')) {
             throw new \RuntimeException('cURL PHP extension must be enabled in order to use this HTTP client');
         }
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function setLogger(LoggerInterface $logger)
-    {
-        $this->logger = $logger;
     }
 
     /**
