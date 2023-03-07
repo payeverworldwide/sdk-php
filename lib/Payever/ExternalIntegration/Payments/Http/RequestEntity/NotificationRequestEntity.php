@@ -15,7 +15,7 @@
 namespace Payever\ExternalIntegration\Payments\Http\RequestEntity;
 
 use Payever\ExternalIntegration\Core\Http\RequestEntity;
-use Payever\ExternalIntegration\Payments\Http\MessageEntity\RetrievePaymentResultEntity;
+use Payever\ExternalIntegration\Payments\Notification\MessageEntity\NotificationResultEntity;
 
 /**
  * @method string getNotificationType()
@@ -23,7 +23,7 @@ use Payever\ExternalIntegration\Payments\Http\MessageEntity\RetrievePaymentResul
  * @method setNotificationType(string $notificationType)
  * @method setNotificationTypesAvailable(array $notificationTypes)
  * @method \DateTime|false getCreatedAt()
- * @method RetrievePaymentResultEntity getPayment()
+ * @method NotificationResultEntity getPayment()
  *
  * @SuppressWarnings(PHPMD.LongVariable)
  */
@@ -38,7 +38,7 @@ class NotificationRequestEntity extends RequestEntity
     /** @var \DateTime|bool */
     protected $createdAt;
 
-    /** @var RetrievePaymentResultEntity */
+    /** @var NotificationResultEntity */
     protected $payment;
 
     /**
@@ -73,7 +73,7 @@ class NotificationRequestEntity extends RequestEntity
      */
     public function setData(array $data)
     {
-        $this->payment = new RetrievePaymentResultEntity($data['payment']);
+        $this->payment = new NotificationResultEntity($data['payment']);
 
         return $this;
     }

@@ -1,5 +1,14 @@
 # Changelog
 
+## [4.6.0]
+### Added
+- Class `Payever\ExternalIntegration\Payments\Notification\MessageEntity\NotificationResultEntity`
+- methods `getRefundAmount()`, `getCaptureAmount()`, `getRefundedItems()`, `getCapturedItems()` in `Payever\ExternalIntegration\Payments\Notification\MessageEntity\NotificationResultEntity`
+- methods `setRefundAmount()`, `setCaptureAmount()`, `setRefundedItems()`, `setCapturedItems()` in `Payever\ExternalIntegration\Payments\Notification\MessageEntity\NotificationResultEntity`
+
+### Changed
+- `Payever\ExternalIntegration\Payments\Http\RequestEntity\NotificationRequestEntity::getPayment()` returns `NotificationResultEntity`
+
 ## [4.5.0]
 ### Changed
 - Resolved problems with `psr/log` dependency
