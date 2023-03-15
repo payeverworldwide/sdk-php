@@ -257,6 +257,9 @@ class CurlClient implements HttpClientInterface, LoggerAwareInterface
         $this->logger->debug(
             sprintf('HTTP download Request %s %s', $fileUrl, $savePath)
         );
+        if (!is_writable($savePath)) {
+            throw new \RuntimeException('File is not writable');
+        }
 
         $filePointer = fopen($savePath, 'w+');
         $ch = curl_init($fileUrl);

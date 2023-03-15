@@ -1,5 +1,10 @@
 # Changelog
 
+## [4.7.0]
+### Changed
+- `Payever\ExternalIntegration\Products\Http\RequestEntity\ProductRequestEntity::toArray` returns `[product => [...]]`
+- Fixed: curl_setopt(): supplied argument is not a valid File-Handle resource
+
 ## [4.6.0]
 ### Added
 - Class `Payever\ExternalIntegration\Payments\Notification\MessageEntity\NotificationResultEntity`

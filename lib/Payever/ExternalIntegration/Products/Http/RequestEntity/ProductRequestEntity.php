@@ -65,6 +65,8 @@ class ProductRequestEntity extends RequestEntity
 {
     const UNDERSCORE_ON_SERIALIZATION = false;
 
+    const API_DATA_CONTAINER_NAME = 'product';
+
     /**
      * Subscription external id.
      * Required for all requests.
@@ -327,8 +329,22 @@ class ProductRequestEntity extends RequestEntity
         $result = parent::toArray($object);
         if ($result && $isRootObject) {
             $result['salePrice'] = $this->salePrice;
+            $result = array(self::API_DATA_CONTAINER_NAME => $result);
         }
 
         return $result;
+    }
+
+    /**
+     * @param $data
+     * @return mixed
+     */
+    public function load($data)
+    {
+        if (array_key_exists(self::API_DATA_CONTAINER_NAME, $data)) {
+            $data = $data[self::API_DATA_CONTAINER_NAME];
+        }
+
+        return parent::load($data);
     }
 }
