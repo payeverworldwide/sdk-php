@@ -1,5 +1,9 @@
 # Changelog
 
+## [4.7.1]
+### Changed
+- Fixed: incorrect directory permission checking
+
 ## [4.7.0]
 ### Changed
 - `Payever\ExternalIntegration\Products\Http\RequestEntity\ProductRequestEntity::toArray` returns `[product => [...]]`
